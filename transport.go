@@ -10,6 +10,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -54,6 +55,10 @@ func printcURL(req *http.Request) error {
 		command = fmt.Sprintf("curl -X %s %s", req.Method, req.URL.String())
 	}
 
+	for k, v := range req.Header {
+		command += fmt.Sprintf(" -H '%s: %s'", k, strings.Join(v, ", "))
+	}
+
 	if req.Body != nil {
 		b, err = ioutil.ReadAll(req.Body)
 		if err != nil {
@@ -82,8 +87,6 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 		}
 	}
 
-	println("Request Bytes: " + string(bodyBytes))
-
 	url := c.config.Endpoint
 	req, err := http.NewRequest(method, url+path, bytes.NewReader(bodyBytes))
 
@@ -92,7 +95,7 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 	}
 
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Cotent-Type", "application/json; charset=utf-8")
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	if c.config.AccessToken != "" {
 		req.Header.Set("Authorization", "Bearer "+c.config.AccessToken)
@@ -166,7 +169,6 @@ type roundTripResponse struct {
 func (c *client) attempt(ctx context.Context, transport Transport, req *http.Request) (*http.Response, []byte, error) {
 	// based on etcd-client's simpleHTTPClient.Do():
 	// 	<https://github.com/coreos/etcd/blob/master/client/client.go#L374>
-	println("Attempting to hitx " + req.Method + " " + req.RequestURI + " u:" + req.URL.String())
 
 	if c.config.PrintCurlDebug {
 		printcURL(req)
@@ -259,6 +261,8 @@ func (c *client) Do(ctx context.Context, action httpAction) (*http.Response, []b
 	var err error
 	var body []byte
 
+	statusCodes := make([]int, 0, attempts)
+
 	for i := 0; i < attempts; i++ {
 		req := action.HTTPRequest()
 		req.Header.Set("User-Agent", ua)
@@ -268,6 +272,7 @@ func (c *client) Do(ctx context.Context, action httpAction) (*http.Response, []b
 		}
 
 		if resp.StatusCode >= 500 {
+			statusCodes = append(statusCodes, resp.StatusCode)
 			continue
 		}
 
@@ -278,5 +283,5 @@ func (c *client) Do(ctx context.Context, action httpAction) (*http.Response, []b
 		return nil, nil, err
 	}
 
-	return nil, nil, fmt.Errorf("client: reached max retries: %d", attempts)
+	return nil, nil, fmt.Errorf("client: reached max retries: %d statusCodes=[%v]", attempts, statusCodes)
 }
