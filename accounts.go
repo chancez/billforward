@@ -58,7 +58,7 @@ func (c *client) GetAccountById(accountId string) (*types.Account, error) {
 
 const accountDeleteByIdUrl = "/v1/accounts/%s"
 
-func (c *client) DeleteAccountById(accountId string) error {
+func (c *client) RetireAccountById(accountId string) error {
 	hr, err := c.req("DELETE", fmt.Sprintf(accountDeleteByIdUrl, accountId), nil)
 	if err != nil {
 		return err

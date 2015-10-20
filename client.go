@@ -42,7 +42,7 @@ type AccountIterateFn func(*types.Account) (bool, error)
 type AccountClient interface {
 	CreateAccount(profile *types.Profile) (*types.Account, error)
 	GetAccountById(accountId string) (*types.Account, error)
-	DeleteAccountById(accountId string) error
+	RetireAccountById(accountId string) error
 	ListAccounts(filter *types.AccountsFilter, fn AccountIterateFn) error
 }
 

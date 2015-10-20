@@ -46,6 +46,6 @@ func TestAccountCreate(t *testing.T) {
 	require.True(t, found)
 	require.NoError(t, err)
 
-	err = acct.DeleteAccountById(account.Id)
+	err = acct.RetireAccountById(account.Id)
 	require.NoError(t, err)
 }
