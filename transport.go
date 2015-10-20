@@ -96,7 +96,9 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 	}
 
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+	if body != nil {
+		req.Header.Set("Content-Type", "application/json; charset=utf-8")
+	}
 
 	if c.config.AccessToken != "" {
 		req.Header.Set("Authorization", "Bearer "+c.config.AccessToken)
