@@ -133,13 +133,18 @@ type remoteError struct {
 	Method  string
 	URL     string
 	Code    int
-	Type    string `json:"type"`
-	Message string `json:"message"`
+	Type    string `json:"errorType"`
+	Message string `json:"errorMessage"`
 }
 
 // TODO(pquerna): improve
 func (e remoteError) Error() string {
-	return e.Message
+	return fmt.Sprintf("billforward error: [%d] %s: %s on %s %s",
+		e.Code,
+		e.Type,
+		e.Message,
+		e.Method,
+		e.URL)
 }
 
 func (c *client) handleApiError(action httpAction, resp *http.Response, body []byte) error {
@@ -156,7 +161,7 @@ func (c *client) handleApiError(action httpAction, resp *http.Response, body []b
 	}
 
 	rerr.Method = req.Method
-	rerr.URL = req.RequestURI
+	rerr.URL = req.URL.String()
 	rerr.Code = resp.StatusCode
 
 	return rerr
@@ -272,7 +277,7 @@ func (c *client) Do(ctx context.Context, action httpAction) (*http.Response, []b
 			return nil, nil, err
 		}
 
-		if resp.StatusCode >= 500 {
+		if resp.StatusCode >= 500 && attempts-1 != i {
 			statusCodes = append(statusCodes, resp.StatusCode)
 			continue
 		}
