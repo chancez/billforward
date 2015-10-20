@@ -43,7 +43,7 @@ type AccountClient interface {
 	CreateAccount(profile *types.Profile) (*types.Account, error)
 	GetAccountById(accountId string) (*types.Account, error)
 	DeleteAccountById(accountId string) error
-	ListAccounts(fn AccountIterateFn) error
+	ListAccounts(filter *types.AccountsFilter, fn AccountIterateFn) error
 }
 
 type InvoiceClient interface {

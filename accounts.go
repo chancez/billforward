@@ -74,8 +74,20 @@ func (c *client) DeleteAccountById(accountId string) error {
 
 const accountListUrl = "/v1/accounts"
 
-func (c *client) ListAccounts(fn AccountIterateFn) error {
+func (c *client) ListAccounts(filter *types.AccountsFilter, fn AccountIterateFn) error {
 	url := accountListUrl
+
+	// TODO(pquerna): query args library?
+	if filter == nil {
+		filter = &types.AccountsFilter{}
+	}
+
+	url += "?"
+	if filter.IncludeRetired {
+		url += "&include_retired=true"
+	} else {
+		url += "&include_retired=false"
+	}
 
 	for {
 		var account types.AccountsResponse

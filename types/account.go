@@ -25,3 +25,7 @@ type AccountsResponse struct {
 	ExecutionTime    int        `json:"executionTime"`
 	Results          []*Account `json:"results"`
 }
+
+type AccountsFilter struct {
+	IncludeRetired bool
+}

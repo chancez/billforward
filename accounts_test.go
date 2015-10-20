@@ -34,7 +34,7 @@ func TestAccountCreate(t *testing.T) {
 	called := false
 	found := false
 
-	err = acct.ListAccounts(func(a *types.Account) (bool, error) {
+	err = acct.ListAccounts(nil, func(a *types.Account) (bool, error) {
 		called = true
 		require.NotNil(t, called)
 		if a.Id == account.Id {
