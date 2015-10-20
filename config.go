@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	EndpointSandbox    = "https://app-sandbox.billforward.net/"
-	EndpointProduction = "https://app.billforward.net/"
+	EndpointSandbox    = "https://api-sandbox.billforward.net/"
+	EndpointProduction = "https://api.billforward.net/"
 )
 
 type Config struct {

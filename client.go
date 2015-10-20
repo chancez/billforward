@@ -5,8 +5,9 @@ import (
 	"golang.org/x/net/context"
 
 	"net/url"
-	// TOOD(pquerna): remove fmt.Errorf, use correct
+	// TOOD(pquerna): remove fmt.Errorf, use correct error types
 	"fmt"
+	"strings"
 )
 
 func New(c Config) (Client, error) {
@@ -20,10 +21,9 @@ func New(c Config) (Client, error) {
 	}
 
 	config := Config(c)
-	config.Endpoint = u.String()
-
+	config.Endpoint = strings.TrimSuffix(u.String(), "/")
 	return &client{
-		config: c,
+		config: config,
 		// TODO(pquerna): should we allow the client to pass the context?
 		ctx: context.Background(),
 	}, nil
@@ -37,9 +37,13 @@ type Client interface {
 	httpClientDo
 }
 
+type AccountIterateFn func(*types.Account) (bool, error)
+
 type AccountClient interface {
 	CreateAccount(profile *types.Profile) (*types.Account, error)
 	GetAccountById(accountId string) (*types.Account, error)
+	DeleteAccountById(accountId string) error
+	ListAccounts(fn AccountIterateFn) error
 }
 
 type InvoiceClient interface {

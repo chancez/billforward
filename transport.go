@@ -88,6 +88,7 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 	}
 
 	url := c.config.Endpoint
+
 	req, err := http.NewRequest(method, url+path, bytes.NewReader(bodyBytes))
 
 	if err != nil {
@@ -109,7 +110,7 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 func (c *client) rt(action httpAction, respObj interface{}) error {
 	resp, bodyBytes, err := c.Do(c.ctx, action)
 
-	fmt.Printf("Do: resp: %q body: %s err: %s\n", resp, bodyBytes, err)
+	//fmt.Printf("Do: resp: %q body: %s err: %s\n", resp, bodyBytes, err)
 
 	if err != nil {
 		return err
@@ -185,7 +186,7 @@ func (c *client) attempt(ctx context.Context, transport Transport, req *http.Req
 	rtchan := make(chan roundTripResponse, 1)
 	go func() {
 		resp, err := transport.RoundTrip(req)
-		fmt.Printf("RoundTrip: resp: %q err: %s\n", resp, err)
+		//fmt.Printf("RoundTrip: resp: %q err: %s\n", resp, err)
 		rtchan <- roundTripResponse{resp: resp, err: err}
 		close(rtchan)
 	}()
