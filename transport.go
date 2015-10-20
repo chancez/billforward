@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -42,6 +43,34 @@ func (act *httpAct) HTTPRequest() *http.Request {
 	return act.req
 }
 
+func printcURL(req *http.Request) error {
+	var (
+		command string
+		b       []byte
+		err     error
+	)
+
+	if req.URL != nil {
+		command = fmt.Sprintf("curl -X %s %s", req.Method, req.URL.String())
+	}
+
+	if req.Body != nil {
+		b, err = ioutil.ReadAll(req.Body)
+		if err != nil {
+			return err
+		}
+		command += fmt.Sprintf(" -d %q", string(b))
+	}
+
+	fmt.Fprintf(os.Stderr, "cURL Command: %s\n", command)
+
+	// reset body
+	body := bytes.NewBuffer(b)
+	req.Body = ioutil.NopCloser(body)
+
+	return nil
+}
+
 func (c *client) req(method string, path string, body interface{}) (httpAction, error) {
 	var bodyBytes []byte
 	var err error
@@ -53,8 +82,10 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 		}
 	}
 
+	println("Request Bytes: " + string(bodyBytes))
+
 	url := c.config.Endpoint
-	req, err := http.NewRequest(method, url, bytes.NewReader(bodyBytes))
+	req, err := http.NewRequest(method, url+path, bytes.NewReader(bodyBytes))
 
 	if err != nil {
 		return nil, err
@@ -74,6 +105,8 @@ func (c *client) req(method string, path string, body interface{}) (httpAction, 
 
 func (c *client) rt(action httpAction, respObj interface{}) error {
 	resp, bodyBytes, err := c.Do(c.ctx, action)
+
+	fmt.Printf("Do: resp: %q body: %s err: %s\n", resp, bodyBytes, err)
 
 	if err != nil {
 		return err
@@ -111,11 +144,11 @@ func (c *client) handleApiError(action httpAction, resp *http.Response, body []b
 
 	err := json.Unmarshal(body, &rerr)
 	if err != nil {
-		return fmt.Errorf("Received malformed %d error from %s to %s:\n%s\n", resp.StatusCode, req.Method, req.RequestURI, string(body))
+		return fmt.Errorf("Received malformed %d error from %s to %s:\n%s\n", resp.StatusCode, req.Method, req.URL.String(), string(body))
 	}
 
 	if rerr.Type == "" {
-		return fmt.Errorf("Received malformed %d error from %s to %s:\n%s\n", resp.StatusCode, req.Method, req.RequestURI, string(body))
+		return fmt.Errorf("Received malformed %d error from %s to %s:\n%s\n", resp.StatusCode, req.Method, req.URL.String(), string(body))
 	}
 
 	rerr.Method = req.Method
@@ -133,6 +166,11 @@ type roundTripResponse struct {
 func (c *client) attempt(ctx context.Context, transport Transport, req *http.Request) (*http.Response, []byte, error) {
 	// based on etcd-client's simpleHTTPClient.Do():
 	// 	<https://github.com/coreos/etcd/blob/master/client/client.go#L374>
+	println("Attempting to hitx " + req.Method + " " + req.RequestURI + " u:" + req.URL.String())
+
+	if c.config.PrintCurlDebug {
+		printcURL(req)
+	}
 
 	hctx, hcancel := context.WithCancel(ctx)
 	if c.config.TimeoutPerRequest > 0 {
@@ -145,6 +183,7 @@ func (c *client) attempt(ctx context.Context, transport Transport, req *http.Req
 	rtchan := make(chan roundTripResponse, 1)
 	go func() {
 		resp, err := transport.RoundTrip(req)
+		fmt.Printf("RoundTrip: resp: %q err: %s\n", resp, err)
 		rtchan <- roundTripResponse{resp: resp, err: err}
 		close(rtchan)
 	}()
@@ -202,7 +241,7 @@ func (c *client) attempt(ctx context.Context, transport Transport, req *http.Req
 func (c *client) Do(ctx context.Context, action httpAction) (*http.Response, []byte, error) {
 	attempts := c.config.Attempts
 	if attempts == 0 {
-		attempts = 5
+		attempts = 1
 	}
 
 	// TOOD(pquerna): better ua

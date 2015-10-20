@@ -27,4 +27,7 @@ type Config struct {
 
 	// Number times to attempt a request, if 0, defaults to 5.
 	Attempts int
+
+	// Print ever request to stderr
+	PrintCurlDebug bool
 }

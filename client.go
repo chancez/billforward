@@ -15,7 +15,7 @@ func New(c Config) (Client, error) {
 		return nil, err
 	}
 
-	if u.IsAbs() {
+	if !u.IsAbs() {
 		return nil, fmt.Errorf("config.Endpoint must be an absolute url: %s", c.Endpoint)
 	}
 
