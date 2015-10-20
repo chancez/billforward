@@ -31,23 +31,21 @@ func TestAccountCreate(t *testing.T) {
 	require.Equal(t, account.Id, account2.Id)
 	require.Equal(t, account.Profile.FirstName, account2.Profile.FirstName)
 
-	err = acct.DeleteAccountById(account.Id)
-	require.NoError(t, err)
-}
-
-func TestAccountsList(t *testing.T) {
-	tc := testClient(t)
-	require.NotNil(t, tc)
-
-	acct := tc.Accounts()
-	require.NotNil(t, acct)
-
 	called := false
-	err := acct.ListAccounts(func(a *types.Account) (bool, error) {
+	found := false
+
+	err = acct.ListAccounts(func(a *types.Account) (bool, error) {
 		called = true
 		require.NotNil(t, called)
+		if a.Id == account.Id {
+			found = true
+		}
 		return true, nil
 	})
 	require.True(t, called)
+	require.True(t, found)
+	require.NoError(t, err)
+
+	err = acct.DeleteAccountById(account.Id)
 	require.NoError(t, err)
 }

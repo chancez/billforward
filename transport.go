@@ -52,7 +52,7 @@ func printcURL(req *http.Request) error {
 	)
 
 	if req.URL != nil {
-		command = fmt.Sprintf("curl -X %s %s", req.Method, req.URL.String())
+		command = fmt.Sprintf("curl -X %s '%s'", req.Method, req.URL.String())
 	}
 
 	for k, v := range req.Header {

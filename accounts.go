@@ -75,28 +75,42 @@ func (c *client) DeleteAccountById(accountId string) error {
 const accountListUrl = "/v1/accounts"
 
 func (c *client) ListAccounts(fn AccountIterateFn) error {
-	var account types.AccountsResponse
+	url := accountListUrl
 
-	hr, err := c.req("GET", accountListUrl, nil)
-	if err != nil {
-		return err
-	}
+	for {
+		var account types.AccountsResponse
 
-	err = c.rt(hr, &account)
-	if err != nil {
-		return err
-	}
-
-	for _, a := range account.Results {
-		next, err := fn(a)
+		hr, err := c.req("GET", url, nil)
 		if err != nil {
 			return err
 		}
 
-		if !next {
-			return nil
+		err = c.rt(hr, &account)
+		if err != nil {
+			return err
+		}
+
+		for _, a := range account.Results {
+			next, err := fn(a)
+			if err != nil {
+				return err
+			}
+
+			if !next {
+				return nil
+			}
+		}
+
+		if account.NextPage == "" {
+			break
+		}
+
+		if account.RecordsRequested == account.RecordsReturned {
+			url = "/v1" + account.NextPage
+			continue
+		} else {
+			break
 		}
 	}
-
 	return nil
 }
