@@ -119,10 +119,12 @@ func (c *client) rt(action httpAction, respObj interface{}) error {
 	}
 
 	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
-		err = json.Unmarshal(bodyBytes, respObj)
-		if err != nil {
-			// TODO(pquerna): wrap json errors, they are worthless.
-			return err
+		if respObj != nil {
+			err = json.Unmarshal(bodyBytes, respObj)
+			if err != nil {
+				// TODO(pquerna): wrap json errors, they are worthless.
+				return err
+			}
 		}
 	} else {
 		return c.handleApiError(action, resp, bodyBytes)
