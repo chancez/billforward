@@ -4,8 +4,11 @@ import (
 	"time"
 )
 
-/**
-* Docs Example:
+/*
+
+Represents an Account Profile.
+
+Docs Example:
 
 {
   "id": "PRF-05AA-508B-4BC8-A30F-BEA976F04535",
@@ -51,22 +54,26 @@ type Profile struct {
 	AdditionalInformation string     `json:"additionalInformation,omitempty"`
 }
 
-/**
-*  Docs Example:
-{
-  "id": "ADD-34C6-0C8A-11E4-98D0-2F1CFEA9529D",
-  "profileID": "723A380F-0AD4-4CE6-9B7A-3EFB037C7A3E",
-  "addressLine1": "address line 1",
-  "addressLine2": "address line 2",
-  "addressLine3": "address line 3",
-  "city": "London",
-  "province": "London",
-  "country": "United Kingdom",
-  "postcode": "SW1 1AS",
-  "landline": "02000000000",
-  "primaryAddress": true,
-  "deleted": false
-}
+/*
+
+Repersents an Address, part of a Porfile.
+
+Docs Example:
+
+    {
+      "id": "ADD-34C6-0C8A-11E4-98D0-2F1CFEA9529D",
+      "profileID": "723A380F-0AD4-4CE6-9B7A-3EFB037C7A3E",
+      "addressLine1": "address line 1",
+      "addressLine2": "address line 2",
+      "addressLine3": "address line 3",
+      "city": "London",
+      "province": "London",
+      "country": "United Kingdom",
+      "postcode": "SW1 1AS",
+      "landline": "02000000000",
+      "primaryAddress": true,
+      "deleted": false
+    }
 */
 type Address struct {
 	Id             string `json:"id,omitempty"`

@@ -1,13 +1,14 @@
 package billforward
 
 import (
+	"github.com/authclub/billforward/types"
 	"github.com/stretchr/testify/require"
 
 	"os"
 	"testing"
 )
 
-func testClient(t *testing.T) Client {
+func getTestClient() (Client, error) {
 	ep := os.Getenv("BILLFORWARD_TEST_ENDPOINT")
 	if ep == "" {
 		ep = EndpointSandbox
@@ -18,9 +19,7 @@ func testClient(t *testing.T) Client {
 
 	at := os.Getenv("BILLFORWARD_TEST_ACCESS_TOKEN")
 	if at == "" {
-		t.Skip("BILLFORWARD_TEST_ACCESS_TOKEN is unset, skipping....")
-		t.SkipNow()
-		return nil
+		return nil, nil
 	}
 	c, err := New(Config{
 		Endpoint:       ep,
@@ -28,8 +27,25 @@ func testClient(t *testing.T) Client {
 		PrintCurlDebug: true,
 	})
 
-	require.NoError(t, err)
-	require.NotNil(t, c)
+	return c, err
+}
 
+func testClient(t *testing.T) Client {
+	c, err := getTestClient()
+	require.NoError(t, err)
+	if c == nil {
+		t.Skip("BILLFORWARD_TEST_ACCESS_TOKEN is unset, skipping....")
+		t.SkipNow()
+		return nil
+	}
+	require.NotNil(t, c)
 	return c
+}
+
+func cleanupAccount(account *types.Account) {
+	c, _ := getTestClient()
+	if c != nil {
+		acct := c.Accounts()
+		acct.RetireAccountById(account.Id)
+	}
 }

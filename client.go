@@ -46,8 +46,10 @@ type AccountClient interface {
 	ListAccounts(filter *types.AccountsFilter, fn AccountIterateFn) error
 }
 
+type InvoiceIterateFn func(*types.Invoice) (bool, error)
+
 type InvoiceClient interface {
-	//	FetchInvoiceByAccount(accountId string) ([]*types.Invoice, error)
+	ListInvoicesByAccountId(accountId string, fn InvoiceIterateFn) error
 }
 
 type client struct {
