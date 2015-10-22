@@ -33,6 +33,7 @@ func New(c Config) (Client, error) {
 type Client interface {
 	Accounts() AccountClient
 	Invoices() InvoiceClient
+	Products() ProductClient
 
 	httpClientDo
 }
@@ -52,6 +53,12 @@ type InvoiceClient interface {
 	ListInvoicesByAccountId(accountId string, fn InvoiceIterateFn) error
 }
 
+type ProductIterateFn func(*types.Product) (bool, error)
+
+type ProductClient interface {
+	ListProducts(filter *types.ProductsFilter, fn ProductIterateFn) error
+}
+
 type client struct {
 	config Config
 	ctx    context.Context
@@ -62,5 +69,9 @@ func (c *client) Accounts() AccountClient {
 }
 
 func (c *client) Invoices() InvoiceClient {
+	return c
+}
+
+func (c *client) Products() ProductClient {
 	return c
 }
