@@ -7160,6 +7160,43 @@
                 }
             }
         },
+        "/accounts": {
+            "get": {
+                "tags": ["accounts"],
+                "summary": "Returns a collection of all account objects. By default 10 values are returned. Records are returned in natural order.",
+                "operationId": "getAccounts",
+                "consumes": ["text/plain", "application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "offset",
+                    "in": "query",
+                    "description": "The offset from the first account to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "0",
+                    "format": "int32"
+                }, {
+                    "name": "records",
+                    "in": "query",
+                    "description": "The maximum number of accounts to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "10",
+                    "format": "int32"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items":{
+                                "$ref": "#/definitions/Account"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/accounts/{account-ID}": {
             "get": {
                 "tags": ["accounts"],
