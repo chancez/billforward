@@ -6897,7 +6897,7 @@
                 "tags": ["pricing-component-value-changes"],
                 "summary": "Returns a single pricing-component-value-changes, specified by the ID parameter.",
                 "description": "{ \"nickname\" : \"Retrieve by id\",\"response\" : \"getPricingComponentValueChangeByID.html\"}",
-                "operationId": "get",
+                "operationId": "getPricingComponentValueChangeByID",
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
@@ -9472,7 +9472,7 @@
                 "tags": ["locustworld"],
                 "summary": "Returns a single locustworld payment, specified by the payment-ID parameter.",
                 "description": "{\"samples\":[{\"response\":\"getLocustworldByID\"}]}",
-                "operationId": "get",
+                "operationId": "getLocustWorldByID",
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
