@@ -131,7 +131,7 @@
     }],
     "schemes": ["http"],
     "paths": {
-        "/account-ltv/{account-id}/{end-datetime}": {
+        "/analytics/account-ltv/{account-id}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets an account's life-time value, as of a given end date.",
@@ -202,7 +202,7 @@
                 }
             }
         },
-        "/account/{account-ID}": {
+        "/invoices//account/{account-ID}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoices specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -275,7 +275,7 @@
                 }
             }
         },
-        "/ack/{notification-ID}": {
+        "/notifications/ack/{notification-ID}": {
             "get": {
                 "tags": ["notifications"],
                 "summary": "Acknowledge a newly recevied notification.",
@@ -310,7 +310,7 @@
                 }
             }
         },
-        "/actioning-time/{lower-threshold}/{upper-threshold}": {
+        "/amendments/actioning-time/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["amendments"],
                 "summary": "Returns a collection of amendment objects with an actioning-time within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natrual order.",
@@ -381,7 +381,7 @@
                 }
             }
         },
-        "/aggregate": {
+        "/invoices/aggregate": {
             "post": {
                 "tags": ["invoices"],
                 "summary": "Aggregate Invoices",
@@ -407,7 +407,7 @@
                 }
             }
         },
-        "/aggregating": {
+        "/subscriptions/aggregating": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Create an aggregating subscription.",
@@ -433,7 +433,7 @@
                 }
             }
         },
-        "/all.csv": {
+        "/invoices/all.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of all invoices. By default 10 values are returned. Records are returned in natural order.",
@@ -500,7 +500,7 @@
                 }
             }
         },
-        "/amendment-cost": {
+        "/pricing-calculator/amendment-cost": {
             "post": {
                 "tags": ["pricing-calculator"],
                 "summary": "Calculates the price of a subscription's upgrading/downgrading to a new pricing component value.",
@@ -527,7 +527,7 @@
                 }
             }
         },
-        "/attachable/{attachableness}/{has_code}": {
+        "/coupon-book/attachable/{attachableness}/{has_code}": {
             "get": {
                 "tags": ["coupon-book"],
                 "summary": "Returns a collection of attachable coupon-books. An attachable coupon-book has at least one remaining use, and is not deleted. By default 10 values are returned. Records are returned in natural order.",
@@ -598,7 +598,7 @@
                 }
             }
         },
-        "/attempt-index/{index}": {
+        "/dunning-lines/attempt-index/{index}": {
             "get": {
                 "tags": ["dunning-lines"],
                 "summary": "Returns a collection of dunning-lines specified by the index parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -671,7 +671,7 @@
                 }
             }
         },
-        "/auth-capture": {
+        "/tokenization/auth-capture": {
             "post": {
                 "tags": ["tokenization"],
                 "summary": "[Note: this API can be invoked more simply by our client-side card capture library, <a href=\"https://github.com/billforward/billforward-js\">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] ",
@@ -698,7 +698,7 @@
                 }
             }
         },
-        "/authorize-net": {
+        "/vaulted-gateways/authorize-net": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Create an authorize-net-token.",
@@ -725,7 +725,7 @@
                 }
             }
         },
-        "/batch": {
+        "/subscriptions/batch": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Create multiple subscriptions.",
@@ -751,7 +751,7 @@
                 }
             }
         },
-        "/billforward-managed-payments/{start-datetime}/{end-datetime}": {
+        "/analytics/billforward-managed-payments/{start-datetime}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets all payments managed by BillForward, within a date range.",
@@ -822,7 +822,7 @@
                 }
             }
         },
-        "/book-code/{book-code}": {
+        "/coupon-books/book-code/{book-code}": {
             "get": {
                 "tags": ["coupon-book"],
                 "summary": "Returns a single coupon-book, specified by the book-code parameter.",
@@ -857,7 +857,7 @@
                 }
             }
         },
-        "/braintree": {
+        "/vaulted-gateways/braintree": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Create a braintree-token.",
@@ -884,7 +884,7 @@
                 }
             }
         },
-        "/braintree/{accountID}": {
+        "/vaulted-gateways/braintree/{accountID}": {
             "get": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Returns a list of braintree-token, specified by the accountID parameter.",
@@ -919,7 +919,7 @@
                 }
             }
         },
-        "/churn/{start-datetime}/{end-datetime}": {
+        "/analytics/churn/{start-datetime}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets churn, within a date range.",
@@ -990,7 +990,7 @@
                 }
             }
         },
-        "/component-ID/{pricing-component-ID}": {
+        "/pricing-component-value-changes/component-ID/{pricing-component-ID}": {
             "get": {
                 "tags": ["pricing-component-value-changes"],
                 "summary": "Returns a collection of pricing-component-value-changes, specified by the pricing-component-value-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -1056,7 +1056,7 @@
                 }
             }
         },
-        "/country/{country}": {
+        "/taxation-strategies/country/{country}": {
             "get": {
                 "tags": ["taxation-strategies"],
                 "summary": "Returns a collection of taxation-strategies, specified by the country parameter. By default 10 values are returned. Records are returned in natural order. To return schedule or historic tax changes the include_retired query parameter should be set to true.",
@@ -1129,7 +1129,7 @@
                 }
             }
         },
-        "/coupon-book-definition/{coupon-book-definition-ID}": {
+        "/coupon-books/coupon-book-definition/{coupon-book-definition-ID}": {
             "get": {
                 "tags": ["coupon-book"],
                 "summary": "Returns a collection of coupon-books, specified by coupon-book-definition-ID parameter. By default 10 coupon-books are returned. Records are returned in natural order.",
@@ -1202,7 +1202,7 @@
                 }
             }
         },
-        "/coupon-code/{coupon-code}": {
+        "/coupon-modifier/coupon-code/{coupon-code}": {
             "get": {
                 "tags": ["coupon-modifier"],
                 "summary": "Returns a collection of coupon-modifiers, specified by the coupon-code parameter.",
@@ -1253,7 +1253,7 @@
                 }
             }
         },
-        "/coupon-definition/{coupon-definition-ID}": {
+        "/coupon-rule/coupon-definition/{coupon-definition-ID}": {
             "get": {
                 "tags": ["coupon-rule"],
                 "summary": "Returns a single coupon-definition, specified by the coupon-definition-ID parameter.",
@@ -1288,7 +1288,7 @@
                 }
             }
         },
-        "/coupon-instance/initialisation": {
+        "/pricing-calculator/coupon-instance/initialisation": {
             "post": {
                 "tags": ["pricing-calculator"],
                 "summary": "Calculates the price of a subscription to a rate plan, at specified values of pricing component values, and with the specified coupon applied.",
@@ -1315,7 +1315,7 @@
                 }
             }
         },
-        "/coupon/{coupon-code}": {
+        "/coupon-book/coupon/{coupon-code}": {
             "get": {
                 "tags": ["coupon-book"],
                 "summary": "Returns a single coupon-book, specified by the coupon-code parameter.",
@@ -1350,7 +1350,7 @@
                 }
             }
         },
-        "/create": {
+        "/subscriptions/create": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Create a subscription (V2).",
@@ -1376,7 +1376,7 @@
                 }
             }
         },
-        "/create-user-login": {
+        "/users/create-user-login": {
             "post": {
                 "tags": ["users"],
                 "summary": "Create a user.",
@@ -1403,7 +1403,7 @@
                 }
             }
         },
-        "/created/{lower-threshold}/{upper-threshold}": {
+        "/accounts/created/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Returns a collection of account objects with created times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natrual order.",
@@ -1481,7 +1481,7 @@
                 }
             }
         },
-        "/credit.csv": {
+        "/invoices/credit.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves credit note-paid from InvoicePayments upon line items, in CSV format.",
@@ -1522,7 +1522,7 @@
                 }
             }
         },
-        "/csv": {
+        "/refunds/csv": {
             "get": {
                 "tags": ["refunds"],
                 "summary": "Retrieves refunds in CSV format.",
@@ -1591,7 +1591,7 @@
                 }
             }
         },
-        "/currency/{currency}": {
+        "/taxation-strategies/currency/{currency}": {
             "get": {
                 "tags": ["taxation-strategies"],
                 "summary": "Returns a collection of taxation-strategies, specified by the currency parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -1663,7 +1663,7 @@
                 }
             }
         },
-        "/customer-code/{customer-code}": {
+        "/organizations/customer-code/{customer-code}": {
             "get": {
                 "tags": ["organizations"],
                 "summary": "Returns a single organization, specified by the customer-code parameter.",
@@ -1698,7 +1698,7 @@
                 }
             }
         },
-        "/debits.csv": {
+        "/receipts/debits.csv": {
             "get": {
                 "tags": ["receipts"],
                 "summary": "Retrieves debit payments in CSV format.",
@@ -1767,7 +1767,7 @@
                 }
             }
         },
-        "/email/{email}": {
+        "/profiles/email/{email}": {
             "get": {
                 "tags": ["profiles"],
                 "summary": "Returns a single profile, specified by the email parameter.",
@@ -1840,7 +1840,7 @@
                 }
             }
         },
-        "/entity-ID/{subscription-ID}": {
+        "/notifications/{entity-ID}/{subscription-ID}": {
             "get": {
                 "tags": ["notifications"],
                 "summary": "Returns a collection of notifications, specified by the entity-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -1854,7 +1854,15 @@
                     "description": "The string entity-ID of the notification.",
                     "required": true,
                     "type": "string"
-                }, {
+                }, 
+                {
+                    "name": "subscription-ID",
+                    "in": "path",
+                    "description": "The id of the subscription.",
+                    "required": true,
+                    "type": "string"
+                },
+                {
                     "name": "organizations",
                     "in": "query",
                     "description": "A list of organization-IDs used to restrict the scope of API calls.",
@@ -1913,7 +1921,7 @@
                 }
             }
         },
-        "/entity-type/{entity-type}": {
+        "/audit-logs/entity-type/{entity-type}": {
             "get": {
                 "tags": ["audit-logs"],
                 "summary": "Returns a collection of audit-log entries, specified by the entity-type parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -1986,7 +1994,7 @@
                 }
             }
         },
-        "/entity/{entity-ID}": {
+        "/audit-logs/entity/{entity-ID}": {
             "get": {
                 "tags": ["audit-logs"],
                 "summary": "Returns a collection of audit-log entries, specified by the entity-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -2059,7 +2067,7 @@
                 }
             }
         },
-        "/gateway/{gateway}": {
+        "/payments/gateway/{gateway}": {
             "get": {
                 "tags": ["payments"],
                 "summary": "Returns a collection of payments, specified by the gateway parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -2132,7 +2140,7 @@
                 }
             }
         },
-        "/generate-line-payments": {
+        "/invoices/generate-line-payments": {
             "post": {
                 "tags": ["invoices"],
                 "summary": "Generates InvoiceLinePayments for all existing InvoicePayments.",
@@ -2161,7 +2169,7 @@
                 }
             }
         },
-        "/import": {
+        "/invoices/import": {
             "post": {
                 "tags": ["invoices"],
                 "summary": "",
@@ -2187,7 +2195,7 @@
                 }
             }
         },
-        "/initial-period-start/{lower-threshold}/{upper-threshold}": {
+        "/subscriptions/initial-period-start/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a collection of subscription objects with period-end times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -2259,7 +2267,7 @@
                 }
             }
         },
-        "/invoice/{invoice-ID}": {
+        "/pricing-component-value-changes/invoice/{invoice-ID}": {
             "get": {
                 "tags": ["pricing-component-value-changes"],
                 "summary": "Returns a collection of pricing-component-value-changes, specified by the invoice-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -2325,7 +2333,7 @@
                 }
             }
         },
-        "/line-payments": {
+        "/invoices/line-payments": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves all InvoiceLine payment attributions.",
@@ -2365,7 +2373,7 @@
                 }
             }
         },
-        "/link-id/{linkID}": {
+        "/payment-methods/link-id/{linkID}": {
             "get": {
                 "tags": ["payment-methods"],
                 "summary": "Returns a single payment-method, specified by the linkID parameter.",
@@ -2400,7 +2408,7 @@
                 }
             }
         },
-        "/mine": {
+        "/organizations/mine": {
             "get": {
                 "tags": ["organizations"],
                 "summary": "Returns a collection of all my asociated organizations. By default 10 values are returned. Records are returned in natural order.",
@@ -2466,7 +2474,7 @@
                 }
             }
         },
-        "/name/{name}": {
+        "/organizations/name/{name}": {
             "get": {
                 "tags": ["organizations"],
                 "summary": "Returns a single Organization, specified by the name parameter.",
@@ -2501,7 +2509,7 @@
                 }
             }
         },
-        "/original-payment/{payment-ID}": {
+        "/refunds/original-payment/{payment-ID}": {
             "get": {
                 "tags": ["refunds"],
                 "summary": "Returns a refund for the original payment.",
@@ -2536,7 +2544,7 @@
                 }
             }
         },
-        "/password-reset-code/{reset-code}": {
+        "/users/password-reset-code/{reset-code}": {
             "get": {
                 "tags": ["users"],
                 "summary": "Returns a single User, specified by the password-reset-code parameter.",
@@ -2545,7 +2553,7 @@
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "password-reset-code",
+                    "name": "reset-code",
                     "in": "path",
                     "description": "The unique password reset code of the User.",
                     "required": true,
@@ -2571,7 +2579,7 @@
                 }
             }
         },
-        "/password-update": {
+        "/users/password-update": {
             "post": {
                 "tags": ["users"],
                 "summary": "Update a user's password.",
@@ -2598,7 +2606,7 @@
                 }
             }
         },
-        "/payment-method/{payment-method-ID}": {
+        "/payments/payment-method/{payment-method-ID}": {
             "get": {
                 "tags": ["payments"],
                 "summary": "Returns a collection of payments, specified by the payment-method-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -2607,9 +2615,9 @@
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "product-rate-plan-ID",
+                    "name": "payment-method-ID",
                     "in": "path",
-                    "description": "ID of the product-rate-plan",
+                    "description": "ID of the payment method",
                     "required": true,
                     "type": "string"
                 }, {
@@ -2671,7 +2679,7 @@
                 }
             }
         },
-        "/payment/{payment-ID}": {
+        "/receipts/payment/{payment-ID}": {
             "get": {
                 "tags": ["receipts"],
                 "summary": "Returns a collection of receipts for the payment.",
@@ -2737,7 +2745,7 @@
                 }
             }
         },
-        "/payments-per-product": {
+        "/analytics/payments-per-product": {
             "post": {
                 "tags": ["analytics"],
                 "summary": "Gets hourly payments per product, within a date range.",
@@ -2764,7 +2772,7 @@
                 }
             }
         },
-        "/payments/accounts": {
+        "/analytics/payments/accounts": {
             "post": {
                 "tags": ["analytics"],
                 "summary": "Gets hourly payments per product, within a date range.",
@@ -2791,7 +2799,7 @@
                 }
             }
         },
-        "/payments/accounts/outstanding": {
+        "/analytics/payments/accounts/outstanding": {
             "post": {
                 "tags": ["analytics"],
                 "summary": "Gets outstanding debts per account, within a date range.",
@@ -2818,7 +2826,7 @@
                 }
             }
         },
-        "/payments/outstanding/{start-datetime}/{end-datetime}": {
+        "/analytics/payments/outstanding/{start-datetime}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets debts within a date range.",
@@ -2889,7 +2897,7 @@
                 }
             }
         },
-        "/payments/product-rate-plan": {
+        "/analytics/payments/product-rate-plan": {
             "post": {
                 "tags": ["analytics"],
                 "summary": "Gets hourly payments per product, within a date range.",
@@ -2916,7 +2924,7 @@
                 }
             }
         },
-        "/payments/{start-datetime}/{end-datetime}": {
+        "/analytics/payments/{start-datetime}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets payments within a date range.",
@@ -2987,7 +2995,7 @@
                 }
             }
         },
-        "/payvision-shout-v1": {
+        "/tokenization/payvision-shout-v1": {
             "post": {
                 "tags": ["tokenization"],
                 "summary": "[Note: this API is intended to be invoked by the PayVision servers -- they are BillForward's way of informing client-side of the result of card-capture from within an iframe] Generates iframe to which customer will be directed upon success or failure. The iframe contains JavaScript which attempts to send a message to BillForward.js on the client-side, which will handle the result.",
@@ -3016,7 +3024,7 @@
                 }
             }
         },
-        "/period-end/{lower-threshold}/{upper-threshold}": {
+        "/invoices/period-end/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoice objects with period-end times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -3095,7 +3103,7 @@
                 }
             }
         },
-        "/period-start/{lower-threshold}/{upper-threshold}": {
+        "/invoices/period-start/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoice objects with period-start times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -3174,7 +3182,7 @@
                 }
             }
         },
-        "/period-start/{lower-threshold}/{upper-threshold}.csv": {
+        "/invoices/period-start/{lower-threshold}/{upper-threshold}.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoice objects with period-start times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -3480,7 +3488,7 @@
                 }
             }
         },
-        "/pre-auth": {
+        "/tokenization/pre-auth": {
             "post": {
                 "tags": ["tokenization"],
                 "summary": "[Note: this API can be invoked more simply by our client-side card capture library, <a href=\"https://github.com/billforward/billforward-js\">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] ",
@@ -3507,7 +3515,7 @@
                 }
             }
         },
-        "/pricing-component/{pricing-component-ID}": {
+        "/usage-rounding-strategies/pricing-component/{pricing-component-ID}": {
             "get": {
                 "tags": ["usage-rounding-strategies"],
                 "summary": "Returns a collection of usage-rounding-strategies, specified by the pricing-component-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -3580,7 +3588,7 @@
                 }
             }
         },
-        "/product-rate-plan": {
+        "/pricing-calculator/product-rate-plan": {
             "post": {
                 "tags": ["pricing-calculator"],
                 "summary": "Calculates the price of a subscription to a rate plan, at specified values of pricing component values.",
@@ -3607,7 +3615,7 @@
                 }
             }
         },
-        "/product-rate-plan/{product-rate-plan-ID}": {
+        "/taxation-links/product-rate-plan/{product-rate-plan-ID}": {
             "get": {
                 "tags": ["taxation-links"],
                 "summary": "Returns a collection of taxation-links, specified by the product-rate-plan-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -3680,7 +3688,7 @@
                 }
             }
         },
-        "/product/{product-ID}": {
+        "/product-rate-plans/product/{product-ID}": {
             "get": {
                 "tags": ["product-rate-plans"],
                 "summary": "Returns a collection of product-rate-plans, specified by the product-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -3752,7 +3760,7 @@
                 }
             }
         },
-        "/product/{product-ID}/rate-plan/{rate-plan-ID}": {
+        "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}": {
             "get": {
                 "tags": ["product-rate-plans"],
                 "summary": "Returns a collection of product-rate-plans, specified by the product-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -3829,7 +3837,7 @@
                 }
             }
         },
-        "/province/{province}": {
+        "/taxation-strategies/province/{province}": {
             "get": {
                 "tags": ["taxation-strategies"],
                 "summary": "Returns a collection of taxation-strategies, specified by the province parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -3902,7 +3910,7 @@
                 }
             }
         },
-        "/recurring-subscription-info/{recurring-subscription-ID}": {
+        "/cybersource-tokens/recurring-subscription-info/{recurring-subscription-ID}": {
             "get": {
                 "tags": ["cybersource-tokens"],
                 "summary": "Returns a single cybersource-token, specified by the recurring-subscription-ID parameter.",
@@ -3937,7 +3945,7 @@
                 }
             }
         },
-        "/refund-payment/{payment-ID}": {
+        "/refunds/refund-payment/{payment-ID}": {
             "get": {
                 "tags": ["refunds"],
                 "summary": "Returns a refund for the refund payment.",
@@ -3972,7 +3980,7 @@
                 }
             }
         },
-        "/refund.csv": {
+        "/invoices/refund.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves awarded refunds from InvoicePayments upon line items, in CSV format.",
@@ -4013,7 +4021,7 @@
                 }
             }
         },
-        "/refunds.csv": {
+        "/receipts/refunds.csv": {
             "get": {
                 "tags": ["receipts"],
                 "summary": "Retrieves refunded payments in CSV format.",
@@ -4082,7 +4090,7 @@
                 }
             }
         },
-        "/revenue.csv": {
+        "/invoices/revenue.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves received revenue from InvoicePayments upon line items, in CSV format.",
@@ -4448,7 +4456,7 @@
                 }
             }
         },
-        "/sagepay-shout-v3-00": {
+        "/tokenization/sagepay-shout-v3-00": {
             "get": {
                 "tags": ["tokenization"],
                 "summary": "[Note: this API is intended to be invoked by the SagePay servers -- they are BillForward's way of informing client-side of the result of card-capture from within an iframe, using SagePay's FORM Protocol, v3.0] Generates iframe to which customer will be directed upon success or failure. The iframe contains JavaScript which attempts to send a message to BillForward.js on the client-side, which will handle the result.",
@@ -4507,16 +4515,16 @@
                 }
             }
         },
-        "/sms-password-reset-code/{reset-code}": {
+        "/users/sms-password-reset-code/{reset-code}": {
             "get": {
                 "tags": ["users"],
-                "summary": "Returns a single User, specified by the sms-password-reset-code parameter.",
+                "summary": "Returns a single User, specified by the reset-code parameter.",
                 "description": "{ \"nickname\" : \"Retrieve by sms reset code\",\"response\" : \"getUserBySMSPasswordResetCode.html\"}",
                 "operationId": "getUserBySMSPasswordResetCode",
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "sms-password-reset-code",
+                    "name": "reset-code",
                     "in": "path",
                     "description": "The unique SMS password reset code of the User.",
                     "required": true,
@@ -4542,7 +4550,7 @@
                 }
             }
         },
-        "/start": {
+        "/usage-sessions/start": {
             "post": {
                 "tags": ["usage-sessions"],
                 "summary": "Start a new session",
@@ -4569,7 +4577,7 @@
                 }
             }
         },
-        "/state/{state}": {
+        "/invoices/state/{state}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoices, specified by the state parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -4643,7 +4651,7 @@
                 }
             }
         },
-        "/state/{state}.csv": {
+        "/invoices/state/{state}.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoices, specified by the state parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -4717,7 +4725,7 @@
                 }
             }
         },
-        "/state/{state}/period-start/{lower-threshold}/{upper-threshold}": {
+        "/invoices/state/{state}/period-start/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoice objects specified by the state parameter and with period-start times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -4803,7 +4811,7 @@
                 }
             }
         },
-        "/state/{state}/period-start/{lower-threshold}/{upper-threshold}.csv": {
+        "/invoices/state/{state}/period-start/{lower-threshold}/{upper-threshold}.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoice objects specified by the state parameter and with period-start times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -4889,7 +4897,7 @@
                 }
             }
         },
-        "/stop": {
+        "/usage-sessions/stop": {
             "post": {
                 "tags": ["usage-sessions"],
                 "summary": "Stop a specified session",
@@ -4916,7 +4924,7 @@
                 }
             }
         },
-        "/stripe": {
+        "/vaulted-gateways/stripe": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Create a stripe-token.",
@@ -4968,7 +4976,7 @@
                 }
             }
         },
-        "/stripe-ACH": {
+        "/vaulted-gateways/stripe-ACH": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Create a stripe-ACH-token.",
@@ -5020,7 +5028,7 @@
                 }
             }
         },
-        "/stripe-ACH/{stripeACHTokenID}": {
+        "/vaulted-gateways/stripe-ACH/{stripeACHTokenID}": {
             "get": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Returns a single stripe-ACH-token, specified by the stripeACHTokenID parameter.",
@@ -5055,7 +5063,7 @@
                 }
             }
         },
-        "/stripe/card-details-id/{cardDetailsID}": {
+        "/vaulted-gateways/stripe/card-details-id/{cardDetailsID}": {
             "get": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Returns a single stripe-token, specified by the cardDetailsID parameter.",
@@ -5090,7 +5098,7 @@
                 }
             }
         },
-        "/stripe/verify-bank-account": {
+        "/vaulted-gateways/stripe/verify-bank-account": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Verify Stripe bank account.",
@@ -5117,7 +5125,7 @@
                 }
             }
         },
-        "/stripe/webhook": {
+        "/vaulted-gateways/stripe/webhook": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Receive and handle webhook from Stripe.",
@@ -5144,7 +5152,7 @@
                 }
             }
         },
-        "/stripe/{stripeTokenID}": {
+        "/vaulted-gateways/stripe/{stripeTokenID}": {
             "get": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Returns a single stripe-token, specified by the stripeTokenID parameter.",
@@ -5179,7 +5187,7 @@
                 }
             }
         },
-        "/subscription-ltv/{subscription-id}/{end-datetime}": {
+        "/analytics/subscription-ltv/{subscription-id}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets a subscription's life-time value, as of a given end date.",
@@ -5250,7 +5258,7 @@
                 }
             }
         },
-        "/subscription/version/{subscription-version-ID}": {
+        "/invoices/subscription/version/{subscription-version-ID}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a collection of invoices specified by the subscription-version-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -5259,7 +5267,7 @@
                 "consumes": ["text/plain", "application/json"],
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscription-Version-ID",
+                    "name": "subscription-version-ID",
                     "in": "path",
                     "description": "Version ID of the subscription.",
                     "required": true,
@@ -5323,7 +5331,7 @@
                 }
             }
         },
-        "/subscription/{subscription-ID}": {
+        "/analytics/subscription/{subscription-ID}": {
             "get": {
                 "tags": ["pricing-component-value-changes"],
                 "summary": "Returns a collection of pricing-component-value-changes, specified by the subscription-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -5389,7 +5397,7 @@
                 }
             }
         },
-        "/successful-periods/{lower-threshold}/{upper-threshold}": {
+        "/subscriptions/successful-periods/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a collection of subscription objects whose successful periods count falls within the range specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natural order.",
@@ -5463,7 +5471,7 @@
                 }
             }
         },
-        "/swagger-end-point": {
+        "/time/swagger-end-point": {
             "get": {
                 "tags": ["time"],
                 "summary": "",
@@ -5490,7 +5498,7 @@
                 }
             }
         },
-        "/swagger-end-point/{query-string}": {
+        "/invoices/swagger-end-point/{query-string}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "",
@@ -6188,7 +6196,7 @@
                 }
             }
         },
-        "/target-entity/{target}": {
+        "/coupon-instances/target-entity/{target}": {
             "get": {
                 "tags": ["coupon-instance"],
                 "summary": "Returns a collection of coupon-instances, specified by target parameter. By default 10 coupon-instances are returned. Records are returned in natural order.",
@@ -6261,7 +6269,7 @@
                 }
             }
         },
-        "/target/{target-ID}": {
+        "/coupon-instances/target/{target-ID}": {
             "get": {
                 "tags": ["coupon-instance"],
                 "summary": "Returns a collection of coupon-instances, specified by target-ID parameter. By default 10 coupon-instances are returned. Records are returned in natural order.",
@@ -6334,7 +6342,7 @@
                 }
             }
         },
-        "/taxation-strategy/{taxation-strategy-ID}": {
+        "/taxation-links/taxation-strategy/{taxation-strategy-ID}": {
             "get": {
                 "tags": ["taxation-links"],
                 "summary": "Returns a collection of taxation-links, specified by the taxation-strategy-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -6407,7 +6415,7 @@
                 }
             }
         },
-        "/trustCommerce": {
+        "/vaulted-gateways/trustCommerce": {
             "post": {
                 "tags": ["vaulted-gateways"],
                 "summary": "Create a trust-commerce-token.",
@@ -6434,7 +6442,7 @@
                 }
             }
         },
-        "/type/{configuration-type}": {
+        "/configurations/type/{configuration-type}": {
             "get": {
                 "tags": ["configurations"],
                 "summary": "Returns a single configuration, specified by the type parameter.",
@@ -6500,7 +6508,7 @@
                 }
             }
         },
-        "/update": {
+        "/subscriptions/update": {
             "put": {
                 "tags": ["subscriptions"],
                 "summary": "Update a subscription (V2).",
@@ -6526,7 +6534,7 @@
                 }
             }
         },
-        "/updated/{lower-threshold}/{upper-threshold}": {
+        "/accounts/updated/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Returns a collection of account objects with updated times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natrual order.",
@@ -6604,7 +6612,7 @@
                 }
             }
         },
-        "/upgrades/{start-datetime}/{end-datetime}": {
+        "/analytics/upgrades/{start-datetime}/{end-datetime}": {
             "get": {
                 "tags": ["analytics"],
                 "summary": "Gets upgrades, within a date range.",
@@ -6675,7 +6683,7 @@
                 }
             }
         },
-        "/user/{user-ID}": {
+        "/accounts/user/{user-ID}": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Returns a collection of accounts, specified by the user-ID parameter.  By default 10 values are returned. Records are returned in natural order.",
@@ -6747,7 +6755,7 @@
                 }
             }
         },
-        "/username/{username}": {
+        "/users/username/{username}": {
             "get": {
                 "tags": ["users"],
                 "summary": "Returns a single User, specified by the username parameter, this is by default the e-mail address of the user.",
@@ -6782,7 +6790,7 @@
                 }
             }
         },
-        "/verify/{verification-ID}": {
+        "/webhooks/verify/{verification-ID}": {
             "get": {
                 "tags": ["webhooks"],
                 "summary": "New webhooks must be verified before use, use the verificationID of the webhook to perform verification.",
@@ -6817,7 +6825,7 @@
                 }
             }
         },
-        "/version/{version-ID}": {
+        "/invoices/version/{version-ID}": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a single invoice, specified by the version-ID parameter.",
@@ -6884,7 +6892,7 @@
                 }
             }
         },
-        "/{ID}": {
+        "/pricing-component-value-changes/{ID}": {
             "get": {
                 "tags": ["pricing-component-value-changes"],
                 "summary": "Returns a single pricing-component-value-changes, specified by the ID parameter.",
@@ -6919,7 +6927,7 @@
                 }
             }
         },
-        "/{ID}.csv": {
+        "/invoices/{ID}.csv": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a single invoice specified by the ID parameter.",
@@ -6992,7 +7000,7 @@
                 }
             }
         },
-        "/{ID}.html": {
+        "/invoices/{ID}.html": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a single invoice specified by the ID parameter.",
@@ -7072,7 +7080,7 @@
                 }
             }
         },
-        "/{ID}.pdf": {
+        "/invoices/{ID}.pdf": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieves a single invoice specified by the ID parameter.",
@@ -7152,7 +7160,7 @@
                 }
             }
         },
-        "/{account-ID}": {
+        "/accounts/{account-ID}": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Returns a single account, specified by the account-ID parameter.",
@@ -7218,7 +7226,7 @@
                 }
             }
         },
-        "/{account-ID}/credit": {
+        "/accounts/{account-ID}/credit": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Returns all available credit-notes for the specified account. By default 10 values are returned. Records are returned in natural order.",
@@ -7322,7 +7330,7 @@
                 }
             }
         },
-        "/{account-ID}/credit/{value}": {
+        "/accounts/{account-ID}/credit/{value}": {
             "delete": {
                 "tags": ["accounts"],
                 "summary": "Decrease the amount of credit by the value specified or entirely if no value provided.",
@@ -7362,7 +7370,7 @@
                 }
             }
         },
-        "/{account-ID}/metadata": {
+        "/accounts/{account-ID}/metadata": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Retrieve any associated metadata.",
@@ -7506,7 +7514,7 @@
                 }
             }
         },
-        "/{account-ID}/roles": {
+        "/accounts/{account-ID}/roles": {
             "get": {
                 "tags": ["accounts"],
                 "summary": "Retrieves a collection of permission groups, specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -7578,7 +7586,7 @@
                 }
             }
         },
-        "/{account-ID}/roles/{permission-identifier}": {
+        "/accounts/{account-ID}/roles/{permission-identifier}": {
             "post": {
                 "tags": ["accounts"],
                 "summary": "Add a permission group to the account",
@@ -7657,7 +7665,7 @@
                 }
             }
         },
-        "/{amendment-ID}": {
+        "/amendments/{amendment-ID}": {
             "get": {
                 "tags": ["amendments"],
                 "summary": "Returns a single amendment, specified by the amendment-ID parameter.",
@@ -7725,7 +7733,7 @@
                 }
             }
         },
-        "/{audit-ID}": {
+        "/audit-logs/{audit-ID}": {
             "get": {
                 "tags": ["audit-logs"],
                 "summary": "Returns a single audit-log entry, specified by the audit-ID parameter.",
@@ -7760,7 +7768,78 @@
                 }
             }
         },
-        "/{charge-ID}": {
+        "/charges/{charge-ID}": {
+            "get": {
+                "tags": ["charges"],
+                "summary": "Retrieves a single charge, specified by the id parameter.",
+                "description": "{\"nickname\":\"Retrieve a charge\",\"response\":\"getChargeByID.html\"}",
+                "operationId": "getSubscriptionChargeByID",
+                "consumes": ["text/plain"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "charge-ID",
+                    "in": "path",
+                    "description": "The unique string-ID of the subscription.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "organizations",
+                    "in": "query",
+                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
+                    "required": false,
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "collectionFormat": "multi"
+                }, {
+                    "name": "offset",
+                    "in": "query",
+                    "description": "The offset from the first subscription to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "0",
+                    "format": "int32"
+                }, {
+                    "name": "records",
+                    "in": "query",
+                    "description": "The maximum number of subscriptions to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "10",
+                    "format": "int32"
+                }, {
+                    "name": "order_by",
+                    "in": "query",
+                    "description": "Specify a field used to order the result set.",
+                    "required": false,
+                    "type": "string",
+                    "default": "id"
+                }, {
+                    "name": "order",
+                    "in": "query",
+                    "description": "Ihe direction of any ordering, either ASC or DESC.",
+                    "required": false,
+                    "type": "string",
+                    "default": "DESC",
+                    "enum": ["ASC", "DESC"]
+                }, {
+                    "name": "include_retired",
+                    "in": "query",
+                    "description": "Whether retired subscriptions should be returned.",
+                    "required": false,
+                    "type": "boolean",
+                    "default": "false"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SubscriptionCharge"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "tags": ["charges"],
                 "summary": "Void the charge with the specified charge-ID.",
@@ -7794,7 +7873,7 @@
                 }
             }
         },
-        "/{charge-ID}/recalculate": {
+        "/charges/{charge-ID}/recalculate": {
             "post": {
                 "tags": ["charges"],
                 "summary": "Recalculate a charge.",
@@ -7827,7 +7906,7 @@
                 }
             }
         },
-        "/{client-ID}": {
+        "/clients/{client-ID}": {
             "get": {
                 "tags": ["clients"],
                 "summary": "Returns a single client, specified by the client-ID parameter.",
@@ -7862,7 +7941,7 @@
                 }
             }
         },
-        "/{code}": {
+        "/coupons/{code}": {
             "get": {
                 "tags": ["coupons"],
                 "summary": "Returns the coupon for the specified code that can be applied to a subscription.",
@@ -7930,7 +8009,7 @@
                 }
             }
         },
-        "/{code}/applied": {
+        "/coupons/{code}/applied": {
             "get": {
                 "tags": ["coupons"],
                 "summary": "Returns a list of unique coupons which have been applied.",
@@ -8003,7 +8082,7 @@
                 }
             }
         },
-        "/{code}/codes": {
+        "/coupons/{code}/codes": {
             "get": {
                 "tags": ["coupons"],
                 "summary": "Returns a list of available unique coupon codes for the specified parent coupon code that can be applied to a subscription.",
@@ -8107,7 +8186,7 @@
                 }
             }
         },
-        "/{code}/subscriptions": {
+        "/coupons/{code}/subscriptions": {
             "get": {
                 "tags": ["coupons"],
                 "summary": "Retrieves a collection of the coupons by this coupon code which have been applied.",
@@ -8180,7 +8259,7 @@
                 }
             }
         },
-        "/{coupon-book-ID}": {
+        "/coupon-book/{coupon-book-ID}": {
             "get": {
                 "tags": ["coupon-book"],
                 "summary": "Returns a single coupon-book, specified by the coupon-book-ID parameter.",
@@ -8248,7 +8327,7 @@
                 }
             }
         },
-        "/{coupon-book-definition-ID}": {
+        "/coupon-book-definition/{coupon-book-definition-ID}": {
             "get": {
                 "tags": ["coupon-book-definition"],
                 "summary": "Returns a single coupon-book-definition, specified by the coupon-book-definition-ID parameter.",
@@ -8316,7 +8395,7 @@
                 }
             }
         },
-        "/{coupon-definition-ID}": {
+        "/coupon-definition/{coupon-definition-ID}": {
             "get": {
                 "tags": ["coupon-definition"],
                 "summary": "Returns a single coupon-definition, specified by the coupon-definition-ID parameter.",
@@ -8384,7 +8463,7 @@
                 }
             }
         },
-        "/{coupon-instance-ID}": {
+        "/coupon-instance/{coupon-instance-ID}": {
             "get": {
                 "tags": ["coupon-instance"],
                 "summary": "Returns a single coupon-instance, specified by the coupon-instance-ID parameter.",
@@ -8452,7 +8531,7 @@
                 }
             }
         },
-        "/{coupon-modifier-ID}": {
+        "/coupon-modifier/{coupon-modifier-ID}": {
             "get": {
                 "tags": ["coupon-modifier"],
                 "summary": "Returns a single coupon-modifier, specified by the coupon-modifier-ID parameter.",
@@ -8520,7 +8599,7 @@
                 }
             }
         },
-        "/{coupon-rule-ID}": {
+        "/coupon-rule/{coupon-rule-ID}": {
             "get": {
                 "tags": ["coupon-rule"],
                 "summary": "Returns a single coupon-rule, specified by the coupon-rule-ID parameter.",
@@ -8588,7 +8667,7 @@
                 }
             }
         },
-        "/{credit-note-ID}": {
+        "/credit-notes/{credit-note-ID}": {
             "get": {
                 "tags": ["credit-notes"],
                 "summary": "Returns a single credit-note, specified by the ID parameter.",
@@ -8656,7 +8735,7 @@
                 }
             }
         },
-        "/{dunning-line-ID}": {
+        "/dunning-lines/{dunning-line-ID}": {
             "get": {
                 "tags": ["dunning-lines"],
                 "summary": "Returns a single dunning-line, specified by the dunning-line-ID parameter.",
@@ -8724,80 +8803,7 @@
                 }
             }
         },
-        "/{id}": {
-            "get": {
-                "tags": ["charges"],
-                "summary": "Retrieves a single charge, specified by the id parameter.",
-                "description": "{\"nickname\":\"Retrieve a charge\",\"response\":\"getChargeByID.html\"}",
-                "operationId": "getSubscriptionChargeByID",
-                "consumes": ["text/plain"],
-                "produces": ["application/json"],
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "description": "The unique string-ID of the subscription.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "organizations",
-                    "in": "query",
-                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
-                    "required": false,
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "collectionFormat": "multi"
-                }, {
-                    "name": "offset",
-                    "in": "query",
-                    "description": "The offset from the first subscription to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "0",
-                    "format": "int32"
-                }, {
-                    "name": "records",
-                    "in": "query",
-                    "description": "The maximum number of subscriptions to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "10",
-                    "format": "int32"
-                }, {
-                    "name": "order_by",
-                    "in": "query",
-                    "description": "Specify a field used to order the result set.",
-                    "required": false,
-                    "type": "string",
-                    "default": "id"
-                }, {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ihe direction of any ordering, either ASC or DESC.",
-                    "required": false,
-                    "type": "string",
-                    "default": "DESC",
-                    "enum": ["ASC", "DESC"]
-                }, {
-                    "name": "include_retired",
-                    "in": "query",
-                    "description": "Whether retired subscriptions should be returned.",
-                    "required": false,
-                    "type": "boolean",
-                    "default": "false"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/SubscriptionCharge"
-                        }
-                    }
-                }
-            }
-        },
-        "/{invoice-ID}": {
+        "/invoices/{invoice-ID}": {
             "delete": {
                 "tags": ["invoices"],
                 "summary": "Voids the invoice specified by the invoice identifier parameter.",
@@ -8832,7 +8838,7 @@
                 }
             }
         },
-        "/{invoice-ID}/charges": {
+        "/invoices/{invoice-ID}/charges": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Returns all charges for the specified invoice. By default 10 values are returned. Records are returned in natural order.",
@@ -8949,7 +8955,7 @@
                 }
             }
         },
-        "/{invoice-ID}/charges/{charge-ID}": {
+        "/invoices/{invoice-ID}/charges/{charge-ID}": {
             "delete": {
                 "tags": ["invoices"],
                 "summary": "Removes the specified charge from the specified Invoice.",
@@ -8988,7 +8994,7 @@
                 }
             }
         },
-        "/{invoice-ID}/execute": {
+        "/invoices/{invoice-ID}/execute": {
             "post": {
                 "tags": ["invoices"],
                 "summary": "Attempt payment for the outstanding value of an invoice",
@@ -9019,7 +9025,7 @@
                 }
             }
         },
-        "/{invoice-ID}/metadata": {
+        "/invoices/{invoice-ID}/metadata": {
             "get": {
                 "tags": ["invoices"],
                 "summary": "Retrieve any associated metadata.",
@@ -9163,7 +9169,7 @@
                 }
             }
         },
-        "/{invoice-ID}/recalculate": {
+        "/invoices/{invoice-ID}/recalculate": {
             "post": {
                 "tags": ["invoices"],
                 "summary": "Re-calculate an Invoice.",
@@ -9194,7 +9200,7 @@
                 }
             }
         },
-        "/{link-ID}": {
+        "/payment-method-subscription-links/{link-ID}": {
             "delete": {
                 "tags": ["payment-method-subscription-links"],
                 "summary": "Retires the payment-method-subscription-link specified by the link-ID parameter.",
@@ -9203,7 +9209,7 @@
                 "consumes": ["text/plain"],
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "payment-method-subscription-link-ID",
+                    "name": "link-ID",
                     "in": "path",
                     "description": "ID of the link.",
                     "required": true,
@@ -9229,7 +9235,7 @@
                 }
             }
         },
-        "/{lower-threshold}/{upper-threshold}": {
+        "/notifications/{lower-threshold}/{upper-threshold}": {
             "get": {
                 "tags": ["notifications"],
                 "summary": "Returns a collection of notification objects with created times within the period specified by the lower-threshold and upper-threshold parameters. By default 10 values are returned. Records are returned in natrual order.",
@@ -9307,7 +9313,7 @@
                 }
             }
         },
-        "/{lower-threshold}/{upper-threshold}/{webhookID}": {
+        "/notifications/{lower-threshold}/{upper-threshold}/{webhookID}": {
             "get": {
                 "tags": ["notifications"],
                 "summary": "Returns a collection of notification objects with created times within the period specified by the lower-threshold and upper-threshold parameters for the given webhook id. By default 10 values are returned. Records are returned in natrual order.",
@@ -9391,7 +9397,7 @@
                 }
             }
         },
-        "/{notification-ID}": {
+        "/notifications/{notification-ID}": {
             "get": {
                 "tags": ["notifications"],
                 "summary": "Returns a single notification, specified by the notification-ID parameter.",
@@ -9426,7 +9432,7 @@
                 }
             }
         },
-        "/{organization-ID}": {
+        "/organizations/{organization-ID}": {
             "get": {
                 "tags": ["organizations"],
                 "summary": "Returns a single Organization, specified by the organization-ID parameter.",
@@ -9461,7 +9467,7 @@
                 }
             }
         },
-        "/{payment-ID}": {
+        "/locustworld/{payment-ID}": {
             "get": {
                 "tags": ["locustworld"],
                 "summary": "Returns a single locustworld payment, specified by the payment-ID parameter.",
@@ -9496,7 +9502,7 @@
                 }
             }
         },
-        "/{payment-method-ID}": {
+        "/payment-methods/{payment-method-ID}": {
             "get": {
                 "tags": ["payment-methods"],
                 "summary": "Returns a single payment-method, specified by the payment-method-ID parameter.",
@@ -9562,7 +9568,7 @@
                 }
             }
         },
-        "/{pricing-component-ID}": {
+        "/pricing-components/{pricing-component-ID}": {
             "get": {
                 "tags": ["pricing-components"],
                 "summary": "Returns a collection of pricing-components, specified by the pricing-component-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -9668,7 +9674,7 @@
                 }
             }
         },
-        "/{pricing-component-tier-ID}": {
+        "/pricing-component-tiers/{pricing-component-tier-ID}": {
             "get": {
                 "tags": ["pricing-component-tiers"],
                 "summary": "Returns a collection of pricing-component-tier-tiers, specified by the pricing-component-tier-ID parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -9734,7 +9740,7 @@
                 }
             }
         },
-        "/{product-ID}": {
+        "/products/{product-ID}": {
             "get": {
                 "tags": ["products"],
                 "summary": "Returns a single product, specified by the product-ID parameter.",
@@ -9840,7 +9846,7 @@
                 }
             }
         },
-        "/{product-ID}/metadata": {
+        "/products/{product-ID}/metadata": {
             "get": {
                 "tags": ["products"],
                 "summary": "Retrieve any associated metadata.",
@@ -9984,7 +9990,78 @@
                 }
             }
         },
-        "/{product-rate-plan-ID}": {
+        "/product-rate-plans/{product-rate-plan-ID}": {
+            "get": {
+                "tags": ["product-rate-plans"],
+                "summary": "Returns product-rate-plans, specified by the product-rate-plan id or name.",
+                "description": "{\"nickname\":\"Retrieve an existing rate-plan\",\"response\":\"getPRPByID.html\"}",
+                "operationId": "getProductRatePlanByID",
+                "consumes": ["text/plain", "application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "product-rate-plan-ID",
+                    "in": "path",
+                    "description": "id or name of the product-rate-plan.",
+                    "required": true,
+                    "type": "string"
+                }, {
+                    "name": "organizations",
+                    "in": "query",
+                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
+                    "required": false,
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "collectionFormat": "multi"
+                }, {
+                    "name": "offset",
+                    "in": "query",
+                    "description": "The offset from the first product-rate-plan to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "0",
+                    "format": "int32"
+                }, {
+                    "name": "records",
+                    "in": "query",
+                    "description": "The maximum number of product-rate-plans to return.",
+                    "required": false,
+                    "type": "integer",
+                    "default": "10",
+                    "format": "int32"
+                }, {
+                    "name": "order_by",
+                    "in": "query",
+                    "description": "Specify a field used to order the result set.",
+                    "required": false,
+                    "type": "string",
+                    "default": "created"
+                }, {
+                    "name": "order",
+                    "in": "query",
+                    "description": "Ihe direction of any ordering, either ASC or DESC.",
+                    "required": false,
+                    "type": "string",
+                    "default": "DESC",
+                    "enum": ["ASC", "DESC"]
+                }, {
+                    "name": "include_retired",
+                    "in": "query",
+                    "description": "Whether retired products should be returned.",
+                    "required": false,
+                    "type": "boolean",
+                    "default": "false"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ProductRatePlan"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "tags": ["product-rate-plans"],
                 "summary": "Retires the product-rate-plan specified product-rate-plan-ID.",
@@ -10018,7 +10095,7 @@
                 }
             }
         },
-        "/{product-rate-plan-ID}/metadata": {
+        "/product-rate-plans/{product-rate-plan-ID}/metadata": {
             "get": {
                 "tags": ["product-rate-plans"],
                 "summary": "Retrieve any associated metadata.",
@@ -10162,7 +10239,7 @@
                 }
             }
         },
-        "/{product-rate-plan-ID}/tax": {
+        "/product-rate-plans/{product-rate-plan-ID}/tax": {
             "get": {
                 "tags": ["product-rate-plans"],
                 "summary": "Returns all available taxes for the specified product-rate-plan. By default 10 values are returned. Records are returned in natural order.",
@@ -10257,7 +10334,7 @@
                 }
             }
         },
-        "/{product-rate-plan-ID}/tax/{taxation-strategy-ID}": {
+        "/product-rate-plans/{product-rate-plan-ID}/tax/{taxation-strategy-ID}": {
             "delete": {
                 "tags": ["product-rate-plans"],
                 "summary": "Removes the specified taxation-strategy for the given product-rate-plan.",
@@ -10296,80 +10373,7 @@
                 }
             }
         },
-        "/{product-rate-plan}": {
-            "get": {
-                "tags": ["product-rate-plans"],
-                "summary": "Returns product-rate-plans, specified by the product-rate-plan id or name.",
-                "description": "{\"nickname\":\"Retrieve an existing rate-plan\",\"response\":\"getPRPByID.html\"}",
-                "operationId": "getProductRatePlanByID",
-                "consumes": ["text/plain", "application/json"],
-                "produces": ["application/json"],
-                "parameters": [{
-                    "name": "product-rate-plan",
-                    "in": "path",
-                    "description": "id or name of the product-rate-plan.",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "name": "organizations",
-                    "in": "query",
-                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
-                    "required": false,
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "collectionFormat": "multi"
-                }, {
-                    "name": "offset",
-                    "in": "query",
-                    "description": "The offset from the first product-rate-plan to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "0",
-                    "format": "int32"
-                }, {
-                    "name": "records",
-                    "in": "query",
-                    "description": "The maximum number of product-rate-plans to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "10",
-                    "format": "int32"
-                }, {
-                    "name": "order_by",
-                    "in": "query",
-                    "description": "Specify a field used to order the result set.",
-                    "required": false,
-                    "type": "string",
-                    "default": "created"
-                }, {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ihe direction of any ordering, either ASC or DESC.",
-                    "required": false,
-                    "type": "string",
-                    "default": "DESC",
-                    "enum": ["ASC", "DESC"]
-                }, {
-                    "name": "include_retired",
-                    "in": "query",
-                    "description": "Whether retired products should be returned.",
-                    "required": false,
-                    "type": "boolean",
-                    "default": "false"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/ProductRatePlan"
-                        }
-                    }
-                }
-            }
-        },
-        "/{profile-ID}": {
+        "/profiles/{profile-ID}": {
             "get": {
                 "tags": ["profiles"],
                 "summary": "Returns a single profile, specified by the ID parameter.",
@@ -10404,7 +10408,7 @@
                 }
             }
         },
-        "/{query-string}": {
+        "/search/{query-string}": {
             "get": {
                 "tags": ["search"],
                 "summary": "Returns the results of the global search specified by the query-string.",
@@ -10479,7 +10483,7 @@
                 }
             }
         },
-        "/{receipt-ID}": {
+        "/receipts/{receipt-ID}": {
             "get": {
                 "tags": ["receipts"],
                 "summary": "Returns a single receipt, specified by the ID parameter.",
@@ -10514,7 +10518,7 @@
                 }
             }
         },
-        "/{refund-ID}": {
+        "/refunds/{refund-ID}": {
             "get": {
                 "tags": ["refunds"],
                 "summary": "Returns a single refund, specified by the ID parameter.",
@@ -10549,7 +10553,7 @@
                 }
             }
         },
-        "/{subscription-ID}": {
+        "/subscriptions/{subscription-ID}": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a single subscription, specified by the ID parameter.",
@@ -10590,7 +10594,7 @@
                 }
             }
         },
-        "/{subscription-ID}/advance": {
+        "/subscriptions/{subscription-ID}/advance": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Advance the subscription through time.",
@@ -10623,7 +10627,7 @@
                 }
             }
         },
-        "/{subscription-ID}/applicable-coupons": {
+        "/subscriptions/{subscription-ID}/applicable-coupons": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a collection of the coupons which can be applied to this subscription.",
@@ -10696,7 +10700,7 @@
                 }
             }
         },
-        "/{subscription-ID}/cancel": {
+        "/subscriptions/{subscription-ID}/cancel": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Retires the subscription specified by the subscription-ID parameter. Retiring a subscription causes it to cancel based on the specified retirement settings for the product.",
@@ -10728,7 +10732,7 @@
                 }
             }
         },
-        "/{subscription-ID}/charge": {
+        "/subscriptions/{subscription-ID}/charge": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Creates a charge on the specified subscription.",
@@ -10761,7 +10765,7 @@
                 }
             }
         },
-        "/{subscription-ID}/charges": {
+        "/subscriptions/{subscription-ID}/charges": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Returns all charges for the specified subscription. By default 10 values are returned. Records are returned in natural order.",
@@ -10847,7 +10851,7 @@
                 }
             }
         },
-        "/{subscription-ID}/children": {
+        "/subscriptions/{subscription-ID}/children": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Return all entities whose invoices will be aggregated by the specified subscription By default 10 values are returned. Records are returned in natural order.",
@@ -10919,7 +10923,7 @@
                 }
             }
         },
-        "/{subscription-ID}/coupons": {
+        "/subscriptions/{subscription-ID}/coupons": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a collection of the coupons and the unique codes currently applied to the subscription.",
@@ -11022,7 +11026,7 @@
                 }
             }
         },
-        "/{subscription-ID}/coupons/{coupon-code}": {
+        "/subscriptions/{subscription-ID}/coupons/{coupon-code}": {
             "delete": {
                 "tags": ["subscriptions"],
                 "summary": "Removes the coupon from the subscription.",
@@ -11061,7 +11065,7 @@
                 }
             }
         },
-        "/{subscription-ID}/credit": {
+        "/subscriptions/{subscription-ID}/credit": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Returns all available credit-notes for the specified subscription. By default 10 values are returned. Records are returned in natural order.",
@@ -11164,7 +11168,7 @@
                 }
             }
         },
-        "/{subscription-ID}/credit/{value}": {
+        "/subscriptions/{subscription-ID}/credit/{value}": {
             "delete": {
                 "tags": ["subscriptions"],
                 "summary": "Decrease the amount of credit available to the specified subscription.",
@@ -11204,7 +11208,7 @@
                 }
             }
         },
-        "/{subscription-ID}/freeze": {
+        "/subscriptions/{subscription-ID}/freeze": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Freeze the subscription.",
@@ -11237,7 +11241,7 @@
                 }
             }
         },
-        "/{subscription-ID}/invoice-charges": {
+        "/subscriptions/{subscription-ID}/invoice-charges": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Invoice any outstanding charges for the subscription.",
@@ -11270,7 +11274,7 @@
                 }
             }
         },
-        "/{subscription-ID}/metadata": {
+        "/subscriptions/{subscription-ID}/metadata": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieve any associated metadata.",
@@ -11414,7 +11418,7 @@
                 }
             }
         },
-        "/{subscription-ID}/migrate": {
+        "/subscriptions/{subscription-ID}/migrate": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Migrate the subscription to a new plan.",
@@ -11447,7 +11451,7 @@
                 }
             }
         },
-        "/{subscription-ID}/parent": {
+        "/subscriptions/{subscription-ID}/parent": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Return the parent of the given subscription.",
@@ -11481,7 +11485,7 @@
                 }
             }
         },
-        "/{subscription-ID}/payment-methods": {
+        "/subscriptions/{subscription-ID}/payment-methods": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Returns all available payment methods for the specified subscription. By default 10 values are returned. Records are returned in natural order.",
@@ -11575,7 +11579,7 @@
                 }
             }
         },
-        "/{subscription-ID}/payment-methods/{payment-method-ID}": {
+        "/subscriptions/{subscription-ID}/payment-methods/{payment-method-ID}": {
             "delete": {
                 "tags": ["subscriptions"],
                 "summary": "Removes the specified payment method for the given subscription.",
@@ -11614,7 +11618,7 @@
                 }
             }
         },
-        "/{subscription-ID}/pricing-component-values": {
+        "/subscriptions/{subscription-ID}/pricing-component-values": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Sets upon this subscription a new value for the specified pricing-component without performing an upgrade.",
@@ -11647,7 +11651,7 @@
                 }
             }
         },
-        "/{subscription-ID}/resume": {
+        "/subscriptions/{subscription-ID}/resume": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Resume the frozen subscription.",
@@ -11680,7 +11684,7 @@
                 }
             }
         },
-        "/{subscription-ID}/revive": {
+        "/subscriptions/{subscription-ID}/revive": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Revives a cancelled subscription and returns it to its previous state",
@@ -11712,7 +11716,7 @@
                 }
             }
         },
-        "/{subscription-ID}/values": {
+        "/subscriptions/{subscription-ID}/values": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Gets the subscription's current pricing-component values.",
@@ -11737,7 +11741,7 @@
                 }
             }
         },
-        "/{subscription-ID}/values/{pricing-component}": {
+        "/subscriptions/{subscription-ID}/values/{pricing-component}": {
             "post": {
                 "tags": ["subscriptions"],
                 "summary": "Upgrades/downgrades this subscription to some new value for the specified pricing-component.",
@@ -11812,7 +11816,7 @@
                 }
             }
         },
-        "/{subscription-id}": {
+        "/periods/{subscription-id}": {
             "get": {
                 "tags": ["periods"],
                 "summary": "Retrieve by subscription)",
@@ -11820,7 +11824,7 @@
                 "operationId": "getAllPeriodsForSubscription",
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscriptionID",
+                    "name": "subscription-id",
                     "in": "path",
                     "description": "The subscriptionID of the usage.",
                     "required": true,
@@ -11877,7 +11881,7 @@
                 }
             }
         },
-        "/{subscription-id}/active": {
+        "/usage-sessions/{subscription-id}/active": {
             "get": {
                 "tags": ["usage-sessions"],
                 "summary": "Get active by subscription",
@@ -11885,9 +11889,9 @@
                 "operationId": "getUsageForUsageSession",
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscriptionID",
+                    "name": "subscription-id",
                     "in": "path",
-                    "description": "The subscriptionID of the subscription whose active sessions you wish to GET.",
+                    "description": "The subscription-id of the subscription whose active sessions you wish to GET.",
                     "required": true,
                     "type": "string"
                 }, {
@@ -11942,7 +11946,7 @@
                 }
             }
         },
-        "/{subscription-id}/invoice/{invoice-id}": {
+        "/usage-periods/{subscription-id}/invoice/{invoice-id}": {
             "get": {
                 "tags": ["usage-periods"],
                 "summary": "Retrieve by invoice)",
@@ -11950,15 +11954,15 @@
                 "operationId": "getUsagePeriodForInvoice",
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscriptionID",
+                    "name": "subscription-id",
                     "in": "path",
-                    "description": "The subscriptionID of the usage.",
+                    "description": "The subscription-id of the usage.",
                     "required": true,
                     "type": "string"
                 }, {
-                    "name": "invoiceID",
+                    "name": "invoice-id",
                     "in": "path",
-                    "description": "The invoiceID of the usage.",
+                    "description": "The invoice-id of the usage.",
                     "required": true,
                     "type": "string"
                 }, {
@@ -12013,7 +12017,7 @@
                 }
             }
         },
-        "/{subscription-id}/{period-id}": {
+        "/usage/{subscription-id}/{period-id}": {
             "get": {
                 "tags": ["usage"],
                 "summary": "Retrieve by subscription and period",
@@ -12021,15 +12025,15 @@
                 "operationId": "getUsageByID",
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscriptionID",
+                    "name": "subscription-id",
                     "in": "path",
-                    "description": "The subscriptionID of the usage.",
+                    "description": "The subscription-id of the usage.",
                     "required": true,
                     "type": "string"
                 }, {
-                    "name": "periodID",
+                    "name": "period-id",
                     "in": "path",
-                    "description": "The periodID of the usage.",
+                    "description": "The period-id of the usage.",
                     "required": true,
                     "type": "integer",
                     "format": "int32"
@@ -12085,7 +12089,7 @@
                 }
             }
         },
-        "/{subscription-id}/{uom}/{period-id}/{usage-type}": {
+        "/usage/{subscription-id}/{uom}/{period-id}/{usage-type}": {
             "get": {
                 "tags": ["usage"],
                 "summary": "Retrieve by subscription, period and type",
@@ -12093,9 +12097,9 @@
                 "operationId": "getUsageBySubscriptionIDUoMPeriodAndUsageType",
                 "produces": ["application/json"],
                 "parameters": [{
-                    "name": "subscriptionID",
+                    "name": "subscription-id",
                     "in": "path",
-                    "description": "The subscriptionID of the usage.",
+                    "description": "The subscription-id of the usage.",
                     "required": true,
                     "type": "string"
                 }, {
@@ -12105,14 +12109,14 @@
                     "required": true,
                     "type": "string"
                 }, {
-                    "name": "periodID",
+                    "name": "period-id",
                     "in": "path",
-                    "description": "The periodID of the usage.",
+                    "description": "The period-id of the usage.",
                     "required": true,
                     "type": "integer",
                     "format": "int32"
                 }, {
-                    "name": "usageType",
+                    "name": "usage-type",
                     "in": "path",
                     "description": "The type of the usage.",
                     "required": true,
@@ -12169,7 +12173,7 @@
                 }
             }
         },
-        "/{subscriptionID}/invoices/{state}": {
+        "/subscriptions/{subscriptionID}/invoices/{state}": {
             "get": {
                 "tags": ["subscriptions"],
                 "summary": "Retrieves a collection of invoice objects of the specified state for the given subscription. By default 10 values are returned. Records are returned in natrual order.",
@@ -12242,7 +12246,7 @@
                 }
             }
         },
-        "/{taxation-link-ID}": {
+        "/taxation-links/{taxation-link-ID}": {
             "get": {
                 "tags": ["taxation-links"],
                 "summary": "Returns a single taxation-link, specified by the taxation-link-ID parameter.",
@@ -12277,7 +12281,7 @@
                 }
             }
         },
-        "/{taxation-strategy-ID}": {
+        "/taxation-strategies/{taxation-strategy-ID}": {
             "get": {
                 "tags": ["taxation-strategies"],
                 "summary": "Returns the tax currently being applied for the taxation-strategy-ID. To return schedule or historic tax changes the include_retired query parameter should be set to true.",
@@ -12349,7 +12353,7 @@
                 }
             }
         },
-        "/{token-ID}": {
+        "/cybersource-tokens/{token-ID}": {
             "get": {
                 "tags": ["cybersource-tokens"],
                 "summary": "Returns a single cybersource-token, specified by the token-ID parameter.",
@@ -12417,7 +12421,7 @@
                 }
             }
         },
-        "/{unit-of-measure-identifier}": {
+        "/unit-of-measure/{unit-of-measure-identifier}": {
             "get": {
                 "tags": ["unit-of-measure"],
                 "summary": "Returns a single unit-of-measure corresponding to the unique id or name specified.",
@@ -12452,7 +12456,7 @@
                 }
             }
         },
-        "/{usage-rounding-strategies-ID}": {
+        "/usage-rounding-strategies/{usage-rounding-strategies-ID}": {
             "get": {
                 "tags": ["usage-rounding-strategies"],
                 "summary": "Returns a collection of usage-rounding-strategies, specified by the usage-rounding-strategies-id parameter. By default 10 values are returned. Records are returned in natural order.",
@@ -12525,7 +12529,7 @@
                 }
             }
         },
-        "/{user-ID}": {
+        "/users/{user-ID}": {
             "get": {
                 "tags": ["users"],
                 "summary": "Returns a single User, specified by the ID parameter.",
@@ -12593,7 +12597,7 @@
                 }
             }
         },
-        "/{user-ID}/password-reset": {
+        "/users/{user-ID}/password-reset": {
             "get": {
                 "tags": ["users"],
                 "summary": "Generate a new password reset code.",
@@ -12628,7 +12632,7 @@
                 }
             }
         },
-        "/{webhook-ID}": {
+        "/webhooks/{webhook-ID}": {
             "get": {
                 "tags": ["webhooks"],
                 "summary": "Returns a single webhook, specified by the webhook-ID parameter.",
