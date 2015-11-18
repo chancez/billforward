@@ -10,27 +10,40 @@ Just sketching out the API, please reach out to paul@scaleft.com before using.
 
 ## Installation
 
-### Checkout repository
-
-Clone repository
-
-```
-git clone https://github.com/ecnahc515/billforward.git billforward-go-sdk
-```
-
 ### Install Go
 
 From [GoLang](https://golang.org/dl/)
 
 #### Set `GOPATH`
 
-Append the working directory of this project to your `GOPATH`.
+Ensure there is a folder allocated on your computer as your Go workspace.
+
+For example `~/go`.
+
+Append the path to that workspace to your `GOPATH`.
 
 You could put this in your `.bash_profile` or equivalent:
 
 ```bash
-# path to where you cloned repository
-export GOPATH="$GOPATH:$HOME/billforward-go-sdk"
+export GOPATH="$GOPATH:$HOME/go"
+```
+
+### Clone repository
+
+Understand that GOPATH uses directory structure as a means of namespacing, so you will need to create some directories under your `GOPATH` (for example under `~/go`):
+
+`src/github.com/authclub/`
+
+Clone repository into `authclub`:
+
+```
+git clone https://github.com/ecnahc515/billforward.git
+```
+
+Such that a path exists like:
+
+```bash
+$GOPATH/src/github.com/authclub/billforward
 ```
 
 #### Set `GOROOT`
@@ -41,7 +54,7 @@ Find where `go` is installed. This should get you pretty close:
 which go
 ```
 
-Export `GOROOT` to the root of the Go package:
+Export `GOROOT` to the root of the Go package. Something like this:
 
 ```bash
 export GOROOT="/usr/local/go"
