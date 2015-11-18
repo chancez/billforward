@@ -25,7 +25,7 @@ Append the path to that workspace to your `GOPATH`.
 You could put this in your `.bash_profile` or equivalent:
 
 ```bash
-export GOPATH="$GOPATH:$HOME/go"
+export GOPATH="$HOME/go"
 ```
 
 ### Clone repository
