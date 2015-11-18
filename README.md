@@ -33,7 +33,31 @@ You could put this in your `.bash_profile` or equivalent:
 export GOPATH="$GOPATH:$HOME/billforward-go-sdk"
 ```
 
-You could also re-source the profile in the running command prompt:
+#### Set `GOROOT`
+
+Find where `go` is installed. This should get you pretty close:
+
+```bash
+which go
+```
+
+Export `GOROOT` to the root of the Go package:
+
+```bash
+export GOROOT="/usr/local/go"
+```
+
+#### Update your PATH to include Go executables:
+
+This will give you access to Go on command prompt (if you've not already), and any Go modules you install:
+
+```bash
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+```
+
+#### Re-source your profile
+
+To get the updated environment variables exported to your running command prompt:
 
 ```bash
 source ~/.bash_profile
