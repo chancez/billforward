@@ -1,3 +1,58 @@
 #!/bin/bash
 
-swagger generate client -f $(dirname $0)/swagger.json -A BillForward -c client -a client
+#swagger generate client -f $(dirname $0)/swagger.json -A BillForward -c client -a client
+swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O getAllProducts \
+    -O cancelSubscription \
+    -O createAddress \
+    -O updateAddress \
+    -O updateProfile \
+    -O authCapture \
+    -O createPaymentMethod \
+    -O getAllAccounts \
+    -O createAccount \
+    -O getAccountByID \
+    -O createSubscription \
+    -O getSubscriptionByAccountID \
+    -O createAggregatingSubscription \
+    -O batchCreateSubscriptions  \
+    -M GeneralError \
+    -M AccountQueryResultWrapper \
+    -M Account \
+    -M BillingEntityBase \
+    -M PaymentMethod \
+    -M InsertableBillingEntity \
+    -M Profile \
+    -M Address \
+    -M SubscriptionQueryResultWrapper \
+    -M Subscription \
+    -M CreateSubscriptionRequest  \
+    -M FixedTerm \
+    -M Days \
+    -M Minutes \
+    -M PaymentMethodSubscriptionLink \
+    -M PricingComponentValue \
+    -M Seconds \
+    -M PeriodType \
+    -M DurationFieldType \
+    -M MutableBillingEntity \
+    -M PendingComponentValueChange \
+    -M ProductRatePlan \
+    -M Product \
+    -M Currency \
+    -M AggregatingComponent \
+    -M PricingComponent \
+    -M PricingComponentTier \
+    -M CreateSubscriptionBatchRequest \
+    -M CreateAggregatingComponentRequest \
+    -M CreateAggregatingSubscriptionRequest \
+    -M PaymentMethodQueryResultWrapper \
+    -M AuthCaptureRequest \
+    -M StripeAuthCaptureRequest \
+    -M ProfileQueryResultWrapper \
+    -M UpdateProfileRequest \
+    -M AddressQueryResultWrapper \
+    -M CreateAddressRequest \
+    -M UpdateAddressRequest \
+    -M ProductQueryResultWrapper \
+    -M SubscriptionCancellationQueryResultWrapper
