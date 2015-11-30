@@ -11,18 +11,11 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-[Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
+/*[Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
 
 swagger:model AuthCaptureRequest
 */
 type AuthCaptureRequest struct {
-
-	/* Type type
-
-	Required: true
-	*/
-	Type string `json:"@type,omitempty"`
 
 	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
 	 */
@@ -87,15 +80,13 @@ type AuthCaptureRequest struct {
 func (m *AuthCaptureRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -105,28 +96,22 @@ func (m *AuthCaptureRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AuthCaptureRequest) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("@type", "body", string(m.Type)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var authCaptureRequestBillingEntityEnum []interface{}
 
 func (m *AuthCaptureRequest) validateBillingEntityEnum(path, location string, value string) error {
 	if authCaptureRequestBillingEntityEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
 			authCaptureRequestBillingEntityEnum = append(authCaptureRequestBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum)
+	if err := validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *AuthCaptureRequest) validateBillingEntity(formats strfmt.Registry) error {
@@ -150,7 +135,10 @@ func (m *AuthCaptureRequest) validateGatewayEnum(path, location string, value st
 			authCaptureRequestGatewayEnum = append(authCaptureRequestGatewayEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, authCaptureRequestGatewayEnum)
+	if err := validate.Enum(path, location, value, authCaptureRequestGatewayEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *AuthCaptureRequest) validateGateway(formats strfmt.Registry) error {

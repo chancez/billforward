@@ -23,9 +23,9 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*CreateAddress
+/*Create
 
-{ "nickname" : "Create a new address", "response" : "createAddressResponse.html", "request" : "createAddressRequest.html"}
+{"nickname":"Create a new address","response":"createAddressResponse.html","request":"createAddressRequest.html"}
 */
 func (a *Client) CreateAddress(params CreateAddressParams) (*CreateAddressOK, error) {
 	// TODO: Validate the params before sending
@@ -41,9 +41,9 @@ func (a *Client) CreateAddress(params CreateAddressParams) (*CreateAddressOK, er
 	return result.(*CreateAddressOK), nil
 }
 
-/*UpdateAddress
+/*Update
 
-{ "nickname" : "Update an address", "response" : "updateAddressResponse.html", "request" : "updateAddressRequest.html"}
+{"nickname":"Update an address","response":"updateAddressResponse.html","request":"updateAddressRequest.html"}
 */
 func (a *Client) UpdateAddress(params UpdateAddressParams) (*UpdateAddressOK, error) {
 	// TODO: Validate the params before sending

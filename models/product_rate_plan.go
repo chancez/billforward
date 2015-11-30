@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-A rate plan describes a pricing system under which a subscription can be made to a product.
+/*A rate plan describes a pricing system under which a subscription can be made to a product.
 
 swagger:model ProductRatePlan
 */
@@ -48,7 +47,11 @@ type ProductRatePlan struct {
 
 	Required: true
 	*/
-	Currency string `json:"currency,omitempty"`
+	Currency *Currency `json:"currency,omitempty"`
+
+	/* DisplayName display name
+	 */
+	DisplayName string `json:"displayName,omitempty"`
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
@@ -182,70 +185,87 @@ func (m *ProductRatePlan) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreateZeroValuedInvoices(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDurationPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFailedPaymentBehaviour(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoiceIssueType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateIssuePeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLocalisedTax(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMigrationBehaviour(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponents(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProRataMode(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRecursionType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTaxStatus(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrialPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -260,14 +280,17 @@ var productRatePlanBillingEntityEnum []interface{}
 func (m *ProductRatePlan) validateBillingEntityEnum(path, location string, value string) error {
 	if productRatePlanBillingEntityEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
 			productRatePlanBillingEntityEnum = append(productRatePlanBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanBillingEntityEnum)
+	if err := validate.Enum(path, location, value, productRatePlanBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateBillingEntity(formats strfmt.Registry) error {
@@ -290,8 +313,11 @@ func (m *ProductRatePlan) validateCreateZeroValuedInvoices(formats strfmt.Regist
 
 func (m *ProductRatePlan) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
-		return err
+	if m.Currency != nil {
+
+		if err := m.Currency.Validate(formats); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -309,7 +335,10 @@ func (m *ProductRatePlan) validateDurationPeriodEnum(path, location string, valu
 			productRatePlanDurationPeriodEnum = append(productRatePlanDurationPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanDurationPeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanDurationPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateDurationPeriod(formats strfmt.Registry) error {
@@ -337,7 +366,10 @@ func (m *ProductRatePlan) validateFailedPaymentBehaviourEnum(path, location stri
 			productRatePlanFailedPaymentBehaviourEnum = append(productRatePlanFailedPaymentBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanFailedPaymentBehaviourEnum)
+	if err := validate.Enum(path, location, value, productRatePlanFailedPaymentBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
@@ -365,7 +397,10 @@ func (m *ProductRatePlan) validateInvoiceIssueTypeEnum(path, location string, va
 			productRatePlanInvoiceIssueTypeEnum = append(productRatePlanInvoiceIssueTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanInvoiceIssueTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanInvoiceIssueTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateInvoiceIssueType(formats strfmt.Registry) error {
@@ -389,7 +424,10 @@ func (m *ProductRatePlan) validateIssuePeriodEnum(path, location string, value s
 			productRatePlanIssuePeriodEnum = append(productRatePlanIssuePeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanIssuePeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanIssuePeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateIssuePeriod(formats strfmt.Registry) error {
@@ -422,7 +460,10 @@ func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, 
 			productRatePlanMigrationBehaviourEnum = append(productRatePlanMigrationBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanMigrationBehaviourEnum)
+	if err := validate.Enum(path, location, value, productRatePlanMigrationBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) error {
@@ -464,7 +505,10 @@ func (m *ProductRatePlan) validateProRataModeEnum(path, location string, value s
 			productRatePlanProRataModeEnum = append(productRatePlanProRataModeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanProRataModeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanProRataModeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
@@ -501,7 +545,10 @@ func (m *ProductRatePlan) validateProductTypeEnum(path, location string, value s
 			productRatePlanProductTypeEnum = append(productRatePlanProductTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanProductTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanProductTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateProductType(formats strfmt.Registry) error {
@@ -525,7 +572,10 @@ func (m *ProductRatePlan) validateRecursionTypeEnum(path, location string, value
 			productRatePlanRecursionTypeEnum = append(productRatePlanRecursionTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanRecursionTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanRecursionTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateRecursionType(formats strfmt.Registry) error {
@@ -549,7 +599,10 @@ func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value str
 			productRatePlanTaxStatusEnum = append(productRatePlanTaxStatusEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanTaxStatusEnum)
+	if err := validate.Enum(path, location, value, productRatePlanTaxStatusEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateTaxStatus(formats strfmt.Registry) error {
@@ -577,7 +630,10 @@ func (m *ProductRatePlan) validateTrialPeriodEnum(path, location string, value s
 			productRatePlanTrialPeriodEnum = append(productRatePlanTrialPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanTrialPeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanTrialPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateTrialPeriod(formats strfmt.Registry) error {

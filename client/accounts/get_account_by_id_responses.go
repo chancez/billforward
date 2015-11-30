@@ -25,17 +25,21 @@ func (o *GetAccountByIDReader) ReadResponse(response client.Response, consumer h
 		}
 		return &result, nil
 
-	default:
-		var result GetAccountByIDDefault
+	case 500:
+		var result GetAccountByIDInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAccountByID default", &result, response.Code())
+		return nil, NewAPIError("getAccountByIdInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*GetAccountByIDOK
+
+success
 */
 type GetAccountByIDOK struct {
 	Payload *models.AccountQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *GetAccountByIDOK) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*
-an error occurred
+/*GetAccountByIDInternalServerError
+
+error
 */
-type GetAccountByIDDefault struct {
-	Payload *models.GeneralError
+type GetAccountByIDInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *GetAccountByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAccountByIDInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

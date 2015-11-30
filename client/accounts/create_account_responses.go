@@ -25,17 +25,21 @@ func (o *CreateAccountReader) ReadResponse(response client.Response, consumer ht
 		}
 		return &result, nil
 
-	default:
-		var result CreateAccountDefault
+	case 500:
+		var result CreateAccountInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createAccount default", &result, response.Code())
+		return nil, NewAPIError("createAccountInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*CreateAccountOK
+
+success
 */
 type CreateAccountOK struct {
 	Payload *models.AccountQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *CreateAccountOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*
-an error occurred
+/*CreateAccountInternalServerError
+
+error
 */
-type CreateAccountDefault struct {
-	Payload *models.GeneralError
+type CreateAccountInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *CreateAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateAccountInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

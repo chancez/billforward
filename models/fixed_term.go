@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-FixedTerm
+/*FixedTerm
 
 swagger:model FixedTerm
 */
@@ -130,58 +129,72 @@ func (m *FixedTerm) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCompoundUplift(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryBehaviour(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryTime(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermDefinition(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermDefinitionID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermNumber(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePeriods(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanAsOfTime(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStartTime(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -196,14 +209,17 @@ var fixedTermBillingEntityEnum []interface{}
 func (m *FixedTerm) validateBillingEntityEnum(path, location string, value string) error {
 	if fixedTermBillingEntityEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
 			fixedTermBillingEntityEnum = append(fixedTermBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, fixedTermBillingEntityEnum)
+	if err := validate.Enum(path, location, value, fixedTermBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *FixedTerm) validateBillingEntity(formats strfmt.Registry) error {
@@ -245,7 +261,10 @@ func (m *FixedTerm) validateExpiryBehaviourEnum(path, location string, value str
 			fixedTermExpiryBehaviourEnum = append(fixedTermExpiryBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, fixedTermExpiryBehaviourEnum)
+	if err := validate.Enum(path, location, value, fixedTermExpiryBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *FixedTerm) validateExpiryBehaviour(formats strfmt.Registry) error {
@@ -348,7 +367,10 @@ func (m *FixedTerm) validateStateEnum(path, location string, value string) error
 			fixedTermStateEnum = append(fixedTermStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, fixedTermStateEnum)
+	if err := validate.Enum(path, location, value, fixedTermStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *FixedTerm) validateState(formats strfmt.Registry) error {

@@ -25,17 +25,21 @@ func (o *GetAllProductsReader) ReadResponse(response client.Response, consumer h
 		}
 		return &result, nil
 
-	default:
-		var result GetAllProductsDefault
+	case 500:
+		var result GetAllProductsInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllProducts default", &result, response.Code())
+		return nil, NewAPIError("getAllProductsInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*GetAllProductsOK
+
+success
 */
 type GetAllProductsOK struct {
 	Payload *models.ProductQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *GetAllProductsOK) readResponse(response client.Response, consumer httpk
 	return nil
 }
 
-/*
-an error occurred
+/*GetAllProductsInternalServerError
+
+error
 */
-type GetAllProductsDefault struct {
-	Payload *models.GeneralError
+type GetAllProductsInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *GetAllProductsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllProductsInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

@@ -11,15 +11,16 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-UpdateProfileParams contains all the parameters to send to the API endpoint
+/*UpdateProfileParams contains all the parameters to send to the API endpoint
 for the update profile operation typically these are written to a http.Request
 */
 type UpdateProfileParams struct {
-	/*
+
+	/*Profile
 	  The profile object to be updated.
+
 	*/
-	Profile *models.UpdateProfileRequest
+	Profile *models.Profile
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -28,7 +29,7 @@ func (o *UpdateProfileParams) WriteToRequest(r client.Request, reg strfmt.Regist
 	var res []error
 
 	if o.Profile == nil {
-		o.Profile = new(models.UpdateProfileRequest)
+		o.Profile = new(models.Profile)
 	}
 
 	if err := r.SetBodyParam(o.Profile); err != nil {

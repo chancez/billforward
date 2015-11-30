@@ -25,17 +25,21 @@ func (o *CancelSubscriptionReader) ReadResponse(response client.Response, consum
 		}
 		return &result, nil
 
-	default:
-		var result CancelSubscriptionDefault
+	case 500:
+		var result CancelSubscriptionInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("cancelSubscription default", &result, response.Code())
+		return nil, NewAPIError("cancelSubscriptionInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*CancelSubscriptionOK
+
+success
 */
 type CancelSubscriptionOK struct {
 	Payload *models.SubscriptionCancellationQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *CancelSubscriptionOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*
-an error occurred
+/*CancelSubscriptionInternalServerError
+
+error
 */
-type CancelSubscriptionDefault struct {
-	Payload *models.GeneralError
+type CancelSubscriptionInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *CancelSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CancelSubscriptionInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

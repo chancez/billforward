@@ -25,17 +25,21 @@ func (o *CreatePaymentMethodReader) ReadResponse(response client.Response, consu
 		}
 		return &result, nil
 
-	default:
-		var result CreatePaymentMethodDefault
+	case 500:
+		var result CreatePaymentMethodInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createPaymentMethod default", &result, response.Code())
+		return nil, NewAPIError("createPaymentMethodInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*CreatePaymentMethodOK
+
+success
 */
 type CreatePaymentMethodOK struct {
 	Payload *models.PaymentMethodQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *CreatePaymentMethodOK) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*
-an error occurred
+/*CreatePaymentMethodInternalServerError
+
+error
 */
-type CreatePaymentMethodDefault struct {
-	Payload *models.GeneralError
+type CreatePaymentMethodInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *CreatePaymentMethodDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreatePaymentMethodInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

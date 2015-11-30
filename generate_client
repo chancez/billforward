@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #swagger generate client -f $(dirname $0)/swagger.json -A BillForward -c client -a client
-swagger generate client -f swagger.json -A BillForward -c client -a client \
+swagger generate client -f swagger-nov26.json -A BillForward -c client -a client \
     -O getProductRatePlanByID \
     -O getRatePlanByProductAndRatePlan \
     -O getRatePlanByProduct \
@@ -20,7 +20,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O getSubscriptionByAccountID \
     -O createAggregatingSubscription \
     -O batchCreateSubscriptions  \
-    -M GeneralError \
+    -M BFError \
     -M AccountQueryResultWrapper \
     -M Account \
     -M BillingEntityBase \
@@ -35,7 +35,6 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Days \
     -M Minutes \
     -M PaymentMethodSubscriptionLink \
-    -M PricingComponentValue \
     -M Seconds \
     -M PeriodType \
     -M DurationFieldType \
@@ -47,6 +46,10 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M AggregatingComponent \
     -M PricingComponent \
     -M PricingComponentTier \
+    -M PricingComponentValue \
+    -M FlatPricingComponent \
+    -M TieredPricingComponent \
+    -M TieredVolumePricingComponent \
     -M CreateSubscriptionBatchRequest \
     -M CreateAggregatingComponentRequest \
     -M CreateAggregatingSubscriptionRequest \
@@ -54,12 +57,13 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M AuthCaptureRequest \
     -M StripeAuthCaptureRequest \
     -M ProfileQueryResultWrapper \
-    -M UpdateProfileRequest \
     -M AddressQueryResultWrapper \
-    -M CreateAddressRequest \
-    -M UpdateAddressRequest \
     -M ProductQueryResultWrapper \
     -M SubscriptionCancellationQueryResultWrapper \
-    -M CreateAccountRequest \
     -M ProductRatePlanQueryResultWrapper \
     -M UnitOfMeasure
+
+    #-M CreateAccountRequest \
+    #-M CreateAddressRequest \
+    #-M UpdateProfileRequest \
+    #-M UpdateAddressRequest \

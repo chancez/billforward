@@ -25,13 +25,21 @@ func (o *AuthCaptureReader) ReadResponse(response client.Response, consumer http
 		}
 		return &result, nil
 
+	case 500:
+		var result AuthCaptureInternalServerError
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, NewAPIError("authCaptureInternalServerError", &result, response.Code())
+
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*AuthCaptureOK
+
+success
 */
 type AuthCaptureOK struct {
 	Payload *models.PaymentMethodQueryResultWrapper
@@ -40,6 +48,26 @@ type AuthCaptureOK struct {
 func (o *AuthCaptureOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.PaymentMethodQueryResultWrapper)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+/*AuthCaptureInternalServerError
+
+error
+*/
+type AuthCaptureInternalServerError struct {
+	Payload *models.BFError
+}
+
+func (o *AuthCaptureInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

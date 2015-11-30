@@ -25,13 +25,21 @@ func (o *GetRatePlanByProductReader) ReadResponse(response client.Response, cons
 		}
 		return &result, nil
 
+	case 500:
+		var result GetRatePlanByProductInternalServerError
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, NewAPIError("getRatePlanByProductInternalServerError", &result, response.Code())
+
 	default:
 		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*GetRatePlanByProductOK
+
+success
 */
 type GetRatePlanByProductOK struct {
 	Payload *models.ProductRatePlanQueryResultWrapper
@@ -40,6 +48,26 @@ type GetRatePlanByProductOK struct {
 func (o *GetRatePlanByProductOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ProductRatePlanQueryResultWrapper)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+/*GetRatePlanByProductInternalServerError
+
+error
+*/
+type GetRatePlanByProductInternalServerError struct {
+	Payload *models.BFError
+}
+
+func (o *GetRatePlanByProductInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

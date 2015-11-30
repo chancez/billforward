@@ -11,8 +11,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-Subscription
+/*Subscription
 
 swagger:model Subscription
 */
@@ -180,6 +179,10 @@ type Subscription struct {
 	 */
 	SecondsRemaining *Seconds `json:"secondsRemaining,omitempty"`
 
+	/* ShortID short ID
+	 */
+	ShortID string `json:"shortID,omitempty"`
+
 	/* {"PUT_description":"A <span class=\"label label-default\">Provisioned</span> subscription can be updated to either <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>, this will start the subscription. Any updates to the state of a non-<span class=\"label label-default\">Provisioned</span> will be ignored. To cancel or otherwise amend a subscription please use the explict amendment calls.", "description":"A <span class=\"label label-default\">Provisioned</span> subscription will not begin until marked as <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>. Trial subscriptions transition to <span class=\"label label-default\">AwaitingPayment</span> when the trial period is over. On subscription renewal the state becomes <span class=\"label label-default\">AwaitingPayment</span>. Once outstanding invoices are paid the state changes to <span class=\"label label-default\">Paid</span>. A subscription is set as either <span class=\"label label-default\">Failed</span> or left as <span class=\"label label-default\">AwaitingPayment</span>, depending on the rate-plan configuration. If a subscription is non-recurring or fixed-term and ends naturally, it will be marked as <span class=\"label label-default\">Expired</span>. If all payment attempts have failed a subscription is marked as <span class=\"label label-default\">Cancelled</span> if it has been manually ended. Once a subscription is marked as <span class=\"label label-default\">Failed</span>, <span class=\"label label-default\">Expired</span>, or <span class=\"label label-default\">Cancelled</span> no invoices other than a final invoice will be issued. Note: Updating account card details will not lead to BillForward automatically retrying payment, manual payment attempts can be made.","verbs":["POST","PUT","GET"]}
 
 	Required: true
@@ -236,62 +239,77 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrentTime(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTerms(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInitialPeriodStart(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateManagedBy(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionNumber(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionStart(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -315,14 +333,17 @@ var subscriptionBillingEntityEnum []interface{}
 func (m *Subscription) validateBillingEntityEnum(path, location string, value string) error {
 	if subscriptionBillingEntityEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
 			subscriptionBillingEntityEnum = append(subscriptionBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionBillingEntityEnum)
+	if err := validate.Enum(path, location, value, subscriptionBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateBillingEntity(formats strfmt.Registry) error {
@@ -378,7 +399,10 @@ func (m *Subscription) validateManagedByEnum(path, location string, value string
 			subscriptionManagedByEnum = append(subscriptionManagedByEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionManagedByEnum)
+	if err := validate.Enum(path, location, value, subscriptionManagedByEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateManagedBy(formats strfmt.Registry) error {
@@ -438,7 +462,10 @@ func (m *Subscription) validateStateEnum(path, location string, value string) er
 			subscriptionStateEnum = append(subscriptionStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionStateEnum)
+	if err := validate.Enum(path, location, value, subscriptionStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateState(formats strfmt.Registry) error {
@@ -466,7 +493,10 @@ func (m *Subscription) validateTypeEnum(path, location string, value string) err
 			subscriptionTypeEnum = append(subscriptionTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionTypeEnum)
+	if err := validate.Enum(path, location, value, subscriptionTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateType(formats strfmt.Registry) error {

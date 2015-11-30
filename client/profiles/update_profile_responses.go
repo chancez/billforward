@@ -25,17 +25,21 @@ func (o *UpdateProfileReader) ReadResponse(response client.Response, consumer ht
 		}
 		return &result, nil
 
-	default:
-		var result UpdateProfileDefault
+	case 500:
+		var result UpdateProfileInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateProfile default", &result, response.Code())
+		return nil, NewAPIError("updateProfileInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*UpdateProfileOK
+
+success
 */
 type UpdateProfileOK struct {
 	Payload *models.ProfileQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *UpdateProfileOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*
-an error occurred
+/*UpdateProfileInternalServerError
+
+error
 */
-type UpdateProfileDefault struct {
-	Payload *models.GeneralError
+type UpdateProfileInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *UpdateProfileDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateProfileInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

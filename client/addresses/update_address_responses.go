@@ -25,17 +25,21 @@ func (o *UpdateAddressReader) ReadResponse(response client.Response, consumer ht
 		}
 		return &result, nil
 
-	default:
-		var result UpdateAddressDefault
+	case 500:
+		var result UpdateAddressInternalServerError
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateAddress default", &result, response.Code())
+		return nil, NewAPIError("updateAddressInternalServerError", &result, response.Code())
+
+	default:
+		return nil, NewAPIError("unknown error", response, response.Code())
 	}
 }
 
-/*
-successful operation
+/*UpdateAddressOK
+
+success
 */
 type UpdateAddressOK struct {
 	Payload *models.AddressQueryResultWrapper
@@ -53,16 +57,17 @@ func (o *UpdateAddressOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*
-an error occurred
+/*UpdateAddressInternalServerError
+
+error
 */
-type UpdateAddressDefault struct {
-	Payload *models.GeneralError
+type UpdateAddressInternalServerError struct {
+	Payload *models.BFError
 }
 
-func (o *UpdateAddressDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateAddressInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GeneralError)
+	o.Payload = new(models.BFError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {

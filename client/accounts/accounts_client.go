@@ -25,7 +25,7 @@ type Client struct {
 
 /*Create an Account.
 
-{ "nickname" : "Create a new account", "response" : "createAccountResponse.html", "request" : "createAccountRequest.html"}
+{"nickname":"Create a new account","response":"createAccountResponse.html","request":"createAccountRequest.html"}
 */
 func (a *Client) CreateAccount(params CreateAccountParams) (*CreateAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -43,7 +43,7 @@ func (a *Client) CreateAccount(params CreateAccountParams) (*CreateAccountOK, er
 
 /*Returns a single account, specified by the account-ID parameter.
 
-{ "nickname" : "Retrieve an existing account","response" : "getAccountByID.html"}
+{"nickname":"Retrieve an existing account","response":"getAccountByID.html"}
 */
 func (a *Client) GetAccountByID(params GetAccountByIDParams) (*GetAccountByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -61,7 +61,7 @@ func (a *Client) GetAccountByID(params GetAccountByIDParams) (*GetAccountByIDOK,
 
 /*Returns a collection of all account objects. By default 10 values are returned. Records are returned in natural order.
 
-{ "nickname" : "Get all accounts", "response" : "getAccountAll.html"}
+{"nickname":"Get all accounts","response":"getAccountAll.html"}
 */
 func (a *Client) GetAllAccounts(params GetAllAccountsParams) (*GetAllAccountsOK, error) {
 	// TODO: Validate the params before sending

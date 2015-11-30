@@ -10,15 +10,14 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetAccountByIDParams contains all the parameters to send to the API endpoint
+/*GetAccountByIDParams contains all the parameters to send to the API endpoint
 for the get account by ID operation typically these are written to a http.Request
 */
 type GetAccountByIDParams struct {
+
+	/*AccountID*/
 	AccountID string
-	/*
-	  A list of organization-IDs used to restrict the scope of API calls.								   Multiple organization-IDs may be specified by repeated use of the query								   paramter. Example: ...&organizations=org1&organizations=org2
-	*/
+	/*Organizations*/
 	Organizations []string
 }
 
