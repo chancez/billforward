@@ -16388,7 +16388,7 @@
                 "tags": ["subscriptions"],
                 "summary": "Create a new subscription.",
                 "description": "{\"nickname\":\"Create a new subscription\",\"request\":\"createSubscriptionRequest.html\",\"response\":\"createSubscriptionResponse.html\"}",
-                "operationId": "createSubscription",
+                "operationId": "createSubscriptionOld",
                 "consumes": ["application/json"],
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
@@ -16419,7 +16419,7 @@
                 "tags": ["subscriptions"],
                 "summary": "Update a subscription.",
                 "description": "{\"nickname\":\"Update a subscription\",\"request\":\"updateSubscriptionRequest.html\",\"response\":\"updateSubscriptionResponse.html\"}",
-                "operationId": "updateSubscription",
+                "operationId": "updateSubscriptionOld",
                 "consumes": ["application/json"],
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
@@ -23352,156 +23352,7 @@
             "allOf": [{
                 "$ref": "#/definitions/PricingComponent"
             }, {
-                "type": "object",
-                "required": ["chargeModel", "chargeType", "consistentID", "defaultQuantity", "dummyField", "name", "organizationID", "productRatePlan", "productRatePlanID", "unitOfMeasureID", "validFrom"],
-                "properties": {
-                    "created": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-                    },
-                    "changedBy": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-                    },
-                    "updated": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
-                    },
-                    "dummyField": {
-                        "type": "string",
-                        "xml": {
-                            "name": "@type"
-                        },
-                        "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
-                        "enum": ["TieredPricingComponent", "FlatPricingComponent", "TieredVolumePricingComponent"]
-                    },
-                    "id": {
-                        "type": "string",
-                        "xml": {
-                            "name": "versionID"
-                        },
-                        "description": "{ \"description\" : \"Version ID of the pricing-component. Unique ID for each version of a pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "consistentID": {
-                        "type": "string",
-                        "xml": {
-                            "name": "id"
-                        },
-                        "description": "{ \"description\" : \"ID of the pricing-component. This ID does not change with new versions of the pricing component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] } When associating a pricing component with a product rate plan, this ID should be used."
-                    },
-                    "productRatePlanID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "unitOfMeasureID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "organizationID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[] }"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "chargeType": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge type of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["setup", "subscription", "arrears", "usage"]
-                    },
-                    "invoicingType": {
-                        "type": "string",
-                        "description": "{ \"default\" : \"Aggregated\",  \"description\" : \"For <span class=\\\"label label-default\\\">setup</span> pricing components <span class=\\\"label label-default\\\">Immediate</span> invoicing will result in an invoice being issued on subscription being set to the AwaitingPayment state, irrespective of the subscription start date. <span class=\\\"label label-default\\\">Aggregated</span> invoicing will add a charge to the first invoice of the subscription.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["Immediate", "Aggregated"]
-                    },
-                    "chargeModel": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge model of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["flat", "tiered", "tiered_volume"]
-                    },
-                    "upgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">immediate</span>\",\"description\":\"Default behaviour when a value is upgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Upgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Upgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "downgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">delayed</span>\",\"description\":\"Default behaviour when a value is downgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Downgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Downgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "defaultQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The default quantity of the pricing-component. If no value is supplied on a subscription this value will be used. This is useful for setting an expected purchase level of for introducing new pricing components to existing subscriptions and not having to back-fill values\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "minQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"default\" : \"0\", \"description\" : \"The minimum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "maxQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The maximum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "validFrom": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"default\" : \"current time\", \"description\" : \"The DateTime specifying when the pricing-component is valid from.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "validTill": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{  \"default\" : \"null\", \"description\" : \"The UTC DateTime specifying when the pricing-component is valid till.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "tiers": {
-                        "type": "array",
-                        "description": "{  \"default\" : \"[]\", \"description\" : \"The pricing-component-tiers associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "items": {
-                            "$ref": "#/definitions/PricingComponentTier"
-                        }
-                    },
-                    "productRatePlan": {
-                        "description": "{ \"description\" : \"The product-rate-plan associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "$ref": "#/definitions/ProductRatePlan"
-                    },
-                    "componentValue": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "notificationObjectGraph": {
-                        "type": "string"
-                    },
-                    "cost": {
-                        "type": "number"
-                    },
-                    "billingEntity": {
-                        "type": "string",
-                        "enum": ["Notification", "Organization", "OrganizationGateway", "Product", "User", "Subscription", "Profile", "ProductRatePlan", "Client", "Invoice", "PricingComponentValue", "Account", "PricingComponentValueChange", "PricingComponentTier", "PricingComponent", "PricingCalculation", "CouponDefinition", "CouponInstance", "CouponModifier", "CouponRule", "CouponBookDefinition", "CouponBook", "InvoiceLine", "Webhook", "SubscriptionCancellation", "NotificationSnapshot", "InvoicePayment", "InvoiceLinePayment", "Payment", "PaymentMethod", "PaymentMethodSubscriptionLink", "DunningLine", "CybersourceToken", "Card", "Alias", "PaypalSimplePaymentReconciliation", "FreePaymentReconciliation", "LocustworldPaymentReconciliation", "CouponInstanceExistingValue", "TaxLine", "TaxationStrategy", "TaxationLink", "Address", "AmendmentPriceNTime", "Authority", "UnitOfMeasure", "SearchResult", "Amendment", "AuditLog", "Password", "Username", "FixedTermDefinition", "FixedTerm", "Refund", "CreditNote", "Receipt", "AmendmentCompoundConstituent", "APIConfiguration", "StripeToken", "BraintreeToken", "BalancedToken", "PaypalToken", "AuthorizeNetToken", "SpreedlyToken", "GatewayRevenue", "AmendmentDiscardAmendment", "CancellationAmendment", "CompoundAmendment", "CompoundAmendmentConstituent", "FixedTermExpiryAmendment", "InvoiceNextExecutionAttemptAmendment", "PricingComponentValueAmendment", "BraintreeMerchantAccount", "WebhookSubscription", "Migration", "CassResult", "CassPaymentResult", "CassProductRatePlanResult", "CassChurnResult", "CassUpgradeResult", "SubscriptionCharge", "CassPaymentPProductResult", "ProductPaymentsArgs", "StripeACHToken", "UsageAmount", "UsageSession", "Usage", "UsagePeriod", "Period", "OfflinePayment", "CreditNotePayment", "CardVaultPayment", "FreePayment", "BraintreePayment", "BalancedPayment", "CybersourcePayment", "PaypalPayment", "PaypalSimplePayment", "LocustWorldPayment", "StripeOnlyPayment", "ProductPaymentsResult", "StripeACHPayment", "AuthorizeNetPayment", "CompoundUsageSession", "CompoundUsage", "UsageRoundingStrategies", "BillforwardManagedPaymentsResult", "PricingComponentValueMigrationChargeAmendmentMapping", "SubscriptionLTVResult", "AccountLTVResult", "ProductRatePlanPaymentsResult", "DebtsResult", "AccountPaymentsResult", "ComponentChange", "QuoteRequest", "Quote", "CouponCharge", "CouponInstanceInvoiceLink", "Coupon", "CouponDiscount", "CouponUniqueCodesRequest", "CouponUniqueCodesResponse", "GetCouponsResponse", "AddCouponCodeRequest", "AddCouponCodeResponse", "RemoveCouponFromSubscriptionRequest", "TokenizationPreAuth", "StripeTokenizationPreAuth", "BraintreeTokenizationPreAuth", "SpreedlyTokenizationPreAuth", "SagePayTokenizationPreAuth", "PayVisionTokenizationPreAuth", "TokenizationPreAuthRequest", "AuthCaptureRequest", "StripeACHBankAccountVerification", "PasswordReset", "PricingRequest", "AddTaxationStrategyRequest", "AddPaymentMethodRequest", "APIRequest", "SagePayToken", "SagePayNotificationRequest", "SagePayNotificationResponse", "SagePayOutstandingTransaction", "SagePayEnabledCardType", "TrustCommerceToken", "SagePayTransaction", "PricingComponentValueResponse", "MigrationResponse", "TimeResponse", "EntityTime", "Email", "AggregationLink", "BFPermission", "Role", "PermissionLink", "PayVisionToken", "PayVisionTransaction", "KashToken", "EmailProvider", "DataSynchronizationJob", "DataSynchronizationJobError", "DataSynchronizationConfiguration", "DataSynchronizationAppConfiguration", "AggregationChildrenResponse", "MetadataKeyValue", "Metadata", "AggregatingComponent", "PricingComponentMigrationValue", "InvoiceRecalculationAmendment", "IssueInvoiceAmendment", "EmailSubscription", "RevenueAttribution"]
-                    },
-                    "crmid": {
-                        "type": "string"
-                    },
-                    "priceExplanation": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "priceExplanationString": {
-                        "type": "string"
-                    }
-                },
-                "xml": {
-                    "name": "pricingComponent"
-                }
+                "type": "object"
             }]
         },
         "CouponInstance": {
@@ -24975,156 +24826,7 @@
             "allOf": [{
                 "$ref": "#/definitions/PricingComponent"
             }, {
-                "type": "object",
-                "required": ["chargeModel", "chargeType", "consistentID", "defaultQuantity", "dummyField", "name", "organizationID", "productRatePlan", "productRatePlanID", "unitOfMeasureID", "validFrom"],
-                "properties": {
-                    "created": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-                    },
-                    "changedBy": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-                    },
-                    "updated": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
-                    },
-                    "dummyField": {
-                        "type": "string",
-                        "xml": {
-                            "name": "@type"
-                        },
-                        "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
-                        "enum": ["TieredPricingComponent", "FlatPricingComponent", "TieredVolumePricingComponent"]
-                    },
-                    "id": {
-                        "type": "string",
-                        "xml": {
-                            "name": "versionID"
-                        },
-                        "description": "{ \"description\" : \"Version ID of the pricing-component. Unique ID for each version of a pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "consistentID": {
-                        "type": "string",
-                        "xml": {
-                            "name": "id"
-                        },
-                        "description": "{ \"description\" : \"ID of the pricing-component. This ID does not change with new versions of the pricing component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] } When associating a pricing component with a product rate plan, this ID should be used."
-                    },
-                    "productRatePlanID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "unitOfMeasureID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "organizationID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[] }"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "chargeType": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge type of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["setup", "subscription", "arrears", "usage"]
-                    },
-                    "invoicingType": {
-                        "type": "string",
-                        "description": "{ \"default\" : \"Aggregated\",  \"description\" : \"For <span class=\\\"label label-default\\\">setup</span> pricing components <span class=\\\"label label-default\\\">Immediate</span> invoicing will result in an invoice being issued on subscription being set to the AwaitingPayment state, irrespective of the subscription start date. <span class=\\\"label label-default\\\">Aggregated</span> invoicing will add a charge to the first invoice of the subscription.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["Immediate", "Aggregated"]
-                    },
-                    "chargeModel": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge model of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["flat", "tiered", "tiered_volume"]
-                    },
-                    "upgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">immediate</span>\",\"description\":\"Default behaviour when a value is upgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Upgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Upgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "downgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">delayed</span>\",\"description\":\"Default behaviour when a value is downgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Downgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Downgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "defaultQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The default quantity of the pricing-component. If no value is supplied on a subscription this value will be used. This is useful for setting an expected purchase level of for introducing new pricing components to existing subscriptions and not having to back-fill values\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "minQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"default\" : \"0\", \"description\" : \"The minimum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "maxQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The maximum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "validFrom": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"default\" : \"current time\", \"description\" : \"The DateTime specifying when the pricing-component is valid from.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "validTill": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{  \"default\" : \"null\", \"description\" : \"The UTC DateTime specifying when the pricing-component is valid till.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "tiers": {
-                        "type": "array",
-                        "description": "{  \"default\" : \"[]\", \"description\" : \"The pricing-component-tiers associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "items": {
-                            "$ref": "#/definitions/PricingComponentTier"
-                        }
-                    },
-                    "productRatePlan": {
-                        "description": "{ \"description\" : \"The product-rate-plan associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "$ref": "#/definitions/ProductRatePlan"
-                    },
-                    "componentValue": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "notificationObjectGraph": {
-                        "type": "string"
-                    },
-                    "cost": {
-                        "type": "number"
-                    },
-                    "billingEntity": {
-                        "type": "string",
-                        "enum": ["Notification", "Organization", "OrganizationGateway", "Product", "User", "Subscription", "Profile", "ProductRatePlan", "Client", "Invoice", "PricingComponentValue", "Account", "PricingComponentValueChange", "PricingComponentTier", "PricingComponent", "PricingCalculation", "CouponDefinition", "CouponInstance", "CouponModifier", "CouponRule", "CouponBookDefinition", "CouponBook", "InvoiceLine", "Webhook", "SubscriptionCancellation", "NotificationSnapshot", "InvoicePayment", "InvoiceLinePayment", "Payment", "PaymentMethod", "PaymentMethodSubscriptionLink", "DunningLine", "CybersourceToken", "Card", "Alias", "PaypalSimplePaymentReconciliation", "FreePaymentReconciliation", "LocustworldPaymentReconciliation", "CouponInstanceExistingValue", "TaxLine", "TaxationStrategy", "TaxationLink", "Address", "AmendmentPriceNTime", "Authority", "UnitOfMeasure", "SearchResult", "Amendment", "AuditLog", "Password", "Username", "FixedTermDefinition", "FixedTerm", "Refund", "CreditNote", "Receipt", "AmendmentCompoundConstituent", "APIConfiguration", "StripeToken", "BraintreeToken", "BalancedToken", "PaypalToken", "AuthorizeNetToken", "SpreedlyToken", "GatewayRevenue", "AmendmentDiscardAmendment", "CancellationAmendment", "CompoundAmendment", "CompoundAmendmentConstituent", "FixedTermExpiryAmendment", "InvoiceNextExecutionAttemptAmendment", "PricingComponentValueAmendment", "BraintreeMerchantAccount", "WebhookSubscription", "Migration", "CassResult", "CassPaymentResult", "CassProductRatePlanResult", "CassChurnResult", "CassUpgradeResult", "SubscriptionCharge", "CassPaymentPProductResult", "ProductPaymentsArgs", "StripeACHToken", "UsageAmount", "UsageSession", "Usage", "UsagePeriod", "Period", "OfflinePayment", "CreditNotePayment", "CardVaultPayment", "FreePayment", "BraintreePayment", "BalancedPayment", "CybersourcePayment", "PaypalPayment", "PaypalSimplePayment", "LocustWorldPayment", "StripeOnlyPayment", "ProductPaymentsResult", "StripeACHPayment", "AuthorizeNetPayment", "CompoundUsageSession", "CompoundUsage", "UsageRoundingStrategies", "BillforwardManagedPaymentsResult", "PricingComponentValueMigrationChargeAmendmentMapping", "SubscriptionLTVResult", "AccountLTVResult", "ProductRatePlanPaymentsResult", "DebtsResult", "AccountPaymentsResult", "ComponentChange", "QuoteRequest", "Quote", "CouponCharge", "CouponInstanceInvoiceLink", "Coupon", "CouponDiscount", "CouponUniqueCodesRequest", "CouponUniqueCodesResponse", "GetCouponsResponse", "AddCouponCodeRequest", "AddCouponCodeResponse", "RemoveCouponFromSubscriptionRequest", "TokenizationPreAuth", "StripeTokenizationPreAuth", "BraintreeTokenizationPreAuth", "SpreedlyTokenizationPreAuth", "SagePayTokenizationPreAuth", "PayVisionTokenizationPreAuth", "TokenizationPreAuthRequest", "AuthCaptureRequest", "StripeACHBankAccountVerification", "PasswordReset", "PricingRequest", "AddTaxationStrategyRequest", "AddPaymentMethodRequest", "APIRequest", "SagePayToken", "SagePayNotificationRequest", "SagePayNotificationResponse", "SagePayOutstandingTransaction", "SagePayEnabledCardType", "TrustCommerceToken", "SagePayTransaction", "PricingComponentValueResponse", "MigrationResponse", "TimeResponse", "EntityTime", "Email", "AggregationLink", "BFPermission", "Role", "PermissionLink", "PayVisionToken", "PayVisionTransaction", "KashToken", "EmailProvider", "DataSynchronizationJob", "DataSynchronizationJobError", "DataSynchronizationConfiguration", "DataSynchronizationAppConfiguration", "AggregationChildrenResponse", "MetadataKeyValue", "Metadata", "AggregatingComponent", "PricingComponentMigrationValue", "InvoiceRecalculationAmendment", "IssueInvoiceAmendment", "EmailSubscription", "RevenueAttribution"]
-                    },
-                    "crmid": {
-                        "type": "string"
-                    },
-                    "priceExplanation": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "priceExplanationString": {
-                        "type": "string"
-                    }
-                },
-                "xml": {
-                    "name": "pricingComponent"
-                }
+                "type": "object"
             }]
         },
         "InsertableBillingEntity": {
@@ -28690,156 +28392,7 @@
             "allOf": [{
                 "$ref": "#/definitions/PricingComponent"
             }, {
-                "type": "object",
-                "required": ["chargeModel", "chargeType", "consistentID", "defaultQuantity", "dummyField", "name", "organizationID", "productRatePlan", "productRatePlanID", "unitOfMeasureID", "validFrom"],
-                "properties": {
-                    "created": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-                    },
-                    "changedBy": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-                    },
-                    "updated": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
-                    },
-                    "dummyField": {
-                        "type": "string",
-                        "xml": {
-                            "name": "@type"
-                        },
-                        "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
-                        "enum": ["TieredPricingComponent", "FlatPricingComponent", "TieredVolumePricingComponent"]
-                    },
-                    "id": {
-                        "type": "string",
-                        "xml": {
-                            "name": "versionID"
-                        },
-                        "description": "{ \"description\" : \"Version ID of the pricing-component. Unique ID for each version of a pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "consistentID": {
-                        "type": "string",
-                        "xml": {
-                            "name": "id"
-                        },
-                        "description": "{ \"description\" : \"ID of the pricing-component. This ID does not change with new versions of the pricing component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] } When associating a pricing component with a product rate plan, this ID should be used."
-                    },
-                    "productRatePlanID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "unitOfMeasureID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "organizationID": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[] }"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "chargeType": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge type of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["setup", "subscription", "arrears", "usage"]
-                    },
-                    "invoicingType": {
-                        "type": "string",
-                        "description": "{ \"default\" : \"Aggregated\",  \"description\" : \"For <span class=\\\"label label-default\\\">setup</span> pricing components <span class=\\\"label label-default\\\">Immediate</span> invoicing will result in an invoice being issued on subscription being set to the AwaitingPayment state, irrespective of the subscription start date. <span class=\\\"label label-default\\\">Aggregated</span> invoicing will add a charge to the first invoice of the subscription.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["Immediate", "Aggregated"]
-                    },
-                    "chargeModel": {
-                        "type": "string",
-                        "description": "{ \"description\" : \"The charge model of the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "enum": ["flat", "tiered", "tiered_volume"]
-                    },
-                    "upgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">immediate</span>\",\"description\":\"Default behaviour when a value is upgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Upgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Upgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "downgradeMode": {
-                        "type": "string",
-                        "description": "{\"default\":\"<span class=\\\"label label-default\\\">delayed</span>\",\"description\":\"Default behaviour when a value is downgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Downgrade will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Downgrade will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
-                        "enum": ["immediate", "delayed"]
-                    },
-                    "defaultQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The default quantity of the pricing-component. If no value is supplied on a subscription this value will be used. This is useful for setting an expected purchase level of for introducing new pricing components to existing subscriptions and not having to back-fill values\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "minQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"default\" : \"0\", \"description\" : \"The minimum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "maxQuantity": {
-                        "type": "integer",
-                        "format": "int32",
-                        "description": "{ \"description\" : \"The maximum quantity of the pricing-component.\", \"verbs\":[] }"
-                    },
-                    "validFrom": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{ \"default\" : \"current time\", \"description\" : \"The DateTime specifying when the pricing-component is valid from.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "validTill": {
-                        "type": "string",
-                        "format": "date-time",
-                        "description": "{  \"default\" : \"null\", \"description\" : \"The UTC DateTime specifying when the pricing-component is valid till.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-                    },
-                    "tiers": {
-                        "type": "array",
-                        "description": "{  \"default\" : \"[]\", \"description\" : \"The pricing-component-tiers associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "items": {
-                            "$ref": "#/definitions/PricingComponentTier"
-                        }
-                    },
-                    "productRatePlan": {
-                        "description": "{ \"description\" : \"The product-rate-plan associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                        "$ref": "#/definitions/ProductRatePlan"
-                    },
-                    "componentValue": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "notificationObjectGraph": {
-                        "type": "string"
-                    },
-                    "cost": {
-                        "type": "number"
-                    },
-                    "billingEntity": {
-                        "type": "string",
-                        "enum": ["Notification", "Organization", "OrganizationGateway", "Product", "User", "Subscription", "Profile", "ProductRatePlan", "Client", "Invoice", "PricingComponentValue", "Account", "PricingComponentValueChange", "PricingComponentTier", "PricingComponent", "PricingCalculation", "CouponDefinition", "CouponInstance", "CouponModifier", "CouponRule", "CouponBookDefinition", "CouponBook", "InvoiceLine", "Webhook", "SubscriptionCancellation", "NotificationSnapshot", "InvoicePayment", "InvoiceLinePayment", "Payment", "PaymentMethod", "PaymentMethodSubscriptionLink", "DunningLine", "CybersourceToken", "Card", "Alias", "PaypalSimplePaymentReconciliation", "FreePaymentReconciliation", "LocustworldPaymentReconciliation", "CouponInstanceExistingValue", "TaxLine", "TaxationStrategy", "TaxationLink", "Address", "AmendmentPriceNTime", "Authority", "UnitOfMeasure", "SearchResult", "Amendment", "AuditLog", "Password", "Username", "FixedTermDefinition", "FixedTerm", "Refund", "CreditNote", "Receipt", "AmendmentCompoundConstituent", "APIConfiguration", "StripeToken", "BraintreeToken", "BalancedToken", "PaypalToken", "AuthorizeNetToken", "SpreedlyToken", "GatewayRevenue", "AmendmentDiscardAmendment", "CancellationAmendment", "CompoundAmendment", "CompoundAmendmentConstituent", "FixedTermExpiryAmendment", "InvoiceNextExecutionAttemptAmendment", "PricingComponentValueAmendment", "BraintreeMerchantAccount", "WebhookSubscription", "Migration", "CassResult", "CassPaymentResult", "CassProductRatePlanResult", "CassChurnResult", "CassUpgradeResult", "SubscriptionCharge", "CassPaymentPProductResult", "ProductPaymentsArgs", "StripeACHToken", "UsageAmount", "UsageSession", "Usage", "UsagePeriod", "Period", "OfflinePayment", "CreditNotePayment", "CardVaultPayment", "FreePayment", "BraintreePayment", "BalancedPayment", "CybersourcePayment", "PaypalPayment", "PaypalSimplePayment", "LocustWorldPayment", "StripeOnlyPayment", "ProductPaymentsResult", "StripeACHPayment", "AuthorizeNetPayment", "CompoundUsageSession", "CompoundUsage", "UsageRoundingStrategies", "BillforwardManagedPaymentsResult", "PricingComponentValueMigrationChargeAmendmentMapping", "SubscriptionLTVResult", "AccountLTVResult", "ProductRatePlanPaymentsResult", "DebtsResult", "AccountPaymentsResult", "ComponentChange", "QuoteRequest", "Quote", "CouponCharge", "CouponInstanceInvoiceLink", "Coupon", "CouponDiscount", "CouponUniqueCodesRequest", "CouponUniqueCodesResponse", "GetCouponsResponse", "AddCouponCodeRequest", "AddCouponCodeResponse", "RemoveCouponFromSubscriptionRequest", "TokenizationPreAuth", "StripeTokenizationPreAuth", "BraintreeTokenizationPreAuth", "SpreedlyTokenizationPreAuth", "SagePayTokenizationPreAuth", "PayVisionTokenizationPreAuth", "TokenizationPreAuthRequest", "AuthCaptureRequest", "StripeACHBankAccountVerification", "PasswordReset", "PricingRequest", "AddTaxationStrategyRequest", "AddPaymentMethodRequest", "APIRequest", "SagePayToken", "SagePayNotificationRequest", "SagePayNotificationResponse", "SagePayOutstandingTransaction", "SagePayEnabledCardType", "TrustCommerceToken", "SagePayTransaction", "PricingComponentValueResponse", "MigrationResponse", "TimeResponse", "EntityTime", "Email", "AggregationLink", "BFPermission", "Role", "PermissionLink", "PayVisionToken", "PayVisionTransaction", "KashToken", "EmailProvider", "DataSynchronizationJob", "DataSynchronizationJobError", "DataSynchronizationConfiguration", "DataSynchronizationAppConfiguration", "AggregationChildrenResponse", "MetadataKeyValue", "Metadata", "AggregatingComponent", "PricingComponentMigrationValue", "InvoiceRecalculationAmendment", "IssueInvoiceAmendment", "EmailSubscription", "RevenueAttribution"]
-                    },
-                    "crmid": {
-                        "type": "string"
-                    },
-                    "priceExplanation": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "priceExplanationString": {
-                        "type": "string"
-                    }
-                },
-                "xml": {
-                    "name": "pricingComponent"
-                }
+                "type": "object"
             }]
         },
         "CouponModifierBase": {
@@ -32459,6 +32012,33 @@
                 }
             },
             "description": "Response object returned upon advancing a subscription's flow through time."
+        },
+        "UnitOfMeasure": {
+          "type": "object",
+          "required": [
+            "name",
+            "displayedAs"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "displayedAs": {
+              "type": "string"
+            },
+            "rounding": {
+              "type": "string"
+            },
+            "organizationID": {
+              "type": "string"
+            },
+            "deleted": {
+              "type": "boolean"
+            }
+          }
         },
         "CouponQueryResultWrapper": {
             "type": "object",
