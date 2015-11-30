@@ -48,7 +48,7 @@ type ProductRatePlan struct {
 
 	Required: true
 	*/
-	Currency *Currency `json:"currency,omitempty"`
+	Currency string `json:"currency,omitempty"`
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
@@ -290,11 +290,8 @@ func (m *ProductRatePlan) validateCreateZeroValuedInvoices(formats strfmt.Regist
 
 func (m *ProductRatePlan) validateCurrency(formats strfmt.Registry) error {
 
-	if m.Currency != nil {
-
-		if err := m.Currency.Validate(formats); err != nil {
-			return err
-		}
+	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+		return err
 	}
 
 	return nil

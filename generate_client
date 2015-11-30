@@ -2,6 +2,10 @@
 
 #swagger generate client -f $(dirname $0)/swagger.json -A BillForward -c client -a client
 swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O getProductRatePlanByID \
+    -O getRatePlanByProductAndRatePlan \
+    -O getRatePlanByProduct \
+    -O getAllRatePlans \
     -O getAllProducts \
     -O cancelSubscription \
     -O createAddress \
@@ -55,4 +59,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M CreateAddressRequest \
     -M UpdateAddressRequest \
     -M ProductQueryResultWrapper \
-    -M SubscriptionCancellationQueryResultWrapper
+    -M SubscriptionCancellationQueryResultWrapper \
+    -M CreateAccountRequest \
+    -M ProductRatePlanQueryResultWrapper \
+    -M UnitOfMeasure

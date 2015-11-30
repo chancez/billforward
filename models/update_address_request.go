@@ -17,9 +17,7 @@ swagger:model UpdateAddressRequest
 type UpdateAddressRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
+	 */
 	AddressLine1 string `json:"addressLine1,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
@@ -31,25 +29,25 @@ type UpdateAddressRequest struct {
 	AddressLine3 string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
+	 */
 	City string `json:"city,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
+	 */
+	Country string `json:"country,omitempty"`
+
+	/* ID id
 
 	Required: true
 	*/
-	Country string `json:"country,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
 	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
+	 */
 	Postcode string `json:"postcode,omitempty"`
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
@@ -63,9 +61,7 @@ type UpdateAddressRequest struct {
 	ProfileID string `json:"profileID,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
+	 */
 	Province string `json:"province,omitempty"`
 }
 
@@ -73,27 +69,11 @@ type UpdateAddressRequest struct {
 func (m *UpdateAddressRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAddressLine1(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCity(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCountry(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePostcode(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateProfileID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProvince(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -103,36 +83,9 @@ func (m *UpdateAddressRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UpdateAddressRequest) validateAddressLine1(formats strfmt.Registry) error {
+func (m *UpdateAddressRequest) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("addressLine1", "body", string(m.AddressLine1)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateAddressRequest) validateCity(formats strfmt.Registry) error {
-
-	if err := validate.Required("city", "body", string(m.City)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateAddressRequest) validateCountry(formats strfmt.Registry) error {
-
-	if err := validate.Required("country", "body", string(m.Country)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateAddressRequest) validatePostcode(formats strfmt.Registry) error {
-
-	if err := validate.Required("postcode", "body", string(m.Postcode)); err != nil {
+	if err := validate.Required("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -142,15 +95,6 @@ func (m *UpdateAddressRequest) validatePostcode(formats strfmt.Registry) error {
 func (m *UpdateAddressRequest) validateProfileID(formats strfmt.Registry) error {
 
 	if err := validate.Required("profileID", "body", string(m.ProfileID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateAddressRequest) validateProvince(formats strfmt.Registry) error {
-
-	if err := validate.Required("province", "body", string(m.Province)); err != nil {
 		return err
 	}
 

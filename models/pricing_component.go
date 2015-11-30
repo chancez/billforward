@@ -136,6 +136,10 @@ type PricingComponent struct {
 	 */
 	Tiers []*PricingComponentTier `json:"tiers,omitempty"`
 
+	/* UnitOfMeasure unit of measure
+	 */
+	UnitOfMeasure *UnitOfMeasure `json:"unitOfMeasure,omitempty"`
+
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true

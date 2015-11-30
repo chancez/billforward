@@ -12,6 +12,7 @@ import (
 	"github.com/authclub/billforward/client/accounts"
 	"github.com/authclub/billforward/client/addresses"
 	"github.com/authclub/billforward/client/payment_methods"
+	"github.com/authclub/billforward/client/product_rate_plans"
 	"github.com/authclub/billforward/client/products"
 	"github.com/authclub/billforward/client/profiles"
 	"github.com/authclub/billforward/client/subscriptions"
@@ -45,6 +46,8 @@ func New(transport client.Transport, formats strfmt.Registry) *BillForward {
 
 	cli.PaymentMethods = payment_methods.New(transport, formats)
 
+	cli.ProductRatePlans = product_rate_plans.New(transport, formats)
+
 	cli.Products = products.New(transport, formats)
 
 	cli.Profiles = profiles.New(transport, formats)
@@ -63,6 +66,8 @@ type BillForward struct {
 	Addresses *addresses.Client
 
 	PaymentMethods *payment_methods.Client
+
+	ProductRatePlans *product_rate_plans.Client
 
 	Products *products.Client
 
@@ -84,6 +89,8 @@ func (c *BillForward) SetTransport(transport client.Transport) {
 	c.Addresses.SetTransport(transport)
 
 	c.PaymentMethods.SetTransport(transport)
+
+	c.ProductRatePlans.SetTransport(transport)
 
 	c.Products.SetTransport(transport)
 
