@@ -304,11 +304,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "account",
+            "name": "request",
             "description": "The account object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Account"
+              "$ref": "#/definitions/CreateAccountRequest"
             }
           }
         ],
@@ -14976,6 +14976,12 @@
             "schema": {
               "$ref": "#/definitions/ProductRatePlanQueryResultWrapper"
             }
+          },
+          "default": {
+            "description": "an error occurred",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
           }
         }
       },
@@ -15232,6 +15238,12 @@
             "schema": {
               "$ref": "#/definitions/ProductRatePlanQueryResultWrapper"
             }
+          },
+          "default": {
+            "description": "an error occurred",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
+            }
           }
         }
       }
@@ -15322,6 +15334,12 @@
             "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/ProductRatePlanQueryResultWrapper"
+            }
+          },
+          "default": {
+            "description": "an error occurred",
+            "schema": {
+              "$ref": "#/definitions/GeneralError"
             }
           }
         }
@@ -27858,78 +27876,27 @@
     "ProductRatePlanQueryResultWrapper": {
       "type": "object",
       "properties": {
-        "entityName": {
-          "type": "string"
+        "currentPage": {
+          "type": "integer",
+          "format": "int32"
         },
-        "totalRecordsReturned": {
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "recordsReturned": {
           "type": "integer",
           "format": "int32"
         },
         "results": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/BillingEntityBase"
-          }
-        },
-        "arguments": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "organizations": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "records": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "orderBy": {
-          "type": "string"
-        },
-        "orderDirection": {
-          "type": "string",
-          "enum": [
-            "ASC",
-            "DESC"
-          ]
-        },
-        "includeRetired": {
-          "type": "boolean",
-          "default": false
-        },
-        "wildcard": {
-          "type": "boolean",
-          "default": false
-        },
-        "entity": {
-          "type": "boolean",
-          "default": false
-        },
-        "typedResults": {
-          "type": "array",
-          "items": {
             "$ref": "#/definitions/ProductRatePlan"
           }
-        },
-        "typedSingleResult": {
-          "$ref": "#/definitions/ProductRatePlan"
-        },
-        "singleResult": {
-          "$ref": "#/definitions/BillingEntityBase"
         }
       }
     },
@@ -33930,6 +33897,33 @@
         }
       }
     },
+    "UnitOfMeasure": {
+      "type": "object",
+      "required": [
+        "name",
+        "displayedAs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayedAs": {
+          "type": "string"
+        },
+        "rounding": {
+          "type": "string"
+        },
+        "organizationID": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
     "Usage": {
       "type": "object",
       "required": [
@@ -36540,8 +36534,8 @@
           "description": "{\"description\":\"ID of the product to which this rate plan belongs. A product is essentially a collection of rate plans, and describes the service conferred to a customer upon subscription to any of said product's rate plans. The product serves also as a template from which its rate plans can infer default attributes.\",\"verbs\":[\"POST\",\"GET\"]}"
         },
         "currency": {
-          "description": "{\"description\":\"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).\",\"verbs\":[\"POST\",\"GET\"]}",
-          "$ref": "#/definitions/Currency"
+          "type": "string",
+          "description": "{\"description\":\"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).\",\"verbs\":[\"POST\",\"GET\"]}"
         },
         "taxStatus": {
           "type": "string",
@@ -39658,14 +39652,13 @@
     "UpdateAddressRequest": {
       "type": "object",
       "required": [
-        "profileID",
-        "addressLine1",
-        "city",
-        "country",
-        "postcode",
-        "province"
+        "id",
+        "profileID"
       ],
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "profileID": {
           "type": "string",
           "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
@@ -51070,6 +51063,31 @@
         "name": "account"
       }
     },
+    "CreateAccountRequest": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "organizationID": {
+          "type": "string",
+          "description": "{ \"description\" : \"Organization associated with the account.\", \"verbs\":[] }"
+        },
+        "userID": {
+          "type": "string",
+          "description": "{ \"description\" : \"User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.\", \"verbs\":[] }"
+        },
+        "aggregatingProductRatePlanID": {
+          "type": "string",
+          "description": "{ \"description\" : \"If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.\", \"verbs\":[] }"
+        },
+        "aggregatingSubscriptionID": {
+          "type": "string",
+          "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
+        }
+      },
+      "description": "CreateAccountRequest"
+    },
     "This is a wrapper for an array of usage instances.": {
       "type": "object",
       "required": [
@@ -57264,6 +57282,9 @@
         "productRatePlan": {
           "description": "{ \"description\" : \"The product-rate-plan associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
           "$ref": "#/definitions/ProductRatePlan"
+        },
+        "unitOfMeasure": {
+          "$ref": "#/definitions/UnitOfMeasure"
         },
         "componentValue": {
           "type": "integer",
