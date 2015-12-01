@@ -131,7 +131,7 @@
     }, {
         "name": "usage"
     }],
-    "schemes": ["http"],
+    "schemes": ["https"],
     "paths": {
         "/accounts": {
             "get": {
@@ -235,11 +235,11 @@
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
                     "in": "body",
-                    "name": "account",
+                    "name": "request",
                     "description": "The account object to be created.",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/Account"
+                        "$ref": "#/definitions/CreateAccountRequest"
                     }
                 }],
                 "responses": {
@@ -1121,11 +1121,11 @@
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
                     "in": "body",
-                    "name": "address",
+                    "name": "request",
                     "description": "The address object to be created.",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/Address"
+                        "$ref": "#/definitions/CreateAddressRequest"
                     }
                 }],
                 "responses": {
@@ -1152,11 +1152,11 @@
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
                     "in": "body",
-                    "name": "address",
+                    "name": "request",
                     "description": "The address object to be created.",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/Address"
+                        "$ref": "#/definitions/UpdateAddressRequest"
                     }
                 }],
                 "responses": {
@@ -14859,11 +14859,11 @@
                 "produces": ["text/xml", "application/xml", "application/json"],
                 "parameters": [{
                     "in": "body",
-                    "name": "profile",
+                    "name": "request",
                     "description": "The profile object to be updated.",
                     "required": true,
                     "schema": {
-                        "$ref": "#/definitions/Profile"
+                        "$ref": "#/definitions/UpdateProfileRequest"
                     }
                 }],
                 "responses": {
@@ -26729,7 +26729,7 @@
                 },
                 "currency": {
                     "description": "{\"description\":\"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).\",\"verbs\":[\"POST\",\"GET\"]}",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "taxStatus": {
                     "type": "string",
@@ -26996,12 +26996,7 @@
             "type": "object",
             "required": ["accountID", "productRatePlan"],
             "properties": {
-                "created": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-                },
-                "accountID": {
+                  "accountID": {
                     "type": "string",
                     "description": "{\"description\":\"ID of the BillForward Account who will own this subscription. You should ensure beforehand that the customer has had a BillForward Account created for them.\",\"verbs\":[\"POST\"]}"
                 },
@@ -27031,11 +27026,13 @@
                 "start": {
                     "type": "string",
                     "format": "date-time",
+                    "x-isnullable": true,
                     "description": "{\"default\":\"(ServerNow upon receiving request)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.\",\"verbs\":[\"POST\"]}"
                 },
                 "end": {
                     "type": "string",
                     "format": "date-time",
+                    "x-isnullable": true,
                     "description": "{\"default\":\"(1 period ahead of the `start` time)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should finish its first service period.\",\"verbs\":[\"POST\"]}"
                 },
                 "state": {
@@ -29241,7 +29238,7 @@
                 },
                 "currency": {
                     "description": "{\"description\":\"[Required if and only if `productRatePlan` is omitted] The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).\",\"verbs\":[\"POST\"]}",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "billingEntity": {
                     "type": "string",
@@ -31859,6 +31856,9 @@
                         "$ref": "#/definitions/InsertableBillingEntity"
                     }
                 },
+                "profile": {
+                  "$ref": "#/definitions/Profile"
+                },
                 "paymentMethods": {
                     "type": "array",
                     "description": "{ \"description\" : \"The payment-methods associated with the account.\", \"verbs\":[\"GET\"] }",
@@ -32760,6 +32760,222 @@
                 }
             },
             "description": "Entity for requesting that an 'aggregating component' (i.e. a component which should be re-priced upon invoice aggregation) be created."
+        },
+        "CreateAccountRequest": {
+          "type": "object",
+          "properties": {
+            "profile": {
+              "$ref": "#/definitions/Profile"
+            },
+            "organizationID": {
+              "type": "string",
+              "description": "{ \"description\" : \"Organization associated with the account.\", \"verbs\":[] }"
+            },
+            "userID": {
+              "type": "string",
+              "description": "{ \"description\" : \"User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.\", \"verbs\":[] }"
+            },
+            "aggregatingProductRatePlanID": {
+              "type": "string",
+              "description": "{ \"description\" : \"If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.\", \"verbs\":[] }"
+            },
+            "aggregatingSubscriptionID": {
+              "type": "string",
+              "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
+            }
+          },
+          "description": "CreateAccountRequest"
+        },
+        "CreateAddressRequest": {
+          "type": "object",
+          "required": [
+            "profileID",
+            "addressLine1",
+            "city",
+            "country",
+            "postcode",
+            "province"
+          ],
+          "properties": {
+            "profileID": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+            },
+            "addressLine1": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "addressLine2": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "addressLine3": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "city": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "province": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "country": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "postcode": {
+              "type": "string",
+              "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "landline": {
+              "type": "string",
+              "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "primaryAddress": {
+              "type": "boolean",
+              "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+              "default": false
+            }
+          },
+          "description": "CreateAddressRequest"
+        },
+        "UpdateAddressRequest": {
+          "type": "object",
+          "required": [
+            "id",
+            "profileID"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "profileID": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+            },
+            "addressLine1": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "addressLine2": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "addressLine3": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "city": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "province": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "country": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "postcode": {
+              "type": "string",
+              "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "landline": {
+              "type": "string",
+              "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "primaryAddress": {
+              "type": "boolean",
+              "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+              "default": false
+            }
+          },
+          "description": "CreateAddressRequest"
+        },
+        "UpdateProfileRequest": {
+          "type": "object",
+          "required": [
+            "accountID"
+          ],
+          "properties": {
+            "accountID": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+            },
+            "organizationID": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"\", \"verbs\":[] }"
+            },
+            "email": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"E-mail address\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "firstName": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "lastName": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "companyName": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "logoURL": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "addresses": {
+              "type": "array",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Address associated with the profile\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+              "items": {
+                "$ref": "#/definitions/Address"
+              }
+            },
+            "mobile": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Mobile telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "landline": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Home telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "fax": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Fax number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "dob": {
+              "type": "string",
+              "format": "date-time",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "vatNumber": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"VAT number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            },
+            "additionalInformation": {
+              "type": "string",
+              "x-isnullable": true,
+              "description": "{ \"description\" : \"Any additional information\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+            }
+          },
+          "description": "UpdateProfileRequest"
         },
         "APIQuote": {
             "type": "object",
@@ -33884,16 +34100,12 @@
                     "description": "{ \"description\" : \"The product-rate-plan associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
                     "$ref": "#/definitions/ProductRatePlan"
                 },
+                "unitOfMeasure": {
+                  "$ref": "#/definitions/UnitOfMeasure"
+                },
                 "componentValue": {
                     "type": "integer",
                     "format": "int32"
-                },
-                "billingEntity": {
-                    "type": "string",
-                    "enum": ["Notification", "Organization", "OrganizationGateway", "Product", "User", "Subscription", "Profile", "ProductRatePlan", "Client", "Invoice", "PricingComponentValue", "Account", "PricingComponentValueChange", "PricingComponentTier", "PricingComponent", "PricingCalculation", "CouponDefinition", "CouponInstance", "CouponModifier", "CouponRule", "CouponBookDefinition", "CouponBook", "InvoiceLine", "Webhook", "SubscriptionCancellation", "NotificationSnapshot", "InvoicePayment", "InvoiceLinePayment", "Payment", "PaymentMethod", "PaymentMethodSubscriptionLink", "DunningLine", "CybersourceToken", "Card", "Alias", "PaypalSimplePaymentReconciliation", "FreePaymentReconciliation", "LocustworldPaymentReconciliation", "CouponInstanceExistingValue", "TaxLine", "TaxationStrategy", "TaxationLink", "Address", "AmendmentPriceNTime", "Authority", "UnitOfMeasure", "SearchResult", "Amendment", "AuditLog", "Password", "Username", "FixedTermDefinition", "FixedTerm", "Refund", "CreditNote", "Receipt", "AmendmentCompoundConstituent", "APIConfiguration", "StripeToken", "BraintreeToken", "BalancedToken", "PaypalToken", "AuthorizeNetToken", "SpreedlyToken", "GatewayRevenue", "AmendmentDiscardAmendment", "CancellationAmendment", "CompoundAmendment", "CompoundAmendmentConstituent", "FixedTermExpiryAmendment", "InvoiceNextExecutionAttemptAmendment", "PricingComponentValueAmendment", "BraintreeMerchantAccount", "WebhookSubscription", "Migration", "CassResult", "CassPaymentResult", "CassProductRatePlanResult", "CassChurnResult", "CassUpgradeResult", "SubscriptionCharge", "CassPaymentPProductResult", "ProductPaymentsArgs", "StripeACHToken", "UsageAmount", "UsageSession", "Usage", "UsagePeriod", "Period", "OfflinePayment", "CreditNotePayment", "CardVaultPayment", "FreePayment", "BraintreePayment", "BalancedPayment", "CybersourcePayment", "PaypalPayment", "PaypalSimplePayment", "LocustWorldPayment", "StripeOnlyPayment", "ProductPaymentsResult", "StripeACHPayment", "AuthorizeNetPayment", "CompoundUsageSession", "CompoundUsage", "UsageRoundingStrategies", "BillforwardManagedPaymentsResult", "PricingComponentValueMigrationChargeAmendmentMapping", "SubscriptionLTVResult", "AccountLTVResult", "ProductRatePlanPaymentsResult", "DebtsResult", "AccountPaymentsResult", "ComponentChange", "QuoteRequest", "Quote", "CouponCharge", "CouponInstanceInvoiceLink", "Coupon", "CouponDiscount", "CouponUniqueCodesRequest", "CouponUniqueCodesResponse", "GetCouponsResponse", "AddCouponCodeRequest", "AddCouponCodeResponse", "RemoveCouponFromSubscriptionRequest", "TokenizationPreAuth", "StripeTokenizationPreAuth", "BraintreeTokenizationPreAuth", "SpreedlyTokenizationPreAuth", "SagePayTokenizationPreAuth", "PayVisionTokenizationPreAuth", "TokenizationPreAuthRequest", "AuthCaptureRequest", "StripeACHBankAccountVerification", "PasswordReset", "PricingRequest", "AddTaxationStrategyRequest", "AddPaymentMethodRequest", "APIRequest", "SagePayToken", "SagePayNotificationRequest", "SagePayNotificationResponse", "SagePayOutstandingTransaction", "SagePayEnabledCardType", "TrustCommerceToken", "SagePayTransaction", "PricingComponentValueResponse", "MigrationResponse", "TimeResponse", "EntityTime", "Email", "AggregationLink", "BFPermission", "Role", "PermissionLink", "PayVisionToken", "PayVisionTransaction", "KashToken", "EmailProvider", "DataSynchronizationJob", "DataSynchronizationJobError", "DataSynchronizationConfiguration", "DataSynchronizationAppConfiguration", "AggregationChildrenResponse", "MetadataKeyValue", "Metadata", "AggregatingComponent", "PricingComponentMigrationValue", "InvoiceRecalculationAmendment", "IssueInvoiceAmendment", "EmailSubscription", "RevenueAttribution"]
-                },
-                "crmid": {
-                    "type": "string"
                 },
                 "cost": {
                     "type": "number"
@@ -33905,9 +34117,6 @@
                     }
                 },
                 "priceExplanationString": {
-                    "type": "string"
-                },
-                "notificationObjectGraph": {
                     "type": "string"
                 }
             },
