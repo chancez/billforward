@@ -37,8 +37,7 @@ func (o *CancelSubscriptionReader) ReadResponse(response client.Response, consum
 	}
 }
 
-/*CancelSubscriptionOK
-
+/*
 success
 */
 type CancelSubscriptionOK struct {
@@ -57,8 +56,7 @@ func (o *CancelSubscriptionOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*CancelSubscriptionInternalServerError
-
+/*
 error
 */
 type CancelSubscriptionInternalServerError struct {

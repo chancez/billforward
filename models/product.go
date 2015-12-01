@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Product
+/*
+Product
 
 swagger:model Product
 */
@@ -117,52 +118,42 @@ func (m *Product) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreateZeroValuedInvoices(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDuration(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDurationPeriod(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrial(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrialPeriod(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -184,10 +175,7 @@ func (m *Product) validateBillingEntityEnum(path, location string, value string)
 			productBillingEntityEnum = append(productBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, productBillingEntityEnum)
 }
 
 func (m *Product) validateBillingEntity(formats strfmt.Registry) error {
@@ -247,10 +235,7 @@ func (m *Product) validateDurationPeriodEnum(path, location string, value string
 			productDurationPeriodEnum = append(productDurationPeriodEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productDurationPeriodEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, productDurationPeriodEnum)
 }
 
 func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
@@ -287,10 +272,7 @@ func (m *Product) validateProductTypeEnum(path, location string, value string) e
 			productProductTypeEnum = append(productProductTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productProductTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, productProductTypeEnum)
 }
 
 func (m *Product) validateProductType(formats strfmt.Registry) error {
@@ -327,10 +309,7 @@ func (m *Product) validateTrialPeriodEnum(path, location string, value string) e
 			productTrialPeriodEnum = append(productTrialPeriodEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productTrialPeriodEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, productTrialPeriodEnum)
 }
 
 func (m *Product) validateTrialPeriod(formats strfmt.Registry) error {

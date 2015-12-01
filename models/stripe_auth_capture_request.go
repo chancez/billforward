@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*StripeAuthCaptureRequest stripe auth capture request
+/*
+StripeAuthCaptureRequest stripe auth capture request
 
 swagger:model StripeAuthCaptureRequest
 */
@@ -125,10 +126,7 @@ func (m *StripeAuthCaptureRequest) validateBillingEntityEnum(path, location stri
 			stripeAuthCaptureRequestBillingEntityEnum = append(stripeAuthCaptureRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, stripeAuthCaptureRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, stripeAuthCaptureRequestBillingEntityEnum)
 }
 
 func (m *StripeAuthCaptureRequest) validateBillingEntity(formats strfmt.Registry) error {
@@ -152,10 +150,7 @@ func (m *StripeAuthCaptureRequest) validateGatewayEnum(path, location string, va
 			stripeAuthCaptureRequestGatewayEnum = append(stripeAuthCaptureRequestGatewayEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, stripeAuthCaptureRequestGatewayEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, stripeAuthCaptureRequestGatewayEnum)
 }
 
 func (m *StripeAuthCaptureRequest) validateGateway(formats strfmt.Registry) error {

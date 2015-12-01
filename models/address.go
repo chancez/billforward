@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Address
+/*
+Address
 
 swagger:model Address
 */
@@ -109,32 +110,26 @@ func (m *Address) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddressLine1(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCountry(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePostcode(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProvince(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -165,10 +160,7 @@ func (m *Address) validateBillingEntityEnum(path, location string, value string)
 			addressBillingEntityEnum = append(addressBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, addressBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, addressBillingEntityEnum)
 }
 
 func (m *Address) validateBillingEntity(formats strfmt.Registry) error {

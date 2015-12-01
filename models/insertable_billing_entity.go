@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Insertable entities are those entities that can be created.
+/*
+Insertable entities are those entities that can be created.
 
 swagger:model InsertableBillingEntity
 */
@@ -71,27 +72,22 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRole(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -134,10 +130,7 @@ func (m *InsertableBillingEntity) validateBillingEntityEnum(path, location strin
 			insertableBillingEntityBillingEntityEnum = append(insertableBillingEntityBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, insertableBillingEntityBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, insertableBillingEntityBillingEntityEnum)
 }
 
 func (m *InsertableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {

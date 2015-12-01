@@ -37,8 +37,7 @@ func (o *CreateAddressReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*CreateAddressOK
-
+/*
 success
 */
 type CreateAddressOK struct {
@@ -57,8 +56,7 @@ func (o *CreateAddressOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*CreateAddressInternalServerError
-
+/*
 error
 */
 type CreateAddressInternalServerError struct {

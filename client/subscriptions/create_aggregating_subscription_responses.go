@@ -37,8 +37,7 @@ func (o *CreateAggregatingSubscriptionReader) ReadResponse(response client.Respo
 	}
 }
 
-/*CreateAggregatingSubscriptionOK
-
+/*
 success
 */
 type CreateAggregatingSubscriptionOK struct {
@@ -57,8 +56,7 @@ func (o *CreateAggregatingSubscriptionOK) readResponse(response client.Response,
 	return nil
 }
 
-/*CreateAggregatingSubscriptionInternalServerError
-
+/*
 error
 */
 type CreateAggregatingSubscriptionInternalServerError struct {

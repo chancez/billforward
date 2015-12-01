@@ -11,14 +11,13 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*AuthCaptureParams contains all the parameters to send to the API endpoint
+/*
+AuthCaptureParams contains all the parameters to send to the API endpoint
 for the auth capture operation typically these are written to a http.Request
 */
 type AuthCaptureParams struct {
-
-	/*AuthCaptureRequest
+	/*
 	  The auth capture request.
-
 	*/
 	AuthCaptureRequest *models.AuthCaptureRequest
 }

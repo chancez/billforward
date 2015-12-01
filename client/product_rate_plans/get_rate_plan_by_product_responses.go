@@ -37,8 +37,7 @@ func (o *GetRatePlanByProductReader) ReadResponse(response client.Response, cons
 	}
 }
 
-/*GetRatePlanByProductOK
-
+/*
 success
 */
 type GetRatePlanByProductOK struct {
@@ -57,8 +56,7 @@ func (o *GetRatePlanByProductOK) readResponse(response client.Response, consumer
 	return nil
 }
 
-/*GetRatePlanByProductInternalServerError
-
+/*
 error
 */
 type GetRatePlanByProductInternalServerError struct {

@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Mutable entities are those entities that can be updated after their initial creation.
+/*
+Mutable entities are those entities that can be updated after their initial creation.
 
 swagger:model MutableBillingEntity
 */
@@ -99,47 +100,38 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryBehaviour(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFirstTermPeriods(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanAsOfTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubsequentTermPeriods(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUplift(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -161,10 +153,7 @@ func (m *MutableBillingEntity) validateBillingEntityEnum(path, location string, 
 			mutableBillingEntityBillingEntityEnum = append(mutableBillingEntityBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, mutableBillingEntityBillingEntityEnum)
 }
 
 func (m *MutableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {
@@ -197,10 +186,7 @@ func (m *MutableBillingEntity) validateExpiryBehaviourEnum(path, location string
 			mutableBillingEntityExpiryBehaviourEnum = append(mutableBillingEntityExpiryBehaviourEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityExpiryBehaviourEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, mutableBillingEntityExpiryBehaviourEnum)
 }
 
 func (m *MutableBillingEntity) validateExpiryBehaviour(formats strfmt.Registry) error {

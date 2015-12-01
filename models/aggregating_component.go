@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*The aggregating component defines a component which should be re-priced upon invoice aggregation
+/*
+The aggregating component defines a component which should be re-priced upon invoice aggregation
 
 swagger:model AggregatingComponent
 */
@@ -81,22 +82,18 @@ func (m *AggregatingComponent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlan(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -118,10 +115,7 @@ func (m *AggregatingComponent) validateBillingEntityEnum(path, location string, 
 			aggregatingComponentBillingEntityEnum = append(aggregatingComponentBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, aggregatingComponentBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, aggregatingComponentBillingEntityEnum)
 }
 
 func (m *AggregatingComponent) validateBillingEntity(formats strfmt.Registry) error {

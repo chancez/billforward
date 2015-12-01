@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Billing entities are models in the BillForward system, of objects in the real-world or otherwise.
+/*
+Billing entities are models in the BillForward system, of objects in the real-world or otherwise.
 
 swagger:model BillingEntityBase
 */
@@ -47,17 +48,14 @@ func (m *BillingEntityBase) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateQuantity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -79,10 +77,7 @@ func (m *BillingEntityBase) validateBillingEntityEnum(path, location string, val
 			billingEntityBaseBillingEntityEnum = append(billingEntityBaseBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, billingEntityBaseBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, billingEntityBaseBillingEntityEnum)
 }
 
 func (m *BillingEntityBase) validateBillingEntity(formats strfmt.Registry) error {

@@ -4,17 +4,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"bytes"
 	"encoding/json"
 
 	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*PricingComponentTier
+/*
+PricingComponentTier
 
 swagger:model PricingComponentTier
 */
@@ -74,7 +72,11 @@ type PricingComponentTier struct {
 	*/
 	Price float64 `json:"price,omitempty"`
 
-	PricingComponent PricingComponent `json:"-"`
+	/* { "description" : "The pricing-component associated with the tier.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	PricingComponent *PricingComponent `json:"pricingComponent,omitempty"`
 
 	/* { "description" : "Pricing calculation used to price items in this pricing tier. Unit pricing means every distinct value is used in the calculation. Fixed means that the total price of the tier is fixed regardless of the purchased amount.", "verbs":["POST","PUT","GET"] }
 
@@ -92,36 +94,26 @@ func (m *PricingComponentTier) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateComponentID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLowerThreshold(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrice(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.PricingComponent.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -143,10 +135,7 @@ func (m *PricingComponentTier) validateBillingEntityEnum(path, location string, 
 			pricingComponentTierBillingEntityEnum = append(pricingComponentTierBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, pricingComponentTierBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, pricingComponentTierBillingEntityEnum)
 }
 
 func (m *PricingComponentTier) validateBillingEntity(formats strfmt.Registry) error {
@@ -187,8 +176,11 @@ func (m *PricingComponentTier) validatePrice(formats strfmt.Registry) error {
 
 func (m *PricingComponentTier) validatePricingComponent(formats strfmt.Registry) error {
 
-	if err := m.PricingComponent().Validate(formats); err != nil {
-		return err
+	if m.PricingComponent != nil {
+
+		if err := m.PricingComponent.Validate(formats); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -206,10 +198,7 @@ func (m *PricingComponentTier) validatePricingTypeEnum(path, location string, va
 			pricingComponentTierPricingTypeEnum = append(pricingComponentTierPricingTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, pricingComponentTierPricingTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, pricingComponentTierPricingTypeEnum)
 }
 
 func (m *PricingComponentTier) validatePricingType(formats strfmt.Registry) error {
@@ -223,127 +212,4 @@ func (m *PricingComponentTier) validatePricingType(formats strfmt.Registry) erro
 	}
 
 	return nil
-}
-
-// UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
-func (m *PricingComponentTier) UnmarshalJSON(raw []byte) error {
-	var data struct {
-		BillingEntity string `json:"billingEntity,omitempty"`
-
-		ChangedBy string `json:"changedBy,omitempty"`
-
-		ComponentID string `json:"componentID,omitempty"`
-
-		ConsistentPricingComponentID string `json:"consistentPricingComponentID,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
-
-		CrmID string `json:"crmID,omitempty"`
-
-		Crmid string `json:"crmid,omitempty"`
-
-		ID string `json:"id,omitempty"`
-
-		LowerThreshold int32 `json:"lowerThreshold,omitempty"`
-
-		NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
-
-		OrganizationID string `json:"organizationID,omitempty"`
-
-		Price float64 `json:"price,omitempty"`
-
-		PricingType string `json:"pricingType,omitempty"`
-
-		UpperThreshold int32 `json:"upperThreshold,omitempty"`
-	}
-
-	if err := json.Unmarshal(raw, &data); err != nil {
-		return err
-	}
-
-	pricingComponent, err := UnmarshalPricingComponent(bytes.NewBuffer(raw), httpkit.JSONConsumer)
-	if err != nil {
-		return err
-	}
-
-	var result PricingComponentTier
-	result.BillingEntity = data.BillingEntity
-	result.ChangedBy = data.ChangedBy
-	result.ComponentID = data.ComponentID
-	result.ConsistentPricingComponentID = data.ConsistentPricingComponentID
-	result.Created = data.Created
-	result.CrmID = data.CrmID
-	result.Crmid = data.Crmid
-	result.ID = data.ID
-	result.LowerThreshold = data.LowerThreshold
-	result.NotificationObjectGraph = data.NotificationObjectGraph
-	result.OrganizationID = data.OrganizationID
-	result.Price = data.Price
-	result.PricingComponent = pricingComponent
-	result.PricingType = data.PricingType
-	result.UpperThreshold = data.UpperThreshold
-	*m = result
-	return nil
-}
-
-// MarshalJSON marshals this object with a polymorphic type to a JSON structure
-func (m PricingComponentTier) MarshalJSON() ([]byte, error) {
-	var b1, b2 []byte
-	var err error
-	b1, err = json.Marshal(struct {
-		BillingEntity string `json:"billingEntity,omitempty"`
-
-		ChangedBy string `json:"changedBy,omitempty"`
-
-		ComponentID string `json:"componentID,omitempty"`
-
-		ConsistentPricingComponentID string `json:"consistentPricingComponentID,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
-
-		CrmID string `json:"crmID,omitempty"`
-
-		Crmid string `json:"crmid,omitempty"`
-
-		ID string `json:"id,omitempty"`
-
-		LowerThreshold int32 `json:"lowerThreshold,omitempty"`
-
-		NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
-
-		OrganizationID string `json:"organizationID,omitempty"`
-
-		Price float64 `json:"price,omitempty"`
-
-		PricingType string `json:"pricingType,omitempty"`
-
-		UpperThreshold int32 `json:"upperThreshold,omitempty"`
-	}{
-		BillingEntity:                m.BillingEntity,
-		ChangedBy:                    m.ChangedBy,
-		ComponentID:                  m.ComponentID,
-		ConsistentPricingComponentID: m.ConsistentPricingComponentID,
-		Created:                 m.Created,
-		CrmID:                   m.CrmID,
-		Crmid:                   m.Crmid,
-		ID:                      m.ID,
-		LowerThreshold:          m.LowerThreshold,
-		NotificationObjectGraph: m.NotificationObjectGraph,
-		OrganizationID:          m.OrganizationID,
-		Price:                   m.Price,
-		PricingType:             m.PricingType,
-		UpperThreshold:          m.UpperThreshold,
-	})
-	if err != nil {
-		return nil, err
-	}
-	b2, err = json.Marshal(struct {
-		PricingComponent PricingComponent `json:"pricingComponent,omitempty"`
-	}{
-		PricingComponent: m.PricingComponent,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return swag.ConcatJSON(b1, b2), nil
 }

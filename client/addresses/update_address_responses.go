@@ -37,8 +37,7 @@ func (o *UpdateAddressReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*UpdateAddressOK
-
+/*
 success
 */
 type UpdateAddressOK struct {
@@ -57,8 +56,7 @@ func (o *UpdateAddressOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*UpdateAddressInternalServerError
-
+/*
 error
 */
 type UpdateAddressInternalServerError struct {

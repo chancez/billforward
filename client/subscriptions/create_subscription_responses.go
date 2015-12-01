@@ -37,8 +37,7 @@ func (o *CreateSubscriptionReader) ReadResponse(response client.Response, consum
 	}
 }
 
-/*CreateSubscriptionOK
-
+/*
 success
 */
 type CreateSubscriptionOK struct {
@@ -57,8 +56,7 @@ func (o *CreateSubscriptionOK) readResponse(response client.Response, consumer h
 	return nil
 }
 
-/*CreateSubscriptionInternalServerError
-
+/*
 error
 */
 type CreateSubscriptionInternalServerError struct {

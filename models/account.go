@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Account
+/*
+Account
 
 swagger:model Account
 */
@@ -65,6 +66,10 @@ type Account struct {
 	 */
 	PaymentMethods []*PaymentMethod `json:"paymentMethods,omitempty"`
 
+	/* Profile profile
+	 */
+	Profile *Profile `json:"profile,omitempty"`
+
 	/* { "description" : "Roles associated with the account. These are used to govern access privileges.", "verbs":[] }
 
 	Required: true
@@ -89,22 +94,18 @@ func (m *Account) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRoles(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -126,10 +127,7 @@ func (m *Account) validateBillingEntityEnum(path, location string, value string)
 			accountBillingEntityEnum = append(accountBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, accountBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, accountBillingEntityEnum)
 }
 
 func (m *Account) validateBillingEntity(formats strfmt.Registry) error {

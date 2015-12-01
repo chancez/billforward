@@ -37,8 +37,7 @@ func (o *AuthCaptureReader) ReadResponse(response client.Response, consumer http
 	}
 }
 
-/*AuthCaptureOK
-
+/*
 success
 */
 type AuthCaptureOK struct {
@@ -57,8 +56,7 @@ func (o *AuthCaptureOK) readResponse(response client.Response, consumer httpkit.
 	return nil
 }
 
-/*AuthCaptureInternalServerError
-
+/*
 error
 */
 type AuthCaptureInternalServerError struct {

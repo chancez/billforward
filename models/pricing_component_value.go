@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*PricingComponentValue
+/*
+PricingComponentValue
 
 swagger:model PricingComponentValue
 */
@@ -91,27 +92,22 @@ func (m *PricingComponentValue) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateValue(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -133,10 +129,7 @@ func (m *PricingComponentValue) validateBillingEntityEnum(path, location string,
 			pricingComponentValueBillingEntityEnum = append(pricingComponentValueBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, pricingComponentValueBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, pricingComponentValueBillingEntityEnum)
 }
 
 func (m *PricingComponentValue) validateBillingEntity(formats strfmt.Registry) error {

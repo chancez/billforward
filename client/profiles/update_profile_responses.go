@@ -37,8 +37,7 @@ func (o *UpdateProfileReader) ReadResponse(response client.Response, consumer ht
 	}
 }
 
-/*UpdateProfileOK
-
+/*
 success
 */
 type UpdateProfileOK struct {
@@ -57,8 +56,7 @@ func (o *UpdateProfileOK) readResponse(response client.Response, consumer httpki
 	return nil
 }
 
-/*UpdateProfileInternalServerError
-
+/*
 error
 */
 type UpdateProfileInternalServerError struct {

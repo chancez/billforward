@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Subscription
+/*
+Subscription
 
 swagger:model Subscription
 */
@@ -239,77 +240,62 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrentTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTerms(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInitialPeriodStart(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateManagedBy(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionNumber(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionStart(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -340,10 +326,7 @@ func (m *Subscription) validateBillingEntityEnum(path, location string, value st
 			subscriptionBillingEntityEnum = append(subscriptionBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, subscriptionBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, subscriptionBillingEntityEnum)
 }
 
 func (m *Subscription) validateBillingEntity(formats strfmt.Registry) error {
@@ -399,10 +382,7 @@ func (m *Subscription) validateManagedByEnum(path, location string, value string
 			subscriptionManagedByEnum = append(subscriptionManagedByEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, subscriptionManagedByEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, subscriptionManagedByEnum)
 }
 
 func (m *Subscription) validateManagedBy(formats strfmt.Registry) error {
@@ -462,10 +442,7 @@ func (m *Subscription) validateStateEnum(path, location string, value string) er
 			subscriptionStateEnum = append(subscriptionStateEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, subscriptionStateEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, subscriptionStateEnum)
 }
 
 func (m *Subscription) validateState(formats strfmt.Registry) error {
@@ -493,10 +470,7 @@ func (m *Subscription) validateTypeEnum(path, location string, value string) err
 			subscriptionTypeEnum = append(subscriptionTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, subscriptionTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, subscriptionTypeEnum)
 }
 
 func (m *Subscription) validateType(formats strfmt.Registry) error {

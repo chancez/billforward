@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Entity for requesting that a batch of subscriptions be created.
+/*
+Entity for requesting that a batch of subscriptions be created.
 
 swagger:model CreateSubscriptionBatchRequest
 */
@@ -39,7 +40,6 @@ func (m *CreateSubscriptionBatchRequest) Validate(formats strfmt.Registry) error
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -61,10 +61,7 @@ func (m *CreateSubscriptionBatchRequest) validateBillingEntityEnum(path, locatio
 			createSubscriptionBatchRequestBillingEntityEnum = append(createSubscriptionBatchRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createSubscriptionBatchRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createSubscriptionBatchRequestBillingEntityEnum)
 }
 
 func (m *CreateSubscriptionBatchRequest) validateBillingEntity(formats strfmt.Registry) error {

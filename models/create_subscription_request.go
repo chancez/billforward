@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Entity for requesting that a subscription be created.
+/*
+Entity for requesting that a subscription be created.
 
 swagger:model CreateSubscriptionRequest
 */
@@ -35,17 +36,13 @@ type CreateSubscriptionRequest struct {
 	 */
 	BillingEntity string `json:"billingEntity,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
-	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
-
 	/* {"default":"(null)","description":"Description of the created subscription. This is primarily for your benefit &mdash; for example, you could write here the mechanism through which you obtained this customer. (e.g. 'Customer obtained through Lazy Wednesdays promotion').","verbs":["POST"]}
 	 */
 	Description string `json:"description,omitempty"`
 
 	/* {"default":"(1 period ahead of the `start` time)","description":"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should finish its first service period.","verbs":["POST"]}
 	 */
-	End strfmt.DateTime `json:"end,omitempty"`
+	End *strfmt.DateTime `json:"end,omitempty"`
 
 	/* {"default":"(Subscription will be named after the rate plan to which the subscription subscribes)","description":"Name of the created subscription. This is primarily for your benefit &mdash; for example, to enable you to identify subscriptions at a glance in the BillForward web interface (e.g. 'Customer 1425, guy@mail.com, Premium membership').","verbs":["POST"]}
 	 */
@@ -79,7 +76,7 @@ type CreateSubscriptionRequest struct {
 
 	/* {"default":"(ServerNow upon receiving request)","description":"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.","verbs":["POST"]}
 	 */
-	Start strfmt.DateTime `json:"start,omitempty"`
+	Start *strfmt.DateTime `json:"start,omitempty"`
 
 	/* {"default":"Provisioned","description":"The state in which the created subscription will begin.<br><span class=\"label label-default\">Provisioned</span> &mdash; The subscription will wait (without raising any invoices or beginning its service) until explicit action is taken to change its state.<br><span class=\"label label-default\">AwaitingPayment</span> &mdash; The subscription is activated. After `start` time is surpassed, it will begin service and raise its first invoice.","verbs":["POST"]}
 	 */
@@ -95,27 +92,22 @@ func (m *CreateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlan(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -146,10 +138,7 @@ func (m *CreateSubscriptionRequest) validateBillingEntityEnum(path, location str
 			createSubscriptionRequestBillingEntityEnum = append(createSubscriptionRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createSubscriptionRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createSubscriptionRequestBillingEntityEnum)
 }
 
 func (m *CreateSubscriptionRequest) validateBillingEntity(formats strfmt.Registry) error {
@@ -182,10 +171,7 @@ func (m *CreateSubscriptionRequest) validateStateEnum(path, location string, val
 			createSubscriptionRequestStateEnum = append(createSubscriptionRequestStateEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createSubscriptionRequestStateEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createSubscriptionRequestStateEnum)
 }
 
 func (m *CreateSubscriptionRequest) validateState(formats strfmt.Registry) error {
@@ -209,10 +195,7 @@ func (m *CreateSubscriptionRequest) validateTypeEnum(path, location string, valu
 			createSubscriptionRequestTypeEnum = append(createSubscriptionRequestTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createSubscriptionRequestTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createSubscriptionRequestTypeEnum)
 }
 
 func (m *CreateSubscriptionRequest) validateType(formats strfmt.Registry) error {

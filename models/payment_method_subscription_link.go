@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*PaymentMethodSubscriptionLink
+/*
+PaymentMethodSubscriptionLink
 
 swagger:model PaymentMethodSubscriptionLink
 */
@@ -81,22 +82,18 @@ func (m *PaymentMethodSubscriptionLink) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePaymentMethodID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -118,10 +115,7 @@ func (m *PaymentMethodSubscriptionLink) validateBillingEntityEnum(path, location
 			paymentMethodSubscriptionLinkBillingEntityEnum = append(paymentMethodSubscriptionLinkBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodSubscriptionLinkBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, paymentMethodSubscriptionLinkBillingEntityEnum)
 }
 
 func (m *PaymentMethodSubscriptionLink) validateBillingEntity(formats strfmt.Registry) error {

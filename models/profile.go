@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Profile
+/*
+Profile
 
 swagger:model Profile
 */
@@ -117,32 +118,26 @@ func (m *Profile) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmail(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFirstName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -173,10 +168,7 @@ func (m *Profile) validateBillingEntityEnum(path, location string, value string)
 			profileBillingEntityEnum = append(profileBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, profileBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, profileBillingEntityEnum)
 }
 
 func (m *Profile) validateBillingEntity(formats strfmt.Registry) error {

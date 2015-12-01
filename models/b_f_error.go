@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Standard BillForward error format.
+/*
+Standard BillForward error format.
 
 swagger:model BFError
 */
@@ -39,7 +40,6 @@ func (m *BFError) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrorType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -61,10 +61,7 @@ func (m *BFError) validateErrorTypeEnum(path, location string, value string) err
 			bFErrorErrorTypeEnum = append(bFErrorErrorTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, bFErrorErrorTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, bFErrorErrorTypeEnum)
 }
 
 func (m *BFError) validateErrorType(formats strfmt.Registry) error {

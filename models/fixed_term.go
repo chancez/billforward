@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*FixedTerm
+/*
+FixedTerm
 
 swagger:model FixedTerm
 */
@@ -129,72 +130,58 @@ func (m *FixedTerm) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCompoundUplift(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryBehaviour(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermDefinition(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermDefinitionID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTermNumber(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePeriods(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanAsOfTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStartTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -216,10 +203,7 @@ func (m *FixedTerm) validateBillingEntityEnum(path, location string, value strin
 			fixedTermBillingEntityEnum = append(fixedTermBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, fixedTermBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, fixedTermBillingEntityEnum)
 }
 
 func (m *FixedTerm) validateBillingEntity(formats strfmt.Registry) error {
@@ -261,10 +245,7 @@ func (m *FixedTerm) validateExpiryBehaviourEnum(path, location string, value str
 			fixedTermExpiryBehaviourEnum = append(fixedTermExpiryBehaviourEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, fixedTermExpiryBehaviourEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, fixedTermExpiryBehaviourEnum)
 }
 
 func (m *FixedTerm) validateExpiryBehaviour(formats strfmt.Registry) error {
@@ -367,10 +348,7 @@ func (m *FixedTerm) validateStateEnum(path, location string, value string) error
 			fixedTermStateEnum = append(fixedTermStateEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, fixedTermStateEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, fixedTermStateEnum)
 }
 
 func (m *FixedTerm) validateState(formats strfmt.Registry) error {

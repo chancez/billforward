@@ -37,8 +37,7 @@ func (o *CreatePaymentMethodReader) ReadResponse(response client.Response, consu
 	}
 }
 
-/*CreatePaymentMethodOK
-
+/*
 success
 */
 type CreatePaymentMethodOK struct {
@@ -57,8 +56,7 @@ func (o *CreatePaymentMethodOK) readResponse(response client.Response, consumer 
 	return nil
 }
 
-/*CreatePaymentMethodInternalServerError
-
+/*
 error
 */
 type CreatePaymentMethodInternalServerError struct {

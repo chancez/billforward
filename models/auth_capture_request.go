@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*[Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
+/*
+[Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
 
 swagger:model AuthCaptureRequest
 */
@@ -81,12 +82,10 @@ func (m *AuthCaptureRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -108,10 +107,7 @@ func (m *AuthCaptureRequest) validateBillingEntityEnum(path, location string, va
 			authCaptureRequestBillingEntityEnum = append(authCaptureRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum)
 }
 
 func (m *AuthCaptureRequest) validateBillingEntity(formats strfmt.Registry) error {
@@ -135,10 +131,7 @@ func (m *AuthCaptureRequest) validateGatewayEnum(path, location string, value st
 			authCaptureRequestGatewayEnum = append(authCaptureRequestGatewayEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, authCaptureRequestGatewayEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, authCaptureRequestGatewayEnum)
 }
 
 func (m *AuthCaptureRequest) validateGateway(formats strfmt.Registry) error {

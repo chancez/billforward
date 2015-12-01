@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Entity for requesting that an 'aggregating subscription' (i.e. a 'parent subscription' which collects the charges raised by many 'child subscriptions') be created.
+/*
+Entity for requesting that an 'aggregating subscription' (i.e. a 'parent subscription' which collects the charges raised by many 'child subscriptions') be created.
 
 swagger:model CreateAggregatingSubscriptionRequest
 */
@@ -43,7 +44,7 @@ type CreateAggregatingSubscriptionRequest struct {
 
 	Required: true
 	*/
-	Currency *Currency `json:"currency,omitempty"`
+	Currency string `json:"currency,omitempty"`
 
 	/* {"default":"(null)","description":"Description of the created subscription. This is primarily for your benefit &mdash; for example, you could write here the mechanism through which you obtained this customer. (e.g. 'Business signed up using BUSYGUYS coupon, at management trade show').","verbs":["POST"]}
 	 */
@@ -87,32 +88,26 @@ func (m *CreateAggregatingSubscriptionRequest) Validate(formats strfmt.Registry)
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDurationPeriod(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -143,10 +138,7 @@ func (m *CreateAggregatingSubscriptionRequest) validateBillingEntityEnum(path, l
 			createAggregatingSubscriptionRequestBillingEntityEnum = append(createAggregatingSubscriptionRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createAggregatingSubscriptionRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createAggregatingSubscriptionRequestBillingEntityEnum)
 }
 
 func (m *CreateAggregatingSubscriptionRequest) validateBillingEntity(formats strfmt.Registry) error {
@@ -160,11 +152,8 @@ func (m *CreateAggregatingSubscriptionRequest) validateBillingEntity(formats str
 
 func (m *CreateAggregatingSubscriptionRequest) validateCurrency(formats strfmt.Registry) error {
 
-	if m.Currency != nil {
-
-		if err := m.Currency.Validate(formats); err != nil {
-			return err
-		}
+	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+		return err
 	}
 
 	return nil
@@ -182,10 +171,7 @@ func (m *CreateAggregatingSubscriptionRequest) validateDurationPeriodEnum(path, 
 			createAggregatingSubscriptionRequestDurationPeriodEnum = append(createAggregatingSubscriptionRequestDurationPeriodEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createAggregatingSubscriptionRequestDurationPeriodEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createAggregatingSubscriptionRequestDurationPeriodEnum)
 }
 
 func (m *CreateAggregatingSubscriptionRequest) validateDurationPeriod(formats strfmt.Registry) error {
@@ -209,10 +195,7 @@ func (m *CreateAggregatingSubscriptionRequest) validateProductTypeEnum(path, loc
 			createAggregatingSubscriptionRequestProductTypeEnum = append(createAggregatingSubscriptionRequestProductTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createAggregatingSubscriptionRequestProductTypeEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createAggregatingSubscriptionRequestProductTypeEnum)
 }
 
 func (m *CreateAggregatingSubscriptionRequest) validateProductType(formats strfmt.Registry) error {
@@ -236,10 +219,7 @@ func (m *CreateAggregatingSubscriptionRequest) validateStateEnum(path, location 
 			createAggregatingSubscriptionRequestStateEnum = append(createAggregatingSubscriptionRequestStateEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createAggregatingSubscriptionRequestStateEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createAggregatingSubscriptionRequestStateEnum)
 }
 
 func (m *CreateAggregatingSubscriptionRequest) validateState(formats strfmt.Registry) error {

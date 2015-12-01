@@ -11,14 +11,13 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*CreatePaymentMethodParams contains all the parameters to send to the API endpoint
+/*
+CreatePaymentMethodParams contains all the parameters to send to the API endpoint
 for the create payment method operation typically these are written to a http.Request
 */
 type CreatePaymentMethodParams struct {
-
-	/*PaymentMethod
+	/*
 	  The payment-method object to be updated.
-
 	*/
 	PaymentMethod *models.PaymentMethod
 }

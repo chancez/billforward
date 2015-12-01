@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*PaymentMethod
+/*
+PaymentMethod
 
 swagger:model PaymentMethod
 */
@@ -153,42 +154,34 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccount(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryDate(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLinkID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -231,10 +224,7 @@ func (m *PaymentMethod) validateBillingEntityEnum(path, location string, value s
 			paymentMethodBillingEntityEnum = append(paymentMethodBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, paymentMethodBillingEntityEnum)
 }
 
 func (m *PaymentMethod) validateBillingEntity(formats strfmt.Registry) error {
@@ -267,10 +257,7 @@ func (m *PaymentMethod) validateGatewayEnum(path, location string, value string)
 			paymentMethodGatewayEnum = append(paymentMethodGatewayEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodGatewayEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, paymentMethodGatewayEnum)
 }
 
 func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
@@ -316,10 +303,7 @@ func (m *PaymentMethod) validateStateEnum(path, location string, value string) e
 			paymentMethodStateEnum = append(paymentMethodStateEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodStateEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, paymentMethodStateEnum)
 }
 
 func (m *PaymentMethod) validateState(formats strfmt.Registry) error {

@@ -11,7 +11,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*Entity for requesting that an 'aggregating component' (i.e. a component which should be re-priced upon invoice aggregation) be created.
+/*
+Entity for requesting that an 'aggregating component' (i.e. a component which should be re-priced upon invoice aggregation) be created.
 
 swagger:model CreateAggregatingComponentRequest
 */
@@ -49,12 +50,10 @@ func (m *CreateAggregatingComponentRequest) Validate(formats strfmt.Registry) er
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponent(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -76,10 +75,7 @@ func (m *CreateAggregatingComponentRequest) validateBillingEntityEnum(path, loca
 			createAggregatingComponentRequestBillingEntityEnum = append(createAggregatingComponentRequestBillingEntityEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, createAggregatingComponentRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
+	return validate.Enum(path, location, value, createAggregatingComponentRequestBillingEntityEnum)
 }
 
 func (m *CreateAggregatingComponentRequest) validateBillingEntity(formats strfmt.Registry) error {

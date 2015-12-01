@@ -9,7 +9,8 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*UnitOfMeasure unit of measure
+/*
+UnitOfMeasure unit of measure
 
 swagger:model UnitOfMeasure
 */
@@ -49,12 +50,10 @@ func (m *UnitOfMeasure) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDisplayedAs(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
