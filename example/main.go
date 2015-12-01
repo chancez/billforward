@@ -4,8 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/authclub/billforward/client/product_rate_plans"
-
 	"github.com/authclub/billforward/models"
 
 	"github.com/authclub/billforward/client/accounts"
@@ -32,7 +30,6 @@ func main() {
 
 	var acct *models.Account
 	log.Println("getting account by ID", knownAccountID)
-	// just for fun
 	getAcctResp, err := bfClient.Accounts.GetAccountByID(accounts.GetAccountByIDParams{
 		AccountID: knownAccountID,
 	})
@@ -48,7 +45,7 @@ func main() {
 	// 	OrderBy: "created",
 	// })
 	// if err != nil {
-	// 	gerr := err.(accounts.APIError).Response.(*accounts.GetAllAccountsDefault).Payload
+	// 	gerr := err.(accounts.APIError).Response.(*accounts.GetAllAccountsInternalServerError).Payload
 	// 	log.Fatal(gerr)
 	// }
 	// for _, result := range acctsResp.Payload.Results {
@@ -65,52 +62,70 @@ func main() {
 		createAcctResp, err := bfClient.Accounts.CreateAccount(accounts.CreateAccountParams{
 			Request: &models.CreateAccountRequest{
 				Profile: &models.Profile{
-					FirstName:   "chancetester2",
-					LastName:    "tester2",
-					Email:       "chance.zibolski+test2@coreos.com",
+					FirstName:   "chancetester3",
+					LastName:    "tester3",
+					Email:       "chance.zibolski+test3@coreos.com",
 					CompanyName: "enterprise company",
 				},
 				AggregatingProductRatePlanID: "PRP-3DBAA1F3-0A14-40D1-80CF-1E4BC674",
 			},
 		})
 		if err != nil {
-			gerr := err.(accounts.APIError).Response.(*accounts.CreateAccountDefault).Payload
+			gerr := err.(accounts.APIError).Response.(*accounts.CreateAccountInternalServerError).Payload
 			log.Fatal(gerr)
 		}
 		acct = createAcctResp.Payload.Results[0]
 	}
 
-	log.Println("GetAllRatePlans")
-	ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
-		OrderBy: "created",
-		Records: 10,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, rp := range ratePlansResp.Payload.Results {
-		log.Println("product:", rp.Product.Name)
-		log.Println("rate plan:", rp.Name)
-		for _, pc := range rp.PricingComponents {
-			log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
-		}
-	}
+	// log.Println("GetAllRatePlans")
+	// ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
+	// 	OrderBy: "created",
+	// 	Records: 10,
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// for _, rp := range ratePlansResp.Payload.Results {
+	// 	log.Println("product:", rp.Product.Name)
+	// 	log.Println("rate plan:", rp.Name)
+	// 	for _, pc := range rp.PricingComponents {
+	// 		log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
+	// 	}
+	// }
 
-	quayEnterprise := "PRO-8762520A-EC4F-48BC-8AA3-3AC1709F"
-	log.Println("GetRatePlanByProduct")
-	ratePlanResp, err := bfClient.ProductRatePlans.GetRatePlanByProduct(product_rate_plans.GetRatePlanByProductParams{
-		ProductID: quayEnterprise,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, rp := range ratePlanResp.Payload.Results {
-		log.Println("product:", rp.Product.Name)
-		log.Println("rate plan:", rp.Name)
-		for _, pc := range rp.PricingComponents {
-			log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
-		}
-	}
+	// quayEnterprise := "PRO-8762520A-EC4F-48BC-8AA3-3AC1709F"
+	// log.Println("GetRatePlanByProduct")
+	// ratePlanResp, err := bfClient.ProductRatePlans.GetRatePlanByProduct(product_rate_plans.GetRatePlanByProductParams{
+	// 	ProductID: quayEnterprise,
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// for _, rp := range ratePlanResp.Payload.Results {
+	// 	log.Println("product:", rp.Product.Name)
+	// 	log.Println("rate plan:", rp.Name)
+	// 	for _, pc := range rp.PricingComponents {
+	// 		log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
+	// 	}
+	// }
+
+	// quayEnterprise := "PRO-8762520A-EC4F-48BC-8AA3-3AC1709F"
+	// ratePlanID := "PRP-3DBAA1F3-0A14-40D1-80CF-1E4BC674"
+	// log.Println("GetRatePlanByProductAndRatePlan")
+	// ratePlanResp, err := bfClient.ProductRatePlans.GetRatePlanByProductAndRatePlan(product_rate_plans.GetRatePlanByProductAndRatePlanParams{
+	// 	ProductID:  quayEnterprise,
+	// 	RatePlanID: ratePlanID,
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// for _, rp := range ratePlanResp.Payload.Results {
+	// 	log.Println("product:", rp.Product.Name)
+	// 	log.Println("rate plan:", rp.Name)
+	// 	for _, pc := range rp.PricingComponents {
+	// 		log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
+	// 	}
+	// }
 
 	// productsResp, err := bfClient.Products.GetAllProducts(products.GetAllProductsParams{
 	// 	Records: 10,
@@ -169,18 +184,7 @@ func main() {
 	// }
 	// log.Println("update address response:", updateAddrResp.Payload.Results[0])
 
-	// tokenResp, err := bfClient.Tokenization.AuthCapture(tokenization.AuthCaptureParams{
-	// 	Request: &models.AuthCaptureRequest{
-	// 		AccountID: acct.ID,
-	// 		Gateway:   "stripe",
-	// 	},
-	// })
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// log.Println("tokenResp:", tokenResp.Payload.Results)
-
-	// log.Println("No subscriptions, creating one")
+	// log.Println("creating aggregating subscription")
 	// // TODO (remove). This can be automatically created when we create accounts
 	// createSubResp, err := bfClient.Subscriptions.CreateAggregatingSubscription(subscriptions.CreateAggregatingSubscriptionParams{
 	// 	Request: &models.CreateAggregatingSubscriptionRequest{
@@ -194,12 +198,11 @@ func main() {
 	// 	},
 	// })
 	// if err != nil {
-	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateAggregatingSubscriptionDefault).Payload
+	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateAggregatingSubscriptionInternalServerError).Payload
 	// 	log.Fatal(gerr)
 	// }
 
-	// result := createSubResp.Payload.Results[0]
-	// log.Println("create aggregating subscription result:", result)
+	// log.Println("create aggregating subscription result:", createSubResp.Payload.Results[0])
 
 	// log.Println("creating premium managed linux subscription")
 	// _, err = bfClient.Subscriptions.CreateSubscription(subscriptions.CreateSubscriptionParams{
@@ -212,8 +215,13 @@ func main() {
 	// 	},
 	// })
 	// if err != nil {
-	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateSubscriptionDefault).Payload
-	// 	log.Fatal(gerr)
+	// 	apiErr, ok := err.(subscriptions.APIError)
+	// 	if ok {
+	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionInternalServerError); ok {
+	// 			log.Fatal(gerr.Payload)
+	// 		}
+	// 	}
+	// 	log.Fatal(err)
 	// }
 
 	// log.Println("creating pro services subscription")
@@ -227,8 +235,13 @@ func main() {
 	// 	},
 	// })
 	// if err != nil {
-	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateSubscriptionDefault).Payload
-	// 	log.Fatal(gerr)
+	// 	apiErr, ok := err.(subscriptions.APIError)
+	// 	if ok {
+	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionInternalServerError); ok {
+	// 			log.Fatal(gerr.Payload)
+	// 		}
+	// 	}
+	// 	log.Fatal(err)
 	// }
 }
 
