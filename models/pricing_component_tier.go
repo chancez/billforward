@@ -187,7 +187,7 @@ func (m *PricingComponentTier) validatePrice(formats strfmt.Registry) error {
 
 func (m *PricingComponentTier) validatePricingComponent(formats strfmt.Registry) error {
 
-	if err := m.PricingComponent.Validate(formats); err != nil {
+	if err := m.PricingComponent().Validate(formats); err != nil {
 		return err
 	}
 

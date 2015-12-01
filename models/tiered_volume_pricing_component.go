@@ -479,7 +479,7 @@ func (m *TieredVolumePricingComponent) validateBillingEntityEnum(path, location 
 
 func (m *TieredVolumePricingComponent) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity()); err != nil {
 		return err
 	}
 
@@ -506,11 +506,11 @@ func (m *TieredVolumePricingComponent) validateChargeTypeEnum(path, location str
 
 func (m *TieredVolumePricingComponent) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeType", "body", string(m.ChargeType)); err != nil {
+	if err := validate.Required("chargeType", "body", string(m.ChargeType())); err != nil {
 		return err
 	}
 
-	if err := m.validateChargeTypeEnum("chargeType", "body", m.ChargeType); err != nil {
+	if err := m.validateChargeTypeEnum("chargeType", "body", m.ChargeType()); err != nil {
 		return err
 	}
 
@@ -519,7 +519,7 @@ func (m *TieredVolumePricingComponent) validateChargeType(formats strfmt.Registr
 
 func (m *TieredVolumePricingComponent) validateConsistentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("consistentID", "body", string(m.ConsistentID)); err != nil {
+	if err := validate.Required("consistentID", "body", string(m.ConsistentID())); err != nil {
 		return err
 	}
 
@@ -528,7 +528,7 @@ func (m *TieredVolumePricingComponent) validateConsistentID(formats strfmt.Regis
 
 func (m *TieredVolumePricingComponent) validateDefaultQuantity(formats strfmt.Registry) error {
 
-	if err := validate.Required("defaultQuantity", "body", int32(m.DefaultQuantity)); err != nil {
+	if err := validate.Required("defaultQuantity", "body", int32(m.DefaultQuantity())); err != nil {
 		return err
 	}
 
@@ -555,7 +555,7 @@ func (m *TieredVolumePricingComponent) validateDowngradeModeEnum(path, location 
 
 func (m *TieredVolumePricingComponent) validateDowngradeMode(formats strfmt.Registry) error {
 
-	if err := m.validateDowngradeModeEnum("downgradeMode", "body", m.DowngradeMode); err != nil {
+	if err := m.validateDowngradeModeEnum("downgradeMode", "body", m.DowngradeMode()); err != nil {
 		return err
 	}
 
@@ -582,11 +582,11 @@ func (m *TieredVolumePricingComponent) validateDummyFieldEnum(path, location str
 
 func (m *TieredVolumePricingComponent) validateDummyField(formats strfmt.Registry) error {
 
-	if err := validate.Required("dummyField", "body", string(m.DummyField)); err != nil {
+	if err := validate.Required("dummyField", "body", string(m.DummyField())); err != nil {
 		return err
 	}
 
-	if err := m.validateDummyFieldEnum("dummyField", "body", m.DummyField); err != nil {
+	if err := m.validateDummyFieldEnum("dummyField", "body", m.DummyField()); err != nil {
 		return err
 	}
 
@@ -613,7 +613,7 @@ func (m *TieredVolumePricingComponent) validateInvoicingTypeEnum(path, location 
 
 func (m *TieredVolumePricingComponent) validateInvoicingType(formats strfmt.Registry) error {
 
-	if err := m.validateInvoicingTypeEnum("invoicingType", "body", m.InvoicingType); err != nil {
+	if err := m.validateInvoicingTypeEnum("invoicingType", "body", m.InvoicingType()); err != nil {
 		return err
 	}
 
@@ -622,7 +622,7 @@ func (m *TieredVolumePricingComponent) validateInvoicingType(formats strfmt.Regi
 
 func (m *TieredVolumePricingComponent) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", string(m.Name())); err != nil {
 		return err
 	}
 
@@ -631,7 +631,7 @@ func (m *TieredVolumePricingComponent) validateName(formats strfmt.Registry) err
 
 func (m *TieredVolumePricingComponent) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", string(m.OrganizationID())); err != nil {
 		return err
 	}
 
@@ -642,7 +642,7 @@ func (m *TieredVolumePricingComponent) validateProductRatePlan(formats strfmt.Re
 
 	if m.ProductRatePlan != nil {
 
-		if err := m.ProductRatePlan.Validate(formats); err != nil {
+		if err := m.ProductRatePlan().Validate(formats); err != nil {
 			return err
 		}
 	}
@@ -652,7 +652,7 @@ func (m *TieredVolumePricingComponent) validateProductRatePlan(formats strfmt.Re
 
 func (m *TieredVolumePricingComponent) validateProductRatePlanID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID)); err != nil {
+	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID())); err != nil {
 		return err
 	}
 
@@ -661,7 +661,7 @@ func (m *TieredVolumePricingComponent) validateProductRatePlanID(formats strfmt.
 
 func (m *TieredVolumePricingComponent) validateUnitOfMeasureID(formats strfmt.Registry) error {
 
-	if err := validate.Required("unitOfMeasureID", "body", string(m.UnitOfMeasureID)); err != nil {
+	if err := validate.Required("unitOfMeasureID", "body", string(m.UnitOfMeasureID())); err != nil {
 		return err
 	}
 
@@ -688,7 +688,7 @@ func (m *TieredVolumePricingComponent) validateUpgradeModeEnum(path, location st
 
 func (m *TieredVolumePricingComponent) validateUpgradeMode(formats strfmt.Registry) error {
 
-	if err := m.validateUpgradeModeEnum("upgradeMode", "body", m.UpgradeMode); err != nil {
+	if err := m.validateUpgradeModeEnum("upgradeMode", "body", m.UpgradeMode()); err != nil {
 		return err
 	}
 
@@ -697,7 +697,7 @@ func (m *TieredVolumePricingComponent) validateUpgradeMode(formats strfmt.Regist
 
 func (m *TieredVolumePricingComponent) validateValidFrom(formats strfmt.Registry) error {
 
-	if err := validate.Required("validFrom", "body", strfmt.DateTime(m.ValidFrom)); err != nil {
+	if err := validate.Required("validFrom", "body", strfmt.DateTime(m.ValidFrom())); err != nil {
 		return err
 	}
 
