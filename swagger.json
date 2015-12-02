@@ -9205,68 +9205,20 @@
                 "summary": "Retrieves a single invoice specified by the ID parameter.",
                 "description": "{ \"nickname\" : \"CSV invoice\",\"response\" : \"getInvoiceByID.csv\"}",
                 "operationId": "getInvoiceByIDAsCSV",
-                "consumes": ["text/plain", "application/json"],
-                "produces": ["text/csv"],
+                "consumes": ["application/json"],
+                "produces": ["application/json", "application/CSV", "text/csv"],
                 "parameters": [{
                     "name": "ID",
                     "in": "path",
                     "description": "The ID of the invoice.",
                     "required": true,
                     "type": "string"
-                }, {
-                    "name": "organizations",
-                    "in": "query",
-                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
-                    "required": false,
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "collectionFormat": "multi"
-                }, {
-                    "name": "offset",
-                    "in": "query",
-                    "description": "The offset from the first invoice to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "0",
-                    "format": "int32"
-                }, {
-                    "name": "records",
-                    "in": "query",
-                    "description": "The maximum number of invoices to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "10",
-                    "format": "int32"
-                }, {
-                    "name": "order_by",
-                    "in": "query",
-                    "description": "Specify a field used to order the result set.",
-                    "required": false,
-                    "type": "string",
-                    "default": "created"
-                }, {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ihe direction of any ordering, either ASC or DESC.",
-                    "required": false,
-                    "type": "string",
-                    "default": "DESC",
-                    "enum": ["ASC", "DESC"]
-                }, {
-                    "name": "include_retired",
-                    "in": "query",
-                    "description": "Whether retired products should be returned.",
-                    "required": false,
-                    "type": "boolean",
-                    "default": "false"
                 }],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "CSV representation of the invoice",
                         "schema": {
-                            "$ref": "#/definitions/InvoiceQueryResultWrapper"
+                            "type": "file"
                         }
                     },
                     "500": {
@@ -9293,54 +9245,6 @@
                     "required": true,
                     "type": "string"
                 }, {
-                    "name": "organizations",
-                    "in": "query",
-                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
-                    "required": false,
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "collectionFormat": "multi"
-                }, {
-                    "name": "offset",
-                    "in": "query",
-                    "description": "The offset from the first invoice to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "0",
-                    "format": "int32"
-                }, {
-                    "name": "records",
-                    "in": "query",
-                    "description": "The maximum number of invoices to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "10",
-                    "format": "int32"
-                }, {
-                    "name": "order_by",
-                    "in": "query",
-                    "description": "Specify a field used to order the result set.",
-                    "required": false,
-                    "type": "string",
-                    "default": "created"
-                }, {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ihe direction of any ordering, either ASC or DESC.",
-                    "required": false,
-                    "type": "string",
-                    "default": "DESC",
-                    "enum": ["ASC", "DESC"]
-                }, {
-                    "name": "include_retired",
-                    "in": "query",
-                    "description": "Whether retired products should be returned.",
-                    "required": false,
-                    "type": "boolean",
-                    "default": "false"
-                }, {
                     "name": "tier_breakdown",
                     "in": "query",
                     "description": "Whether to provide a breakdown of charge tiering.",
@@ -9350,9 +9254,9 @@
                 }],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "HTML representation of the invoice",
                         "schema": {
-                            "$ref": "#/definitions/InvoiceQueryResultWrapper"
+                            "type": "string"
                         }
                     },
                     "500": {
@@ -9371,61 +9275,13 @@
                 "description": "{ \"nickname\" : \"PDF Invoice\",\"response\" : \"getInvoiceByID.pdf\"}",
                 "operationId": "getInvoiceAsPDF",
                 "consumes": ["text/plain", "application/json"],
-                "produces": ["application/pdf"],
+                "produces": ["application/json", "application/pdf"],
                 "parameters": [{
                     "name": "ID",
                     "in": "path",
                     "description": "The ID of the invoice.",
                     "required": true,
                     "type": "string"
-                }, {
-                    "name": "organizations",
-                    "in": "query",
-                    "description": "A list of organization-IDs used to restrict the scope of API calls.",
-                    "required": false,
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "collectionFormat": "multi"
-                }, {
-                    "name": "offset",
-                    "in": "query",
-                    "description": "The offset from the first invoice to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "0",
-                    "format": "int32"
-                }, {
-                    "name": "records",
-                    "in": "query",
-                    "description": "The maximum number of invoices to return.",
-                    "required": false,
-                    "type": "integer",
-                    "default": "10",
-                    "format": "int32"
-                }, {
-                    "name": "order_by",
-                    "in": "query",
-                    "description": "Specify a field used to order the result set.",
-                    "required": false,
-                    "type": "string",
-                    "default": "created"
-                }, {
-                    "name": "order",
-                    "in": "query",
-                    "description": "Ihe direction of any ordering, either ASC or DESC.",
-                    "required": false,
-                    "type": "string",
-                    "default": "DESC",
-                    "enum": ["ASC", "DESC"]
-                }, {
-                    "name": "include_retired",
-                    "in": "query",
-                    "description": "Whether retired products should be returned.",
-                    "required": false,
-                    "type": "boolean",
-                    "default": "false"
                 }, {
                     "name": "tier_breakdown",
                     "in": "query",
@@ -9436,9 +9292,9 @@
                 }],
                 "responses": {
                     "200": {
-                        "description": "success",
+                        "description": "pdf file of the invoice",
                         "schema": {
-                            "$ref": "#/definitions/InvoiceQueryResultWrapper"
+                            "type": "file"
                         }
                     },
                     "500": {
@@ -23303,7 +23159,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"The currency of the payment specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "gateway": {
                     "type": "string",
@@ -23672,7 +23528,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the invoice specified by a three character ISO 4217 currency code.\", \"verbs\":[\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "periodStart": {
                     "type": "string",
@@ -23791,7 +23647,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"The currency of the payment specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "nominalValue": {
                     "type": "number",
@@ -23927,7 +23783,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the credit\", \"verbs\":[\"POST\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "invoiceID": {
                     "type": "string",
@@ -25338,7 +25194,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the invoice specified by a three character ISO 4217 currency code.\", \"verbs\":[\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "periodStart": {
                     "type": "string",
@@ -25660,7 +25516,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the invoice specified by a three character ISO 4217 currency code.\", \"verbs\":[\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "amount": {
                     "type": "number",
@@ -26640,7 +26496,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the invoice specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "value": {
                     "type": "number"
@@ -27330,7 +27186,7 @@
                 },
                 "currency": {
                     "description": "{\"description\":\"The currency of the Invoice from which this RevenueAttribution was raised &mdash; specified by a three-character ISO 4217 currency code.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "nominalAmount": {
                     "type": "number",
@@ -27827,7 +27683,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the refund specified by a three character ISO 4217 currency code.\", \"verbs\":[\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "paymentMethodID": {
                     "type": "string",
@@ -28216,7 +28072,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the credit-note specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "description": {
                     "type": "string",
@@ -28780,7 +28636,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"The currency of the coupon-definition specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "definitionValidFrom": {
                     "type": "string",
@@ -28897,7 +28753,7 @@
                 },
                 "currency": {
                     "description": "{\"description\":\"The currency of the payment &mdash; specified by a three-character ISO 4217 currency code.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "gateway": {
                     "type": "string",
@@ -29875,7 +29731,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"Currency of the invoice specified by a three character ISO 4217 currency code.\", \"verbs\":[\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "costExcludingTax": {
                     "type": "number",
@@ -31085,7 +30941,7 @@
                 },
                 "currency": {
                     "description": "{ \"description\" : \"If the coupon is not for a specific rate-plan, and can apply to any subscription, the currency should be provivded. Currency is specified by a three character ISO 4217 currency code.\", \"verbs\":[\"POST\",\"GET\"] }",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "couponDefinitionID": {
                     "type": "string"
@@ -33020,7 +32876,7 @@
                 },
                 "currency": {
                     "description": "{\"description\":\"The currency of any quoted prices &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).\",\"verbs\":[\"POST\",\"GET\"]}",
-                    "$ref": "#/definitions/Currency"
+                    "type": "string"
                 },
                 "productName": {
                     "type": "string",
