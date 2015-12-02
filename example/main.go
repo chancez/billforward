@@ -1,17 +1,25 @@
 package main
 
 import (
+	"bytes"
 	"log"
 	"os"
 
+	"github.com/authclub/billforward/client"
+	"github.com/authclub/billforward/client/accounts"
 	"github.com/authclub/billforward/models"
 
-	"github.com/authclub/billforward/client/accounts"
-
-	"github.com/authclub/billforward/client"
 	httpclient "github.com/go-swagger/go-swagger/httpkit/client"
 	"github.com/go-swagger/go-swagger/spec"
 )
+
+type ReadWrapper struct {
+	*bytes.Reader
+}
+
+func (r *ReadWrapper) Close() error {
+	return nil
+}
 
 func main() {
 	log.Println("starting")
@@ -24,6 +32,15 @@ func main() {
 	transport.Host = "api-sandbox.billforward.net:443"
 	transport.BasePath = "/v1"
 	transport.DefaultAuthentication = httpclient.BearerToken(os.Getenv("BILLFORWARD_API_KEY"))
+	// transport.Consumers["application/pdf"] = httpkit.ConsumerFunc(func(r io.Reader, data interface{}) error {
+	// 	f := data.(*httpkit.File)
+	// 	b, err := ioutil.ReadAll(r)
+	// 	if err != nil {
+	// 		return err
+	// 	}
+	// 	f.Data = &ReadWrapper{bytes.NewReader(b)}
+	// 	return nil
+	// })
 	bfClient := client.New(transport, nil)
 
 	knownAccountID := "ACC-06E62D37-8246-4E54-B72A-22170478"
@@ -71,11 +88,48 @@ func main() {
 			},
 		})
 		if err != nil {
-			gerr := err.(accounts.APIError).Response.(*accounts.CreateAccountInternalServerError).Payload
-			log.Fatal(gerr)
+			if apiErr, ok := err.(accounts.APIError); ok {
+				if gerr, ok := apiErr.Response.(*accounts.CreateAccountInternalServerError); ok {
+					log.Fatal(gerr.Payload)
+				}
+			}
+			log.Fatal(err)
 		}
 		acct = createAcctResp.Payload.Results[0]
 	}
+
+	// invoicesResp, err := bfClient.Invoices.GetInvoicesByAccountID(invoices.GetInvoicesByAccountIDParams{
+	// 	AccountID: acct.ID,
+	// })
+	// if err != nil {
+	// 	if apiErr, ok := err.(invoices.APIError); ok {
+	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoicesByAccountIDInternalServerError); ok {
+	// 			log.Fatal(gerr.Payload)
+	// 		}
+	// 	}
+	// 	log.Fatal(err)
+	// }
+	// for _, invoice := range invoicesResp.Payload.Results {
+	// 	log.Printf("%+v\n", invoice)
+	// }
+
+	// invoiceID := "INV-DF41079A-40A4-4155-901D-9CB5E892"
+	// invoicePDFResp, err := bfClient.Invoices.GetInvoiceAsPDF(invoices.GetInvoiceAsPDFParams{
+	// 	ID: invoiceID,
+	// })
+	// if err != nil {
+	// 	if apiErr, ok := err.(invoices.APIError); ok {
+	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoiceAsPDFInternalServerError); ok {
+	// 			log.Fatal(gerr.Payload)
+	// 		}
+	// 	}
+	// 	log.Fatal(err)
+	// }
+	// b, err := ioutil.ReadAll(invoicePDFResp.Payload.Data)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// log.Println("invoiceCsvResp", string(b))
 
 	// log.Println("GetAllRatePlans")
 	// ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
