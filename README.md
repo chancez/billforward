@@ -82,7 +82,14 @@ Now that you have `go`, install [`go-swagger`](https://github.com/go-swagger/go-
 
 ```bash
 go get -u github.com/go-swagger/go-swagger/cmd/swagger
+cd $GOPATH/src/github.com/go-swagger/go-swagger/cmd/swagger
+git checkout f88d96a
+rm $GOPATH/bin/swagger
+go install github.com/go-swagger/go-swagger/cmd/swagger
 ```
+
+We re-install with a specific known working version to ensure consistency between
+builds. In the future this shouldn't be necessary.
 
 ## Generating client bindings
 
