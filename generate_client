@@ -13,6 +13,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O createAddress \
     -O updateAddress \
     -O updateProfile \
+    -O getProfile \
     -O getAllAccounts \
     -O createAccount \
     -O getAccountByID \
