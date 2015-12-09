@@ -23,6 +23,24 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+/*Returns a single profile, specified by the ID parameter.
+
+{"nickname":"Retrieve an existing profile","response":"getProfileByID.html"}
+*/
+func (a *Client) GetProfile(params GetProfileParams) (*GetProfileOK, error) {
+	// TODO: Validate the params before sending
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:     "getProfile",
+		Params: &params,
+		Reader: &GetProfileReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetProfileOK), nil
+}
+
 /*Update a profile
 
 {"nickname":"Update a profile","request":"updateProfileRequest.html","response":"updateProfileResponse.html"}
