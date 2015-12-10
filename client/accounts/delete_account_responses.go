@@ -25,15 +25,12 @@ func (o *DeleteAccountReader) ReadResponse(response client.Response, consumer ht
 		}
 		return &result, nil
 
-	case 500:
-		var result DeleteAccountInternalServerError
+	default:
+		var result DeleteAccountDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteAccountInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("deleteAccount default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *DeleteAccountReader) ReadResponse(response client.Response, consumer ht
 success
 */
 type DeleteAccountOK struct {
-	Payload *models.AccountQueryResultWrapper
+	Payload *models.AccountPagedMetadata
 }
 
 func (o *DeleteAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AccountQueryResultWrapper)
+	o.Payload = new(models.AccountPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *DeleteAccountOK) readResponse(response client.Response, consumer httpki
 /*
 error
 */
-type DeleteAccountInternalServerError struct {
+type DeleteAccountDefault struct {
 	Payload *models.BFError
 }
 
-func (o *DeleteAccountInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

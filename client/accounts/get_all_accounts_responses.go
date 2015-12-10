@@ -25,15 +25,12 @@ func (o *GetAllAccountsReader) ReadResponse(response client.Response, consumer h
 		}
 		return &result, nil
 
-	case 500:
-		var result GetAllAccountsInternalServerError
+	default:
+		var result GetAllAccountsDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllAccountsInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getAllAccounts default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetAllAccountsReader) ReadResponse(response client.Response, consumer h
 success
 */
 type GetAllAccountsOK struct {
-	Payload *models.AccountQueryResultWrapper
+	Payload *models.AccountPagedMetadata
 }
 
 func (o *GetAllAccountsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AccountQueryResultWrapper)
+	o.Payload = new(models.AccountPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetAllAccountsOK) readResponse(response client.Response, consumer httpk
 /*
 error
 */
-type GetAllAccountsInternalServerError struct {
+type GetAllAccountsDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetAllAccountsInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllAccountsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

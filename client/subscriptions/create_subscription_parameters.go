@@ -16,7 +16,10 @@ CreateSubscriptionParams contains all the parameters to send to the API endpoint
 for the create subscription operation typically these are written to a http.Request
 */
 type CreateSubscriptionParams struct {
-	Request *models.CreateSubscriptionRequest
+	/*
+	  The subscription object to be updated.
+	*/
+	Subscription *models.Subscription
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -24,11 +27,11 @@ func (o *CreateSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.R
 
 	var res []error
 
-	if o.Request == nil {
-		o.Request = new(models.CreateSubscriptionRequest)
+	if o.Subscription == nil {
+		o.Subscription = new(models.Subscription)
 	}
 
-	if err := r.SetBodyParam(o.Request); err != nil {
+	if err := r.SetBodyParam(o.Subscription); err != nil {
 		return err
 	}
 

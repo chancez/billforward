@@ -25,15 +25,12 @@ func (o *CreateSubscriptionReader) ReadResponse(response client.Response, consum
 		}
 		return &result, nil
 
-	case 500:
-		var result CreateSubscriptionInternalServerError
+	default:
+		var result CreateSubscriptionDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createSubscriptionInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("createSubscription default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *CreateSubscriptionReader) ReadResponse(response client.Response, consum
 success
 */
 type CreateSubscriptionOK struct {
-	Payload *models.SubscriptionQueryResultWrapper
+	Payload *models.SubscriptionPagedMetadata
 }
 
 func (o *CreateSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SubscriptionQueryResultWrapper)
+	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *CreateSubscriptionOK) readResponse(response client.Response, consumer h
 /*
 error
 */
-type CreateSubscriptionInternalServerError struct {
+type CreateSubscriptionDefault struct {
 	Payload *models.BFError
 }
 
-func (o *CreateSubscriptionInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

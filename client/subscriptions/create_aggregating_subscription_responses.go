@@ -25,15 +25,12 @@ func (o *CreateAggregatingSubscriptionReader) ReadResponse(response client.Respo
 		}
 		return &result, nil
 
-	case 500:
-		var result CreateAggregatingSubscriptionInternalServerError
+	default:
+		var result CreateAggregatingSubscriptionDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createAggregatingSubscriptionInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("createAggregatingSubscription default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *CreateAggregatingSubscriptionReader) ReadResponse(response client.Respo
 success
 */
 type CreateAggregatingSubscriptionOK struct {
-	Payload *models.SubscriptionQueryResultWrapper
+	Payload *models.SubscriptionPagedMetadata
 }
 
 func (o *CreateAggregatingSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SubscriptionQueryResultWrapper)
+	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *CreateAggregatingSubscriptionOK) readResponse(response client.Response,
 /*
 error
 */
-type CreateAggregatingSubscriptionInternalServerError struct {
+type CreateAggregatingSubscriptionDefault struct {
 	Payload *models.BFError
 }
 
-func (o *CreateAggregatingSubscriptionInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *CreateAggregatingSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

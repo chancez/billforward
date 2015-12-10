@@ -25,15 +25,12 @@ func (o *GetAllRatePlansReader) ReadResponse(response client.Response, consumer 
 		}
 		return &result, nil
 
-	case 500:
-		var result GetAllRatePlansInternalServerError
+	default:
+		var result GetAllRatePlansDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllRatePlansInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getAllRatePlans default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetAllRatePlansReader) ReadResponse(response client.Response, consumer 
 success
 */
 type GetAllRatePlansOK struct {
-	Payload *models.ProductRatePlanQueryResultWrapper
+	Payload *models.ProductRatePlanPagedMetadata
 }
 
 func (o *GetAllRatePlansOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ProductRatePlanQueryResultWrapper)
+	o.Payload = new(models.ProductRatePlanPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetAllRatePlansOK) readResponse(response client.Response, consumer http
 /*
 error
 */
-type GetAllRatePlansInternalServerError struct {
+type GetAllRatePlansDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetAllRatePlansInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllRatePlansDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

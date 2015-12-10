@@ -20,6 +20,10 @@ type GetInvoiceAsPDFParams struct {
 	*/
 	ID string
 	/*
+	  A list of organization-IDs used to restrict the scope of API calls.
+	*/
+	Organizations []string
+	/*
 	  Whether to provide a breakdown of charge tiering.
 	*/
 	TierBreakdown bool
@@ -32,6 +36,13 @@ func (o *GetInvoiceAsPDFParams) WriteToRequest(r client.Request, reg strfmt.Regi
 
 	// path param ID
 	if err := r.SetPathParam("ID", o.ID); err != nil {
+		return err
+	}
+
+	valuesOrganizations := o.Organizations
+
+	// query array param organizations
+	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
 		return err
 	}
 

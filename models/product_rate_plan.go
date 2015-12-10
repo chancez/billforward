@@ -138,7 +138,7 @@ type ProductRatePlan struct {
 	 */
 	ProductType string `json:"productType,omitempty"`
 
-	/* {"description":"A friendly non-unique name used to identify this product","verbs":["POST","PUT","GET"]}
+	/* {"description":"A friendly non-unique name used to identify this product-rate-plan","verbs":["POST","PUT","GET"]}
 	 */
 	PublicName string `json:"publicName,omitempty"`
 

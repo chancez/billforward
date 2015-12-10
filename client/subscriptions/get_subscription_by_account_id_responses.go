@@ -25,15 +25,12 @@ func (o *GetSubscriptionByAccountIDReader) ReadResponse(response client.Response
 		}
 		return &result, nil
 
-	case 500:
-		var result GetSubscriptionByAccountIDInternalServerError
+	default:
+		var result GetSubscriptionByAccountIDDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getSubscriptionByAccountIdInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getSubscriptionByAccountID default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetSubscriptionByAccountIDReader) ReadResponse(response client.Response
 success
 */
 type GetSubscriptionByAccountIDOK struct {
-	Payload *models.SubscriptionQueryResultWrapper
+	Payload *models.SubscriptionPagedMetadata
 }
 
 func (o *GetSubscriptionByAccountIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SubscriptionQueryResultWrapper)
+	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetSubscriptionByAccountIDOK) readResponse(response client.Response, co
 /*
 error
 */
-type GetSubscriptionByAccountIDInternalServerError struct {
+type GetSubscriptionByAccountIDDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetSubscriptionByAccountIDInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetSubscriptionByAccountIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

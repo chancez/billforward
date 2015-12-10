@@ -146,6 +146,20 @@ type InvoiceLine struct {
 	 */
 	ProductRatePlanName string `json:"productRatePlanName,omitempty"`
 
+	/* The public name of the pricing-component that is associated with the invoice-line.
+
+	Required: true
+	*/
+	PublicPricingComponentName string `json:"publicPricingComponentName,omitempty"`
+
+	/* { "description" : "the public product name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
+	 */
+	PublicProductName string `json:"publicProductName,omitempty"`
+
+	/* { "description" : "the public product rate plan name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
+	 */
+	PublicProductRatePlanName string `json:"publicProductRatePlanName,omitempty"`
+
 	/* The ID of the subscription-charge that is associated with the invoice-line.
 
 	Required: true
@@ -242,6 +256,10 @@ func (m *InvoiceLine) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePricingComponentType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePublicPricingComponentName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -445,6 +463,15 @@ func (m *InvoiceLine) validatePricingComponentType(formats strfmt.Registry) erro
 	}
 
 	if err := m.validatePricingComponentTypeEnum("pricingComponentType", "body", m.PricingComponentType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InvoiceLine) validatePublicPricingComponentName(formats strfmt.Registry) error {
+
+	if err := validate.Required("publicPricingComponentName", "body", string(m.PublicPricingComponentName)); err != nil {
 		return err
 	}
 

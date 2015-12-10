@@ -25,15 +25,12 @@ func (o *GetProfileReader) ReadResponse(response client.Response, consumer httpk
 		}
 		return &result, nil
 
-	case 500:
-		var result GetProfileInternalServerError
+	default:
+		var result GetProfileDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getProfileInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getProfile default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetProfileReader) ReadResponse(response client.Response, consumer httpk
 success
 */
 type GetProfileOK struct {
-	Payload *models.ProfileQueryResultWrapper
+	Payload *models.ProfilePagedMetadata
 }
 
 func (o *GetProfileOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ProfileQueryResultWrapper)
+	o.Payload = new(models.ProfilePagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetProfileOK) readResponse(response client.Response, consumer httpkit.C
 /*
 error
 */
-type GetProfileInternalServerError struct {
+type GetProfileDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetProfileInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetProfileDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

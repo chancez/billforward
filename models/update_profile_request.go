@@ -50,6 +50,10 @@ type UpdateProfileRequest struct {
 	 */
 	FirstName *string `json:"firstName,omitempty"`
 
+	/* ID id
+	 */
+	ID string `json:"id,omitempty"`
+
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
 	Landline *string `json:"landline,omitempty"`

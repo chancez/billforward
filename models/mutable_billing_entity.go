@@ -18,6 +18,18 @@ swagger:model MutableBillingEntity
 */
 type MutableBillingEntity struct {
 
+	/* This is the app id.
+
+	Required: true
+	*/
+	AppID string `json:"appID,omitempty"`
+
+	/* This is the app secret.
+
+	Required: true
+	*/
+	AppSecret string `json:"appSecret,omitempty"`
+
 	/* BillingEntity billing entity
 	 */
 	BillingEntity string `json:"billingEntity,omitempty"`
@@ -30,25 +42,7 @@ type MutableBillingEntity struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* { "description" : "Indicates if the FixedTermDefinition has been retired. It can still be retrieved using the appropriate flag on API requests.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	Deleted bool `json:"deleted,omitempty"`
-
-	/* fixedTermExpiryBehaviour
-
-	Required: true
-	*/
-	ExpiryBehaviour string `json:"expiryBehaviour,omitempty"`
-
-	/* { "description" : "The number of billing periods the fixed term initially lasts for.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	FirstTermPeriods int32 `json:"firstTermPeriods,omitempty"`
-
-	/* id
+	/* ID of the data synchronisationAppConfiguration.
 	 */
 	ID string `json:"id,omitempty"`
 
@@ -56,88 +50,72 @@ type MutableBillingEntity struct {
 	 */
 	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
 
-	/* { "description" : "The ID of the organization associated with the fixed term definition.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
+	/* Organization associated with Synchronization Configuration.
+	 */
 	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* ProductRatePlan product rate plan
-	 */
-	ProductRatePlan *ProductRatePlan `json:"productRatePlan,omitempty"`
-
-	/* productRatePlanAsOfTime
+	/* This is the platform of the job.
 
 	Required: true
 	*/
-	ProductRatePlanAsOfTime strfmt.DateTime `json:"productRatePlanAsOfTime,omitempty"`
+	Platform string `json:"platform,omitempty"`
 
-	/* { "description" : "productRatePlanID", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	ProductRatePlanID string `json:"productRatePlanID,omitempty"`
-
-	/* { "description" : "The number of billing periods the fixed term lasts for when recurring.", "verbs":["POST","PUT","GET"] }
+	/* This is the refresh token url.
 
 	Required: true
 	*/
-	SubsequentTermPeriods int32 `json:"subsequentTermPeriods,omitempty"`
+	RefreshTokenURL string `json:"refreshTokenUrl,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
-
-	/* { "description" : "", "verbs":["POST","PUT","GET"] }The proportional INCREASE in price applied every time the fixed terms recur. e.g. 0.03 is a 3% increase. -0.5 is a 50% decrease. 3 is a 300% increase
-
-	Required: true
-	*/
-	Uplift float64 `json:"uplift,omitempty"`
 }
 
 // Validate validates this mutable billing entity
 func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAppID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAppSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateBillingEntity(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDeleted(formats); err != nil {
+	if err := m.validatePlatform(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateExpiryBehaviour(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFirstTermPeriods(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateOrganizationID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProductRatePlanAsOfTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProductRatePlanID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSubsequentTermPeriods(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUplift(formats); err != nil {
+	if err := m.validateRefreshTokenURL(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *MutableBillingEntity) validateAppID(formats strfmt.Registry) error {
+
+	if err := validate.Required("appID", "body", string(m.AppID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateAppSecret(formats strfmt.Registry) error {
+
+	if err := validate.Required("appSecret", "body", string(m.AppSecret)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -165,91 +143,37 @@ func (m *MutableBillingEntity) validateBillingEntity(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *MutableBillingEntity) validateDeleted(formats strfmt.Registry) error {
+var mutableBillingEntityPlatformEnum []interface{}
 
-	if err := validate.Required("deleted", "body", bool(m.Deleted)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var mutableBillingEntityExpiryBehaviourEnum []interface{}
-
-func (m *MutableBillingEntity) validateExpiryBehaviourEnum(path, location string, value string) error {
-	if mutableBillingEntityExpiryBehaviourEnum == nil {
+func (m *MutableBillingEntity) validatePlatformEnum(path, location string, value string) error {
+	if mutableBillingEntityPlatformEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["ExpireSubscription","EvergreenSubscription","RecurUplift","RecurLatestPricing"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["Salesforce"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityExpiryBehaviourEnum = append(mutableBillingEntityExpiryBehaviourEnum, v)
+			mutableBillingEntityPlatformEnum = append(mutableBillingEntityPlatformEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, mutableBillingEntityExpiryBehaviourEnum)
+	return validate.Enum(path, location, value, mutableBillingEntityPlatformEnum)
 }
 
-func (m *MutableBillingEntity) validateExpiryBehaviour(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validatePlatform(formats strfmt.Registry) error {
 
-	if err := validate.Required("expiryBehaviour", "body", string(m.ExpiryBehaviour)); err != nil {
+	if err := validate.Required("platform", "body", string(m.Platform)); err != nil {
 		return err
 	}
 
-	if err := m.validateExpiryBehaviourEnum("expiryBehaviour", "body", m.ExpiryBehaviour); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateFirstTermPeriods(formats strfmt.Registry) error {
-
-	if err := validate.Required("firstTermPeriods", "body", int32(m.FirstTermPeriods)); err != nil {
+	if err := m.validatePlatformEnum("platform", "body", m.Platform); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *MutableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateRefreshTokenURL(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateProductRatePlanAsOfTime(formats strfmt.Registry) error {
-
-	if err := validate.Required("productRatePlanAsOfTime", "body", strfmt.DateTime(m.ProductRatePlanAsOfTime)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateProductRatePlanID(formats strfmt.Registry) error {
-
-	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateSubsequentTermPeriods(formats strfmt.Registry) error {
-
-	if err := validate.Required("subsequentTermPeriods", "body", int32(m.SubsequentTermPeriods)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateUplift(formats strfmt.Registry) error {
-
-	if err := validate.Required("uplift", "body", float64(m.Uplift)); err != nil {
+	if err := validate.Required("refreshTokenUrl", "body", string(m.RefreshTokenURL)); err != nil {
 		return err
 	}
 

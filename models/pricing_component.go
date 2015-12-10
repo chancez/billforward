@@ -18,6 +18,16 @@ swagger:model PricingComponent
 */
 type PricingComponent struct {
 
+	/* { "description" : "", "default" : "", "verbs":["POST","GET"] }
+
+	Required: true
+	*/
+	Type string `json:"@type,omitempty" xml:"@type"`
+
+	/* BillingEntity billing entity
+	 */
+	BillingEntity string `json:"billingEntity,omitempty"`
+
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy string `json:"changedBy,omitempty"`
@@ -52,6 +62,10 @@ type PricingComponent struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
+	/* Crmid crmid
+	 */
+	Crmid string `json:"crmid,omitempty"`
+
 	/* { "description" : "The default quantity of the pricing-component. If no value is supplied on a subscription this value will be used. This is useful for setting an expected purchase level of for introducing new pricing components to existing subscriptions and not having to back-fill values", "verbs":["POST","PUT","GET"] }
 
 	Required: true
@@ -65,12 +79,6 @@ type PricingComponent struct {
 	/* {"default":"<span class=\"label label-default\">delayed</span>","description":"Default behaviour when a value is downgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\"label label-default\">immediate</span> &mdash; Downgrade will apply at the time the request is made.<br><span class=\"label label-default\">delayed</span> &mdash; Downgrade will apply at the end of the current billing cycle.","verbs":["POST","GET"]}
 	 */
 	DowngradeMode string `json:"downgradeMode,omitempty"`
-
-	/* { "description" : "", "default" : "", "verbs":["POST","GET"] }
-
-	Required: true
-	*/
-	DummyField string `json:"dummyField,omitempty" xml:"@type"`
 
 	/* { "description" : "Version ID of the pricing-component. Unique ID for each version of a pricing-component.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -93,6 +101,10 @@ type PricingComponent struct {
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
+
+	/* NotificationObjectGraph notification object graph
+	 */
+	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 
@@ -119,6 +131,10 @@ type PricingComponent struct {
 	Required: true
 	*/
 	ProductRatePlanID string `json:"productRatePlanID,omitempty"`
+
+	/* {"description":"A friendly non-unique name used to identify this pricing-component","verbs":["POST","PUT","GET"]}
+	 */
+	PublicName string `json:"publicName,omitempty"`
 
 	/* {  "default" : "[]", "description" : "The pricing-component-tiers associated with the pricing-component.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -157,6 +173,14 @@ type PricingComponent struct {
 func (m *PricingComponent) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBillingEntity(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateChargeModel(formats); err != nil {
 		res = append(res, err)
 	}
@@ -174,10 +198,6 @@ func (m *PricingComponent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDowngradeMode(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDummyField(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -216,6 +236,58 @@ func (m *PricingComponent) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var pricingComponentTypeEnum []interface{}
+
+func (m *PricingComponent) validateTypeEnum(path, location string, value string) error {
+	if pricingComponentTypeEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["TieredPricingComponent","FlatPricingComponent","TieredVolumePricingComponent"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			pricingComponentTypeEnum = append(pricingComponentTypeEnum, v)
+		}
+	}
+	return validate.Enum(path, location, value, pricingComponentTypeEnum)
+}
+
+func (m *PricingComponent) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("@type", "body", string(m.Type)); err != nil {
+		return err
+	}
+
+	if err := m.validateTypeEnum("@type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var pricingComponentBillingEntityEnum []interface{}
+
+func (m *PricingComponent) validateBillingEntityEnum(path, location string, value string) error {
+	if pricingComponentBillingEntityEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			pricingComponentBillingEntityEnum = append(pricingComponentBillingEntityEnum, v)
+		}
+	}
+	return validate.Enum(path, location, value, pricingComponentBillingEntityEnum)
+}
+
+func (m *PricingComponent) validateBillingEntity(formats strfmt.Registry) error {
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -311,34 +383,6 @@ func (m *PricingComponent) validateDowngradeModeEnum(path, location string, valu
 func (m *PricingComponent) validateDowngradeMode(formats strfmt.Registry) error {
 
 	if err := m.validateDowngradeModeEnum("downgradeMode", "body", m.DowngradeMode); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var pricingComponentDummyFieldEnum []interface{}
-
-func (m *PricingComponent) validateDummyFieldEnum(path, location string, value string) error {
-	if pricingComponentDummyFieldEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["TieredPricingComponent","FlatPricingComponent","TieredVolumePricingComponent"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			pricingComponentDummyFieldEnum = append(pricingComponentDummyFieldEnum, v)
-		}
-	}
-	return validate.Enum(path, location, value, pricingComponentDummyFieldEnum)
-}
-
-func (m *PricingComponent) validateDummyField(formats strfmt.Registry) error {
-
-	if err := validate.Required("dummyField", "body", string(m.DummyField)); err != nil {
-		return err
-	}
-
-	if err := m.validateDummyFieldEnum("dummyField", "body", m.DummyField); err != nil {
 		return err
 	}
 

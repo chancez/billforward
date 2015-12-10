@@ -77,9 +77,9 @@ func (a *Client) CreateAggregatingSubscription(params CreateAggregatingSubscript
 	return result.(*CreateAggregatingSubscriptionOK), nil
 }
 
-/*Create a subscription (V2).
+/*Create a new subscription.
 
-{"nickname":"Create a subscription (V2)","response":"createSubscriptionViaHelper.html","request":"createSubscriptionViaHelper.request.html"}
+{"nickname":"Create a new subscription","request":"createSubscriptionRequest.html","response":"createSubscriptionResponse.html"}
 */
 func (a *Client) CreateSubscription(params CreateSubscriptionParams) (*CreateSubscriptionOK, error) {
 	// TODO: Validate the params before sending

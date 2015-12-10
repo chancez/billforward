@@ -7,6 +7,7 @@ import (
 
 	"github.com/authclub/billforward/client"
 	"github.com/authclub/billforward/client/accounts"
+	"github.com/authclub/billforward/client/product_rate_plans"
 	"github.com/authclub/billforward/models"
 
 	httpclient "github.com/go-swagger/go-swagger/httpkit/client"
@@ -62,7 +63,7 @@ func main() {
 	// 	OrderBy: "created",
 	// })
 	// if err != nil {
-	// 	gerr := err.(accounts.APIError).Response.(*accounts.GetAllAccountsInternalServerError).Payload
+	// 	gerr := err.(accounts.APIError).Response.(*accounts.GetAllAccountsDefault).Payload
 	// 	log.Fatal(gerr)
 	// }
 	// for _, result := range acctsResp.Payload.Results {
@@ -89,7 +90,7 @@ func main() {
 		})
 		if err != nil {
 			if apiErr, ok := err.(accounts.APIError); ok {
-				if gerr, ok := apiErr.Response.(*accounts.CreateAccountInternalServerError); ok {
+				if gerr, ok := apiErr.Response.(*accounts.CreateAccountDefault); ok {
 					log.Fatal(gerr.Payload)
 				}
 			}
@@ -103,7 +104,7 @@ func main() {
 	// })
 	// if err != nil {
 	// 	if apiErr, ok := err.(invoices.APIError); ok {
-	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoicesByAccountIDInternalServerError); ok {
+	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoicesByAccountIDDefault); ok {
 	// 			log.Fatal(gerr.Payload)
 	// 		}
 	// 	}
@@ -119,7 +120,7 @@ func main() {
 	// })
 	// if err != nil {
 	// 	if apiErr, ok := err.(invoices.APIError); ok {
-	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoiceAsPDFInternalServerError); ok {
+	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoiceAsPDFDefault); ok {
 	// 			log.Fatal(gerr.Payload)
 	// 		}
 	// 	}
@@ -131,21 +132,21 @@ func main() {
 	// }
 	// log.Println("invoiceCsvResp", string(b))
 
-	// log.Println("GetAllRatePlans")
-	// ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
-	// 	OrderBy: "created",
-	// 	Records: 10,
-	// })
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// for _, rp := range ratePlansResp.Payload.Results {
-	// 	log.Println("product:", rp.Product.Name)
-	// 	log.Println("rate plan:", rp.Name)
-	// 	for _, pc := range rp.PricingComponents {
-	// 		log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
-	// 	}
-	// }
+	log.Println("GetAllRatePlans")
+	ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
+		OrderBy: "created",
+		Records: 10,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, rp := range ratePlansResp.Payload.Results {
+		log.Println("product:", rp.Product.Name)
+		log.Println("rate plan:", rp.Name)
+		for _, pc := range rp.PricingComponents {
+			log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
+		}
+	}
 
 	// quayEnterprise := "PRO-8762520A-EC4F-48BC-8AA3-3AC1709F"
 	// log.Println("GetRatePlanByProduct")
@@ -195,7 +196,8 @@ func main() {
 
 	// dob := time.Date(1993, time.July, 11, 0, 0, 0, 0, time.UTC)
 	// updateProfileResp, err := bfClient.Profiles.UpdateProfile(profiles.UpdateProfileParams{
-	// 	Profile: &models.UpdateProfileRequest{
+	// 	Request: &models.UpdateProfileRequest{
+	// 		ID:        acct.Profile.ID,
 	// 		AccountID: acct.ID,
 	// 		// FirstName: "chancetest",
 	// 		// LastName: "another tester",
@@ -252,7 +254,7 @@ func main() {
 	// 	},
 	// })
 	// if err != nil {
-	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateAggregatingSubscriptionInternalServerError).Payload
+	// 	gerr := err.(subscriptions.APIError).Response.(*subscriptions.CreateAggregatingSubscriptionDefault).Payload
 	// 	log.Fatal(gerr)
 	// }
 
@@ -271,7 +273,7 @@ func main() {
 	// if err != nil {
 	// 	apiErr, ok := err.(subscriptions.APIError)
 	// 	if ok {
-	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionInternalServerError); ok {
+	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionDefault); ok {
 	// 			log.Fatal(gerr.Payload)
 	// 		}
 	// 	}
@@ -291,7 +293,7 @@ func main() {
 	// if err != nil {
 	// 	apiErr, ok := err.(subscriptions.APIError)
 	// 	if ok {
-	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionInternalServerError); ok {
+	// 		if gerr, ok := apiErr.Response.(*subscriptions.CreateSubscriptionDefault); ok {
 	// 			log.Fatal(gerr.Payload)
 	// 		}
 	// 	}

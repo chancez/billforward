@@ -26,21 +26,31 @@ type BillingEntityBase struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* {"description":"The discount percentage applied to this pricing component.","verbs":["POST","GET"]}
+	/* NewPassword new password
+
+	Required: true
+	*/
+	NewPassword string `json:"newPassword,omitempty"`
+
+	/* OrganizationID organization ID
+
+	Required: true
+	*/
+	OrganizationID string `json:"organizationID,omitempty"`
+
+	/* PasswordResetCode password reset code
 	 */
-	PercentageDiscount float64 `json:"percentageDiscount,omitempty"`
+	PasswordResetCode string `json:"passwordResetCode,omitempty"`
 
-	/* {"description":"Name or ID of the pricing component purchased.","verbs":["POST","GET"]}
+	/* PasswordResetSMSCode password reset s m s code
+	 */
+	PasswordResetSMSCode string `json:"passwordResetSMSCode,omitempty"`
 
-	Required: true
-	*/
-	PricingComponent string `json:"pricingComponent,omitempty"`
-
-	/* {"description":"Quantity consumed of the pricing component.","verbs":["POST","GET"]}
+	/* UserID user ID
 
 	Required: true
 	*/
-	Quantity int32 `json:"quantity,omitempty"`
+	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this billing entity base
@@ -51,11 +61,15 @@ func (m *BillingEntityBase) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePricingComponent(formats); err != nil {
+	if err := m.validateNewPassword(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateQuantity(formats); err != nil {
+	if err := m.validateOrganizationID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,18 +103,27 @@ func (m *BillingEntityBase) validateBillingEntity(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *BillingEntityBase) validatePricingComponent(formats strfmt.Registry) error {
+func (m *BillingEntityBase) validateNewPassword(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponent", "body", string(m.PricingComponent)); err != nil {
+	if err := validate.Required("newPassword", "body", string(m.NewPassword)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *BillingEntityBase) validateQuantity(formats strfmt.Registry) error {
+func (m *BillingEntityBase) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("quantity", "body", int32(m.Quantity)); err != nil {
+	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *BillingEntityBase) validateUserID(formats strfmt.Registry) error {
+
+	if err := validate.Required("userID", "body", string(m.UserID)); err != nil {
 		return err
 	}
 

@@ -25,15 +25,12 @@ func (o *BatchCreateSubscriptionsReader) ReadResponse(response client.Response, 
 		}
 		return &result, nil
 
-	case 500:
-		var result BatchCreateSubscriptionsInternalServerError
+	default:
+		var result BatchCreateSubscriptionsDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("batchCreateSubscriptionsInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("batchCreateSubscriptions default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *BatchCreateSubscriptionsReader) ReadResponse(response client.Response, 
 success
 */
 type BatchCreateSubscriptionsOK struct {
-	Payload *models.SubscriptionQueryResultWrapper
+	Payload *models.SubscriptionPagedMetadata
 }
 
 func (o *BatchCreateSubscriptionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.SubscriptionQueryResultWrapper)
+	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *BatchCreateSubscriptionsOK) readResponse(response client.Response, cons
 /*
 error
 */
-type BatchCreateSubscriptionsInternalServerError struct {
+type BatchCreateSubscriptionsDefault struct {
 	Payload *models.BFError
 }
 
-func (o *BatchCreateSubscriptionsInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *BatchCreateSubscriptionsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

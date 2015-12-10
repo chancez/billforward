@@ -25,15 +25,12 @@ func (o *GetProductRatePlanByIDReader) ReadResponse(response client.Response, co
 		}
 		return &result, nil
 
-	case 500:
-		var result GetProductRatePlanByIDInternalServerError
+	default:
+		var result GetProductRatePlanByIDDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getProductRatePlanByIdInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getProductRatePlanByID default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetProductRatePlanByIDReader) ReadResponse(response client.Response, co
 success
 */
 type GetProductRatePlanByIDOK struct {
-	Payload *models.ProductRatePlanQueryResultWrapper
+	Payload *models.ProductRatePlanPagedMetadata
 }
 
 func (o *GetProductRatePlanByIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.ProductRatePlanQueryResultWrapper)
+	o.Payload = new(models.ProductRatePlanPagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetProductRatePlanByIDOK) readResponse(response client.Response, consum
 /*
 error
 */
-type GetProductRatePlanByIDInternalServerError struct {
+type GetProductRatePlanByIDDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetProductRatePlanByIDInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetProductRatePlanByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

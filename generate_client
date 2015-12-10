@@ -22,14 +22,14 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O createAggregatingSubscription \
     -O batchCreateSubscriptions  \
     -M BFError \
-    -M AccountQueryResultWrapper \
+    -M AccountPagedMetadata \
     -M Account \
     -M BillingEntityBase \
     -M PaymentMethod \
     -M InsertableBillingEntity \
     -M Profile \
     -M Address \
-    -M SubscriptionQueryResultWrapper \
+    -M SubscriptionPagedMetadata \
     -M Subscription \
     -M CreateSubscriptionRequest  \
     -M FixedTerm \
@@ -43,7 +43,6 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M PendingComponentValueChange \
     -M ProductRatePlan \
     -M Product \
-    -M Currency \
     -M AggregatingComponent \
     -M PricingComponent \
     -M PricingComponentTier \
@@ -58,15 +57,15 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M CreateAddressRequest \
     -M UpdateAddressRequest \
     -M UpdateProfileRequest \
-    -M PaymentMethodQueryResultWrapper \
+    -M PaymentMethodPagedMetadata \
     -M AuthCaptureRequest \
     -M StripeAuthCaptureRequest \
-    -M ProfileQueryResultWrapper \
-    -M AddressQueryResultWrapper \
-    -M ProductQueryResultWrapper \
-    -M SubscriptionCancellationQueryResultWrapper \
-    -M ProductRatePlanQueryResultWrapper \
-    -M InvoiceQueryResultWrapper \
+    -M ProfilePagedMetadata \
+    -M AddressPagedMetadata \
+    -M ProductPagedMetadata \
+    -M SubscriptionCancellationPagedMetadata \
+    -M ProductRatePlanPagedMetadata \
+    -M InvoicePagedMetadata \
     -M Invoice \
     -M InvoiceLine \
     -M InvoicePayment \

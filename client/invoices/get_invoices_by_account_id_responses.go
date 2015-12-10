@@ -25,15 +25,12 @@ func (o *GetInvoicesByAccountIDReader) ReadResponse(response client.Response, co
 		}
 		return &result, nil
 
-	case 500:
-		var result GetInvoicesByAccountIDInternalServerError
+	default:
+		var result GetInvoicesByAccountIDDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getInvoicesByAccountIdInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getInvoicesByAccountID default", &result, response.Code())
 	}
 }
 
@@ -41,12 +38,12 @@ func (o *GetInvoicesByAccountIDReader) ReadResponse(response client.Response, co
 success
 */
 type GetInvoicesByAccountIDOK struct {
-	Payload *models.InvoiceQueryResultWrapper
+	Payload *models.InvoicePagedMetadata
 }
 
 func (o *GetInvoicesByAccountIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.InvoiceQueryResultWrapper)
+	o.Payload = new(models.InvoicePagedMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
@@ -59,11 +56,11 @@ func (o *GetInvoicesByAccountIDOK) readResponse(response client.Response, consum
 /*
 error
 */
-type GetInvoicesByAccountIDInternalServerError struct {
+type GetInvoicesByAccountIDDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetInvoicesByAccountIDInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetInvoicesByAccountIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

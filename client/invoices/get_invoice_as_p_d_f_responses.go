@@ -25,23 +25,20 @@ func (o *GetInvoiceAsPDFReader) ReadResponse(response client.Response, consumer 
 		}
 		return &result, nil
 
-	case 500:
-		var result GetInvoiceAsPDFInternalServerError
+	default:
+		var result GetInvoiceAsPDFDefault
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getInvoiceAsPDFInternalServerError", &result, response.Code())
-
-	default:
-		return nil, NewAPIError("unknown error", response, response.Code())
+		return nil, NewAPIError("getInvoiceAsPDF default", &result, response.Code())
 	}
 }
 
 /*
-pdf file of the invoice
+success
 */
 type GetInvoiceAsPDFOK struct {
-	Payload httpkit.File
+	Payload string
 }
 
 func (o *GetInvoiceAsPDFOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -57,11 +54,11 @@ func (o *GetInvoiceAsPDFOK) readResponse(response client.Response, consumer http
 /*
 error
 */
-type GetInvoiceAsPDFInternalServerError struct {
+type GetInvoiceAsPDFDefault struct {
 	Payload *models.BFError
 }
 
-func (o *GetInvoiceAsPDFInternalServerError) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetInvoiceAsPDFDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 
