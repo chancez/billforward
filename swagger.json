@@ -46641,18 +46641,10 @@
           "default": false
         },
         "entity": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "byte"
-          }
+          "type": "string"
         },
         "changes": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "byte"
-          }
+          "type": "string"
         },
         "lastSendAttempt": {
           "type": "string",
