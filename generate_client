@@ -70,5 +70,6 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M InvoiceLine \
     -M InvoicePayment \
     -M SubscriptionCharge \
-    -M UnitOfMeasure
+    -M UnitOfMeasure \
+    -M Notification
 
