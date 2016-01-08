@@ -38,7 +38,7 @@ func (o *GetInvoiceAsPDFReader) ReadResponse(response client.Response, consumer 
 success
 */
 type GetInvoiceAsPDFOK struct {
-	Payload string
+	Payload httpkit.File
 }
 
 func (o *GetInvoiceAsPDFOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {

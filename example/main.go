@@ -2,14 +2,15 @@ package main
 
 import (
 	"bytes"
+	"io"
+	"io/ioutil"
 	"log"
 	"os"
 
 	"github.com/authclub/billforward/client"
-	"github.com/authclub/billforward/client/accounts"
-	"github.com/authclub/billforward/client/product_rate_plans"
-	"github.com/authclub/billforward/models"
+	"github.com/authclub/billforward/client/invoices"
 
+	"github.com/go-swagger/go-swagger/httpkit"
 	httpclient "github.com/go-swagger/go-swagger/httpkit/client"
 	"github.com/go-swagger/go-swagger/spec"
 )
@@ -33,29 +34,29 @@ func main() {
 	transport.Host = "api-sandbox.billforward.net:443"
 	transport.BasePath = "/v1"
 	transport.DefaultAuthentication = httpclient.BearerToken(os.Getenv("BILLFORWARD_API_KEY"))
-	// transport.Consumers["application/pdf"] = httpkit.ConsumerFunc(func(r io.Reader, data interface{}) error {
-	// 	f := data.(*httpkit.File)
-	// 	b, err := ioutil.ReadAll(r)
-	// 	if err != nil {
-	// 		return err
-	// 	}
-	// 	f.Data = &ReadWrapper{bytes.NewReader(b)}
-	// 	return nil
-	// })
+	transport.Consumers["application/pdf"] = httpkit.ConsumerFunc(func(r io.Reader, data interface{}) error {
+		f := data.(*httpkit.File)
+		b, err := ioutil.ReadAll(r)
+		if err != nil {
+			return err
+		}
+		f.Data = &ReadWrapper{bytes.NewReader(b)}
+		return nil
+	})
 	bfClient := client.New(transport, nil)
 
-	knownAccountID := "ACC-06E62D37-8246-4E54-B72A-22170478"
+	// knownAccountID := "ACC-06E62D37-8246-4E54-B72A-22170478"
 
-	var acct *models.Account
-	log.Println("getting account by ID", knownAccountID)
-	getAcctResp, err := bfClient.Accounts.GetAccountByID(accounts.GetAccountByIDParams{
-		AccountID: knownAccountID,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	acct = getAcctResp.Payload.Results[0]
-	log.Println("acct:", acct)
+	// var acct *models.Account
+	// log.Println("getting account by ID", knownAccountID)
+	// getAcctResp, err := bfClient.Accounts.GetAccountByID(accounts.GetAccountByIDParams{
+	// 	AccountID: knownAccountID,
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// acct = getAcctResp.Payload.Results[0]
+	// log.Println("acct:", acct)
 
 	// log.Println("getting all accounts")
 	// acctsResp, err := bfClient.Accounts.GetAllAccounts(accounts.GetAllAccountsParams{
@@ -75,29 +76,29 @@ func main() {
 	// }
 
 	// Only create the account if it doesnt exist
-	if acct == nil {
-		log.Println("creating new account")
-		createAcctResp, err := bfClient.Accounts.CreateAccount(accounts.CreateAccountParams{
-			Request: &models.CreateAccountRequest{
-				Profile: &models.Profile{
-					FirstName:   "chancetester3",
-					LastName:    "tester3",
-					Email:       "chance.zibolski+test3@coreos.com",
-					CompanyName: "enterprise company",
-				},
-				AggregatingProductRatePlanID: "PRP-3DBAA1F3-0A14-40D1-80CF-1E4BC674",
-			},
-		})
-		if err != nil {
-			if apiErr, ok := err.(accounts.APIError); ok {
-				if gerr, ok := apiErr.Response.(*accounts.CreateAccountDefault); ok {
-					log.Fatal(gerr.Payload)
-				}
-			}
-			log.Fatal(err)
-		}
-		acct = createAcctResp.Payload.Results[0]
-	}
+	// if acct == nil {
+	// 	log.Println("creating new account")
+	// 	createAcctResp, err := bfClient.Accounts.CreateAccount(accounts.CreateAccountParams{
+	// 		Request: &models.CreateAccountRequest{
+	// 			Profile: &models.Profile{
+	// 				FirstName:   "chancetester3",
+	// 				LastName:    "tester3",
+	// 				Email:       "chance.zibolski+test3@coreos.com",
+	// 				CompanyName: "enterprise company",
+	// 			},
+	// 			AggregatingProductRatePlanID: "PRP-3DBAA1F3-0A14-40D1-80CF-1E4BC674",
+	// 		},
+	// 	})
+	// 	if err != nil {
+	// 		if apiErr, ok := err.(accounts.APIError); ok {
+	// 			if gerr, ok := apiErr.Response.(*accounts.CreateAccountDefault); ok {
+	// 				log.Fatal(gerr.Payload)
+	// 			}
+	// 		}
+	// 		log.Fatal(err)
+	// 	}
+	// 	acct = createAcctResp.Payload.Results[0]
+	// }
 
 	// invoicesResp, err := bfClient.Invoices.GetInvoicesByAccountID(invoices.GetInvoicesByAccountIDParams{
 	// 	AccountID: acct.ID,
@@ -114,39 +115,39 @@ func main() {
 	// 	log.Printf("%+v\n", invoice)
 	// }
 
-	// invoiceID := "INV-DF41079A-40A4-4155-901D-9CB5E892"
-	// invoicePDFResp, err := bfClient.Invoices.GetInvoiceAsPDF(invoices.GetInvoiceAsPDFParams{
-	// 	ID: invoiceID,
-	// })
-	// if err != nil {
-	// 	if apiErr, ok := err.(invoices.APIError); ok {
-	// 		if gerr, ok := apiErr.Response.(*invoices.GetInvoiceAsPDFDefault); ok {
-	// 			log.Fatal(gerr.Payload)
-	// 		}
-	// 	}
-	// 	log.Fatal(err)
-	// }
-	// b, err := ioutil.ReadAll(invoicePDFResp.Payload.Data)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// log.Println("invoiceCsvResp", string(b))
-
-	log.Println("GetAllRatePlans")
-	ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
-		OrderBy: "created",
-		Records: 10,
+	invoiceID := "INV-C15A1D30-C21C-4409-AAC2-C7D93958"
+	invoicePDFResp, err := bfClient.Invoices.GetInvoiceAsPDF(invoices.GetInvoiceAsPDFParams{
+		ID: invoiceID,
 	})
+	if err != nil {
+		if apiErr, ok := err.(invoices.APIError); ok {
+			if gerr, ok := apiErr.Response.(*invoices.GetInvoiceAsPDFDefault); ok {
+				log.Fatal(gerr.Payload)
+			}
+		}
+		log.Fatal(err)
+	}
+	b, err := ioutil.ReadAll(invoicePDFResp.Payload.Data)
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, rp := range ratePlansResp.Payload.Results {
-		log.Println("product:", rp.Product.Name)
-		log.Println("rate plan:", rp.Name)
-		for _, pc := range rp.PricingComponents {
-			log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
-		}
-	}
+	log.Println("invoicePDFResp", string(b))
+
+	// log.Println("GetAllRatePlans")
+	// ratePlansResp, err := bfClient.ProductRatePlans.GetAllRatePlans(product_rate_plans.GetAllRatePlansParams{
+	// 	OrderBy: "created",
+	// 	Records: 10,
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// for _, rp := range ratePlansResp.Payload.Results {
+	// 	log.Println("product:", rp.Product.Name)
+	// 	log.Println("rate plan:", rp.Name)
+	// 	for _, pc := range rp.PricingComponents {
+	// 		log.Printf("Line item: %s: %d (%s)", pc.Name, pc.DefaultQuantity, pc.UnitOfMeasure.Name)
+	// 	}
+	// }
 
 	// quayEnterprise := "PRO-8762520A-EC4F-48BC-8AA3-3AC1709F"
 	// log.Println("GetRatePlanByProduct")
