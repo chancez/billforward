@@ -41,6 +41,24 @@ func (a *Client) GetInvoiceAsPDF(params GetInvoiceAsPDFParams) (*GetInvoiceAsPDF
 	return result.(*GetInvoiceAsPDFOK), nil
 }
 
+/*Retrieves a single invoice specified by the invoice-ID parameter.
+
+{ "nickname" : "Retrieve an existing invoice","response" : "getInvoiceByID.html"}
+*/
+func (a *Client) GetInvoiceByID(params GetInvoiceByIDParams) (*GetInvoiceByIDOK, error) {
+	// TODO: Validate the params before sending
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:     "getInvoiceByID",
+		Params: &params,
+		Reader: &GetInvoiceByIDReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetInvoiceByIDOK), nil
+}
+
 /*Retrieves a collection of invoices specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.
 
 { "nickname" : "Retrieve by account","response" : "getInvoiceByAccountID.html"}
