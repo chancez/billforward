@@ -29566,17 +29566,14 @@
         "name": "user"
       }
     },
-    "FlatPricingComponent": {
+    "flatPricingComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/PricingComponent"
         },
         {
           "type": "object",
-          "properties": {},
-          "xml": {
-            "name": "pricingComponent"
-          }
+          "properties": {}
         }
       ]
     },
@@ -47461,17 +47458,14 @@
         "name": "couponBook"
       }
     },
-    "TieredPricingComponent": {
+    "tieredPricingComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/PricingComponent"
         },
         {
           "type": "object",
-          "properties": {},
-          "xml": {
-            "name": "pricingComponent"
-          }
+          "properties": {}
         }
       ]
     },
@@ -51038,17 +51032,14 @@
       },
       "description": "<p> A coupon discount specifies how and what will be deducted from the subscription's invoices. The target of a discount, i.e. an Unit of Measure, Pricing Component or the Invoice itself, depends on the information received: </p><dl class=\"dl-horizontal\"><dt>Pricing Component</dt><dd>One value must be defined between the name and the identifier of the pricing component. </dd><dt>Unit of Measure</dt><dd>One value must be defined between the name and the identifier of the unit of measure but no values for the pricing component.</dd><dt>Invoice</dt> If no values are defined."
     },
-    "TieredVolumePricingComponent": {
+    "tieredVolumePricingComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/PricingComponent"
         },
         {
           "type": "object",
-          "properties": {},
-          "xml": {
-            "name": "pricingComponent"
-          }
+          "properties": {}
         }
       ]
     },
@@ -52039,10 +52030,6 @@
         "price": {
           "type": "number",
           "description": "{ \"description\" : \"Cost associated with tier. When the pricingType is fixed this is the total value. When pricingType is unit, this is the cost of each unit. \", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "pricingComponent": {
-          "description": "{ \"description\" : \"The pricing-component associated with the tier.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "$ref": "#/definitions/PricingComponent"
         },
         "crmid": {
           "type": "string"
@@ -58132,9 +58119,9 @@
           },
           "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
           "enum": [
-            "TieredPricingComponent",
-            "FlatPricingComponent",
-            "TieredVolumePricingComponent"
+            "tieredPricingComponent",
+            "flatPricingComponent",
+            "tieredVolumePricingComponent"
           ]
         },
         "id": {
