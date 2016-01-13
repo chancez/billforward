@@ -5,14 +5,15 @@ package models
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Standard BillForward error format.
+/*BFError Standard BillForward error format.
 
 swagger:model BFError
 */
@@ -24,7 +25,7 @@ type BFError struct {
 
 	/* {"description":"Human-readable description of the reason for the error.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorMessage string `json:"errorMessage,omitempty"`
+	ErrorMessage *string `json:"errorMessage,omitempty"`
 
 	/* {"description":"List of erroneous parameters found in your input (if applicable).","verbs":["GET","PUT","POST"]}
 	 */
@@ -32,20 +33,43 @@ type BFError struct {
 
 	/* {"description":"Enum categorizing the nature of the error.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorType string `json:"errorType,omitempty"`
+	ErrorType *string `json:"errorType,omitempty"`
 }
 
 // Validate validates this b f error
 func (m *BFError) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateErrorParameters(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateErrorType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *BFError) validateErrorParameters(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ErrorParameters) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ErrorParameters); i++ {
+
+		if err := validate.Required("errorParameters"+"."+strconv.Itoa(i), "body", string(m.ErrorParameters[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -61,12 +85,19 @@ func (m *BFError) validateErrorTypeEnum(path, location string, value string) err
 			bFErrorErrorTypeEnum = append(bFErrorErrorTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, bFErrorErrorTypeEnum)
+	if err := validate.Enum(path, location, value, bFErrorErrorTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *BFError) validateErrorType(formats strfmt.Registry) error {
 
-	if err := m.validateErrorTypeEnum("errorType", "body", m.ErrorType); err != nil {
+	if swag.IsZero(m.ErrorType) { // not required
+		return nil
+	}
+
+	if err := m.validateErrorTypeEnum("errorType", "body", *m.ErrorType); err != nil {
 		return err
 	}
 

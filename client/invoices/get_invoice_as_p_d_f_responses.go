@@ -4,6 +4,9 @@ package invoices
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,43 +22,72 @@ func (o *GetInvoiceAsPDFReader) ReadResponse(response client.Response, consumer 
 	switch response.Code() {
 
 	case 200:
-		var result GetInvoiceAsPDFOK
+		result := NewGetInvoiceAsPDFOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetInvoiceAsPDFDefault
+		result := NewGetInvoiceAsPDFDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getInvoiceAsPDF default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetInvoiceAsPDFOK creates a GetInvoiceAsPDFOK with default headers values
+func NewGetInvoiceAsPDFOK() *GetInvoiceAsPDFOK {
+	return &GetInvoiceAsPDFOK{}
+}
+
+/*GetInvoiceAsPDFOK
+
 success
 */
 type GetInvoiceAsPDFOK struct {
 	Payload httpkit.File
 }
 
+func (o *GetInvoiceAsPDFOK) Error() string {
+	return fmt.Sprintf("[GET /invoices/{ID}.pdf][%d] getInvoiceAsPDFOK  %+v", 200, o.Payload)
+}
+
 func (o *GetInvoiceAsPDFOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetInvoiceAsPDFDefault creates a GetInvoiceAsPDFDefault with default headers values
+func NewGetInvoiceAsPDFDefault(code int) *GetInvoiceAsPDFDefault {
+	return &GetInvoiceAsPDFDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetInvoiceAsPDFDefault
+
 error
 */
 type GetInvoiceAsPDFDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get invoice as p d f default response
+func (o *GetInvoiceAsPDFDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetInvoiceAsPDFDefault) Error() string {
+	return fmt.Sprintf("[GET /invoices/{ID}.pdf][%d] getInvoiceAsPDF default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetInvoiceAsPDFDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -63,7 +95,7 @@ func (o *GetInvoiceAsPDFDefault) readResponse(response client.Response, consumer
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

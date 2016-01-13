@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Get all rate-plans","response":"getPRPAll.html"}
 */
-func (a *Client) GetAllRatePlans(params GetAllRatePlansParams) (*GetAllRatePlansOK, error) {
+func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlansOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllRatePlansParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getAllRatePlans",
-		Params: &params,
-		Reader: &GetAllRatePlansReader{formats: a.formats},
+		ID:          "getAllRatePlans",
+		Method:      "GET",
+		PathPattern: "/product-rate-plans",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAllRatePlansReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) GetAllRatePlans(params GetAllRatePlansParams) (*GetAllRatePlans
 
 {"nickname":"Retrieve an existing rate-plan","response":"getPRPByID.html"}
 */
-func (a *Client) GetProductRatePlanByID(params GetProductRatePlanByIDParams) (*GetProductRatePlanByIDOK, error) {
+func (a *Client) GetProductRatePlanByID(params *GetProductRatePlanByIDParams) (*GetProductRatePlanByIDOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProductRatePlanByIDParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getProductRatePlanByID",
-		Params: &params,
-		Reader: &GetProductRatePlanByIDReader{formats: a.formats},
+		ID:          "getProductRatePlanByID",
+		Method:      "GET",
+		PathPattern: "/product-rate-plans/{product-rate-plan-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetProductRatePlanByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -63,13 +75,19 @@ func (a *Client) GetProductRatePlanByID(params GetProductRatePlanByIDParams) (*G
 
 {"nickname":"Retrieve by product","response":"getPRPByProductID.html"}
 */
-func (a *Client) GetRatePlanByProduct(params GetRatePlanByProductParams) (*GetRatePlanByProductOK, error) {
+func (a *Client) GetRatePlanByProduct(params *GetRatePlanByProductParams) (*GetRatePlanByProductOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRatePlanByProductParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getRatePlanByProduct",
-		Params: &params,
-		Reader: &GetRatePlanByProductReader{formats: a.formats},
+		ID:          "getRatePlanByProduct",
+		Method:      "GET",
+		PathPattern: "/product-rate-plans/product/{product-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRatePlanByProductReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -81,13 +99,19 @@ func (a *Client) GetRatePlanByProduct(params GetRatePlanByProductParams) (*GetRa
 
 {"nickname":"Retrieve by name","response":"getPRPByNameAndProduct.html"}
 */
-func (a *Client) GetRatePlanByProductAndRatePlan(params GetRatePlanByProductAndRatePlanParams) (*GetRatePlanByProductAndRatePlanOK, error) {
+func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAndRatePlanParams) (*GetRatePlanByProductAndRatePlanOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRatePlanByProductAndRatePlanParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getRatePlanByProductAndRatePlan",
-		Params: &params,
-		Reader: &GetRatePlanByProductAndRatePlanReader{formats: a.formats},
+		ID:          "getRatePlanByProductAndRatePlan",
+		Method:      "GET",
+		PathPattern: "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetRatePlanByProductAndRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

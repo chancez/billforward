@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Mutable entities are those entities that can be updated after their initial creation.
+/*MutableBillingEntity Mutable entities are those entities that can be updated after their initial creation.
 
 swagger:model MutableBillingEntity
 */
@@ -32,11 +32,11 @@ type MutableBillingEntity struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -44,15 +44,15 @@ type MutableBillingEntity struct {
 
 	/* ID of the data synchronisationAppConfiguration.
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* Organization associated with Synchronization Configuration.
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* This is the platform of the job.
 
@@ -76,22 +76,27 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAppID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAppSecret(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePlatform(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRefreshTokenURL(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -131,12 +136,19 @@ func (m *MutableBillingEntity) validateBillingEntityEnum(path, location string, 
 			mutableBillingEntityBillingEntityEnum = append(mutableBillingEntityBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, mutableBillingEntityBillingEntityEnum)
+	if err := validate.Enum(path, location, value, mutableBillingEntityBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *MutableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -155,7 +167,10 @@ func (m *MutableBillingEntity) validatePlatformEnum(path, location string, value
 			mutableBillingEntityPlatformEnum = append(mutableBillingEntityPlatformEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, mutableBillingEntityPlatformEnum)
+	if err := validate.Enum(path, location, value, mutableBillingEntityPlatformEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *MutableBillingEntity) validatePlatform(formats strfmt.Registry) error {

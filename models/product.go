@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Product
+/*Product Product
 
 swagger:model Product
 */
@@ -20,15 +20,15 @@ type Product struct {
 
 	/* {"description":"","verbs":[]}
 	 */
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* {"default":"true","description":"Whether invoices are created if they have a zero valued cost before any discounts are applied.","verbs":["POST","PUT","GET"] }
 
@@ -42,7 +42,7 @@ type Product struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* {"description":"","verbs":["GET"]}
 
@@ -74,7 +74,7 @@ type Product struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* {"description":"A unique name &mdash; for your benefit &mdash; used to identify this product within BillForward. It should reflect the fact that this product confers some service to a customer (e.g. \"Gold membership\").<br>The product can also be defined by the frequency with which it recurs (e.g. \"Monthly Gold membership\").<br>Remember also that rate plans can override the timing prescribed by their product. If you intend to override that timing, you may consider the product's period duration to be an unimportant factor when it comes to naming it.","verbs":["POST","PUT","GET"]}
 
@@ -84,7 +84,7 @@ type Product struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"default":"recurring","description":"The frequency of the product &mdash; either recurring or non-recurring.","verbs":["POST","PUT","GET"]}
 
@@ -94,7 +94,7 @@ type Product struct {
 
 	/* {"description":"A friendly non-unique name used to identify this product","verbs":["POST","PUT","GET"]}
 	 */
-	PublicName string `json:"publicName,omitempty"`
+	PublicName *string `json:"publicName,omitempty"`
 
 	/* {"default":0,"description":"Number of trial-length-measures which constitute the product's trial period","verbs":["POST","PUT","GET"]}
 
@@ -118,42 +118,52 @@ func (m *Product) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreateZeroValuedInvoices(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDuration(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDurationPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrial(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrialPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -175,12 +185,19 @@ func (m *Product) validateBillingEntityEnum(path, location string, value string)
 			productBillingEntityEnum = append(productBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productBillingEntityEnum)
+	if err := validate.Enum(path, location, value, productBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Product) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -235,7 +252,10 @@ func (m *Product) validateDurationPeriodEnum(path, location string, value string
 			productDurationPeriodEnum = append(productDurationPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productDurationPeriodEnum)
+	if err := validate.Enum(path, location, value, productDurationPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
@@ -272,7 +292,10 @@ func (m *Product) validateProductTypeEnum(path, location string, value string) e
 			productProductTypeEnum = append(productProductTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productProductTypeEnum)
+	if err := validate.Enum(path, location, value, productProductTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Product) validateProductType(formats strfmt.Registry) error {
@@ -309,7 +332,10 @@ func (m *Product) validateTrialPeriodEnum(path, location string, value string) e
 			productTrialPeriodEnum = append(productTrialPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productTrialPeriodEnum)
+	if err := validate.Enum(path, location, value, productTrialPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Product) validateTrialPeriod(formats strfmt.Registry) error {

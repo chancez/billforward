@@ -11,15 +11,29 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-UpdateAddressParams contains all the parameters to send to the API endpoint
+// NewUpdateAddressParams creates a new UpdateAddressParams object
+// with the default values initialized.
+func NewUpdateAddressParams() *UpdateAddressParams {
+	var ()
+	return &UpdateAddressParams{}
+}
+
+/*UpdateAddressParams contains all the parameters to send to the API endpoint
 for the update address operation typically these are written to a http.Request
 */
 type UpdateAddressParams struct {
-	/*
+
+	/*Request
 	  The address object to be created.
+
 	*/
 	Request *models.UpdateAddressRequest
+}
+
+// WithRequest adds the request to the update address params
+func (o *UpdateAddressParams) WithRequest(request *models.UpdateAddressRequest) *UpdateAddressParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

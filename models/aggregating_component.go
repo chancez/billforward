@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-The aggregating component defines a component which should be re-priced upon invoice aggregation
+/*AggregatingComponent The aggregating component defines a component which should be re-priced upon invoice aggregation
 
 swagger:model AggregatingComponent
 */
@@ -20,11 +20,11 @@ type AggregatingComponent struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -32,19 +32,19 @@ type AggregatingComponent struct {
 
 	/* {"default":false,"description":"Whether the AggregatingComponent has been retired.","verbs":["GET"]}
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"default":"(Auto-populated using your authentication credentials)","description":"ID of the BillForward Organization within which the requested pricing component should be created. If omitted: this will be auto-populated using your authentication credentials.","verbs":["POST","GET"]}
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* {"description":"ID of the pricing component to which this AggregatingComponent's aggregation applies. The subscriber to the aggregating rate plan (which contains this AggregatingComponent), will consult its children at the end of each billing period, and collect from those children all charges whose pricing component matches this ID. Those charges' quantities will be counted, and used when calculating the price of consuming this AggregatingComponent. The aggregating subscription then raises a discount charge &mdash; to account for the more favourable price tiering that emerges when aggregating.","verbs":["POST"]}
 
@@ -66,11 +66,11 @@ type AggregatingComponent struct {
 
 	/* {"description":"ID of the rate plan upon which this AggregatingComponent is defined.","verbs":["POST","GET"]}
 	 */
-	ProductRatePlanID string `json:"productRatePlanID,omitempty"`
+	ProductRatePlanID *string `json:"productRatePlanID,omitempty"`
 
 	/* {"description":"Name of the rate plan upon which this AggregatingComponent is defined.","verbs":["POST","GET"]}
 	 */
-	ProductRatePlanName string `json:"productRatePlanName,omitempty"`
+	ProductRatePlanName *string `json:"productRatePlanName,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
 	 */
@@ -82,18 +82,22 @@ func (m *AggregatingComponent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlan(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -115,12 +119,19 @@ func (m *AggregatingComponent) validateBillingEntityEnum(path, location string, 
 			aggregatingComponentBillingEntityEnum = append(aggregatingComponentBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, aggregatingComponentBillingEntityEnum)
+	if err := validate.Enum(path, location, value, aggregatingComponentBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *AggregatingComponent) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

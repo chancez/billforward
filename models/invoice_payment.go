@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-An invoice-payment specifies the amount of a particular payment used to pay part or entirety of the outstanding balance of the associated invoice.
+/*InvoicePayment An invoice-payment specifies the amount of a particular payment used to pay part or entirety of the outstanding balance of the associated invoice.
 
 swagger:model InvoicePayment
 */
@@ -26,11 +26,11 @@ type InvoicePayment struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -38,7 +38,7 @@ type InvoicePayment struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* { "description" : "The currency of the payment specified by a three character ISO 4217 currency code.", "verbs":["POST","PUT","GET"] }
 
@@ -54,7 +54,7 @@ type InvoicePayment struct {
 
 	/* { "description" : "ID of the payment-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "ID of the invoice associated with the payment-line.", "verbs":["POST","PUT","GET"] }
 
@@ -70,7 +70,7 @@ type InvoicePayment struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "ID of the organization associated with the invoice-payment.", "verbs":["POST","PUT","GET"] }
 
@@ -112,46 +112,57 @@ func (m *InvoicePayment) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateActualAmount(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoiceID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNominalAmount(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePaymentID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePaymentReceived(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRefundReceived(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRefundedAmount(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -182,12 +193,19 @@ func (m *InvoicePayment) validateBillingEntityEnum(path, location string, value 
 			invoicePaymentBillingEntityEnum = append(invoicePaymentBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoicePaymentBillingEntityEnum)
+	if err := validate.Enum(path, location, value, invoicePaymentBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *InvoicePayment) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -215,7 +233,10 @@ func (m *InvoicePayment) validateGatewayEnum(path, location string, value string
 			invoicePaymentGatewayEnum = append(invoicePaymentGatewayEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoicePaymentGatewayEnum)
+	if err := validate.Enum(path, location, value, invoicePaymentGatewayEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *InvoicePayment) validateGateway(formats strfmt.Registry) error {

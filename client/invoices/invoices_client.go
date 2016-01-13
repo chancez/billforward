@@ -27,13 +27,19 @@ type Client struct {
 
 { "nickname" : "PDF Invoice","response" : "getInvoiceByID.pdf"}
 */
-func (a *Client) GetInvoiceAsPDF(params GetInvoiceAsPDFParams) (*GetInvoiceAsPDFOK, error) {
+func (a *Client) GetInvoiceAsPDF(params *GetInvoiceAsPDFParams) (*GetInvoiceAsPDFOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInvoiceAsPDFParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getInvoiceAsPDF",
-		Params: &params,
-		Reader: &GetInvoiceAsPDFReader{formats: a.formats},
+		ID:          "getInvoiceAsPDF",
+		Method:      "GET",
+		PathPattern: "/invoices/{ID}.pdf",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetInvoiceAsPDFReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) GetInvoiceAsPDF(params GetInvoiceAsPDFParams) (*GetInvoiceAsPDF
 
 { "nickname" : "Retrieve an existing invoice","response" : "getInvoiceByID.html"}
 */
-func (a *Client) GetInvoiceByID(params GetInvoiceByIDParams) (*GetInvoiceByIDOK, error) {
+func (a *Client) GetInvoiceByID(params *GetInvoiceByIDParams) (*GetInvoiceByIDOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInvoiceByIDParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getInvoiceByID",
-		Params: &params,
-		Reader: &GetInvoiceByIDReader{formats: a.formats},
+		ID:          "getInvoiceByID",
+		Method:      "GET",
+		PathPattern: "/invoices/{invoice-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetInvoiceByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -63,13 +75,19 @@ func (a *Client) GetInvoiceByID(params GetInvoiceByIDParams) (*GetInvoiceByIDOK,
 
 { "nickname" : "Retrieve by account","response" : "getInvoiceByAccountID.html"}
 */
-func (a *Client) GetInvoicesByAccountID(params GetInvoicesByAccountIDParams) (*GetInvoicesByAccountIDOK, error) {
+func (a *Client) GetInvoicesByAccountID(params *GetInvoicesByAccountIDParams) (*GetInvoicesByAccountIDOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInvoicesByAccountIDParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getInvoicesByAccountID",
-		Params: &params,
-		Reader: &GetInvoicesByAccountIDReader{formats: a.formats},
+		ID:          "getInvoicesByAccountID",
+		Method:      "GET",
+		PathPattern: "/invoices/account/{account-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetInvoicesByAccountIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

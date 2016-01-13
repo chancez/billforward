@@ -4,6 +4,9 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetAllAccountsReader) ReadResponse(response client.Response, consumer h
 	switch response.Code() {
 
 	case 200:
-		var result GetAllAccountsOK
+		result := NewGetAllAccountsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetAllAccountsDefault
+		result := NewGetAllAccountsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllAccounts default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetAllAccountsOK creates a GetAllAccountsOK with default headers values
+func NewGetAllAccountsOK() *GetAllAccountsOK {
+	return &GetAllAccountsOK{}
+}
+
+/*GetAllAccountsOK
+
 success
 */
 type GetAllAccountsOK struct {
 	Payload *models.AccountPagedMetadata
+}
+
+func (o *GetAllAccountsOK) Error() string {
+	return fmt.Sprintf("[GET /accounts][%d] getAllAccountsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAllAccountsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetAllAccountsOK) readResponse(response client.Response, consumer httpk
 	o.Payload = new(models.AccountPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetAllAccountsDefault creates a GetAllAccountsDefault with default headers values
+func NewGetAllAccountsDefault(code int) *GetAllAccountsDefault {
+	return &GetAllAccountsDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetAllAccountsDefault
+
 error
 */
 type GetAllAccountsDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get all accounts default response
+func (o *GetAllAccountsDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetAllAccountsDefault) Error() string {
+	return fmt.Sprintf("[GET /accounts][%d] getAllAccounts default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetAllAccountsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetAllAccountsDefault) readResponse(response client.Response, consumer 
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

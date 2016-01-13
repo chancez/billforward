@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Notification
+/*Notification Notification
 
 swagger:model Notification
 */
@@ -36,15 +36,15 @@ type Notification struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* Changes changes
 	 */
-	Changes string `json:"changes,omitempty"`
+	Changes *string `json:"changes,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -64,7 +64,7 @@ type Notification struct {
 
 	/* Entity entity
 	 */
-	Entity string `json:"entity,omitempty"`
+	Entity *string `json:"entity,omitempty"`
 
 	/* { "description" : "The id of the entity associated with the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -88,7 +88,7 @@ type Notification struct {
 
 	/* { "description" : "ID of the notification.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "The UTC DateTime of the notifications's last send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -100,7 +100,7 @@ type Notification struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "Organization associated with the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -134,42 +134,57 @@ func (m *Notification) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAckEnabled(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAction(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDestinationURL(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDomain(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEntityID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFields(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFormat(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateWebhookID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -200,7 +215,10 @@ func (m *Notification) validateActionEnum(path, location string, value string) e
 			notificationActionEnum = append(notificationActionEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, notificationActionEnum)
+	if err := validate.Enum(path, location, value, notificationActionEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Notification) validateAction(formats strfmt.Registry) error {
@@ -228,12 +246,19 @@ func (m *Notification) validateBillingEntityEnum(path, location string, value st
 			notificationBillingEntityEnum = append(notificationBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, notificationBillingEntityEnum)
+	if err := validate.Enum(path, location, value, notificationBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Notification) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -261,7 +286,10 @@ func (m *Notification) validateDomainEnum(path, location string, value string) e
 			notificationDomainEnum = append(notificationDomainEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, notificationDomainEnum)
+	if err := validate.Enum(path, location, value, notificationDomainEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Notification) validateDomain(formats strfmt.Registry) error {
@@ -286,6 +314,19 @@ func (m *Notification) validateEntityID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Notification) validateFields(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Fields) { // not required
+		return nil
+	}
+
+	if err := validate.Required("fields", "body", m.Fields); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var notificationFormatEnum []interface{}
 
 func (m *Notification) validateFormatEnum(path, location string, value string) error {
@@ -298,7 +339,10 @@ func (m *Notification) validateFormatEnum(path, location string, value string) e
 			notificationFormatEnum = append(notificationFormatEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, notificationFormatEnum)
+	if err := validate.Enum(path, location, value, notificationFormatEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Notification) validateFormat(formats strfmt.Registry) error {
@@ -335,7 +379,10 @@ func (m *Notification) validateStateEnum(path, location string, value string) er
 			notificationStateEnum = append(notificationStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, notificationStateEnum)
+	if err := validate.Enum(path, location, value, notificationStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Notification) validateState(formats strfmt.Registry) error {

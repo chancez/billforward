@@ -4,6 +4,9 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetAllRatePlansReader) ReadResponse(response client.Response, consumer 
 	switch response.Code() {
 
 	case 200:
-		var result GetAllRatePlansOK
+		result := NewGetAllRatePlansOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetAllRatePlansDefault
+		result := NewGetAllRatePlansDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllRatePlans default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetAllRatePlansOK creates a GetAllRatePlansOK with default headers values
+func NewGetAllRatePlansOK() *GetAllRatePlansOK {
+	return &GetAllRatePlansOK{}
+}
+
+/*GetAllRatePlansOK
+
 success
 */
 type GetAllRatePlansOK struct {
 	Payload *models.ProductRatePlanPagedMetadata
+}
+
+func (o *GetAllRatePlansOK) Error() string {
+	return fmt.Sprintf("[GET /product-rate-plans][%d] getAllRatePlansOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAllRatePlansOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetAllRatePlansOK) readResponse(response client.Response, consumer http
 	o.Payload = new(models.ProductRatePlanPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetAllRatePlansDefault creates a GetAllRatePlansDefault with default headers values
+func NewGetAllRatePlansDefault(code int) *GetAllRatePlansDefault {
+	return &GetAllRatePlansDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetAllRatePlansDefault
+
 error
 */
 type GetAllRatePlansDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get all rate plans default response
+func (o *GetAllRatePlansDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetAllRatePlansDefault) Error() string {
+	return fmt.Sprintf("[GET /product-rate-plans][%d] getAllRatePlans default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetAllRatePlansDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetAllRatePlansDefault) readResponse(response client.Response, consumer
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

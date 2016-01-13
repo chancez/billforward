@@ -11,15 +11,29 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-UpdateProfileParams contains all the parameters to send to the API endpoint
+// NewUpdateProfileParams creates a new UpdateProfileParams object
+// with the default values initialized.
+func NewUpdateProfileParams() *UpdateProfileParams {
+	var ()
+	return &UpdateProfileParams{}
+}
+
+/*UpdateProfileParams contains all the parameters to send to the API endpoint
 for the update profile operation typically these are written to a http.Request
 */
 type UpdateProfileParams struct {
-	/*
+
+	/*Request
 	  The profile object to be updated.
+
 	*/
 	Request *models.UpdateProfileRequest
+}
+
+// WithRequest adds the request to the update profile params
+func (o *UpdateProfileParams) WithRequest(request *models.UpdateProfileRequest) *UpdateProfileParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

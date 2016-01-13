@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-PricingComponentValue
+/*PricingComponentValue PricingComponentValue
 
 swagger:model PricingComponentValue
 */
@@ -28,11 +28,11 @@ type PricingComponentValue struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -46,11 +46,11 @@ type PricingComponentValue struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* PendingChange pending change
 	 */
@@ -64,7 +64,7 @@ type PricingComponentValue struct {
 
 	/* { "description" : "Name of the pricing-component associated with the pricing-component-value.", "verbs":["GET"] }
 	 */
-	PricingComponentName string `json:"pricingComponentName,omitempty"`
+	PricingComponentName *string `json:"pricingComponentName,omitempty"`
 
 	/* { "description" : "Value can be left null if setting the pricing component value on the subscription directly.", "verbs":["GET", "POST"] }
 
@@ -84,7 +84,7 @@ type PricingComponentValue struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	VersionID string `json:"versionID,omitempty"`
+	VersionID *string `json:"versionID,omitempty"`
 }
 
 // Validate validates this pricing component value
@@ -92,22 +92,27 @@ func (m *PricingComponentValue) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponentID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateValue(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -129,12 +134,19 @@ func (m *PricingComponentValue) validateBillingEntityEnum(path, location string,
 			pricingComponentValueBillingEntityEnum = append(pricingComponentValueBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, pricingComponentValueBillingEntityEnum)
+	if err := validate.Enum(path, location, value, pricingComponentValueBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PricingComponentValue) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

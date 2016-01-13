@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-CreateAddressRequest
+/*UpdateAddressRequest CreateAddressRequest
 
 swagger:model UpdateAddressRequest
 */
@@ -18,23 +17,23 @@ type UpdateAddressRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine1 string `json:"addressLine1,omitempty"`
+	AddressLine1 *string `json:"addressLine1,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 string `json:"addressLine2,omitempty"`
+	AddressLine2 *string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 string `json:"addressLine3,omitempty"`
+	AddressLine3 *string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	City string `json:"city,omitempty"`
+	City *string `json:"city,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	Country string `json:"country,omitempty"`
+	Country *string `json:"country,omitempty"`
 
 	/* ID id
 
@@ -44,15 +43,15 @@ type UpdateAddressRequest struct {
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline string `json:"landline,omitempty"`
+	Landline *string `json:"landline,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 	 */
-	Postcode string `json:"postcode,omitempty"`
+	Postcode *string `json:"postcode,omitempty"`
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
-	PrimaryAddress bool `json:"primaryAddress,omitempty"`
+	PrimaryAddress *bool `json:"primaryAddress,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 
@@ -62,7 +61,7 @@ type UpdateAddressRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	Province string `json:"province,omitempty"`
+	Province *string `json:"province,omitempty"`
 }
 
 // Validate validates this update address request
@@ -70,10 +69,12 @@ func (m *UpdateAddressRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProfileID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

@@ -4,15 +4,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"bytes"
 	"encoding/json"
 
 	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-A rate plan describes a pricing system under which a subscription can be made to a product.
+/*ProductRatePlan A rate plan describes a pricing system under which a subscription can be made to a product.
 
 swagger:model ProductRatePlan
 */
@@ -24,11 +26,11 @@ type ProductRatePlan struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* {"default":"true","description":"Whether invoices are created if they have a zero valued cost before any discounts are applied.","verbs":["POST","PUT","GET"] }
 
@@ -42,7 +44,7 @@ type ProductRatePlan struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* {"description":"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).","verbs":["POST","GET"]}
 
@@ -52,7 +54,7 @@ type ProductRatePlan struct {
 
 	/* DisplayName display name
 	 */
-	DisplayName string `json:"displayName,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
@@ -76,11 +78,11 @@ type ProductRatePlan struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* {"default":"<span class=\"label label-default\">Immediate</span>","description":"The strategy for how invoices for this plan will be issued.<br><span class=\"label label-default\">Immediate</span> &mdash; All generated invoices move immediately to the 'Unpaid' state &mdash; beginning the payment pursuit process.<br><span class=\"label label-default\">Delayed</span> &mdash; All generated invoices begin in the 'Pending' state. An 'Issue Invoice' amendment is scheduled (based on the rate plan's `issueDuration` and `issuePeriod`) that will move the invoice to the 'Unpaid' state (beginning the payment pursuit process) in accordance with the rate plan's issuance schedule.<br><span class=\"label label-default\">Manual</span> &mdash; All generated invoices sit in the 'Pending' state &mdash; they will not be issued to the customer unless explicit action is taken. This gives you an opportunity to review or recalculate the invoice."verbs":["POST","GET"]}
 	 */
-	InvoiceIssueType string `json:"invoiceIssueType,omitempty"`
+	InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
 
 	/* {"description":"Number of issue-length-measures between issuance of invoices for this rate plan.""verbs":["POST","GET"]}
 	 */
@@ -88,7 +90,7 @@ type ProductRatePlan struct {
 
 	/* {"description":"Measure describing the magnitude of the invoice issuance period.","verbs":["POST","GET"]}
 	 */
-	IssuePeriod string `json:"issuePeriod,omitempty"`
+	IssuePeriod *string `json:"issuePeriod,omitempty"`
 
 	/* {"default":"false","description":"Whether the taxes of the rate plan take into account localised taxes.","verbs":["POST","PUT","GET"] }
 
@@ -110,13 +112,9 @@ type ProductRatePlan struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
-	/* {"description":"The pricing-components which describe the price tiering system of this rate plan. A product rate plan may have 1 or more pricing components. Each pricing component represents a different charge associated with the subscription. Pricing components are versioned.","verbs":["POST","PUT","GET"]}
-
-	Required: true
-	*/
-	PricingComponents []*PricingComponent `json:"pricingComponents,omitempty"`
+	PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
 
 	/* {"default":"WithCoupon","description":"The pro-rata mode for the rate plan. <br><span class=\"label label-default\">None</span> &mdash; The pro-rata cost for upgrades will be ignored.<br><span class=\"label label-default\">WithCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will be deducted from the pro-rated cost.<br><span class=\"label label-default\">WithoutCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will not be deducted from the pro-rated cost. ","verbs":[]}
 
@@ -136,19 +134,19 @@ type ProductRatePlan struct {
 
 	/* {"default":"recurring","description":"The frequency of the rate plan &mdash; either recurring or non-recurring. If left unspecified: the rate plan will use the same `productType` frequency as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	ProductType string `json:"productType,omitempty"`
+	ProductType *string `json:"productType,omitempty"`
 
 	/* {"description":"A friendly non-unique name used to identify this product-rate-plan","verbs":["POST","PUT","GET"]}
 	 */
-	PublicName string `json:"publicName,omitempty"`
+	PublicName *string `json:"publicName,omitempty"`
 
 	/* RecursionType recursion type
 	 */
-	RecursionType string `json:"recursionType,omitempty"`
+	RecursionType *string `json:"recursionType,omitempty"`
 
 	/* {"description":"The current status of the rate plan.","verbs":[]}
 	 */
-	Status string `json:"status,omitempty"`
+	Status *string `json:"status,omitempty"`
 
 	/* {"default":"inclusive","description":"The tax status of the product-rate-plan &mdash; either inclusive or exclusive.<br><span class=\"label label-default\">exclusive</span>pricing indicates that the cost of the Pricing Components do not include tax; when BillForward generates an Invoice, the tax will be calculated with this price as a base. <br>Tax-<span class=\"label label-default\">inclusive</span>pricing indicates that the Pricing components include Tax. BillForward will still calculate tax on each invoice. Tax will be calculated from the sales price.","verbs":["POST","PUT","GET"]}
 
@@ -166,7 +164,7 @@ type ProductRatePlan struct {
 
 	/* {"default":"none","description":"Measure describing the magnitude of the rate plan's trial period. If left unspecified: the rate plan will use the same `trialPeriod` magnitude as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	TrialPeriod string `json:"trialPeriod,omitempty"`
+	TrialPeriod *string `json:"trialPeriod,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
 	 */
@@ -185,77 +183,129 @@ type ProductRatePlan struct {
 func (m *ProductRatePlan) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAggregatingComponents(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreateZeroValuedInvoices(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDurationPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFailedPaymentBehaviour(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFixedTermDefinitions(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoiceIssueType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateIssuePeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLocalisedTax(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMigrationBehaviour(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingComponents(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProRataMode(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRecursionType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTaxStatus(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTaxation(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTrialPeriod(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ProductRatePlan) validateAggregatingComponents(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AggregatingComponents) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AggregatingComponents); i++ {
+
+		if m.AggregatingComponents[i] != nil {
+
+			if err := m.AggregatingComponents[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -271,12 +321,19 @@ func (m *ProductRatePlan) validateBillingEntityEnum(path, location string, value
 			productRatePlanBillingEntityEnum = append(productRatePlanBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanBillingEntityEnum)
+	if err := validate.Enum(path, location, value, productRatePlanBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -313,7 +370,10 @@ func (m *ProductRatePlan) validateDurationPeriodEnum(path, location string, valu
 			productRatePlanDurationPeriodEnum = append(productRatePlanDurationPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanDurationPeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanDurationPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateDurationPeriod(formats strfmt.Registry) error {
@@ -341,7 +401,10 @@ func (m *ProductRatePlan) validateFailedPaymentBehaviourEnum(path, location stri
 			productRatePlanFailedPaymentBehaviourEnum = append(productRatePlanFailedPaymentBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanFailedPaymentBehaviourEnum)
+	if err := validate.Enum(path, location, value, productRatePlanFailedPaymentBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
@@ -352,6 +415,26 @@ func (m *ProductRatePlan) validateFailedPaymentBehaviour(formats strfmt.Registry
 
 	if err := m.validateFailedPaymentBehaviourEnum("failedPaymentBehaviour", "body", m.FailedPaymentBehaviour); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ProductRatePlan) validateFixedTermDefinitions(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FixedTermDefinitions) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.FixedTermDefinitions); i++ {
+
+		if m.FixedTermDefinitions[i] != nil {
+
+			if err := m.FixedTermDefinitions[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -369,12 +452,19 @@ func (m *ProductRatePlan) validateInvoiceIssueTypeEnum(path, location string, va
 			productRatePlanInvoiceIssueTypeEnum = append(productRatePlanInvoiceIssueTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanInvoiceIssueTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanInvoiceIssueTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateInvoiceIssueType(formats strfmt.Registry) error {
 
-	if err := m.validateInvoiceIssueTypeEnum("invoiceIssueType", "body", m.InvoiceIssueType); err != nil {
+	if swag.IsZero(m.InvoiceIssueType) { // not required
+		return nil
+	}
+
+	if err := m.validateInvoiceIssueTypeEnum("invoiceIssueType", "body", *m.InvoiceIssueType); err != nil {
 		return err
 	}
 
@@ -393,12 +483,19 @@ func (m *ProductRatePlan) validateIssuePeriodEnum(path, location string, value s
 			productRatePlanIssuePeriodEnum = append(productRatePlanIssuePeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanIssuePeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanIssuePeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateIssuePeriod(formats strfmt.Registry) error {
 
-	if err := m.validateIssuePeriodEnum("issuePeriod", "body", m.IssuePeriod); err != nil {
+	if swag.IsZero(m.IssuePeriod) { // not required
+		return nil
+	}
+
+	if err := m.validateIssuePeriodEnum("issuePeriod", "body", *m.IssuePeriod); err != nil {
 		return err
 	}
 
@@ -426,7 +523,10 @@ func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, 
 			productRatePlanMigrationBehaviourEnum = append(productRatePlanMigrationBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanMigrationBehaviourEnum)
+	if err := validate.Enum(path, location, value, productRatePlanMigrationBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) error {
@@ -453,6 +553,21 @@ func (m *ProductRatePlan) validateName(formats strfmt.Registry) error {
 
 func (m *ProductRatePlan) validatePricingComponents(formats strfmt.Registry) error {
 
+	if err := validate.Required("pricingComponents", "body", m.PricingComponents); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.PricingComponents); i++ {
+
+		if m.PricingComponents[i] != nil {
+
+			if err := m.PricingComponents[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -468,7 +583,10 @@ func (m *ProductRatePlan) validateProRataModeEnum(path, location string, value s
 			productRatePlanProRataModeEnum = append(productRatePlanProRataModeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanProRataModeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanProRataModeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
@@ -505,12 +623,19 @@ func (m *ProductRatePlan) validateProductTypeEnum(path, location string, value s
 			productRatePlanProductTypeEnum = append(productRatePlanProductTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanProductTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanProductTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateProductType(formats strfmt.Registry) error {
 
-	if err := m.validateProductTypeEnum("productType", "body", m.ProductType); err != nil {
+	if swag.IsZero(m.ProductType) { // not required
+		return nil
+	}
+
+	if err := m.validateProductTypeEnum("productType", "body", *m.ProductType); err != nil {
 		return err
 	}
 
@@ -529,12 +654,19 @@ func (m *ProductRatePlan) validateRecursionTypeEnum(path, location string, value
 			productRatePlanRecursionTypeEnum = append(productRatePlanRecursionTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanRecursionTypeEnum)
+	if err := validate.Enum(path, location, value, productRatePlanRecursionTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateRecursionType(formats strfmt.Registry) error {
 
-	if err := m.validateRecursionTypeEnum("recursionType", "body", m.RecursionType); err != nil {
+	if swag.IsZero(m.RecursionType) { // not required
+		return nil
+	}
+
+	if err := m.validateRecursionTypeEnum("recursionType", "body", *m.RecursionType); err != nil {
 		return err
 	}
 
@@ -553,7 +685,10 @@ func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value str
 			productRatePlanTaxStatusEnum = append(productRatePlanTaxStatusEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanTaxStatusEnum)
+	if err := validate.Enum(path, location, value, productRatePlanTaxStatusEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateTaxStatus(formats strfmt.Registry) error {
@@ -564,6 +699,26 @@ func (m *ProductRatePlan) validateTaxStatus(formats strfmt.Registry) error {
 
 	if err := m.validateTaxStatusEnum("taxStatus", "body", m.TaxStatus); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ProductRatePlan) validateTaxation(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Taxation) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Taxation); i++ {
+
+		if m.Taxation[i] != nil {
+
+			if err := m.Taxation[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -581,14 +736,277 @@ func (m *ProductRatePlan) validateTrialPeriodEnum(path, location string, value s
 			productRatePlanTrialPeriodEnum = append(productRatePlanTrialPeriodEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, productRatePlanTrialPeriodEnum)
+	if err := validate.Enum(path, location, value, productRatePlanTrialPeriodEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ProductRatePlan) validateTrialPeriod(formats strfmt.Registry) error {
 
-	if err := m.validateTrialPeriodEnum("trialPeriod", "body", m.TrialPeriod); err != nil {
+	if swag.IsZero(m.TrialPeriod) { // not required
+		return nil
+	}
+
+	if err := m.validateTrialPeriodEnum("trialPeriod", "body", *m.TrialPeriod); err != nil {
 		return err
 	}
 
 	return nil
+}
+
+// UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
+func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
+	var data struct {
+		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
+
+		BillingEntity *string `json:"billingEntity,omitempty"`
+
+		ChangedBy *string `json:"changedBy,omitempty"`
+
+		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
+
+		Created strfmt.DateTime `json:"created,omitempty"`
+
+		Crmid *string `json:"crmid,omitempty"`
+
+		Currency string `json:"currency,omitempty"`
+
+		DisplayName *string `json:"displayName,omitempty"`
+
+		Duration int32 `json:"duration,omitempty"`
+
+		DurationPeriod string `json:"durationPeriod,omitempty"`
+
+		FailedPaymentBehaviour string `json:"failedPaymentBehaviour,omitempty"`
+
+		FixedTermDefinitions []*MutableBillingEntity `json:"fixedTermDefinitions,omitempty"`
+
+		ID *string `json:"id,omitempty"`
+
+		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
+
+		IssueDuration int32 `json:"issueDuration,omitempty"`
+
+		IssuePeriod *string `json:"issuePeriod,omitempty"`
+
+		LocalisedTax bool `json:"localisedTax,omitempty"`
+
+		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
+
+		Name string `json:"name,omitempty"`
+
+		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
+
+		ProRataMode string `json:"proRataMode,omitempty"`
+
+		Product *Product `json:"product,omitempty"`
+
+		ProductID string `json:"productID,omitempty"`
+
+		ProductType *string `json:"productType,omitempty"`
+
+		PublicName *string `json:"publicName,omitempty"`
+
+		RecursionType *string `json:"recursionType,omitempty"`
+
+		Status *string `json:"status,omitempty"`
+
+		TaxStatus string `json:"taxStatus,omitempty"`
+
+		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
+
+		Trial int32 `json:"trial,omitempty"`
+
+		TrialPeriod *string `json:"trialPeriod,omitempty"`
+
+		Updated strfmt.DateTime `json:"updated,omitempty"`
+
+		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+
+		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+	}
+
+	if err := json.Unmarshal(raw, &data); err != nil {
+		return err
+	}
+
+	var pricingComponents []PricingComponent
+	untypedObj := make(map[string]interface{})
+	if err := json.Unmarshal(raw, &untypedObj); err != nil {
+		return err
+	}
+	if untypedPricingComponents, ok := untypedObj["pricingComponents"]; ok {
+		if slcPricingComponents, ok := untypedPricingComponents.([]interface{}); ok {
+			for _, slcEl := range slcPricingComponents {
+				slcJSON, _ := json.Marshal(slcEl)
+				slcObj, err := UnmarshalPricingComponent(bytes.NewBuffer(slcJSON), httpkit.JSONConsumer())
+				if err != nil {
+					return err
+				}
+				pricingComponents = append(pricingComponents, slcObj)
+			}
+		}
+	}
+
+	var result ProductRatePlan
+	result.AggregatingComponents = data.AggregatingComponents
+	result.BillingEntity = data.BillingEntity
+	result.ChangedBy = data.ChangedBy
+	result.CreateZeroValuedInvoices = data.CreateZeroValuedInvoices
+	result.Created = data.Created
+	result.Crmid = data.Crmid
+	result.Currency = data.Currency
+	result.DisplayName = data.DisplayName
+	result.Duration = data.Duration
+	result.DurationPeriod = data.DurationPeriod
+	result.FailedPaymentBehaviour = data.FailedPaymentBehaviour
+	result.FixedTermDefinitions = data.FixedTermDefinitions
+	result.ID = data.ID
+	result.InvoiceIssueType = data.InvoiceIssueType
+	result.IssueDuration = data.IssueDuration
+	result.IssuePeriod = data.IssuePeriod
+	result.LocalisedTax = data.LocalisedTax
+	result.MigrationBehaviour = data.MigrationBehaviour
+	result.Name = data.Name
+	result.NotificationObjectGraph = data.NotificationObjectGraph
+	result.PricingComponents = pricingComponents
+	result.ProRataMode = data.ProRataMode
+	result.Product = data.Product
+	result.ProductID = data.ProductID
+	result.ProductType = data.ProductType
+	result.PublicName = data.PublicName
+	result.RecursionType = data.RecursionType
+	result.Status = data.Status
+	result.TaxStatus = data.TaxStatus
+	result.Taxation = data.Taxation
+	result.Trial = data.Trial
+	result.TrialPeriod = data.TrialPeriod
+	result.Updated = data.Updated
+	result.ValidFrom = data.ValidFrom
+	result.ValidTill = data.ValidTill
+	*m = result
+	return nil
+}
+
+// MarshalJSON marshals this object with a polymorphic type to a JSON structure
+func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
+	var b1, b2 []byte
+	var err error
+	b1, err = json.Marshal(struct {
+		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
+
+		BillingEntity *string `json:"billingEntity,omitempty"`
+
+		ChangedBy *string `json:"changedBy,omitempty"`
+
+		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
+
+		Created strfmt.DateTime `json:"created,omitempty"`
+
+		Crmid *string `json:"crmid,omitempty"`
+
+		Currency string `json:"currency,omitempty"`
+
+		DisplayName *string `json:"displayName,omitempty"`
+
+		Duration int32 `json:"duration,omitempty"`
+
+		DurationPeriod string `json:"durationPeriod,omitempty"`
+
+		FailedPaymentBehaviour string `json:"failedPaymentBehaviour,omitempty"`
+
+		FixedTermDefinitions []*MutableBillingEntity `json:"fixedTermDefinitions,omitempty"`
+
+		ID *string `json:"id,omitempty"`
+
+		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
+
+		IssueDuration int32 `json:"issueDuration,omitempty"`
+
+		IssuePeriod *string `json:"issuePeriod,omitempty"`
+
+		LocalisedTax bool `json:"localisedTax,omitempty"`
+
+		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
+
+		Name string `json:"name,omitempty"`
+
+		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
+
+		ProRataMode string `json:"proRataMode,omitempty"`
+
+		Product *Product `json:"product,omitempty"`
+
+		ProductID string `json:"productID,omitempty"`
+
+		ProductType *string `json:"productType,omitempty"`
+
+		PublicName *string `json:"publicName,omitempty"`
+
+		RecursionType *string `json:"recursionType,omitempty"`
+
+		Status *string `json:"status,omitempty"`
+
+		TaxStatus string `json:"taxStatus,omitempty"`
+
+		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
+
+		Trial int32 `json:"trial,omitempty"`
+
+		TrialPeriod *string `json:"trialPeriod,omitempty"`
+
+		Updated strfmt.DateTime `json:"updated,omitempty"`
+
+		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+
+		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+	}{
+		AggregatingComponents:    m.AggregatingComponents,
+		BillingEntity:            m.BillingEntity,
+		ChangedBy:                m.ChangedBy,
+		CreateZeroValuedInvoices: m.CreateZeroValuedInvoices,
+		Created:                  m.Created,
+		Crmid:                    m.Crmid,
+		Currency:                 m.Currency,
+		DisplayName:              m.DisplayName,
+		Duration:                 m.Duration,
+		DurationPeriod:           m.DurationPeriod,
+		FailedPaymentBehaviour:   m.FailedPaymentBehaviour,
+		FixedTermDefinitions:     m.FixedTermDefinitions,
+		ID:                       m.ID,
+		InvoiceIssueType:         m.InvoiceIssueType,
+		IssueDuration:            m.IssueDuration,
+		IssuePeriod:              m.IssuePeriod,
+		LocalisedTax:             m.LocalisedTax,
+		MigrationBehaviour:       m.MigrationBehaviour,
+		Name:                     m.Name,
+		NotificationObjectGraph: m.NotificationObjectGraph,
+		ProRataMode:             m.ProRataMode,
+		Product:                 m.Product,
+		ProductID:               m.ProductID,
+		ProductType:             m.ProductType,
+		PublicName:              m.PublicName,
+		RecursionType:           m.RecursionType,
+		Status:                  m.Status,
+		TaxStatus:               m.TaxStatus,
+		Taxation:                m.Taxation,
+		Trial:                   m.Trial,
+		TrialPeriod:             m.TrialPeriod,
+		Updated:                 m.Updated,
+		ValidFrom:               m.ValidFrom,
+		ValidTill:               m.ValidTill,
+	})
+	if err != nil {
+		return nil, err
+	}
+	b2, err = json.Marshal(struct {
+		PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
+	}{
+		PricingComponents: m.PricingComponents,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return swag.ConcatJSON(b1, b2), nil
 }

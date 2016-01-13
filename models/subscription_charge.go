@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Represents a monetary amount &mdash; or quantity consumed &mdash; attributed to some invoice or subscription.
+/*SubscriptionCharge Represents a monetary amount &mdash; or quantity consumed &mdash; attributed to some invoice or subscription.
 
 swagger:model SubscriptionCharge
 */
@@ -20,27 +20,27 @@ type SubscriptionCharge struct {
 
 	/* {"description":"ID of the account owning the subscription for which the charge was generated.","verbs":["GET","POST"]}
 	 */
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID,omitempty"`
 
 	/* {"description":"Monetary amount of the charge &mdash; including any tax applied to the final amount.","verbs":["POST","GET"]}
 	 */
-	Amount float64 `json:"amount,omitempty"`
+	Amount *float64 `json:"amount,omitempty"`
 
 	/* {"description":"Monetary amount of the charge &mdash; excluding any tax applied to the final amount.","verbs":["GET"]}
 	 */
-	AmountExcludingTax float64 `json:"amountExcludingTax,omitempty"`
+	AmountExcludingTax *float64 `json:"amountExcludingTax,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* {"default":"(Empty string)","description":"A human-readable explanation of how the value of the charge was calculated.","verbs":["GET"]}
 	 */
-	Calculation string `json:"calculation,omitempty"`
+	Calculation *string `json:"calculation,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* {"default":"<span class=\"label label-default\">Debit</span>","description":"Whether this charge represents money given to or taken from the customer.<br><span class=\"label label-default\">Credit</span> &mdash; This is a charge for money given to the customer.<br><span class=\"label label-default\">Debit</span> &mdash; This is a charge for money taken from the customer.","verbs":["POST","GET"]}
 
@@ -54,15 +54,15 @@ type SubscriptionCharge struct {
 
 	/* {"description":"Customer-relationship-management ID of the charge.","verbs":["GET","PUT","POST"]}
 	 */
-	CrmID string `json:"crmID,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* { "description" : "Currency of the invoice specified by a three character ISO 4217 currency code.", "verbs":["GET"] }
 	 */
-	Currency string `json:"currency,omitempty"`
+	Currency *string `json:"currency,omitempty"`
 
 	/* {"description":"Description given to the charge.","verbs":["POST","GET","PUT"]}
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* Fields fields
 	 */
@@ -70,7 +70,7 @@ type SubscriptionCharge struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* {"description":"The invoice to which this charge applies (if the charge targets a specific invoice).","verbs":["GET"]}
 	 */
@@ -78,7 +78,7 @@ type SubscriptionCharge struct {
 
 	/* {"description":"ID of the invoice to which this charge applies (if the charge targets a specific invoice).","verbs":["POST","GET"]}
 	 */
-	InvoiceID string `json:"invoiceID,omitempty"`
+	InvoiceID *string `json:"invoiceID,omitempty"`
 
 	/* {"default":"<span class=\"label label-default\">Aggregated</span>","description":"The strategy for how this charge will raise invoices.<br><span class=\"label label-default\">Immediate</span> &mdash; Generate straight-away an invoice containing this charge.<br><span class=\"label label-default\">Aggregated</span> &mdash; Add this charge to the next invoice which is generated naturally &mdash; i.e. the invoice raised at the current period's end.","verbs":["POST","GET"]}
 
@@ -88,11 +88,11 @@ type SubscriptionCharge struct {
 
 	/* {"description":"Friendly name given to the charge to help identify it.","verbs":["POST","GET","PUT"]}
 	 */
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"default":"(End of current period)","description":"The time-ending of the interval to which the charge applies. This can be used to apply a charge across partial or multiple periods,to pro-rate its price.","verbs":["POST","GET"]}
 	 */
@@ -116,15 +116,15 @@ type SubscriptionCharge struct {
 
 	/* {"description":"ID of the subscription for which the charge was generated.","verbs":["GET","POST"]}
 	 */
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID,omitempty"`
 
 	/* {"description":"Version ID of the subscription for which the charge was generated.","verbs":["GET","POST"]}
 	 */
-	SubscriptionVersionID string `json:"subscriptionVersionID,omitempty"`
+	SubscriptionVersionID *string `json:"subscriptionVersionID,omitempty"`
 
 	/* {"default":"false","description":"(Applicable only if any of [`pricingComponentName`, `pricingComponentID`] are defined)<br>Whether the charge was created for a subscription whilst in a trial period.<br><span class=\"label label-default\">false</span> &mdash; This is a non-trial charge, so funds will be sought from the customer.<br><span class=\"label label-default\">true</span> &mdash; This is a trial charge, soThe charge can be considered 'Paid' without taking any funds from the customer.","verbs":["POST","GET"]}
 	 */
-	Trial bool `json:"trial,omitempty"`
+	Trial *bool `json:"trial,omitempty"`
 
 	/* {"description":"A type describing the nature of the charge.","verbs":["POST","GET"]}
 
@@ -138,7 +138,7 @@ type SubscriptionCharge struct {
 
 	/* {"description":"The version ID of the charge.","verbs":["GET"]}
 	 */
-	VersionID string `json:"versionID,omitempty"`
+	VersionID *string `json:"versionID,omitempty"`
 
 	/* {"description":"The version number of the charge. The first version of a charge is version number 1.","verbs":["GET"]}
 
@@ -152,30 +152,42 @@ func (m *SubscriptionCharge) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateChargeType(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFields(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoicingType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRemainingCreditBehaviour(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionNumber(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -197,12 +209,19 @@ func (m *SubscriptionCharge) validateBillingEntityEnum(path, location string, va
 			subscriptionChargeBillingEntityEnum = append(subscriptionChargeBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeBillingEntityEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -221,7 +240,10 @@ func (m *SubscriptionCharge) validateChargeTypeEnum(path, location string, value
 			subscriptionChargeChargeTypeEnum = append(subscriptionChargeChargeTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeChargeTypeEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeChargeTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateChargeType(formats strfmt.Registry) error {
@@ -231,6 +253,19 @@ func (m *SubscriptionCharge) validateChargeType(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateChargeTypeEnum("chargeType", "body", m.ChargeType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SubscriptionCharge) validateFields(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Fields) { // not required
+		return nil
+	}
+
+	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 
@@ -249,7 +284,10 @@ func (m *SubscriptionCharge) validateInvoicingTypeEnum(path, location string, va
 			subscriptionChargeInvoicingTypeEnum = append(subscriptionChargeInvoicingTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeInvoicingTypeEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeInvoicingTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateInvoicingType(formats strfmt.Registry) error {
@@ -277,7 +315,10 @@ func (m *SubscriptionCharge) validateRemainingCreditBehaviourEnum(path, location
 			subscriptionChargeRemainingCreditBehaviourEnum = append(subscriptionChargeRemainingCreditBehaviourEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeRemainingCreditBehaviourEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeRemainingCreditBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateRemainingCreditBehaviour(formats strfmt.Registry) error {
@@ -305,7 +346,10 @@ func (m *SubscriptionCharge) validateStateEnum(path, location string, value stri
 			subscriptionChargeStateEnum = append(subscriptionChargeStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeStateEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateState(formats strfmt.Registry) error {
@@ -333,7 +377,10 @@ func (m *SubscriptionCharge) validateTypeEnum(path, location string, value strin
 			subscriptionChargeTypeEnum = append(subscriptionChargeTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionChargeTypeEnum)
+	if err := validate.Enum(path, location, value, subscriptionChargeTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *SubscriptionCharge) validateType(formats strfmt.Registry) error {

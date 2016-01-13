@@ -4,6 +4,9 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetAllProductsReader) ReadResponse(response client.Response, consumer h
 	switch response.Code() {
 
 	case 200:
-		var result GetAllProductsOK
+		result := NewGetAllProductsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetAllProductsDefault
+		result := NewGetAllProductsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getAllProducts default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetAllProductsOK creates a GetAllProductsOK with default headers values
+func NewGetAllProductsOK() *GetAllProductsOK {
+	return &GetAllProductsOK{}
+}
+
+/*GetAllProductsOK
+
 success
 */
 type GetAllProductsOK struct {
 	Payload *models.ProductPagedMetadata
+}
+
+func (o *GetAllProductsOK) Error() string {
+	return fmt.Sprintf("[GET /products][%d] getAllProductsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAllProductsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetAllProductsOK) readResponse(response client.Response, consumer httpk
 	o.Payload = new(models.ProductPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetAllProductsDefault creates a GetAllProductsDefault with default headers values
+func NewGetAllProductsDefault(code int) *GetAllProductsDefault {
+	return &GetAllProductsDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetAllProductsDefault
+
 error
 */
 type GetAllProductsDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get all products default response
+func (o *GetAllProductsDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetAllProductsDefault) Error() string {
+	return fmt.Sprintf("[GET /products][%d] getAllProducts default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetAllProductsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetAllProductsDefault) readResponse(response client.Response, consumer 
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

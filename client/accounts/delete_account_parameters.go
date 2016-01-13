@@ -10,16 +10,37 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-DeleteAccountParams contains all the parameters to send to the API endpoint
+// NewDeleteAccountParams creates a new DeleteAccountParams object
+// with the default values initialized.
+func NewDeleteAccountParams() *DeleteAccountParams {
+	var ()
+	return &DeleteAccountParams{}
+}
+
+/*DeleteAccountParams contains all the parameters to send to the API endpoint
 for the delete account operation typically these are written to a http.Request
 */
 type DeleteAccountParams struct {
+
+	/*AccountID*/
 	AccountID string
-	/*
+	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
+
 	*/
 	Organizations []string
+}
+
+// WithAccountID adds the accountId to the delete account params
+func (o *DeleteAccountParams) WithAccountID(accountId string) *DeleteAccountParams {
+	o.AccountID = accountId
+	return o
+}
+
+// WithOrganizations adds the organizations to the delete account params
+func (o *DeleteAccountParams) WithOrganizations(organizations []string) *DeleteAccountParams {
+	o.Organizations = organizations
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -34,8 +55,9 @@ func (o *DeleteAccountParams) WriteToRequest(r client.Request, reg strfmt.Regist
 
 	valuesOrganizations := o.Organizations
 
+	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
-	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
+	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
 	}
 

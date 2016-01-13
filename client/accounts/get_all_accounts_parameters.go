@@ -10,45 +10,124 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetAllAccountsParams contains all the parameters to send to the API endpoint
+// NewGetAllAccountsParams creates a new GetAllAccountsParams object
+// with the default values initialized.
+func NewGetAllAccountsParams() *GetAllAccountsParams {
+	var (
+		includeRetiredDefault bool   = bool(true)
+		orderDefault          string = string("DESC")
+		orderByDefault        string = string("created")
+		recordsDefault        int32  = int32(10)
+	)
+	return &GetAllAccountsParams{
+		IncludeRetired: &includeRetiredDefault,
+		Order:          &orderDefault,
+		OrderBy:        &orderByDefault,
+		Records:        &recordsDefault,
+	}
+}
+
+/*GetAllAccountsParams contains all the parameters to send to the API endpoint
 for the get all accounts operation typically these are written to a http.Request
 */
 type GetAllAccountsParams struct {
-	/*
+
+	/*Ids
 	  A list of account IDs used to filter the output.
+
 	*/
 	Ids []string
-	/*
+	/*IncludeRetired
 	  Whether retired products should be returned.
-	*/
-	IncludeRetired bool
 
-	Metadata string
-	/*
+	*/
+	IncludeRetired *bool
+	/*Metadata*/
+	Metadata *string
+	/*Offset
 	  The offset from the first taxation-link to return.
+
 	*/
-	Offset int32
-	/*
+	Offset *int32
+	/*Order
 	  Ihe direction of any ordering, either ASC or DESC.
+
 	*/
-	Order string
-	/*
+	Order *string
+	/*OrderBy
 	  Specify a field used to order the result set.
+
 	*/
-	OrderBy string
-	/*
+	OrderBy *string
+	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
+
 	*/
 	Organizations []string
-	/*
+	/*Records
 	  The maximum number of taxation-links to return.
+
 	*/
-	Records int32
-	/*
+	Records *int32
+	/*UsersOnly
 	  Whether only accounts have a user should be returned.
+
 	*/
-	UsersOnly bool
+	UsersOnly *bool
+}
+
+// WithIds adds the ids to the get all accounts params
+func (o *GetAllAccountsParams) WithIds(ids []string) *GetAllAccountsParams {
+	o.Ids = ids
+	return o
+}
+
+// WithIncludeRetired adds the includeRetired to the get all accounts params
+func (o *GetAllAccountsParams) WithIncludeRetired(includeRetired *bool) *GetAllAccountsParams {
+	o.IncludeRetired = includeRetired
+	return o
+}
+
+// WithMetadata adds the metadata to the get all accounts params
+func (o *GetAllAccountsParams) WithMetadata(metadata *string) *GetAllAccountsParams {
+	o.Metadata = metadata
+	return o
+}
+
+// WithOffset adds the offset to the get all accounts params
+func (o *GetAllAccountsParams) WithOffset(offset *int32) *GetAllAccountsParams {
+	o.Offset = offset
+	return o
+}
+
+// WithOrder adds the order to the get all accounts params
+func (o *GetAllAccountsParams) WithOrder(order *string) *GetAllAccountsParams {
+	o.Order = order
+	return o
+}
+
+// WithOrderBy adds the orderBy to the get all accounts params
+func (o *GetAllAccountsParams) WithOrderBy(orderBy *string) *GetAllAccountsParams {
+	o.OrderBy = orderBy
+	return o
+}
+
+// WithOrganizations adds the organizations to the get all accounts params
+func (o *GetAllAccountsParams) WithOrganizations(organizations []string) *GetAllAccountsParams {
+	o.Organizations = organizations
+	return o
+}
+
+// WithRecords adds the records to the get all accounts params
+func (o *GetAllAccountsParams) WithRecords(records *int32) *GetAllAccountsParams {
+	o.Records = records
+	return o
+}
+
+// WithUsersOnly adds the usersOnly to the get all accounts params
+func (o *GetAllAccountsParams) WithUsersOnly(usersOnly *bool) *GetAllAccountsParams {
+	o.UsersOnly = usersOnly
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -58,51 +137,130 @@ func (o *GetAllAccountsParams) WriteToRequest(r client.Request, reg strfmt.Regis
 
 	valuesIds := o.Ids
 
+	joinedIds := swag.JoinByFormat(valuesIds, "multi")
 	// query array param ids
-	if err := r.SetQueryParam("ids", swag.JoinByFormat(valuesIds, "multi")...); err != nil {
+	if err := r.SetQueryParam("ids", joinedIds...); err != nil {
 		return err
 	}
 
-	// query param include_retired
-	if err := r.SetQueryParam("include_retired", swag.FormatBool(o.IncludeRetired)); err != nil {
-		return err
+	if o.IncludeRetired != nil {
+
+		// query param include_retired
+		var qrIncludeRetired bool
+		if o.IncludeRetired != nil {
+			qrIncludeRetired = *o.IncludeRetired
+		}
+		qIncludeRetired := swag.FormatBool(qrIncludeRetired)
+		if qIncludeRetired != "" {
+			if err := r.SetQueryParam("include_retired", qIncludeRetired); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param metadata
-	if err := r.SetQueryParam("metadata", o.Metadata); err != nil {
-		return err
+	if o.Metadata != nil {
+
+		// query param metadata
+		var qrMetadata string
+		if o.Metadata != nil {
+			qrMetadata = *o.Metadata
+		}
+		qMetadata := qrMetadata
+		if qMetadata != "" {
+			if err := r.SetQueryParam("metadata", qMetadata); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param offset
-	if err := r.SetQueryParam("offset", swag.FormatInt32(o.Offset)); err != nil {
-		return err
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param order
-	if err := r.SetQueryParam("order", o.Order); err != nil {
-		return err
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param order_by
-	if err := r.SetQueryParam("order_by", o.OrderBy); err != nil {
-		return err
+	if o.OrderBy != nil {
+
+		// query param order_by
+		var qrOrderBy string
+		if o.OrderBy != nil {
+			qrOrderBy = *o.OrderBy
+		}
+		qOrderBy := qrOrderBy
+		if qOrderBy != "" {
+			if err := r.SetQueryParam("order_by", qOrderBy); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	valuesOrganizations := o.Organizations
 
+	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
-	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
+	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
 	}
 
-	// query param records
-	if err := r.SetQueryParam("records", swag.FormatInt32(o.Records)); err != nil {
-		return err
+	if o.Records != nil {
+
+		// query param records
+		var qrRecords int32
+		if o.Records != nil {
+			qrRecords = *o.Records
+		}
+		qRecords := swag.FormatInt32(qrRecords)
+		if qRecords != "" {
+			if err := r.SetQueryParam("records", qRecords); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param users_only
-	if err := r.SetQueryParam("users_only", swag.FormatBool(o.UsersOnly)); err != nil {
-		return err
+	if o.UsersOnly != nil {
+
+		// query param users_only
+		var qrUsersOnly bool
+		if o.UsersOnly != nil {
+			qrUsersOnly = *o.UsersOnly
+		}
+		qUsersOnly := swag.FormatBool(qrUsersOnly)
+		if qUsersOnly != "" {
+			if err := r.SetQueryParam("users_only", qUsersOnly); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

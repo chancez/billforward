@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Create a new address","response":"createAddressResponse.html","request":"createAddressRequest.html"}
 */
-func (a *Client) CreateAddress(params CreateAddressParams) (*CreateAddressOK, error) {
+func (a *Client) CreateAddress(params *CreateAddressParams) (*CreateAddressOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateAddressParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "createAddress",
-		Params: &params,
-		Reader: &CreateAddressReader{formats: a.formats},
+		ID:          "createAddress",
+		Method:      "POST",
+		PathPattern: "/addresses",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateAddressReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) CreateAddress(params CreateAddressParams) (*CreateAddressOK, er
 
 {"nickname":"Update an address","response":"updateAddressResponse.html","request":"updateAddressRequest.html"}
 */
-func (a *Client) UpdateAddress(params UpdateAddressParams) (*UpdateAddressOK, error) {
+func (a *Client) UpdateAddress(params *UpdateAddressParams) (*UpdateAddressOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAddressParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "updateAddress",
-		Params: &params,
-		Reader: &UpdateAddressReader{formats: a.formats},
+		ID:          "updateAddress",
+		Method:      "PUT",
+		PathPattern: "/addresses",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpdateAddressReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

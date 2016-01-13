@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Get all products","response":"getProductAll.html"}
 */
-func (a *Client) GetAllProducts(params GetAllProductsParams) (*GetAllProductsOK, error) {
+func (a *Client) GetAllProducts(params *GetAllProductsParams) (*GetAllProductsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllProductsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getAllProducts",
-		Params: &params,
-		Reader: &GetAllProductsReader{formats: a.formats},
+		ID:          "getAllProducts",
+		Method:      "GET",
+		PathPattern: "/products",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAllProductsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

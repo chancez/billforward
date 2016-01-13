@@ -4,6 +4,9 @@ package addresses
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *UpdateAddressReader) ReadResponse(response client.Response, consumer ht
 	switch response.Code() {
 
 	case 200:
-		var result UpdateAddressOK
+		result := NewUpdateAddressOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result UpdateAddressDefault
+		result := NewUpdateAddressDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("updateAddress default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewUpdateAddressOK creates a UpdateAddressOK with default headers values
+func NewUpdateAddressOK() *UpdateAddressOK {
+	return &UpdateAddressOK{}
+}
+
+/*UpdateAddressOK
+
 success
 */
 type UpdateAddressOK struct {
 	Payload *models.AddressPagedMetadata
+}
+
+func (o *UpdateAddressOK) Error() string {
+	return fmt.Sprintf("[PUT /addresses][%d] updateAddressOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAddressOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *UpdateAddressOK) readResponse(response client.Response, consumer httpki
 	o.Payload = new(models.AddressPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewUpdateAddressDefault creates a UpdateAddressDefault with default headers values
+func NewUpdateAddressDefault(code int) *UpdateAddressDefault {
+	return &UpdateAddressDefault{
+		_statusCode: code,
+	}
+}
+
+/*UpdateAddressDefault
+
 error
 */
 type UpdateAddressDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the update address default response
+func (o *UpdateAddressDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *UpdateAddressDefault) Error() string {
+	return fmt.Sprintf("[PUT /addresses][%d] updateAddress default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *UpdateAddressDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *UpdateAddressDefault) readResponse(response client.Response, consumer h
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

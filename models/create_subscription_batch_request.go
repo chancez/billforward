@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Entity for requesting that a batch of subscriptions be created.
+/*CreateSubscriptionBatchRequest Entity for requesting that a batch of subscriptions be created.
 
 swagger:model CreateSubscriptionBatchRequest
 */
@@ -20,7 +20,7 @@ type CreateSubscriptionBatchRequest struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -28,7 +28,7 @@ type CreateSubscriptionBatchRequest struct {
 
 	/* {"default":"(Auto-populated using your authentication credentials)","description":"ID of the BillForward Organization within which the requested Subscriptions should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* {"default":"(Empty list)","description":"List of entities for requesting that subscriptions be created.","verbs":["POST"]}
 	 */
@@ -40,6 +40,12 @@ func (m *CreateSubscriptionBatchRequest) Validate(formats strfmt.Registry) error
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateSubscriptions(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -61,13 +67,40 @@ func (m *CreateSubscriptionBatchRequest) validateBillingEntityEnum(path, locatio
 			createSubscriptionBatchRequestBillingEntityEnum = append(createSubscriptionBatchRequestBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, createSubscriptionBatchRequestBillingEntityEnum)
+	if err := validate.Enum(path, location, value, createSubscriptionBatchRequestBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *CreateSubscriptionBatchRequest) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *CreateSubscriptionBatchRequest) validateSubscriptions(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Subscriptions) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Subscriptions); i++ {
+
+		if m.Subscriptions[i] != nil {
+
+			if err := m.Subscriptions[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -11,15 +11,29 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-CreateSubscriptionParams contains all the parameters to send to the API endpoint
+// NewCreateSubscriptionParams creates a new CreateSubscriptionParams object
+// with the default values initialized.
+func NewCreateSubscriptionParams() *CreateSubscriptionParams {
+	var ()
+	return &CreateSubscriptionParams{}
+}
+
+/*CreateSubscriptionParams contains all the parameters to send to the API endpoint
 for the create subscription operation typically these are written to a http.Request
 */
 type CreateSubscriptionParams struct {
-	/*
+
+	/*Subscription
 	  The subscription object to be updated.
+
 	*/
 	Subscription *models.Subscription
+}
+
+// WithSubscription adds the subscription to the create subscription params
+func (o *CreateSubscriptionParams) WithSubscription(subscription *models.Subscription) *CreateSubscriptionParams {
+	o.Subscription = subscription
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

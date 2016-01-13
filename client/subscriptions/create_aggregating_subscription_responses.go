@@ -4,6 +4,9 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *CreateAggregatingSubscriptionReader) ReadResponse(response client.Respo
 	switch response.Code() {
 
 	case 200:
-		var result CreateAggregatingSubscriptionOK
+		result := NewCreateAggregatingSubscriptionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result CreateAggregatingSubscriptionDefault
+		result := NewCreateAggregatingSubscriptionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createAggregatingSubscription default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewCreateAggregatingSubscriptionOK creates a CreateAggregatingSubscriptionOK with default headers values
+func NewCreateAggregatingSubscriptionOK() *CreateAggregatingSubscriptionOK {
+	return &CreateAggregatingSubscriptionOK{}
+}
+
+/*CreateAggregatingSubscriptionOK
+
 success
 */
 type CreateAggregatingSubscriptionOK struct {
 	Payload *models.SubscriptionPagedMetadata
+}
+
+func (o *CreateAggregatingSubscriptionOK) Error() string {
+	return fmt.Sprintf("[POST /subscriptions/aggregating][%d] createAggregatingSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateAggregatingSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *CreateAggregatingSubscriptionOK) readResponse(response client.Response,
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateAggregatingSubscriptionDefault creates a CreateAggregatingSubscriptionDefault with default headers values
+func NewCreateAggregatingSubscriptionDefault(code int) *CreateAggregatingSubscriptionDefault {
+	return &CreateAggregatingSubscriptionDefault{
+		_statusCode: code,
+	}
+}
+
+/*CreateAggregatingSubscriptionDefault
+
 error
 */
 type CreateAggregatingSubscriptionDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the create aggregating subscription default response
+func (o *CreateAggregatingSubscriptionDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *CreateAggregatingSubscriptionDefault) Error() string {
+	return fmt.Sprintf("[POST /subscriptions/aggregating][%d] createAggregatingSubscription default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *CreateAggregatingSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *CreateAggregatingSubscriptionDefault) readResponse(response client.Resp
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

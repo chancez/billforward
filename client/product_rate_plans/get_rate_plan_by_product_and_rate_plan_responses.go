@@ -4,6 +4,9 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetRatePlanByProductAndRatePlanReader) ReadResponse(response client.Res
 	switch response.Code() {
 
 	case 200:
-		var result GetRatePlanByProductAndRatePlanOK
+		result := NewGetRatePlanByProductAndRatePlanOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetRatePlanByProductAndRatePlanDefault
+		result := NewGetRatePlanByProductAndRatePlanDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getRatePlanByProductAndRatePlan default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetRatePlanByProductAndRatePlanOK creates a GetRatePlanByProductAndRatePlanOK with default headers values
+func NewGetRatePlanByProductAndRatePlanOK() *GetRatePlanByProductAndRatePlanOK {
+	return &GetRatePlanByProductAndRatePlanOK{}
+}
+
+/*GetRatePlanByProductAndRatePlanOK
+
 success
 */
 type GetRatePlanByProductAndRatePlanOK struct {
 	Payload *models.ProductRatePlanPagedMetadata
+}
+
+func (o *GetRatePlanByProductAndRatePlanOK) Error() string {
+	return fmt.Sprintf("[GET /product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}][%d] getRatePlanByProductAndRatePlanOK  %+v", 200, o.Payload)
 }
 
 func (o *GetRatePlanByProductAndRatePlanOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetRatePlanByProductAndRatePlanOK) readResponse(response client.Respons
 	o.Payload = new(models.ProductRatePlanPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetRatePlanByProductAndRatePlanDefault creates a GetRatePlanByProductAndRatePlanDefault with default headers values
+func NewGetRatePlanByProductAndRatePlanDefault(code int) *GetRatePlanByProductAndRatePlanDefault {
+	return &GetRatePlanByProductAndRatePlanDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetRatePlanByProductAndRatePlanDefault
+
 error
 */
 type GetRatePlanByProductAndRatePlanDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get rate plan by product and rate plan default response
+func (o *GetRatePlanByProductAndRatePlanDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetRatePlanByProductAndRatePlanDefault) Error() string {
+	return fmt.Sprintf("[GET /product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}][%d] getRatePlanByProductAndRatePlan default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetRatePlanByProductAndRatePlanDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetRatePlanByProductAndRatePlanDefault) readResponse(response client.Re
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

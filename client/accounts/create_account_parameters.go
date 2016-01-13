@@ -11,15 +11,29 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-CreateAccountParams contains all the parameters to send to the API endpoint
+// NewCreateAccountParams creates a new CreateAccountParams object
+// with the default values initialized.
+func NewCreateAccountParams() *CreateAccountParams {
+	var ()
+	return &CreateAccountParams{}
+}
+
+/*CreateAccountParams contains all the parameters to send to the API endpoint
 for the create account operation typically these are written to a http.Request
 */
 type CreateAccountParams struct {
-	/*
+
+	/*Request
 	  The account object to be created.
+
 	*/
 	Request *models.CreateAccountRequest
+}
+
+// WithRequest adds the request to the create account params
+func (o *CreateAccountParams) WithRequest(request *models.CreateAccountRequest) *CreateAccountParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

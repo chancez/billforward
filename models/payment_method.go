@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-PaymentMethod
+/*PaymentMethod PaymentMethod
 
 swagger:model PaymentMethod
 */
@@ -32,7 +32,7 @@ type PaymentMethod struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* CardExpiry card expiry
 	 */
@@ -40,19 +40,19 @@ type PaymentMethod struct {
 
 	/* { "description" : "Name of the card holder", "verbs":["POST","PUT","GET"] }
 	 */
-	CardHolderName string `json:"cardHolderName,omitempty"`
+	CardHolderName *string `json:"cardHolderName,omitempty"`
 
 	/* { "description" : "Type of the card. In the case of card payment methods this is the payment type, for example VISA, MasterCard.", "verbs":["POST","GET"] }
 	 */
-	CardType string `json:"cardType,omitempty"`
+	CardType *string `json:"cardType,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* Country country
 	 */
-	Country string `json:"country,omitempty"`
+	Country *string `json:"country,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -60,19 +60,19 @@ type PaymentMethod struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* {"default" : "false", "description" : "Indicates if this is the default payment method for the account.", "verbs":["GET","POST","PUT"]  }
 	 */
-	DefaultPaymentMethod bool `json:"defaultPaymentMethod,omitempty"`
+	DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
 	/* {"default" : "false", "description" : "Indicates if a payment-method has been retired. If a payment-method has been retired it can still be retrieved using the appropriate flag on API requests. Generally payment-methods will be retired by customers wanting to remove the payment method from their account. Caution should be used when requested deleted payment methods.", "verbs":["GET"] }
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* { "description" : "Description of the payment-method.", "verbs":["POST","PUT","GET"] }
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* { "description" : "In the case of card payment methods this is the expiry date of the card, format should be MMYY including leading 0's. For example 0115 for January 2015.", "verbs":["POST","GET"] }
 
@@ -90,7 +90,7 @@ type PaymentMethod struct {
 
 	/* FirstSix first six
 	 */
-	FirstSix string `json:"firstSix,omitempty"`
+	FirstSix *string `json:"firstSix,omitempty"`
 
 	/* { "description" : "Gateway type for payment-method.", "verbs":["POST","GET"] }
 
@@ -100,19 +100,19 @@ type PaymentMethod struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* {"description":"IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddress string `json:"ipAddress,omitempty"`
+	IPAddress *string `json:"ipAddress,omitempty"`
 
 	/* {"description":"Country of the IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddressCountry string `json:"ipAddressCountry,omitempty"`
+	IPAddressCountry *string `json:"ipAddressCountry,omitempty"`
 
 	/* LastFour last four
 	 */
-	LastFour string `json:"lastFour,omitempty"`
+	LastFour *string `json:"lastFour,omitempty"`
 
 	/* LinkID link ID
 
@@ -128,15 +128,15 @@ type PaymentMethod struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* OrganizationID organization ID
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* Province province
 	 */
-	Province string `json:"province,omitempty"`
+	Province *string `json:"province,omitempty"`
 
 	/* { "description" : "State of the payment-method.", "verbs":["POST","GET"] }
 
@@ -154,34 +154,42 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccount(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateExpiryDate(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLinkID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -224,12 +232,19 @@ func (m *PaymentMethod) validateBillingEntityEnum(path, location string, value s
 			paymentMethodBillingEntityEnum = append(paymentMethodBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, paymentMethodBillingEntityEnum)
+	if err := validate.Enum(path, location, value, paymentMethodBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PaymentMethod) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -257,7 +272,10 @@ func (m *PaymentMethod) validateGatewayEnum(path, location string, value string)
 			paymentMethodGatewayEnum = append(paymentMethodGatewayEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, paymentMethodGatewayEnum)
+	if err := validate.Enum(path, location, value, paymentMethodGatewayEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
@@ -303,7 +321,10 @@ func (m *PaymentMethod) validateStateEnum(path, location string, value string) e
 			paymentMethodStateEnum = append(paymentMethodStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, paymentMethodStateEnum)
+	if err := validate.Enum(path, location, value, paymentMethodStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PaymentMethod) validateState(formats strfmt.Registry) error {

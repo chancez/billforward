@@ -10,14 +10,34 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetAccountByIDParams contains all the parameters to send to the API endpoint
+// NewGetAccountByIDParams creates a new GetAccountByIDParams object
+// with the default values initialized.
+func NewGetAccountByIDParams() *GetAccountByIDParams {
+	var ()
+	return &GetAccountByIDParams{}
+}
+
+/*GetAccountByIDParams contains all the parameters to send to the API endpoint
 for the get account by ID operation typically these are written to a http.Request
 */
 type GetAccountByIDParams struct {
-	AccountID string
 
+	/*AccountID*/
+	AccountID string
+	/*Organizations*/
 	Organizations []string
+}
+
+// WithAccountID adds the accountId to the get account by ID params
+func (o *GetAccountByIDParams) WithAccountID(accountId string) *GetAccountByIDParams {
+	o.AccountID = accountId
+	return o
+}
+
+// WithOrganizations adds the organizations to the get account by ID params
+func (o *GetAccountByIDParams) WithOrganizations(organizations []string) *GetAccountByIDParams {
+	o.Organizations = organizations
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -32,8 +52,9 @@ func (o *GetAccountByIDParams) WriteToRequest(r client.Request, reg strfmt.Regis
 
 	valuesOrganizations := o.Organizations
 
+	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
-	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
+	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
 	}
 

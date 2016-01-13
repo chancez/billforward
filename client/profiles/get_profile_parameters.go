@@ -10,19 +10,40 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetProfileParams contains all the parameters to send to the API endpoint
+// NewGetProfileParams creates a new GetProfileParams object
+// with the default values initialized.
+func NewGetProfileParams() *GetProfileParams {
+	var ()
+	return &GetProfileParams{}
+}
+
+/*GetProfileParams contains all the parameters to send to the API endpoint
 for the get profile operation typically these are written to a http.Request
 */
 type GetProfileParams struct {
-	/*
+
+	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
+
 	*/
 	Organizations []string
-	/*
+	/*ProfileID
 	  ID of the Profile.
+
 	*/
 	ProfileID string
+}
+
+// WithOrganizations adds the organizations to the get profile params
+func (o *GetProfileParams) WithOrganizations(organizations []string) *GetProfileParams {
+	o.Organizations = organizations
+	return o
+}
+
+// WithProfileID adds the profileId to the get profile params
+func (o *GetProfileParams) WithProfileID(profileId string) *GetProfileParams {
+	o.ProfileID = profileId
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -32,8 +53,9 @@ func (o *GetProfileParams) WriteToRequest(r client.Request, reg strfmt.Registry)
 
 	valuesOrganizations := o.Organizations
 
+	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
-	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
+	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
 	}
 

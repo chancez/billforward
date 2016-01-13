@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Billing entities are models in the BillForward system, of objects in the real-world or otherwise.
+/*BillingEntityBase Billing entities are models in the BillForward system, of objects in the real-world or otherwise.
 
 swagger:model BillingEntityBase
 */
@@ -20,7 +20,7 @@ type BillingEntityBase struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -40,11 +40,11 @@ type BillingEntityBase struct {
 
 	/* PasswordResetCode password reset code
 	 */
-	PasswordResetCode string `json:"passwordResetCode,omitempty"`
+	PasswordResetCode *string `json:"passwordResetCode,omitempty"`
 
 	/* PasswordResetSMSCode password reset s m s code
 	 */
-	PasswordResetSMSCode string `json:"passwordResetSMSCode,omitempty"`
+	PasswordResetSMSCode *string `json:"passwordResetSMSCode,omitempty"`
 
 	/* UserID user ID
 
@@ -58,18 +58,22 @@ func (m *BillingEntityBase) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNewPassword(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUserID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -91,12 +95,19 @@ func (m *BillingEntityBase) validateBillingEntityEnum(path, location string, val
 			billingEntityBaseBillingEntityEnum = append(billingEntityBaseBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, billingEntityBaseBillingEntityEnum)
+	if err := validate.Enum(path, location, value, billingEntityBaseBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *BillingEntityBase) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

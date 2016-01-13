@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-[Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
+/*AuthCaptureRequest [Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
 
 swagger:model AuthCaptureRequest
 */
@@ -20,19 +20,19 @@ type AuthCaptureRequest struct {
 
 	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
 	 */
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* {"description":"The name of the company of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	CompanyName string `json:"companyName,omitempty"`
+	CompanyName *string `json:"companyName,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -40,15 +40,15 @@ type AuthCaptureRequest struct {
 
 	/* {"default":false,"description":"Whether the PaymentMethod produced by this request should be elected as the 'default' payment method for the concerned BillForward Account. Whichever PaymentMethod is elected as an Account's default payment method, will be consulted whenever payment is demanded of that Account (i.e. upon the execution of any of the Account's invoices).","verbs":["POST"]}
 	 */
-	DefaultPaymentMethod bool `json:"defaultPaymentMethod,omitempty"`
+	DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
 	/* {"description":"The email address of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	Email string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty"`
 
 	/* {"description":"The first name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	FirstName string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName,omitempty"`
 
 	/* {"description":"The gateway with which your funding instrument has been vaulted.","verbs":["POST"]}
 
@@ -58,23 +58,23 @@ type AuthCaptureRequest struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* {"description":"The last name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	LastName string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName,omitempty"`
 
 	/* {"description":"The mobile phone number of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	Mobile string `json:"mobile,omitempty"`
+	Mobile *string `json:"mobile,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"description":"ID of the BillForward Organization within which the requested PaymentMethod should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 }
 
 // Validate validates this auth capture request
@@ -82,10 +82,12 @@ func (m *AuthCaptureRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateGateway(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -107,12 +109,19 @@ func (m *AuthCaptureRequest) validateBillingEntityEnum(path, location string, va
 			authCaptureRequestBillingEntityEnum = append(authCaptureRequestBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum)
+	if err := validate.Enum(path, location, value, authCaptureRequestBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *AuthCaptureRequest) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -131,7 +140,10 @@ func (m *AuthCaptureRequest) validateGatewayEnum(path, location string, value st
 			authCaptureRequestGatewayEnum = append(authCaptureRequestGatewayEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, authCaptureRequestGatewayEnum)
+	if err := validate.Enum(path, location, value, authCaptureRequestGatewayEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *AuthCaptureRequest) validateGateway(formats strfmt.Registry) error {

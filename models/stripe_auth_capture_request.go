@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-StripeAuthCaptureRequest stripe auth capture request
+/*StripeAuthCaptureRequest StripeAuthCaptureRequest stripe auth capture request
 
 swagger:model StripeAuthCaptureRequest
 */
@@ -19,7 +18,7 @@ type StripeAuthCaptureRequest struct {
 
 	/* {"description":"ID of the captured Card in Stripe. This can be provided as well as &mdash; or instead of &mdash; the one-use `stripeToken`, to lead BillForward to the card tokenized within the Stripe vault.","verbs":["POST"]}
 	 */
-	CardID string `json:"cardID,omitempty"`
+	CardID *string `json:"cardID,omitempty"`
 
 	/* {"description":"Single-use token <a href=\"https://stripe.com/docs/stripe.js\">provided by Stripe's client-side card capture SDK</a>, in response to your capturing a card into the Stripe vault. This token will be used by BillForward to find the tokenized card within the Stripe vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card.","verbs":["POST"]}
 

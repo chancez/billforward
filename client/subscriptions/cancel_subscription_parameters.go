@@ -11,16 +11,37 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-CancelSubscriptionParams contains all the parameters to send to the API endpoint
+// NewCancelSubscriptionParams creates a new CancelSubscriptionParams object
+// with the default values initialized.
+func NewCancelSubscriptionParams() *CancelSubscriptionParams {
+	var ()
+	return &CancelSubscriptionParams{}
+}
+
+/*CancelSubscriptionParams contains all the parameters to send to the API endpoint
 for the cancel subscription operation typically these are written to a http.Request
 */
 type CancelSubscriptionParams struct {
+
+	/*SubscriptionID*/
 	SubscriptionID string
-	/*
+	/*SubscriptionCancellation
 	  The cancellation request
+
 	*/
 	SubscriptionCancellation *models.MutableBillingEntity
+}
+
+// WithSubscriptionID adds the subscriptionId to the cancel subscription params
+func (o *CancelSubscriptionParams) WithSubscriptionID(subscriptionId string) *CancelSubscriptionParams {
+	o.SubscriptionID = subscriptionId
+	return o
+}
+
+// WithSubscriptionCancellation adds the subscriptionCancellation to the cancel subscription params
+func (o *CancelSubscriptionParams) WithSubscriptionCancellation(subscriptionCancellation *models.MutableBillingEntity) *CancelSubscriptionParams {
+	o.SubscriptionCancellation = subscriptionCancellation
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

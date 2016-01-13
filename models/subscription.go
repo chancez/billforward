@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Subscription
+/*Subscription Subscription
 
 swagger:model Subscription
 */
@@ -26,15 +26,15 @@ type Subscription struct {
 
 	/* {  "default":"true", "description":"Whether the subscription will aggregate all other subscriptions on the account.","verbs":["GET", "PUT", "POST"]}
 	 */
-	AggregateAllSubscriptionsOnAccount bool `json:"aggregateAllSubscriptionsOnAccount,omitempty"`
+	AggregateAllSubscriptionsOnAccount *bool `json:"aggregateAllSubscriptionsOnAccount,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* {"description":"start of the contracted period.  This will be after a trial, if one exists","verbs":["GET"]}
 	 */
@@ -46,11 +46,11 @@ type Subscription struct {
 
 	/* {  "default":"true", "description":"Can credit-notes be used to pay outstanding invoices for this subscription.","verbs":["GET", "PUT", "POST"]}
 	 */
-	CreditEnabled bool `json:"creditEnabled,omitempty"`
+	CreditEnabled *bool `json:"creditEnabled,omitempty"`
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* CurrentFixedTerm current fixed term
 	 */
@@ -84,11 +84,11 @@ type Subscription struct {
 
 	/* {"description":"","verbs":["POST","PUT","GET"]}
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* {  "default":"false", "description":"Are there outstanding invoices which are currently in dunning.","verbs":["GET", "PUT", "POST"]}
 	 */
-	Dunning bool `json:"dunning,omitempty"`
+	Dunning *bool `json:"dunning,omitempty"`
 
 	/* Fields fields
 	 */
@@ -96,7 +96,7 @@ type Subscription struct {
 
 	/* FixedTerm fixed term
 	 */
-	FixedTerm bool `json:"fixedTerm,omitempty"`
+	FixedTerm *bool `json:"fixedTerm,omitempty"`
 
 	/* List of fixed terms that have been or are applied to the subscription
 
@@ -118,11 +118,11 @@ type Subscription struct {
 
 	/* {"description":"If the subscription is locked, it will not be processed by the system","verbs":[]}
 	 */
-	Locked string `json:"locked,omitempty"`
+	Locked *string `json:"locked,omitempty"`
 
 	/* {"description":"Which system is responsible for managing the subscription.","verbs":[]}
 	 */
-	ManagedBy string `json:"managedBy,omitempty"`
+	ManagedBy *string `json:"managedBy,omitempty"`
 
 	/* MinutesElapsed minutes elapsed
 	 */
@@ -140,11 +140,11 @@ type Subscription struct {
 
 	/* NewSubscription new subscription
 	 */
-	NewSubscription bool `json:"newSubscription,omitempty"`
+	NewSubscription *bool `json:"newSubscription,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"description":"Organization associated with the subscription.","verbs":[]}
 
@@ -154,7 +154,7 @@ type Subscription struct {
 
 	/* {"description":"","verbs":["GET"]}
 	 */
-	ParentID string `json:"parentID,omitempty"`
+	ParentID *string `json:"parentID,omitempty"`
 
 	/* PaymentMethodSubscriptionLinks payment method subscription links
 	 */
@@ -182,7 +182,7 @@ type Subscription struct {
 
 	/* ShortID short ID
 	 */
-	ShortID string `json:"shortID,omitempty"`
+	ShortID *string `json:"shortID,omitempty"`
 
 	/* {"PUT_description":"A <span class=\"label label-default\">Provisioned</span> subscription can be updated to either <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>, this will start the subscription. Any updates to the state of a non-<span class=\"label label-default\">Provisioned</span> will be ignored. To cancel or otherwise amend a subscription please use the explict amendment calls.", "description":"A <span class=\"label label-default\">Provisioned</span> subscription will not begin until marked as <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>. Trial subscriptions transition to <span class=\"label label-default\">AwaitingPayment</span> when the trial period is over. On subscription renewal the state becomes <span class=\"label label-default\">AwaitingPayment</span>. Once outstanding invoices are paid the state changes to <span class=\"label label-default\">Paid</span>. A subscription is set as either <span class=\"label label-default\">Failed</span> or left as <span class=\"label label-default\">AwaitingPayment</span>, depending on the rate-plan configuration. If a subscription is non-recurring or fixed-term and ends naturally, it will be marked as <span class=\"label label-default\">Expired</span>. If all payment attempts have failed a subscription is marked as <span class=\"label label-default\">Cancelled</span> if it has been manually ended. Once a subscription is marked as <span class=\"label label-default\">Failed</span>, <span class=\"label label-default\">Expired</span>, or <span class=\"label label-default\">Cancelled</span> no invoices other than a final invoice will be issued. Note: Updating account card details will not lead to BillForward automatically retrying payment, manual payment attempts can be made.","verbs":["POST","PUT","GET"]}
 
@@ -208,7 +208,7 @@ type Subscription struct {
 
 	/* {"default":"dependent on product", "description":"","verbs":["POST","GET"]}
 	 */
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
 	 */
@@ -220,7 +220,7 @@ type Subscription struct {
 
 	/* {"description":"","verbs":["GET"]}
 	 */
-	VersionID string `json:"versionID,omitempty"`
+	VersionID *string `json:"versionID,omitempty"`
 
 	/* {"description":"Incremental version number of the subscription, starts at 1.","verbs":["GET"]}
 
@@ -240,62 +240,92 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrentTime(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFields(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFixedTerms(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInitialPeriodStart(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateManagedBy(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePaymentMethodSubscriptionLinks(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePricingComponentValues(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProductRatePlanID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionNumber(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionStart(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -326,12 +356,19 @@ func (m *Subscription) validateBillingEntityEnum(path, location string, value st
 			subscriptionBillingEntityEnum = append(subscriptionBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionBillingEntityEnum)
+	if err := validate.Enum(path, location, value, subscriptionBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -347,7 +384,35 @@ func (m *Subscription) validateCurrentTime(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Subscription) validateFields(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Fields) { // not required
+		return nil
+	}
+
+	if err := validate.Required("fields", "body", m.Fields); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Subscription) validateFixedTerms(formats strfmt.Registry) error {
+
+	if err := validate.Required("fixedTerms", "body", m.FixedTerms); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.FixedTerms); i++ {
+
+		if m.FixedTerms[i] != nil {
+
+			if err := m.FixedTerms[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	return nil
 }
@@ -382,12 +447,19 @@ func (m *Subscription) validateManagedByEnum(path, location string, value string
 			subscriptionManagedByEnum = append(subscriptionManagedByEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionManagedByEnum)
+	if err := validate.Enum(path, location, value, subscriptionManagedByEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateManagedBy(formats strfmt.Registry) error {
 
-	if err := m.validateManagedByEnum("managedBy", "body", m.ManagedBy); err != nil {
+	if swag.IsZero(m.ManagedBy) { // not required
+		return nil
+	}
+
+	if err := m.validateManagedByEnum("managedBy", "body", *m.ManagedBy); err != nil {
 		return err
 	}
 
@@ -407,6 +479,46 @@ func (m *Subscription) validateOrganizationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Subscription) validatePaymentMethodSubscriptionLinks(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PaymentMethodSubscriptionLinks) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PaymentMethodSubscriptionLinks); i++ {
+
+		if m.PaymentMethodSubscriptionLinks[i] != nil {
+
+			if err := m.PaymentMethodSubscriptionLinks[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Subscription) validatePricingComponentValues(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PricingComponentValues) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PricingComponentValues); i++ {
+
+		if m.PricingComponentValues[i] != nil {
+
+			if err := m.PricingComponentValues[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -442,7 +554,10 @@ func (m *Subscription) validateStateEnum(path, location string, value string) er
 			subscriptionStateEnum = append(subscriptionStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionStateEnum)
+	if err := validate.Enum(path, location, value, subscriptionStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateState(formats strfmt.Registry) error {
@@ -470,12 +585,19 @@ func (m *Subscription) validateTypeEnum(path, location string, value string) err
 			subscriptionTypeEnum = append(subscriptionTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, subscriptionTypeEnum)
+	if err := validate.Enum(path, location, value, subscriptionTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Subscription) validateType(formats strfmt.Registry) error {
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

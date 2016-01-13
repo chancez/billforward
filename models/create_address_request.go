@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-CreateAddressRequest
+/*CreateAddressRequest CreateAddressRequest
 
 swagger:model CreateAddressRequest
 */
@@ -24,11 +23,11 @@ type CreateAddressRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 string `json:"addressLine2,omitempty"`
+	AddressLine2 *string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 string `json:"addressLine3,omitempty"`
+	AddressLine3 *string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -44,7 +43,7 @@ type CreateAddressRequest struct {
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline string `json:"landline,omitempty"`
+	Landline *string `json:"landline,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 
@@ -54,7 +53,7 @@ type CreateAddressRequest struct {
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
-	PrimaryAddress bool `json:"primaryAddress,omitempty"`
+	PrimaryAddress *bool `json:"primaryAddress,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 
@@ -74,26 +73,32 @@ func (m *CreateAddressRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddressLine1(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCountry(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePostcode(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProfileID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProvince(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

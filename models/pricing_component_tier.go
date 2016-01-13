@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-PricingComponentTier
+/*PricingComponentTier PricingComponentTier
 
 swagger:model PricingComponentTier
 */
@@ -20,11 +20,11 @@ type PricingComponentTier struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "Version ID of the pricing-component associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
 
@@ -34,7 +34,7 @@ type PricingComponentTier struct {
 
 	/* { "description" : "ID of the pricing-component associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
 	 */
-	ConsistentPricingComponentID string `json:"consistentPricingComponentID,omitempty" xml:"pricingComponentID"`
+	ConsistentPricingComponentID *string `json:"consistentPricingComponentID,omitempty" xml:"pricingComponentID"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -42,15 +42,15 @@ type PricingComponentTier struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	CrmID string `json:"crmID,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* { "description" : "ID of the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "The lower threshold of the tier.", "verbs":["POST","PUT","GET"] }
 
@@ -60,23 +60,17 @@ type PricingComponentTier struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "Organization associated with the pricing-component-tier.", "verbs":[] }
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* { "description" : "Cost associated with tier. When the pricingType is fixed this is the total value. When pricingType is unit, this is the cost of each unit. ", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	Price float64 `json:"price,omitempty"`
-
-	/* { "description" : "The pricing-component associated with the tier.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	PricingComponent *PricingComponent `json:"pricingComponent,omitempty"`
 
 	/* { "description" : "Pricing calculation used to price items in this pricing tier. Unit pricing means every distinct value is used in the calculation. Fixed means that the total price of the tier is fixed regardless of the purchased amount.", "verbs":["POST","PUT","GET"] }
 
@@ -94,26 +88,27 @@ func (m *PricingComponentTier) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateComponentID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLowerThreshold(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrice(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePricingComponent(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePricingType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -135,12 +130,19 @@ func (m *PricingComponentTier) validateBillingEntityEnum(path, location string, 
 			pricingComponentTierBillingEntityEnum = append(pricingComponentTierBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, pricingComponentTierBillingEntityEnum)
+	if err := validate.Enum(path, location, value, pricingComponentTierBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PricingComponentTier) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -174,18 +176,6 @@ func (m *PricingComponentTier) validatePrice(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PricingComponentTier) validatePricingComponent(formats strfmt.Registry) error {
-
-	if m.PricingComponent != nil {
-
-		if err := m.PricingComponent.Validate(formats); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
 var pricingComponentTierPricingTypeEnum []interface{}
 
 func (m *PricingComponentTier) validatePricingTypeEnum(path, location string, value string) error {
@@ -198,7 +188,10 @@ func (m *PricingComponentTier) validatePricingTypeEnum(path, location string, va
 			pricingComponentTierPricingTypeEnum = append(pricingComponentTierPricingTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, pricingComponentTierPricingTypeEnum)
+	if err := validate.Enum(path, location, value, pricingComponentTierPricingTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PricingComponentTier) validatePricingType(formats strfmt.Registry) error {

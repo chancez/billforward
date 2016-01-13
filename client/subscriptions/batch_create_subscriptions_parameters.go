@@ -11,12 +11,26 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-BatchCreateSubscriptionsParams contains all the parameters to send to the API endpoint
+// NewBatchCreateSubscriptionsParams creates a new BatchCreateSubscriptionsParams object
+// with the default values initialized.
+func NewBatchCreateSubscriptionsParams() *BatchCreateSubscriptionsParams {
+	var ()
+	return &BatchCreateSubscriptionsParams{}
+}
+
+/*BatchCreateSubscriptionsParams contains all the parameters to send to the API endpoint
 for the batch create subscriptions operation typically these are written to a http.Request
 */
 type BatchCreateSubscriptionsParams struct {
+
+	/*Request*/
 	Request *models.CreateSubscriptionBatchRequest
+}
+
+// WithRequest adds the request to the batch create subscriptions params
+func (o *BatchCreateSubscriptionsParams) WithRequest(request *models.CreateSubscriptionBatchRequest) *BatchCreateSubscriptionsParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

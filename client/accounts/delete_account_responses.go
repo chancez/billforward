@@ -4,6 +4,9 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *DeleteAccountReader) ReadResponse(response client.Response, consumer ht
 	switch response.Code() {
 
 	case 200:
-		var result DeleteAccountOK
+		result := NewDeleteAccountOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result DeleteAccountDefault
+		result := NewDeleteAccountDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("deleteAccount default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewDeleteAccountOK creates a DeleteAccountOK with default headers values
+func NewDeleteAccountOK() *DeleteAccountOK {
+	return &DeleteAccountOK{}
+}
+
+/*DeleteAccountOK
+
 success
 */
 type DeleteAccountOK struct {
 	Payload *models.AccountPagedMetadata
+}
+
+func (o *DeleteAccountOK) Error() string {
+	return fmt.Sprintf("[DELETE /accounts/{account-ID}][%d] deleteAccountOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *DeleteAccountOK) readResponse(response client.Response, consumer httpki
 	o.Payload = new(models.AccountPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewDeleteAccountDefault creates a DeleteAccountDefault with default headers values
+func NewDeleteAccountDefault(code int) *DeleteAccountDefault {
+	return &DeleteAccountDefault{
+		_statusCode: code,
+	}
+}
+
+/*DeleteAccountDefault
+
 error
 */
 type DeleteAccountDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the delete account default response
+func (o *DeleteAccountDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *DeleteAccountDefault) Error() string {
+	return fmt.Sprintf("[DELETE /accounts/{account-ID}][%d] deleteAccount default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *DeleteAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *DeleteAccountDefault) readResponse(response client.Response, consumer h
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

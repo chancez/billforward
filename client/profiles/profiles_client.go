@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Retrieve an existing profile","response":"getProfileByID.html"}
 */
-func (a *Client) GetProfile(params GetProfileParams) (*GetProfileOK, error) {
+func (a *Client) GetProfile(params *GetProfileParams) (*GetProfileOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProfileParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getProfile",
-		Params: &params,
-		Reader: &GetProfileReader{formats: a.formats},
+		ID:          "getProfile",
+		Method:      "GET",
+		PathPattern: "/profiles/{profile-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetProfileReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) GetProfile(params GetProfileParams) (*GetProfileOK, error) {
 
 {"nickname":"Update a profile","request":"updateProfileRequest.html","response":"updateProfileResponse.html"}
 */
-func (a *Client) UpdateProfile(params UpdateProfileParams) (*UpdateProfileOK, error) {
+func (a *Client) UpdateProfile(params *UpdateProfileParams) (*UpdateProfileOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateProfileParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "updateProfile",
-		Params: &params,
-		Reader: &UpdateProfileReader{formats: a.formats},
+		ID:          "updateProfile",
+		Method:      "PUT",
+		PathPattern: "/profiles",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpdateProfileReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

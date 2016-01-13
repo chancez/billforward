@@ -4,6 +4,9 @@ package profiles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetProfileReader) ReadResponse(response client.Response, consumer httpk
 	switch response.Code() {
 
 	case 200:
-		var result GetProfileOK
+		result := NewGetProfileOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetProfileDefault
+		result := NewGetProfileDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getProfile default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetProfileOK creates a GetProfileOK with default headers values
+func NewGetProfileOK() *GetProfileOK {
+	return &GetProfileOK{}
+}
+
+/*GetProfileOK
+
 success
 */
 type GetProfileOK struct {
 	Payload *models.ProfilePagedMetadata
+}
+
+func (o *GetProfileOK) Error() string {
+	return fmt.Sprintf("[GET /profiles/{profile-ID}][%d] getProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *GetProfileOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetProfileOK) readResponse(response client.Response, consumer httpkit.C
 	o.Payload = new(models.ProfilePagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetProfileDefault creates a GetProfileDefault with default headers values
+func NewGetProfileDefault(code int) *GetProfileDefault {
+	return &GetProfileDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetProfileDefault
+
 error
 */
 type GetProfileDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get profile default response
+func (o *GetProfileDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetProfileDefault) Error() string {
+	return fmt.Sprintf("[GET /profiles/{profile-ID}][%d] getProfile default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetProfileDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetProfileDefault) readResponse(response client.Response, consumer http
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-PaymentMethodSubscriptionLink
+/*PaymentMethodSubscriptionLink PaymentMethodSubscriptionLink
 
 swagger:model PaymentMethodSubscriptionLink
 */
@@ -20,11 +20,11 @@ type PaymentMethodSubscriptionLink struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -32,23 +32,23 @@ type PaymentMethodSubscriptionLink struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* Deleted deleted
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* OrganizationID organization ID
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* PaymentMethod payment method
 	 */
@@ -82,18 +82,22 @@ func (m *PaymentMethodSubscriptionLink) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePaymentMethodID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscription(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -115,12 +119,19 @@ func (m *PaymentMethodSubscriptionLink) validateBillingEntityEnum(path, location
 			paymentMethodSubscriptionLinkBillingEntityEnum = append(paymentMethodSubscriptionLinkBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, paymentMethodSubscriptionLinkBillingEntityEnum)
+	if err := validate.Enum(path, location, value, paymentMethodSubscriptionLinkBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *PaymentMethodSubscriptionLink) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

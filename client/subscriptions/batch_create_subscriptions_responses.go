@@ -4,6 +4,9 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *BatchCreateSubscriptionsReader) ReadResponse(response client.Response, 
 	switch response.Code() {
 
 	case 200:
-		var result BatchCreateSubscriptionsOK
+		result := NewBatchCreateSubscriptionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result BatchCreateSubscriptionsDefault
+		result := NewBatchCreateSubscriptionsDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("batchCreateSubscriptions default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewBatchCreateSubscriptionsOK creates a BatchCreateSubscriptionsOK with default headers values
+func NewBatchCreateSubscriptionsOK() *BatchCreateSubscriptionsOK {
+	return &BatchCreateSubscriptionsOK{}
+}
+
+/*BatchCreateSubscriptionsOK
+
 success
 */
 type BatchCreateSubscriptionsOK struct {
 	Payload *models.SubscriptionPagedMetadata
+}
+
+func (o *BatchCreateSubscriptionsOK) Error() string {
+	return fmt.Sprintf("[POST /subscriptions/batch][%d] batchCreateSubscriptionsOK  %+v", 200, o.Payload)
 }
 
 func (o *BatchCreateSubscriptionsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *BatchCreateSubscriptionsOK) readResponse(response client.Response, cons
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewBatchCreateSubscriptionsDefault creates a BatchCreateSubscriptionsDefault with default headers values
+func NewBatchCreateSubscriptionsDefault(code int) *BatchCreateSubscriptionsDefault {
+	return &BatchCreateSubscriptionsDefault{
+		_statusCode: code,
+	}
+}
+
+/*BatchCreateSubscriptionsDefault
+
 error
 */
 type BatchCreateSubscriptionsDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the batch create subscriptions default response
+func (o *BatchCreateSubscriptionsDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *BatchCreateSubscriptionsDefault) Error() string {
+	return fmt.Sprintf("[POST /subscriptions/batch][%d] batchCreateSubscriptions default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *BatchCreateSubscriptionsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *BatchCreateSubscriptionsDefault) readResponse(response client.Response,
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -4,6 +4,9 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *GetSubscriptionByAccountIDReader) ReadResponse(response client.Response
 	switch response.Code() {
 
 	case 200:
-		var result GetSubscriptionByAccountIDOK
+		result := NewGetSubscriptionByAccountIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result GetSubscriptionByAccountIDDefault
+		result := NewGetSubscriptionByAccountIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("getSubscriptionByAccountID default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewGetSubscriptionByAccountIDOK creates a GetSubscriptionByAccountIDOK with default headers values
+func NewGetSubscriptionByAccountIDOK() *GetSubscriptionByAccountIDOK {
+	return &GetSubscriptionByAccountIDOK{}
+}
+
+/*GetSubscriptionByAccountIDOK
+
 success
 */
 type GetSubscriptionByAccountIDOK struct {
 	Payload *models.SubscriptionPagedMetadata
+}
+
+func (o *GetSubscriptionByAccountIDOK) Error() string {
+	return fmt.Sprintf("[GET /subscriptions/account/{account-ID}][%d] getSubscriptionByAccountIdOK  %+v", 200, o.Payload)
 }
 
 func (o *GetSubscriptionByAccountIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *GetSubscriptionByAccountIDOK) readResponse(response client.Response, co
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewGetSubscriptionByAccountIDDefault creates a GetSubscriptionByAccountIDDefault with default headers values
+func NewGetSubscriptionByAccountIDDefault(code int) *GetSubscriptionByAccountIDDefault {
+	return &GetSubscriptionByAccountIDDefault{
+		_statusCode: code,
+	}
+}
+
+/*GetSubscriptionByAccountIDDefault
+
 error
 */
 type GetSubscriptionByAccountIDDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the get subscription by account ID default response
+func (o *GetSubscriptionByAccountIDDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *GetSubscriptionByAccountIDDefault) Error() string {
+	return fmt.Sprintf("[GET /subscriptions/account/{account-ID}][%d] getSubscriptionByAccountID default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *GetSubscriptionByAccountIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *GetSubscriptionByAccountIDDefault) readResponse(response client.Respons
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

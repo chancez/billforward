@@ -11,12 +11,26 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-CreateAggregatingSubscriptionParams contains all the parameters to send to the API endpoint
+// NewCreateAggregatingSubscriptionParams creates a new CreateAggregatingSubscriptionParams object
+// with the default values initialized.
+func NewCreateAggregatingSubscriptionParams() *CreateAggregatingSubscriptionParams {
+	var ()
+	return &CreateAggregatingSubscriptionParams{}
+}
+
+/*CreateAggregatingSubscriptionParams contains all the parameters to send to the API endpoint
 for the create aggregating subscription operation typically these are written to a http.Request
 */
 type CreateAggregatingSubscriptionParams struct {
+
+	/*Request*/
 	Request *models.CreateAggregatingSubscriptionRequest
+}
+
+// WithRequest adds the request to the create aggregating subscription params
+func (o *CreateAggregatingSubscriptionParams) WithRequest(request *models.CreateAggregatingSubscriptionRequest) *CreateAggregatingSubscriptionParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

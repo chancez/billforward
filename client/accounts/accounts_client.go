@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Create a new account","response":"createAccountResponse.html","request":"createAccountRequest.html"}
 */
-func (a *Client) CreateAccount(params CreateAccountParams) (*CreateAccountOK, error) {
+func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateAccountParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "createAccount",
-		Params: &params,
-		Reader: &CreateAccountReader{formats: a.formats},
+		ID:          "createAccount",
+		Method:      "POST",
+		PathPattern: "/accounts",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) CreateAccount(params CreateAccountParams) (*CreateAccountOK, er
 
 {"nickname":"Retire","response":"deleteAccount.html"}
 */
-func (a *Client) DeleteAccount(params DeleteAccountParams) (*DeleteAccountOK, error) {
+func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAccountParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "deleteAccount",
-		Params: &params,
-		Reader: &DeleteAccountReader{formats: a.formats},
+		ID:          "deleteAccount",
+		Method:      "DELETE",
+		PathPattern: "/accounts/{account-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -63,13 +75,19 @@ func (a *Client) DeleteAccount(params DeleteAccountParams) (*DeleteAccountOK, er
 
 {"nickname":"Retrieve an existing account","response":"getAccountByID.html"}
 */
-func (a *Client) GetAccountByID(params GetAccountByIDParams) (*GetAccountByIDOK, error) {
+func (a *Client) GetAccountByID(params *GetAccountByIDParams) (*GetAccountByIDOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAccountByIDParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getAccountByID",
-		Params: &params,
-		Reader: &GetAccountByIDReader{formats: a.formats},
+		ID:          "getAccountByID",
+		Method:      "GET",
+		PathPattern: "/accounts/{account-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAccountByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -81,13 +99,19 @@ func (a *Client) GetAccountByID(params GetAccountByIDParams) (*GetAccountByIDOK,
 
 {"nickname":"Get all accounts","response":"getAccountAll.html"}
 */
-func (a *Client) GetAllAccounts(params GetAllAccountsParams) (*GetAllAccountsOK, error) {
+func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllAccountsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getAllAccounts",
-		Params: &params,
-		Reader: &GetAllAccountsReader{formats: a.formats},
+		ID:          "getAllAccounts",
+		Method:      "GET",
+		PathPattern: "/accounts",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetAllAccountsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

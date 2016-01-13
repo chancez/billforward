@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-An invoice encapsulates the cumulative charges of a subscription's pricing-components and their respective pricing-component-values for a specific period of time.
+/*Invoice An invoice encapsulates the cumulative charges of a subscription's pricing-components and their respective pricing-component-values for a specific period of time.
 
 swagger:model Invoice
 */
@@ -26,11 +26,11 @@ type Invoice struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* Charges charges
 	 */
@@ -58,11 +58,11 @@ type Invoice struct {
 
 	/* { "description" : "The amount of credit to be returned to the pool excluding tax.", "verbs":["GET"] }
 	 */
-	CreditRolledOverExcludingTax float64 `json:"creditRolledOverExcludingTax,omitempty"`
+	CreditRolledOverExcludingTax *float64 `json:"creditRolledOverExcludingTax,omitempty"`
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* { "description" : "Currency of the invoice specified by a three character ISO 4217 currency code.", "verbs":["GET"] }
 
@@ -78,15 +78,15 @@ type Invoice struct {
 
 	/* { "description" : "The description of the invoice", "verbs":[] }
 	 */
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 
 	/* { "description" : "The amount of discounts for the invoice.", "verbs":["GET"] }
 	 */
-	DiscountAmount float64 `json:"discountAmount,omitempty"`
+	DiscountAmount *float64 `json:"discountAmount,omitempty"`
 
 	/* { "description" : "The amount of discounts for the invoice excluding tax.", "verbs":["GET"] }
 	 */
-	DiscountAmountExcludingTax float64 `json:"discountAmountExcludingTax,omitempty"`
+	DiscountAmountExcludingTax *float64 `json:"discountAmountExcludingTax,omitempty"`
 
 	/* Fields fields
 	 */
@@ -98,7 +98,7 @@ type Invoice struct {
 
 	/* { "description" : "ID of the invoice.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "Is this an initial invoice. An initial invoice is the first invoice generated for a subscription. Initial invoices will not have dunning applied to them and as such will only have a single payment attempt. For trial periods, the trial invoice is the initial invoice.", "verbs":["GET"] }
 
@@ -118,7 +118,7 @@ type Invoice struct {
 
 	/* { "description" : "Total amount of the invoice currently paid for. As the invoice may be paid by multiple payments, for example partly paid for by a voucher and then paid for by a card, this indicates the current paid amount of the invoice.", "verbs":["GET"] }
 	 */
-	InvoicePaid float64 `json:"invoicePaid,omitempty"`
+	InvoicePaid *float64 `json:"invoicePaid,omitempty"`
 
 	/* { "description" : "Payments used for this invoice. Multiple payments may be associated with the invoice.", "verbs":["GET"] }
 	 */
@@ -126,7 +126,7 @@ type Invoice struct {
 
 	/* { "description" : "Total amount of the invoice refunded.", "verbs":["GET"] }
 	 */
-	InvoiceRefunded float64 `json:"invoiceRefunded,omitempty"`
+	InvoiceRefunded *float64 `json:"invoiceRefunded,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the invoice was first issued.", "verbs":["GET"] }
 	 */
@@ -138,15 +138,15 @@ type Invoice struct {
 
 	/* { "description" : "If the subscription is locked, it will not be processed by the system", "verbs":[] }
 	 */
-	Locked string `json:"locked,omitempty"`
+	Locked *string `json:"locked,omitempty"`
 
 	/* { "description" : "Which system is responsible for managing the subscription.", "verbs":[] }
 	 */
-	ManagedBy string `json:"managedBy,omitempty"`
+	ManagedBy *string `json:"managedBy,omitempty"`
 
 	/* { "description" : "The name of the invoice", "verbs":[] }
 	 */
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 
 	/* { "description" : "UTC DateTime of the invoice's next execution attempt. If the next execution attempt is greater than the period end for this invoice, the invoice will not receive another automatic execution attempt.", "verbs":["GET"] }
 	 */
@@ -166,7 +166,7 @@ type Invoice struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 
@@ -176,7 +176,7 @@ type Invoice struct {
 
 	/* Paid paid
 	 */
-	Paid bool `json:"paid,omitempty"`
+	Paid *bool `json:"paid,omitempty"`
 
 	/* Parent parent
 	 */
@@ -184,7 +184,7 @@ type Invoice struct {
 
 	/* { "description" : "", "verbs":[] }
 	 */
-	ParentInvoiceID string `json:"parentInvoiceID,omitempty"`
+	ParentInvoiceID *string `json:"parentInvoiceID,omitempty"`
 
 	/* { "description" : "UTC DateTime specifying when payment was received for the invoice.", "verbs":["GET"] }
 	 */
@@ -200,7 +200,7 @@ type Invoice struct {
 
 	/* ShortID short ID
 	 */
-	ShortID string `json:"shortID,omitempty"`
+	ShortID *string `json:"shortID,omitempty"`
 
 	/* { "description" : "Initially an invoice is set as unpaid. Once payment for the full value of the invoice has been received it is marked as paid. An invoice may be paid from various sources including cards, coupons or manual payments.", "verbs":["GET"] }
 
@@ -210,7 +210,7 @@ type Invoice struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 
@@ -224,7 +224,7 @@ type Invoice struct {
 
 	/* TotalDiscountAmount total discount amount
 	 */
-	TotalDiscountAmount float64 `json:"totalDiscountAmount,omitempty"`
+	TotalDiscountAmount *float64 `json:"totalDiscountAmount,omitempty"`
 
 	/* { "description" : "Number of payment attempts for this invoice. This includes any manual execution attempts.", "verbs":["GET"] }
 	 */
@@ -232,15 +232,15 @@ type Invoice struct {
 
 	/* TotalInvoiceCost total invoice cost
 	 */
-	TotalInvoiceCost float64 `json:"totalInvoiceCost,omitempty"`
+	TotalInvoiceCost *float64 `json:"totalInvoiceCost,omitempty"`
 
 	/* TotalNominalPaid total nominal paid
 	 */
-	TotalNominalPaid float64 `json:"totalNominalPaid,omitempty"`
+	TotalNominalPaid *float64 `json:"totalNominalPaid,omitempty"`
 
 	/* TotalNominalUnpaid total nominal unpaid
 	 */
-	TotalNominalUnpaid float64 `json:"totalNominalUnpaid,omitempty"`
+	TotalNominalUnpaid *float64 `json:"totalNominalUnpaid,omitempty"`
 
 	/* { "description" : "The type of the invoice. A subscription invoice is raised every time a subscription recurs. An amendment is created for intra-contract changes. An Adhoc invoice is created for payment that is taken out-of-band of a subscription. Finally the invoice generated for a trial period is marked as Trial.", "verbs":["GET"] }
 
@@ -254,7 +254,7 @@ type Invoice struct {
 
 	/* { "description" : "Version identifier of the invoice.", "verbs":["GET"] }
 	 */
-	VersionID string `json:"versionID,omitempty"`
+	VersionID *string `json:"versionID,omitempty"`
 
 	/* { "description" : "The version number of the Invoice.  The first version of an Invoice is version number 1", "verbs":["GET"] }
 
@@ -264,7 +264,7 @@ type Invoice struct {
 
 	/* ZeroCost zero cost
 	 */
-	ZeroCost bool `json:"zeroCost,omitempty"`
+	ZeroCost *bool `json:"zeroCost,omitempty"`
 }
 
 // Validate validates this invoice
@@ -272,66 +272,112 @@ func (m *Invoice) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateCharges(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateChildren(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCostExcludingTax(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreditRolledOver(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFields(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInitialInvoice(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoiceCost(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInvoiceLines(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInvoicePayments(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateManagedBy(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNonDiscountedCost(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNonDiscountedCostExcludingTax(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSubscriptionVersionID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTaxLines(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVersionNumber(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -362,13 +408,60 @@ func (m *Invoice) validateBillingEntityEnum(path, location string, value string)
 			invoiceBillingEntityEnum = append(invoiceBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoiceBillingEntityEnum)
+	if err := validate.Enum(path, location, value, invoiceBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Invoice) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Invoice) validateCharges(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Charges) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Charges); i++ {
+
+		if m.Charges[i] != nil {
+
+			if err := m.Charges[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Invoice) validateChildren(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Children) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Children); i++ {
+
+		if m.Children[i] != nil {
+
+			if err := m.Children[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -410,6 +503,19 @@ func (m *Invoice) validateDeleted(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Invoice) validateFields(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Fields) { // not required
+		return nil
+	}
+
+	if err := validate.Required("fields", "body", m.Fields); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Invoice) validateInitialInvoice(formats strfmt.Registry) error {
 
 	if err := validate.Required("initialInvoice", "body", bool(m.InitialInvoice)); err != nil {
@@ -428,6 +534,46 @@ func (m *Invoice) validateInvoiceCost(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Invoice) validateInvoiceLines(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InvoiceLines) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.InvoiceLines); i++ {
+
+		if m.InvoiceLines[i] != nil {
+
+			if err := m.InvoiceLines[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Invoice) validateInvoicePayments(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InvoicePayments) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.InvoicePayments); i++ {
+
+		if m.InvoicePayments[i] != nil {
+
+			if err := m.InvoicePayments[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 var invoiceManagedByEnum []interface{}
 
 func (m *Invoice) validateManagedByEnum(path, location string, value string) error {
@@ -440,12 +586,19 @@ func (m *Invoice) validateManagedByEnum(path, location string, value string) err
 			invoiceManagedByEnum = append(invoiceManagedByEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoiceManagedByEnum)
+	if err := validate.Enum(path, location, value, invoiceManagedByEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Invoice) validateManagedBy(formats strfmt.Registry) error {
 
-	if err := m.validateManagedByEnum("managedBy", "body", m.ManagedBy); err != nil {
+	if swag.IsZero(m.ManagedBy) { // not required
+		return nil
+	}
+
+	if err := m.validateManagedByEnum("managedBy", "body", *m.ManagedBy); err != nil {
 		return err
 	}
 
@@ -491,7 +644,10 @@ func (m *Invoice) validateStateEnum(path, location string, value string) error {
 			invoiceStateEnum = append(invoiceStateEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoiceStateEnum)
+	if err := validate.Enum(path, location, value, invoiceStateEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Invoice) validateState(formats strfmt.Registry) error {
@@ -516,6 +672,26 @@ func (m *Invoice) validateSubscriptionVersionID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Invoice) validateTaxLines(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TaxLines) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.TaxLines); i++ {
+
+		if m.TaxLines[i] != nil {
+
+			if err := m.TaxLines[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 var invoiceTypeEnum []interface{}
 
 func (m *Invoice) validateTypeEnum(path, location string, value string) error {
@@ -528,7 +704,10 @@ func (m *Invoice) validateTypeEnum(path, location string, value string) error {
 			invoiceTypeEnum = append(invoiceTypeEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, invoiceTypeEnum)
+	if err := validate.Enum(path, location, value, invoiceTypeEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Invoice) validateType(formats strfmt.Registry) error {

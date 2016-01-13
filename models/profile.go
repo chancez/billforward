@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Profile
+/*Profile Profile
 
 swagger:model Profile
 */
@@ -30,7 +30,7 @@ type Profile struct {
 
 	/* { "description" : "Any additional information", "verbs":["POST","PUT","GET"] }
 	 */
-	AdditionalInformation string `json:"additionalInformation,omitempty"`
+	AdditionalInformation *string `json:"additionalInformation,omitempty"`
 
 	/* { "description" : "Address associated with the profile", "verbs":["POST","PUT","GET"] }
 	 */
@@ -38,15 +38,15 @@ type Profile struct {
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	CompanyName string `json:"companyName,omitempty"`
+	CompanyName *string `json:"companyName,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -64,7 +64,7 @@ type Profile struct {
 
 	/* { "description" : "Fax number", "verbs":["POST","PUT","GET"] }
 	 */
-	Fax string `json:"fax,omitempty"`
+	Fax *string `json:"fax,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -74,11 +74,11 @@ type Profile struct {
 
 	/* { "description" : "ID of the profile.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline string `json:"landline,omitempty"`
+	Landline *string `json:"landline,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -88,15 +88,15 @@ type Profile struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	LogoURL string `json:"logoURL,omitempty"`
+	LogoURL *string `json:"logoURL,omitempty"`
 
 	/* { "description" : "Mobile telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Mobile string `json:"mobile,omitempty"`
+	Mobile *string `json:"mobile,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 
@@ -110,7 +110,7 @@ type Profile struct {
 
 	/* { "description" : "VAT number", "verbs":["POST","PUT","GET"] }
 	 */
-	VatNumber string `json:"vatNumber,omitempty"`
+	VatNumber *string `json:"vatNumber,omitempty"`
 }
 
 // Validate validates this profile
@@ -118,26 +118,37 @@ func (m *Profile) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateAddresses(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateEmail(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFirstName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -156,6 +167,26 @@ func (m *Profile) validateAccountID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Profile) validateAddresses(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Addresses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Addresses); i++ {
+
+		if m.Addresses[i] != nil {
+
+			if err := m.Addresses[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 var profileBillingEntityEnum []interface{}
 
 func (m *Profile) validateBillingEntityEnum(path, location string, value string) error {
@@ -168,12 +199,19 @@ func (m *Profile) validateBillingEntityEnum(path, location string, value string)
 			profileBillingEntityEnum = append(profileBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, profileBillingEntityEnum)
+	if err := validate.Enum(path, location, value, profileBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Profile) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

@@ -4,6 +4,9 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *CreateAccountReader) ReadResponse(response client.Response, consumer ht
 	switch response.Code() {
 
 	case 200:
-		var result CreateAccountOK
+		result := NewCreateAccountOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result CreateAccountDefault
+		result := NewCreateAccountDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createAccount default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewCreateAccountOK creates a CreateAccountOK with default headers values
+func NewCreateAccountOK() *CreateAccountOK {
+	return &CreateAccountOK{}
+}
+
+/*CreateAccountOK
+
 success
 */
 type CreateAccountOK struct {
 	Payload *models.AccountPagedMetadata
+}
+
+func (o *CreateAccountOK) Error() string {
+	return fmt.Sprintf("[POST /accounts][%d] createAccountOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *CreateAccountOK) readResponse(response client.Response, consumer httpki
 	o.Payload = new(models.AccountPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateAccountDefault creates a CreateAccountDefault with default headers values
+func NewCreateAccountDefault(code int) *CreateAccountDefault {
+	return &CreateAccountDefault{
+		_statusCode: code,
+	}
+}
+
+/*CreateAccountDefault
+
 error
 */
 type CreateAccountDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the create account default response
+func (o *CreateAccountDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *CreateAccountDefault) Error() string {
+	return fmt.Sprintf("[POST /accounts][%d] createAccount default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *CreateAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *CreateAccountDefault) readResponse(response client.Response, consumer h
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

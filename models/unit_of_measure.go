@@ -9,8 +9,7 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*
-UnitOfMeasure unit of measure
+/*UnitOfMeasure UnitOfMeasure unit of measure
 
 swagger:model UnitOfMeasure
 */
@@ -18,7 +17,7 @@ type UnitOfMeasure struct {
 
 	/* Deleted deleted
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* DisplayedAs displayed as
 
@@ -28,7 +27,7 @@ type UnitOfMeasure struct {
 
 	/* ID id
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* Name name
 
@@ -38,11 +37,11 @@ type UnitOfMeasure struct {
 
 	/* OrganizationID organization ID
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* Rounding rounding
 	 */
-	Rounding string `json:"rounding,omitempty"`
+	Rounding *string `json:"rounding,omitempty"`
 }
 
 // Validate validates this unit of measure
@@ -50,10 +49,12 @@ func (m *UnitOfMeasure) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDisplayedAs(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 

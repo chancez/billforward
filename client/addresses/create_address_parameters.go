@@ -11,15 +11,29 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
-/*
-CreateAddressParams contains all the parameters to send to the API endpoint
+// NewCreateAddressParams creates a new CreateAddressParams object
+// with the default values initialized.
+func NewCreateAddressParams() *CreateAddressParams {
+	var ()
+	return &CreateAddressParams{}
+}
+
+/*CreateAddressParams contains all the parameters to send to the API endpoint
 for the create address operation typically these are written to a http.Request
 */
 type CreateAddressParams struct {
-	/*
+
+	/*Request
 	  The address object to be created.
+
 	*/
 	Request *models.CreateAddressRequest
+}
+
+// WithRequest adds the request to the create address params
+func (o *CreateAddressParams) WithRequest(request *models.CreateAddressRequest) *CreateAddressParams {
+	o.Request = request
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request

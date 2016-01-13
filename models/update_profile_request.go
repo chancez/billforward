@@ -7,10 +7,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-UpdateProfileRequest
+/*UpdateProfileRequest UpdateProfileRequest
 
 swagger:model UpdateProfileRequest
 */
@@ -52,7 +52,7 @@ type UpdateProfileRequest struct {
 
 	/* ID id
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
@@ -84,6 +84,12 @@ func (m *UpdateProfileRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateAddresses(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -97,6 +103,26 @@ func (m *UpdateProfileRequest) validateAccountID(formats strfmt.Registry) error 
 
 	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateProfileRequest) validateAddresses(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Addresses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Addresses); i++ {
+
+		if m.Addresses[i] != nil {
+
+			if err := m.Addresses[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil

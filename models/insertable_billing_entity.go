@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Insertable entities are those entities that can be created.
+/*InsertableBillingEntity Insertable entities are those entities that can be created.
 
 swagger:model InsertableBillingEntity
 */
@@ -32,15 +32,15 @@ type InsertableBillingEntity struct {
 
 	/* Authority authority
 	 */
-	Authority string `json:"authority,omitempty"`
+	Authority *string `json:"authority,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -48,11 +48,11 @@ type InsertableBillingEntity struct {
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "The accountID associated with the authority.", "verbs":["POST","PUT","GET"] }
 
@@ -72,22 +72,27 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccount(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateAccountID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRole(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -130,12 +135,19 @@ func (m *InsertableBillingEntity) validateBillingEntityEnum(path, location strin
 			insertableBillingEntityBillingEntityEnum = append(insertableBillingEntityBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, insertableBillingEntityBillingEntityEnum)
+	if err := validate.Enum(path, location, value, insertableBillingEntityBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *InsertableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

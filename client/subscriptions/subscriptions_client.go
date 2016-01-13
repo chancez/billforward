@@ -27,13 +27,19 @@ type Client struct {
 
 {"nickname":"Create multiple subscriptions","response":"createMultipleSubscriptionViaHelper.html","request":"createMultipleSubscriptionViaHelper.request.html"}
 */
-func (a *Client) BatchCreateSubscriptions(params BatchCreateSubscriptionsParams) (*BatchCreateSubscriptionsOK, error) {
+func (a *Client) BatchCreateSubscriptions(params *BatchCreateSubscriptionsParams) (*BatchCreateSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBatchCreateSubscriptionsParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "batchCreateSubscriptions",
-		Params: &params,
-		Reader: &BatchCreateSubscriptionsReader{formats: a.formats},
+		ID:          "batchCreateSubscriptions",
+		Method:      "POST",
+		PathPattern: "/subscriptions/batch",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &BatchCreateSubscriptionsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -45,13 +51,19 @@ func (a *Client) BatchCreateSubscriptions(params BatchCreateSubscriptionsParams)
 
 {"nickname":"Cancel subscription","response":"deleteSubscription.html","request":"deleteSubscriptionRequest.html"}
 */
-func (a *Client) CancelSubscription(params CancelSubscriptionParams) (*CancelSubscriptionOK, error) {
+func (a *Client) CancelSubscription(params *CancelSubscriptionParams) (*CancelSubscriptionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCancelSubscriptionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "cancelSubscription",
-		Params: &params,
-		Reader: &CancelSubscriptionReader{formats: a.formats},
+		ID:          "cancelSubscription",
+		Method:      "POST",
+		PathPattern: "/subscriptions/{subscription-ID}/cancel",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CancelSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -63,13 +75,19 @@ func (a *Client) CancelSubscription(params CancelSubscriptionParams) (*CancelSub
 
 {"nickname":"Create aggregating subscription","response":"createAggregatingSubscription.html","request":"createAggregatingSubscription.request.html"}
 */
-func (a *Client) CreateAggregatingSubscription(params CreateAggregatingSubscriptionParams) (*CreateAggregatingSubscriptionOK, error) {
+func (a *Client) CreateAggregatingSubscription(params *CreateAggregatingSubscriptionParams) (*CreateAggregatingSubscriptionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateAggregatingSubscriptionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "createAggregatingSubscription",
-		Params: &params,
-		Reader: &CreateAggregatingSubscriptionReader{formats: a.formats},
+		ID:          "createAggregatingSubscription",
+		Method:      "POST",
+		PathPattern: "/subscriptions/aggregating",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateAggregatingSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -81,13 +99,19 @@ func (a *Client) CreateAggregatingSubscription(params CreateAggregatingSubscript
 
 {"nickname":"Create a new subscription","request":"createSubscriptionRequest.html","response":"createSubscriptionResponse.html"}
 */
-func (a *Client) CreateSubscription(params CreateSubscriptionParams) (*CreateSubscriptionOK, error) {
+func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSubscriptionOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSubscriptionParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "createSubscription",
-		Params: &params,
-		Reader: &CreateSubscriptionReader{formats: a.formats},
+		ID:          "createSubscription",
+		Method:      "POST",
+		PathPattern: "/subscriptions",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &CreateSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -99,13 +123,19 @@ func (a *Client) CreateSubscription(params CreateSubscriptionParams) (*CreateSub
 
 {"nickname":"Retrieve by account","response":"getSubscriptionByAccount.html"}
 */
-func (a *Client) GetSubscriptionByAccountID(params GetSubscriptionByAccountIDParams) (*GetSubscriptionByAccountIDOK, error) {
+func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDParams) (*GetSubscriptionByAccountIDOK, error) {
 	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSubscriptionByAccountIDParams()
+	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:     "getSubscriptionByAccountID",
-		Params: &params,
-		Reader: &GetSubscriptionByAccountIDReader{formats: a.formats},
+		ID:          "getSubscriptionByAccountID",
+		Method:      "GET",
+		PathPattern: "/subscriptions/account/{account-ID}",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetSubscriptionByAccountIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

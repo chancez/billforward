@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Address
+/*Address Address
 
 swagger:model Address
 */
@@ -26,19 +26,19 @@ type Address struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 string `json:"addressLine2,omitempty"`
+	AddressLine2 *string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 string `json:"addressLine3,omitempty"`
+	AddressLine3 *string `json:"addressLine3,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -58,23 +58,23 @@ type Address struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* { "description" : "ID of the address.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline string `json:"landline,omitempty"`
+	Landline *string `json:"landline,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 
@@ -84,7 +84,7 @@ type Address struct {
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
-	PrimaryAddress bool `json:"primaryAddress,omitempty"`
+	PrimaryAddress *bool `json:"primaryAddress,omitempty"`
 
 	/* Profile profile
 	 */
@@ -92,7 +92,7 @@ type Address struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	ProfileID string `json:"profileID,omitempty"`
+	ProfileID *string `json:"profileID,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -110,26 +110,32 @@ func (m *Address) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddressLine1(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCountry(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePostcode(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProvince(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -160,12 +166,19 @@ func (m *Address) validateBillingEntityEnum(path, location string, value string)
 			addressBillingEntityEnum = append(addressBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, addressBillingEntityEnum)
+	if err := validate.Enum(path, location, value, addressBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Address) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

@@ -10,39 +10,105 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-GetInvoicesByAccountIDParams contains all the parameters to send to the API endpoint
+// NewGetInvoicesByAccountIDParams creates a new GetInvoicesByAccountIDParams object
+// with the default values initialized.
+func NewGetInvoicesByAccountIDParams() *GetInvoicesByAccountIDParams {
+	var (
+		includeRetiredDefault bool   = bool(true)
+		orderDefault          string = string("DESC")
+		orderByDefault        string = string("created")
+		recordsDefault        int32  = int32(10)
+	)
+	return &GetInvoicesByAccountIDParams{
+		IncludeRetired: &includeRetiredDefault,
+		Order:          &orderDefault,
+		OrderBy:        &orderByDefault,
+		Records:        &recordsDefault,
+	}
+}
+
+/*GetInvoicesByAccountIDParams contains all the parameters to send to the API endpoint
 for the get invoices by account ID operation typically these are written to a http.Request
 */
 type GetInvoicesByAccountIDParams struct {
-	/*
+
+	/*AccountID
 	  ID of the account.
+
 	*/
 	AccountID string
-	/*
+	/*IncludeRetired
 	  Whether retired products should be returned.
+
 	*/
-	IncludeRetired bool
-	/*
+	IncludeRetired *bool
+	/*Offset
 	  The offset from the first invoice to return.
+
 	*/
-	Offset int32
-	/*
+	Offset *int32
+	/*Order
 	  Ihe direction of any ordering, either ASC or DESC.
+
 	*/
-	Order string
-	/*
+	Order *string
+	/*OrderBy
 	  Specify a field used to order the result set.
+
 	*/
-	OrderBy string
-	/*
+	OrderBy *string
+	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
+
 	*/
 	Organizations []string
-	/*
+	/*Records
 	  The maximum number of invoices to return.
+
 	*/
-	Records int32
+	Records *int32
+}
+
+// WithAccountID adds the accountId to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithAccountID(accountId string) *GetInvoicesByAccountIDParams {
+	o.AccountID = accountId
+	return o
+}
+
+// WithIncludeRetired adds the includeRetired to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithIncludeRetired(includeRetired *bool) *GetInvoicesByAccountIDParams {
+	o.IncludeRetired = includeRetired
+	return o
+}
+
+// WithOffset adds the offset to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithOffset(offset *int32) *GetInvoicesByAccountIDParams {
+	o.Offset = offset
+	return o
+}
+
+// WithOrder adds the order to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithOrder(order *string) *GetInvoicesByAccountIDParams {
+	o.Order = order
+	return o
+}
+
+// WithOrderBy adds the orderBy to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithOrderBy(orderBy *string) *GetInvoicesByAccountIDParams {
+	o.OrderBy = orderBy
+	return o
+}
+
+// WithOrganizations adds the organizations to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithOrganizations(organizations []string) *GetInvoicesByAccountIDParams {
+	o.Organizations = organizations
+	return o
+}
+
+// WithRecords adds the records to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithRecords(records *int32) *GetInvoicesByAccountIDParams {
+	o.Records = records
+	return o
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -55,36 +121,92 @@ func (o *GetInvoicesByAccountIDParams) WriteToRequest(r client.Request, reg strf
 		return err
 	}
 
-	// query param include_retired
-	if err := r.SetQueryParam("include_retired", swag.FormatBool(o.IncludeRetired)); err != nil {
-		return err
+	if o.IncludeRetired != nil {
+
+		// query param include_retired
+		var qrIncludeRetired bool
+		if o.IncludeRetired != nil {
+			qrIncludeRetired = *o.IncludeRetired
+		}
+		qIncludeRetired := swag.FormatBool(qrIncludeRetired)
+		if qIncludeRetired != "" {
+			if err := r.SetQueryParam("include_retired", qIncludeRetired); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param offset
-	if err := r.SetQueryParam("offset", swag.FormatInt32(o.Offset)); err != nil {
-		return err
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param order
-	if err := r.SetQueryParam("order", o.Order); err != nil {
-		return err
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	// query param order_by
-	if err := r.SetQueryParam("order_by", o.OrderBy); err != nil {
-		return err
+	if o.OrderBy != nil {
+
+		// query param order_by
+		var qrOrderBy string
+		if o.OrderBy != nil {
+			qrOrderBy = *o.OrderBy
+		}
+		qOrderBy := qrOrderBy
+		if qOrderBy != "" {
+			if err := r.SetQueryParam("order_by", qOrderBy); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	valuesOrganizations := o.Organizations
 
+	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
-	if err := r.SetQueryParam("organizations", swag.JoinByFormat(valuesOrganizations, "multi")...); err != nil {
+	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
 	}
 
-	// query param records
-	if err := r.SetQueryParam("records", swag.FormatInt32(o.Records)); err != nil {
-		return err
+	if o.Records != nil {
+
+		// query param records
+		var qrRecords int32
+		if o.Records != nil {
+			qrRecords = *o.Records
+		}
+		qRecords := swag.FormatInt32(qrRecords)
+		if qRecords != "" {
+			if err := r.SetQueryParam("records", qRecords); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

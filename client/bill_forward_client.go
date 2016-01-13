@@ -6,7 +6,6 @@ package client
 import (
 	"github.com/go-swagger/go-swagger/client"
 	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
-	"github.com/go-swagger/go-swagger/spec"
 	"github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/authclub/billforward/client/accounts"
@@ -18,20 +17,16 @@ import (
 	"github.com/authclub/billforward/client/subscriptions"
 )
 
-// The Default bill forward HTTP client.
+// Default bill forward HTTP client.
 var Default = NewHTTPClient(nil)
 
 // NewHTTPClient creates a new bill forward HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *BillForward {
-	swaggerSpec, err := spec.New(SwaggerJSON, "")
-	if err != nil {
-		// the swagger spec is valid because it was used to generated this code.
-		panic(err)
-	}
 	if formats == nil {
 		formats = strfmt.Default
 	}
-	return New(httptransport.New(swaggerSpec), formats)
+	transport := httptransport.New("localhost:8080", "/", []string{"https"})
+	return New(transport, formats)
 }
 
 // New creates a new bill forward client

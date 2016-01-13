@@ -4,6 +4,9 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/go-swagger/go-swagger/client"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/strfmt"
@@ -19,26 +22,36 @@ func (o *CreateSubscriptionReader) ReadResponse(response client.Response, consum
 	switch response.Code() {
 
 	case 200:
-		var result CreateSubscriptionOK
+		result := NewCreateSubscriptionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return &result, nil
+		return result, nil
 
 	default:
-		var result CreateSubscriptionDefault
+		result := NewCreateSubscriptionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
-		return nil, NewAPIError("createSubscription default", &result, response.Code())
+		return nil, result
 	}
 }
 
-/*
+// NewCreateSubscriptionOK creates a CreateSubscriptionOK with default headers values
+func NewCreateSubscriptionOK() *CreateSubscriptionOK {
+	return &CreateSubscriptionOK{}
+}
+
+/*CreateSubscriptionOK
+
 success
 */
 type CreateSubscriptionOK struct {
 	Payload *models.SubscriptionPagedMetadata
+}
+
+func (o *CreateSubscriptionOK) Error() string {
+	return fmt.Sprintf("[POST /subscriptions][%d] createSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -46,18 +59,37 @@ func (o *CreateSubscriptionOK) readResponse(response client.Response, consumer h
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
 	return nil
 }
 
-/*
+// NewCreateSubscriptionDefault creates a CreateSubscriptionDefault with default headers values
+func NewCreateSubscriptionDefault(code int) *CreateSubscriptionDefault {
+	return &CreateSubscriptionDefault{
+		_statusCode: code,
+	}
+}
+
+/*CreateSubscriptionDefault
+
 error
 */
 type CreateSubscriptionDefault struct {
+	_statusCode int
+
 	Payload *models.BFError
+}
+
+// Code gets the status code for the create subscription default response
+func (o *CreateSubscriptionDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *CreateSubscriptionDefault) Error() string {
+	return fmt.Sprintf("[POST /subscriptions][%d] createSubscription default  %+v", o._statusCode, o.Payload)
 }
 
 func (o *CreateSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
@@ -65,7 +97,7 @@ func (o *CreateSubscriptionDefault) readResponse(response client.Response, consu
 	o.Payload = new(models.BFError)
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

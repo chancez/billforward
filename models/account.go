@@ -9,10 +9,10 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*
-Account
+/*Account Account
 
 swagger:model Account
 */
@@ -20,19 +20,19 @@ type Account struct {
 
 	/* { "description" : "If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.", "verbs":[] }
 	 */
-	AggregatingProductRatePlanID string `json:"aggregatingProductRatePlanID,omitempty"`
+	AggregatingProductRatePlanID *string `json:"aggregatingProductRatePlanID,omitempty"`
 
 	/* { "description" : "The consistent ID of the account level aggregating subscription, if one exists.", "verbs":[] }
 	 */
-	AggregatingSubscriptionID string `json:"aggregatingSubscriptionID,omitempty"`
+	AggregatingSubscriptionID *string `json:"aggregatingSubscriptionID,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
-	BillingEntity string `json:"billingEntity,omitempty"`
+	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy string `json:"changedBy,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -40,11 +40,11 @@ type Account struct {
 
 	/* Crmid crmid
 	 */
-	Crmid string `json:"crmid,omitempty"`
+	Crmid *string `json:"crmid,omitempty"`
 
 	/* {  "default" : "false",  "description" : "Indicates if an account has been retired. If an account has been retired it can still be retrieved using the appropriate flag on API requests.", "verbs":["GET"] }
 	 */
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted *bool `json:"deleted,omitempty"`
 
 	/* { "description" : "ID of the account.", "verbs":["POST","PUT","GET"] }
 
@@ -54,7 +54,7 @@ type Account struct {
 
 	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph string `json:"notificationObjectGraph,omitempty"`
+	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 
@@ -86,7 +86,7 @@ type Account struct {
 
 	/* { "description" : "User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.", "verbs":[] }
 	 */
-	UserID string `json:"userID,omitempty"`
+	UserID *string `json:"userID,omitempty"`
 }
 
 // Validate validates this account
@@ -94,18 +94,27 @@ func (m *Account) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBillingEntity(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePaymentMethods(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRoles(formats); err != nil {
+		// prop
 		res = append(res, err)
 	}
 
@@ -127,12 +136,19 @@ func (m *Account) validateBillingEntityEnum(path, location string, value string)
 			accountBillingEntityEnum = append(accountBillingEntityEnum, v)
 		}
 	}
-	return validate.Enum(path, location, value, accountBillingEntityEnum)
+	if err := validate.Enum(path, location, value, accountBillingEntityEnum); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *Account) validateBillingEntity(formats strfmt.Registry) error {
 
-	if err := m.validateBillingEntityEnum("billingEntity", "body", m.BillingEntity); err != nil {
+	if swag.IsZero(m.BillingEntity) { // not required
+		return nil
+	}
+
+	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -157,7 +173,42 @@ func (m *Account) validateOrganizationID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Account) validatePaymentMethods(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PaymentMethods) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PaymentMethods); i++ {
+
+		if m.PaymentMethods[i] != nil {
+
+			if err := m.PaymentMethods[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Account) validateRoles(formats strfmt.Registry) error {
+
+	if err := validate.Required("roles", "body", m.Roles); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Roles); i++ {
+
+		if m.Roles[i] != nil {
+
+			if err := m.Roles[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	return nil
 }
