@@ -112,6 +112,10 @@ type Invoice struct {
 	*/
 	InvoiceCost float64 `json:"invoiceCost,omitempty"`
 
+	/* { "description" : "Credit Notes associated with this invoice. Multiple credit notes may be associated with the invoice.", "verbs":["GET"] }
+	 */
+	InvoiceCreditNotes []*CreditNote `json:"invoiceCreditNotes,omitempty"`
+
 	/* { "description" : "The collection of invoice-lines associated with the invoice.", "verbs":["GET"] }
 	 */
 	InvoiceLines []*InvoiceLine `json:"invoiceLines,omitempty"`
@@ -127,6 +131,10 @@ type Invoice struct {
 	/* { "description" : "Total amount of the invoice refunded.", "verbs":["GET"] }
 	 */
 	InvoiceRefunded *float64 `json:"invoiceRefunded,omitempty"`
+
+	/* { "description" : "Refunds associated with this invoice. Multiple refunds may be associated with the invoice.", "verbs":["GET"] }
+	 */
+	InvoiceRefunds []*Refund `json:"invoiceRefunds,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the invoice was first issued.", "verbs":["GET"] }
 	 */
@@ -326,12 +334,22 @@ func (m *Invoice) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateInvoiceCreditNotes(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateInvoiceLines(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInvoicePayments(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInvoiceRefunds(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -534,6 +552,26 @@ func (m *Invoice) validateInvoiceCost(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Invoice) validateInvoiceCreditNotes(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InvoiceCreditNotes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.InvoiceCreditNotes); i++ {
+
+		if m.InvoiceCreditNotes[i] != nil {
+
+			if err := m.InvoiceCreditNotes[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Invoice) validateInvoiceLines(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.InvoiceLines) { // not required
@@ -565,6 +603,26 @@ func (m *Invoice) validateInvoicePayments(formats strfmt.Registry) error {
 		if m.InvoicePayments[i] != nil {
 
 			if err := m.InvoicePayments[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Invoice) validateInvoiceRefunds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InvoiceRefunds) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.InvoiceRefunds); i++ {
+
+		if m.InvoiceRefunds[i] != nil {
+
+			if err := m.InvoiceRefunds[i].Validate(formats); err != nil {
 				return err
 			}
 		}

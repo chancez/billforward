@@ -52,6 +52,10 @@ type Account struct {
 	*/
 	ID string `json:"id,omitempty"`
 
+	/* { "description" : "Add metadata.", "verbs":["POST"] }
+	 */
+	Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+
 	/* NotificationObjectGraph notification object graph
 	 */
 	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`

@@ -48,9 +48,9 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M PricingComponent \
     -M PricingComponentTier \
     -M PricingComponentValue \
-    -M FlatPricingComponent \
-    -M TieredPricingComponent \
-    -M TieredVolumePricingComponent \
+    -M flatPricingComponent \
+    -M tieredPricingComponent \
+    -M tieredVolumePricingComponent \
     -M CreateSubscriptionBatchRequest \
     -M CreateAggregatingComponentRequest \
     -M CreateAggregatingSubscriptionRequest \
@@ -72,5 +72,15 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M InvoicePayment \
     -M SubscriptionCharge \
     -M UnitOfMeasure \
+    -M CreditNote \
+    -M Organization \
+    -M Alias \
+    -M Client \
+    -M GrantedAuthority \
+    -M Refund \
+    -M Receipt \
+    -M Payment \
+    -M DunningLine \
+    -M JaxbDynamicMetadata \
     -M Notification
 

@@ -18,21 +18,11 @@ swagger:model InsertableBillingEntity
 */
 type InsertableBillingEntity struct {
 
-	/* { "description" : "The account object associated with the notification.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "The amount of tax.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Account *Account `json:"account,omitempty"`
-
-	/* { "description" : "The accountID associated with the authority.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	AccountID string `json:"accountID,omitempty"`
-
-	/* Authority authority
-	 */
-	Authority *string `json:"authority,omitempty"`
+	Amount float64 `json:"amount,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
@@ -46,37 +36,56 @@ type InsertableBillingEntity struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* { "description" : "ID of the tax-line.", "verbs":["POST","PUT","GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
+
+	/* { "description" : "The invoice associated with the tax-line.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	Invoice *Invoice `json:"invoice,omitempty"`
+
+	/* { "description" : "ID of the invoice associated with the tax-line.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	InvoiceID string `json:"invoiceID,omitempty"`
+
+	/* { "description" : "The human readable name of the tax-line.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	Name string `json:"name,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
 	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
-	/* { "description" : "The accountID associated with the authority.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "Organization associated with the  Tax Line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* { "description" : "The role granted to the authority.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "The percentage of tax.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Role string `json:"role,omitempty"`
+	Percentage float64 `json:"percentage,omitempty"`
+
+	/* { "description" : "The consistent ID of the taxation-strategy associated with the tax-line.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	TaxationStrategyID string `json:"taxationStrategyID,omitempty"`
 }
 
 // Validate validates this insertable billing entity
 func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccount(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateAccountID(formats); err != nil {
+	if err := m.validateAmount(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -86,12 +95,32 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateInvoice(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInvoiceID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateOrganizationID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateRole(formats); err != nil {
+	if err := m.validatePercentage(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTaxationStrategyID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -102,21 +131,9 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InsertableBillingEntity) validateAccount(formats strfmt.Registry) error {
+func (m *InsertableBillingEntity) validateAmount(formats strfmt.Registry) error {
 
-	if m.Account != nil {
-
-		if err := m.Account.Validate(formats); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InsertableBillingEntity) validateAccountID(formats strfmt.Registry) error {
-
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.Required("amount", "body", float64(m.Amount)); err != nil {
 		return err
 	}
 
@@ -154,6 +171,36 @@ func (m *InsertableBillingEntity) validateBillingEntity(formats strfmt.Registry)
 	return nil
 }
 
+func (m *InsertableBillingEntity) validateInvoice(formats strfmt.Registry) error {
+
+	if m.Invoice != nil {
+
+		if err := m.Invoice.Validate(formats); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateInvoiceID(formats strfmt.Registry) error {
+
+	if err := validate.Required("invoiceID", "body", string(m.InvoiceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
 	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
@@ -163,9 +210,18 @@ func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry
 	return nil
 }
 
-func (m *InsertableBillingEntity) validateRole(formats strfmt.Registry) error {
+func (m *InsertableBillingEntity) validatePercentage(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", string(m.Role)); err != nil {
+	if err := validate.Required("percentage", "body", float64(m.Percentage)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateTaxationStrategyID(formats strfmt.Registry) error {
+
+	if err := validate.Required("taxationStrategyID", "body", string(m.TaxationStrategyID)); err != nil {
 		return err
 	}
 

@@ -26,31 +26,27 @@ type BillingEntityBase struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* NewPassword new password
-
-	Required: true
-	*/
-	NewPassword string `json:"newPassword,omitempty"`
-
-	/* OrganizationID organization ID
-
-	Required: true
-	*/
-	OrganizationID string `json:"organizationID,omitempty"`
-
-	/* PasswordResetCode password reset code
+	/* { "default" : "false", "description" : "If set this role will become the default role for the organization. Any accounts without an explicitly set role will have this applied.", "verbs":["GET","POST","PUT"] }
 	 */
-	PasswordResetCode *string `json:"passwordResetCode,omitempty"`
+	DefaultRole *bool `json:"defaultRole,omitempty"`
 
-	/* PasswordResetSMSCode password reset s m s code
+	/* { "description" : "Friendly description of the role.", "verbs":["GET","POST","PUT"] }
 	 */
-	PasswordResetSMSCode *string `json:"passwordResetSMSCode,omitempty"`
+	Description *string `json:"description,omitempty"`
 
-	/* UserID user ID
+	/* { "description" : "Friendly name of the role.", "verbs":["GET","POST","PUT"] }
 
 	Required: true
 	*/
-	UserID string `json:"userID,omitempty"`
+	Name string `json:"name,omitempty"`
+
+	/* { "description" : "", "verbs":[""] }
+	 */
+	OrganizationID *string `json:"organizationID,omitempty"`
+
+	/* { "description" : "List of permissions to add to this role.", "verbs":["GET","POST","PUT"] }
+	 */
+	Permissions []*BillingEntityBase `json:"permissions,omitempty"`
 }
 
 // Validate validates this billing entity base
@@ -62,17 +58,12 @@ func (m *BillingEntityBase) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateNewPassword(formats); err != nil {
+	if err := m.validateName(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateOrganizationID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateUserID(formats); err != nil {
+	if err := m.validatePermissions(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -114,28 +105,30 @@ func (m *BillingEntityBase) validateBillingEntity(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *BillingEntityBase) validateNewPassword(formats strfmt.Registry) error {
+func (m *BillingEntityBase) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("newPassword", "body", string(m.NewPassword)); err != nil {
+	if err := validate.Required("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *BillingEntityBase) validateOrganizationID(formats strfmt.Registry) error {
+func (m *BillingEntityBase) validatePermissions(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
-		return err
+	if swag.IsZero(m.Permissions) { // not required
+		return nil
 	}
 
-	return nil
-}
+	for i := 0; i < len(m.Permissions); i++ {
 
-func (m *BillingEntityBase) validateUserID(formats strfmt.Registry) error {
+		if m.Permissions[i] != nil {
 
-	if err := validate.Required("userID", "body", string(m.UserID)); err != nil {
-		return err
+			if err := m.Permissions[i].Validate(formats); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	return nil

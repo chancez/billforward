@@ -13,8 +13,20 @@ import (
 // NewGetInvoiceAsPDFParams creates a new GetInvoiceAsPDFParams object
 // with the default values initialized.
 func NewGetInvoiceAsPDFParams() *GetInvoiceAsPDFParams {
-	var ()
-	return &GetInvoiceAsPDFParams{}
+	var (
+		orderDefault                     string = string("DESC")
+		orderByDefault                   string = string("created")
+		recordsDefault                   int32  = int32(10)
+		showPlanOnlyWhenAmbiguousDefault bool   = bool(true)
+		showZeroCostDefault              bool   = bool(true)
+	)
+	return &GetInvoiceAsPDFParams{
+		Order:                     &orderDefault,
+		OrderBy:                   &orderByDefault,
+		Records:                   &recordsDefault,
+		ShowPlanOnlyWhenAmbiguous: &showPlanOnlyWhenAmbiguousDefault,
+		ShowZeroCost:              &showZeroCostDefault,
+	}
 }
 
 /*GetInvoiceAsPDFParams contains all the parameters to send to the API endpoint
@@ -27,11 +39,51 @@ type GetInvoiceAsPDFParams struct {
 
 	*/
 	ID string
+	/*IncludeRetired
+	  Whether retired products should be returned.
+
+	*/
+	IncludeRetired *bool
+	/*InclusiveEnd
+	  Whether to present in the Invoice date range only those dates whose entirety are involved in the billing period. In other words: when true, this subtracts 1 from the "period end" date shown to the customer.
+
+	*/
+	InclusiveEnd *bool
+	/*Offset
+	  The offset from the first invoice to return.
+
+	*/
+	Offset *int32
+	/*Order
+	  Ihe direction of any ordering, either ASC or DESC.
+
+	*/
+	Order *string
+	/*OrderBy
+	  Specify a field used to order the result set.
+
+	*/
+	OrderBy *string
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
 	*/
 	Organizations []string
+	/*Records
+	  The maximum number of invoices to return.
+
+	*/
+	Records *int32
+	/*ShowPlanOnlyWhenAmbiguous
+	  Whether to state which plan the Invoice lines came from, regardless of whether there's only one plan involved in this Invoice.
+
+	*/
+	ShowPlanOnlyWhenAmbiguous *bool
+	/*ShowZeroCost
+	  Whether to show zero-cost lines.
+
+	*/
+	ShowZeroCost *bool
 	/*TierBreakdown
 	  Whether to provide a breakdown of charge tiering.
 
@@ -45,9 +97,57 @@ func (o *GetInvoiceAsPDFParams) WithID(id string) *GetInvoiceAsPDFParams {
 	return o
 }
 
+// WithIncludeRetired adds the includeRetired to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithIncludeRetired(includeRetired *bool) *GetInvoiceAsPDFParams {
+	o.IncludeRetired = includeRetired
+	return o
+}
+
+// WithInclusiveEnd adds the inclusiveEnd to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithInclusiveEnd(inclusiveEnd *bool) *GetInvoiceAsPDFParams {
+	o.InclusiveEnd = inclusiveEnd
+	return o
+}
+
+// WithOffset adds the offset to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithOffset(offset *int32) *GetInvoiceAsPDFParams {
+	o.Offset = offset
+	return o
+}
+
+// WithOrder adds the order to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithOrder(order *string) *GetInvoiceAsPDFParams {
+	o.Order = order
+	return o
+}
+
+// WithOrderBy adds the orderBy to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithOrderBy(orderBy *string) *GetInvoiceAsPDFParams {
+	o.OrderBy = orderBy
+	return o
+}
+
 // WithOrganizations adds the organizations to the get invoice as p d f params
 func (o *GetInvoiceAsPDFParams) WithOrganizations(organizations []string) *GetInvoiceAsPDFParams {
 	o.Organizations = organizations
+	return o
+}
+
+// WithRecords adds the records to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithRecords(records *int32) *GetInvoiceAsPDFParams {
+	o.Records = records
+	return o
+}
+
+// WithShowPlanOnlyWhenAmbiguous adds the showPlanOnlyWhenAmbiguous to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithShowPlanOnlyWhenAmbiguous(showPlanOnlyWhenAmbiguous *bool) *GetInvoiceAsPDFParams {
+	o.ShowPlanOnlyWhenAmbiguous = showPlanOnlyWhenAmbiguous
+	return o
+}
+
+// WithShowZeroCost adds the showZeroCost to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithShowZeroCost(showZeroCost *bool) *GetInvoiceAsPDFParams {
+	o.ShowZeroCost = showZeroCost
 	return o
 }
 
@@ -67,12 +167,140 @@ func (o *GetInvoiceAsPDFParams) WriteToRequest(r client.Request, reg strfmt.Regi
 		return err
 	}
 
+	if o.IncludeRetired != nil {
+
+		// query param include_retired
+		var qrIncludeRetired bool
+		if o.IncludeRetired != nil {
+			qrIncludeRetired = *o.IncludeRetired
+		}
+		qIncludeRetired := swag.FormatBool(qrIncludeRetired)
+		if qIncludeRetired != "" {
+			if err := r.SetQueryParam("include_retired", qIncludeRetired); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.InclusiveEnd != nil {
+
+		// query param inclusive_end
+		var qrInclusiveEnd bool
+		if o.InclusiveEnd != nil {
+			qrInclusiveEnd = *o.InclusiveEnd
+		}
+		qInclusiveEnd := swag.FormatBool(qrInclusiveEnd)
+		if qInclusiveEnd != "" {
+			if err := r.SetQueryParam("inclusive_end", qInclusiveEnd); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.OrderBy != nil {
+
+		// query param order_by
+		var qrOrderBy string
+		if o.OrderBy != nil {
+			qrOrderBy = *o.OrderBy
+		}
+		qOrderBy := qrOrderBy
+		if qOrderBy != "" {
+			if err := r.SetQueryParam("order_by", qOrderBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	valuesOrganizations := o.Organizations
 
 	joinedOrganizations := swag.JoinByFormat(valuesOrganizations, "multi")
 	// query array param organizations
 	if err := r.SetQueryParam("organizations", joinedOrganizations...); err != nil {
 		return err
+	}
+
+	if o.Records != nil {
+
+		// query param records
+		var qrRecords int32
+		if o.Records != nil {
+			qrRecords = *o.Records
+		}
+		qRecords := swag.FormatInt32(qrRecords)
+		if qRecords != "" {
+			if err := r.SetQueryParam("records", qRecords); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ShowPlanOnlyWhenAmbiguous != nil {
+
+		// query param show_plan_only_when_ambiguous
+		var qrShowPlanOnlyWhenAmbiguous bool
+		if o.ShowPlanOnlyWhenAmbiguous != nil {
+			qrShowPlanOnlyWhenAmbiguous = *o.ShowPlanOnlyWhenAmbiguous
+		}
+		qShowPlanOnlyWhenAmbiguous := swag.FormatBool(qrShowPlanOnlyWhenAmbiguous)
+		if qShowPlanOnlyWhenAmbiguous != "" {
+			if err := r.SetQueryParam("show_plan_only_when_ambiguous", qShowPlanOnlyWhenAmbiguous); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ShowZeroCost != nil {
+
+		// query param show_zero_cost
+		var qrShowZeroCost bool
+		if o.ShowZeroCost != nil {
+			qrShowZeroCost = *o.ShowZeroCost
+		}
+		qShowZeroCost := swag.FormatBool(qrShowZeroCost)
+		if qShowZeroCost != "" {
+			if err := r.SetQueryParam("show_zero_cost", qShowZeroCost); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.TierBreakdown != nil {

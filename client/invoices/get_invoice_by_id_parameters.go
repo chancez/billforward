@@ -14,16 +14,16 @@ import (
 // with the default values initialized.
 func NewGetInvoiceByIDParams() *GetInvoiceByIDParams {
 	var (
-		includeRetiredDefault bool   = bool(true)
-		orderDefault          string = string("DESC")
-		orderByDefault        string = string("created")
-		recordsDefault        int32  = int32(10)
+		excludeChildrenDefault bool   = bool(true)
+		orderDefault           string = string("DESC")
+		orderByDefault         string = string("created")
+		recordsDefault         int32  = int32(10)
 	)
 	return &GetInvoiceByIDParams{
-		IncludeRetired: &includeRetiredDefault,
-		Order:          &orderDefault,
-		OrderBy:        &orderByDefault,
-		Records:        &recordsDefault,
+		ExcludeChildren: &excludeChildrenDefault,
+		Order:           &orderDefault,
+		OrderBy:         &orderByDefault,
+		Records:         &recordsDefault,
 	}
 }
 
@@ -32,6 +32,11 @@ for the get invoice by ID operation typically these are written to a http.Reques
 */
 type GetInvoiceByIDParams struct {
 
+	/*ExcludeChildren
+	  Should child invoices be excluded.
+
+	*/
+	ExcludeChildren *bool
 	/*IncludeRetired
 	  Whether retired products should be returned.
 
@@ -67,6 +72,12 @@ type GetInvoiceByIDParams struct {
 
 	*/
 	Records *int32
+}
+
+// WithExcludeChildren adds the excludeChildren to the get invoice by ID params
+func (o *GetInvoiceByIDParams) WithExcludeChildren(excludeChildren *bool) *GetInvoiceByIDParams {
+	o.ExcludeChildren = excludeChildren
+	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get invoice by ID params
@@ -115,6 +126,22 @@ func (o *GetInvoiceByIDParams) WithRecords(records *int32) *GetInvoiceByIDParams
 func (o *GetInvoiceByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
 
 	var res []error
+
+	if o.ExcludeChildren != nil {
+
+		// query param exclude_children
+		var qrExcludeChildren bool
+		if o.ExcludeChildren != nil {
+			qrExcludeChildren = *o.ExcludeChildren
+		}
+		qExcludeChildren := swag.FormatBool(qrExcludeChildren)
+		if qExcludeChildren != "" {
+			if err := r.SetQueryParam("exclude_children", qExcludeChildren); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.IncludeRetired != nil {
 

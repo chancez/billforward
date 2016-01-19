@@ -14,16 +14,16 @@ import (
 // with the default values initialized.
 func NewGetInvoicesByAccountIDParams() *GetInvoicesByAccountIDParams {
 	var (
-		includeRetiredDefault bool   = bool(true)
-		orderDefault          string = string("DESC")
-		orderByDefault        string = string("created")
-		recordsDefault        int32  = int32(10)
+		excludeChildrenDefault bool   = bool(true)
+		orderDefault           string = string("DESC")
+		orderByDefault         string = string("created")
+		recordsDefault         int32  = int32(10)
 	)
 	return &GetInvoicesByAccountIDParams{
-		IncludeRetired: &includeRetiredDefault,
-		Order:          &orderDefault,
-		OrderBy:        &orderByDefault,
-		Records:        &recordsDefault,
+		ExcludeChildren: &excludeChildrenDefault,
+		Order:           &orderDefault,
+		OrderBy:         &orderByDefault,
+		Records:         &recordsDefault,
 	}
 }
 
@@ -37,6 +37,11 @@ type GetInvoicesByAccountIDParams struct {
 
 	*/
 	AccountID string
+	/*ExcludeChildren
+	  Should child invoices be excluded.
+
+	*/
+	ExcludeChildren *bool
 	/*IncludeRetired
 	  Whether retired products should be returned.
 
@@ -72,6 +77,12 @@ type GetInvoicesByAccountIDParams struct {
 // WithAccountID adds the accountId to the get invoices by account ID params
 func (o *GetInvoicesByAccountIDParams) WithAccountID(accountId string) *GetInvoicesByAccountIDParams {
 	o.AccountID = accountId
+	return o
+}
+
+// WithExcludeChildren adds the excludeChildren to the get invoices by account ID params
+func (o *GetInvoicesByAccountIDParams) WithExcludeChildren(excludeChildren *bool) *GetInvoicesByAccountIDParams {
+	o.ExcludeChildren = excludeChildren
 	return o
 }
 
@@ -119,6 +130,22 @@ func (o *GetInvoicesByAccountIDParams) WriteToRequest(r client.Request, reg strf
 	// path param account-ID
 	if err := r.SetPathParam("account-ID", o.AccountID); err != nil {
 		return err
+	}
+
+	if o.ExcludeChildren != nil {
+
+		// query param exclude_children
+		var qrExcludeChildren bool
+		if o.ExcludeChildren != nil {
+			qrExcludeChildren = *o.ExcludeChildren
+		}
+		qExcludeChildren := swag.FormatBool(qrExcludeChildren)
+		if qExcludeChildren != "" {
+			if err := r.SetQueryParam("exclude_children", qExcludeChildren); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.IncludeRetired != nil {

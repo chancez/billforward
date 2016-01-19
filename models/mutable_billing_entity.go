@@ -18,17 +18,9 @@ swagger:model MutableBillingEntity
 */
 type MutableBillingEntity struct {
 
-	/* This is the app id.
-
-	Required: true
-	*/
-	AppID string `json:"appID,omitempty"`
-
-	/* This is the app secret.
-
-	Required: true
-	*/
-	AppSecret string `json:"appSecret,omitempty"`
+	/* AppliedAt applied at
+	 */
+	AppliedAt *string `json:"appliedAt,omitempty"`
 
 	/* BillingEntity billing entity
 	 */
@@ -38,49 +30,90 @@ type MutableBillingEntity struct {
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
 
+	/* { "description" : "", "verbs":["POST","GET"] }
+
+	Required: true
+	*/
+	Country string `json:"country,omitempty"`
+
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* ID of the data synchronisationAppConfiguration.
+	/* { "description" : "Currency this tax applies to specified by a three character ISO 4217 currency code", "verbs":["POST","GET"] }
+
+	Required: true
+	*/
+	Currency string `json:"currency,omitempty"`
+
+	/* { "default" : "false", "description" : "Indicates if this is the default taxation for any rate-plans which do not have a tax explicitly defined", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	DefaultTaxationStrategy *bool `json:"defaultTaxationStrategy,omitempty"`
+
+	/* {  "default" : "false", "description" : "", "verbs":[] }
+
+	Required: true
+	*/
+	Deleted bool `json:"deleted,omitempty"`
+
+	/* { "description" : "", "verbs":["GET", "PUT"] }
+
+	Required: true
+	*/
+	ID string `json:"id,omitempty"`
+
+	/* { "PUT_description" : "Not required for update, updates the tax change which has validTill of null (unbounded) with the matching name", "description" : "", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	Name string `json:"name,omitempty"`
 
 	/* NotificationObjectGraph notification object graph
 	 */
 	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
-	/* Organization associated with Synchronization Configuration.
+	/* Organization organization
+	 */
+	Organization *Organization `json:"organization,omitempty"`
+
+	/* { "description" : "", "verbs":[] }
 	 */
 	OrganizationID *string `json:"organizationID,omitempty"`
 
-	/* This is the platform of the job.
+	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Platform string `json:"platform,omitempty"`
+	Percentage float64 `json:"percentage,omitempty"`
 
-	/* This is the refresh token url.
-
-	Required: true
-	*/
-	RefreshTokenURL string `json:"refreshTokenUrl,omitempty"`
+	/* { "description" : "State/Province to apply this tax to, only used set when creating a localized tax.", "verbs":["POST","GET"] }
+	 */
+	Province *string `json:"province,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
+
+	/* {  "default" : "immediately", "description" : "UTC DateTime from which the tax applies", "verbs":["POST","GET"] }
+
+	Required: true
+	*/
+	ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+
+	/* {   "default" : "&infin;",  "description" : "UTC DateTime after which the tax no longer applies. This is automatically set by the API on creation of a tax strategy that supersedes the current tax version", "verbs":["GET"] }
+	 */
+	ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+
+	/* { "PUT_description" : "If specified update this tax version", "description" : "", "verbs":["GET", "PUT"] }
+	 */
+	VersionID *string `json:"versionID,omitempty"`
 }
 
 // Validate validates this mutable billing entity
 func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAppID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateAppSecret(formats); err != nil {
+	if err := m.validateAppliedAt(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -90,12 +123,37 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePlatform(formats); err != nil {
+	if err := m.validateCountry(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateRefreshTokenURL(formats); err != nil {
+	if err := m.validateCurrency(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateDeleted(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePercentage(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateValidFrom(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -106,18 +164,31 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MutableBillingEntity) validateAppID(formats strfmt.Registry) error {
+var mutableBillingEntityAppliedAtEnum []interface{}
 
-	if err := validate.Required("appID", "body", string(m.AppID)); err != nil {
+func (m *MutableBillingEntity) validateAppliedAtEnum(path, location string, value string) error {
+	if mutableBillingEntityAppliedAtEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["checkout","immediate"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			mutableBillingEntityAppliedAtEnum = append(mutableBillingEntityAppliedAtEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, mutableBillingEntityAppliedAtEnum); err != nil {
 		return err
 	}
-
 	return nil
 }
 
-func (m *MutableBillingEntity) validateAppSecret(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateAppliedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("appSecret", "body", string(m.AppSecret)); err != nil {
+	if swag.IsZero(m.AppliedAt) { // not required
+		return nil
+	}
+
+	if err := m.validateAppliedAtEnum("appliedAt", "body", *m.AppliedAt); err != nil {
 		return err
 	}
 
@@ -155,40 +226,85 @@ func (m *MutableBillingEntity) validateBillingEntity(formats strfmt.Registry) er
 	return nil
 }
 
-var mutableBillingEntityPlatformEnum []interface{}
+var mutableBillingEntityCountryEnum []interface{}
 
-func (m *MutableBillingEntity) validatePlatformEnum(path, location string, value string) error {
-	if mutableBillingEntityPlatformEnum == nil {
+func (m *MutableBillingEntity) validateCountryEnum(path, location string, value string) error {
+	if mutableBillingEntityCountryEnum == nil {
 		var res []string
-		if err := json.Unmarshal([]byte(`["Salesforce"]`), &res); err != nil {
+		if err := json.Unmarshal([]byte(`["UK","USA","Canada","Mexico","Brazil","Argentina","China","France","Germany","Ireland"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityPlatformEnum = append(mutableBillingEntityPlatformEnum, v)
+			mutableBillingEntityCountryEnum = append(mutableBillingEntityCountryEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityPlatformEnum); err != nil {
+	if err := validate.Enum(path, location, value, mutableBillingEntityCountryEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MutableBillingEntity) validatePlatform(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.Required("platform", "body", string(m.Platform)); err != nil {
+	if err := validate.Required("country", "body", string(m.Country)); err != nil {
 		return err
 	}
 
-	if err := m.validatePlatformEnum("platform", "body", m.Platform); err != nil {
+	if err := m.validateCountryEnum("country", "body", m.Country); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *MutableBillingEntity) validateRefreshTokenURL(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("refreshTokenUrl", "body", string(m.RefreshTokenURL)); err != nil {
+	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateDeleted(formats strfmt.Registry) error {
+
+	if err := validate.Required("deleted", "body", bool(m.Deleted)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validatePercentage(formats strfmt.Registry) error {
+
+	if err := validate.Required("percentage", "body", float64(m.Percentage)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateValidFrom(formats strfmt.Registry) error {
+
+	if err := validate.Required("validFrom", "body", strfmt.DateTime(m.ValidFrom)); err != nil {
 		return err
 	}
 

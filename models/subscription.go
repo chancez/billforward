@@ -124,6 +124,10 @@ type Subscription struct {
 	 */
 	ManagedBy *string `json:"managedBy,omitempty"`
 
+	/* { "description" : "Add metadata.", "verbs":["POST"] }
+	 */
+	Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+
 	/* MinutesElapsed minutes elapsed
 	 */
 	MinutesElapsed *Minutes `json:"minutesElapsed,omitempty"`
@@ -205,6 +209,12 @@ type Subscription struct {
 	/* {"description":"Total number of subscription periods.","verbs":["GET"]}
 	 */
 	TotalPeriods int32 `json:"totalPeriods,omitempty"`
+
+	/* {"description":"The end time of the trial period, if one existed","verbs":["GET"]}
+
+	Required: true
+	*/
+	TrialEnd strfmt.DateTime `json:"trialEnd,omitempty"`
 
 	/* {"default":"dependent on product", "description":"","verbs":["POST","GET"]}
 	 */
@@ -310,6 +320,11 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateState(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTrialEnd(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -567,6 +582,15 @@ func (m *Subscription) validateState(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Subscription) validateTrialEnd(formats strfmt.Registry) error {
+
+	if err := validate.Required("trialEnd", "body", strfmt.DateTime(m.TrialEnd)); err != nil {
 		return err
 	}
 

@@ -98,6 +98,10 @@ type ProductRatePlan struct {
 	*/
 	LocalisedTax bool `json:"localisedTax,omitempty"`
 
+	/* { "description" : "Add metadata.", "verbs":["POST"] }
+	 */
+	Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+
 	/* {"default":"CreditAccount","description":"The action that should be taken, should the pro-rata calculation result in a negative value.<br><span class=\"label label-default\">NoCharge</span> &mdash; Don't return to the customer any money.<br><span class=\"label label-default\">CreditAccount</span> &mdash; Credit the customer's account with the amount.","verbs":["POST","PUT","GET"]}
 
 	Required: true
@@ -792,6 +796,8 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		LocalisedTax bool `json:"localisedTax,omitempty"`
 
+		Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
 		Name string `json:"name,omitempty"`
@@ -867,6 +873,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 	result.IssueDuration = data.IssueDuration
 	result.IssuePeriod = data.IssuePeriod
 	result.LocalisedTax = data.LocalisedTax
+	result.Metadata = data.Metadata
 	result.MigrationBehaviour = data.MigrationBehaviour
 	result.Name = data.Name
 	result.NotificationObjectGraph = data.NotificationObjectGraph
@@ -928,6 +935,8 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		LocalisedTax bool `json:"localisedTax,omitempty"`
 
+		Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
 		Name string `json:"name,omitempty"`
@@ -979,6 +988,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		IssueDuration:            m.IssueDuration,
 		IssuePeriod:              m.IssuePeriod,
 		LocalisedTax:             m.LocalisedTax,
+		Metadata:                 m.Metadata,
 		MigrationBehaviour:       m.MigrationBehaviour,
 		Name:                     m.Name,
 		NotificationObjectGraph: m.NotificationObjectGraph,

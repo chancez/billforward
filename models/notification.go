@@ -5,6 +5,7 @@ package models
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
@@ -44,7 +45,7 @@ type Notification struct {
 
 	/* Changes changes
 	 */
-	Changes *string `json:"changes,omitempty"`
+	Changes []strfmt.Base64 `json:"changes,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -64,7 +65,7 @@ type Notification struct {
 
 	/* Entity entity
 	 */
-	Entity *string `json:"entity,omitempty"`
+	Entity []strfmt.Base64 `json:"entity,omitempty"`
 
 	/* { "description" : "The id of the entity associated with the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -148,12 +149,22 @@ func (m *Notification) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateChanges(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateDestinationURL(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDomain(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -265,6 +276,23 @@ func (m *Notification) validateBillingEntity(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Notification) validateChanges(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Changes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Changes); i++ {
+
+		if err := validate.Required("changes"+"."+strconv.Itoa(i), "body", strfmt.Base64(m.Changes[i])); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Notification) validateDestinationURL(formats strfmt.Registry) error {
 
 	if err := validate.Required("destinationURL", "body", string(m.DestinationURL)); err != nil {
@@ -300,6 +328,23 @@ func (m *Notification) validateDomain(formats strfmt.Registry) error {
 
 	if err := m.validateDomainEnum("domain", "body", m.Domain); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Notification) validateEntity(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Entity) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Entity); i++ {
+
+		if err := validate.Required("entity"+"."+strconv.Itoa(i), "body", strfmt.Base64(m.Entity[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

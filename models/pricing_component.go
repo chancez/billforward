@@ -169,11 +169,6 @@ type PricingComponent interface {
 	Tiers() []*PricingComponentTier
 	SetTiers([]*PricingComponentTier)
 
-	/* UnitOfMeasure unit of measure
-	 */
-	UnitOfMeasure() *UnitOfMeasure
-	SetUnitOfMeasure(*UnitOfMeasure)
-
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true

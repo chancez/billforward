@@ -14,14 +14,16 @@ import (
 // with the default values initialized.
 func NewGetSubscriptionByAccountIDParams() *GetSubscriptionByAccountIDParams {
 	var (
-		orderDefault   string = string("DESC")
-		orderByDefault string = string("id")
-		recordsDefault int32  = int32(10)
+		excludeChildrenDefault bool   = bool(true)
+		orderDefault           string = string("DESC")
+		orderByDefault         string = string("id")
+		recordsDefault         int32  = int32(10)
 	)
 	return &GetSubscriptionByAccountIDParams{
-		Order:   &orderDefault,
-		OrderBy: &orderByDefault,
-		Records: &recordsDefault,
+		ExcludeChildren: &excludeChildrenDefault,
+		Order:           &orderDefault,
+		OrderBy:         &orderByDefault,
+		Records:         &recordsDefault,
 	}
 }
 
@@ -32,6 +34,11 @@ type GetSubscriptionByAccountIDParams struct {
 
 	/*AccountID*/
 	AccountID string
+	/*ExcludeChildren
+	  Should child subscriptiosn be excluded.
+
+	*/
+	ExcludeChildren *bool
 	/*IncludeRetired
 	  Whether retired subscriptions should be returned.
 
@@ -67,6 +74,12 @@ type GetSubscriptionByAccountIDParams struct {
 // WithAccountID adds the accountId to the get subscription by account ID params
 func (o *GetSubscriptionByAccountIDParams) WithAccountID(accountId string) *GetSubscriptionByAccountIDParams {
 	o.AccountID = accountId
+	return o
+}
+
+// WithExcludeChildren adds the excludeChildren to the get subscription by account ID params
+func (o *GetSubscriptionByAccountIDParams) WithExcludeChildren(excludeChildren *bool) *GetSubscriptionByAccountIDParams {
+	o.ExcludeChildren = excludeChildren
 	return o
 }
 
@@ -114,6 +127,22 @@ func (o *GetSubscriptionByAccountIDParams) WriteToRequest(r client.Request, reg 
 	// path param account-ID
 	if err := r.SetPathParam("account-ID", o.AccountID); err != nil {
 		return err
+	}
+
+	if o.ExcludeChildren != nil {
+
+		// query param exclude_children
+		var qrExcludeChildren bool
+		if o.ExcludeChildren != nil {
+			qrExcludeChildren = *o.ExcludeChildren
+		}
+		qExcludeChildren := swag.FormatBool(qrExcludeChildren)
+		if qExcludeChildren != "" {
+			if err := r.SetQueryParam("exclude_children", qExcludeChildren); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.IncludeRetired != nil {

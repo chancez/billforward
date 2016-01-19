@@ -92,6 +92,10 @@ type CreateSubscriptionRequest struct {
 	 */
 	State *string `json:"state,omitempty"`
 
+	/* {"default":"(null)","description":"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should leave the trial period.","verbs":["POST"]}
+	 */
+	TrialEnd strfmt.DateTime `json:"trialEnd,omitempty"`
+
 	/* Type type
 	 */
 	Type *string `json:"type,omitempty"`
