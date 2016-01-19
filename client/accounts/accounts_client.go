@@ -71,6 +71,30 @@ func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, e
 	return result.(*DeleteAccountOK), nil
 }
 
+/*Remove any associated metadata.
+
+{"nickname":"Clear metadata from account","request" :"deleteAccountMetadataRequest.html","response":"deleteAccountMetadataResponse.html"}
+*/
+func (a *Client) DeleteMetadataForAccount(params *DeleteMetadataForAccountParams) (*DeleteMetadataForAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMetadataForAccountParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "deleteMetadataForAccount",
+		Method:      "DELETE",
+		PathPattern: "/accounts/{account-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteMetadataForAccountReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteMetadataForAccountOK), nil
+}
+
 /*Returns a single account, specified by the account-ID parameter.
 
 {"nickname":"Retrieve an existing account","response":"getAccountByID.html"}
@@ -117,6 +141,78 @@ func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK
 		return nil, err
 	}
 	return result.(*GetAllAccountsOK), nil
+}
+
+/*Retrieve any associated metadata.
+
+{"nickname":"Retrieve metadata on account","request":"getAccountMetadataRequest.html","response":"getAccountMetadataResponse.html"}
+*/
+func (a *Client) GetMetadataForAccount(params *GetMetadataForAccountParams) (*GetMetadataForAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetadataForAccountParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "getMetadataForAccount",
+		Method:      "GET",
+		PathPattern: "/accounts/{account-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetMetadataForAccountReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetadataForAccountOK), nil
+}
+
+/*Remove any existing metadata keys and create the provided data.
+
+{"nickname":"Set metadata on account","request":"setAccountMetadataRequest.html","response":"setAccountMetadataResponse.html"}
+*/
+func (a *Client) SetMetadataForAccount(params *SetMetadataForAccountParams) (*SetMetadataForAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetMetadataForAccountParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "setMetadataForAccount",
+		Method:      "POST",
+		PathPattern: "/accounts/{account-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &SetMetadataForAccountReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*SetMetadataForAccountOK), nil
+}
+
+/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+
+{"nickname":"Upsert metadata on account","request":"upsertAccountMetadataRequest.html","response":"upsertAccountMetadataResponse.html"}
+*/
+func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams) (*UpsertMetadataForAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpsertMetadataForAccountParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "upsertMetadataForAccount",
+		Method:      "PUT",
+		PathPattern: "/accounts/{account-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpsertMetadataForAccountReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpsertMetadataForAccountOK), nil
 }
 
 // SetTransport changes the transport on the client

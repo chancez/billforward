@@ -23,6 +23,30 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+/*Remove any associated metadata.
+
+{"nickname":"Clear metadata from product","request" :"deleteProductMetadataRequest.html","response":"deleteProductMetadataResponse.html"}
+*/
+func (a *Client) DeleteMetadataForProduct(params *DeleteMetadataForProductParams) (*DeleteMetadataForProductOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMetadataForProductParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "deleteMetadataForProduct",
+		Method:      "DELETE",
+		PathPattern: "/products/{product-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteMetadataForProductReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteMetadataForProductOK), nil
+}
+
 /*Returns a collection of products. By default 10 values are returned. Records are returned in natural order.
 
 {"nickname":"Get all products","response":"getProductAll.html"}
@@ -45,6 +69,78 @@ func (a *Client) GetAllProducts(params *GetAllProductsParams) (*GetAllProductsOK
 		return nil, err
 	}
 	return result.(*GetAllProductsOK), nil
+}
+
+/*Retrieve any associated metadata.
+
+{"nickname":"Retrieve metadata on product","request":"getProductMetadataRequest.html","response":"getProductMetadataResponse.html"}
+*/
+func (a *Client) GetMetadataForProduct(params *GetMetadataForProductParams) (*GetMetadataForProductOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetadataForProductParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "getMetadataForProduct",
+		Method:      "GET",
+		PathPattern: "/products/{product-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetMetadataForProductReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetadataForProductOK), nil
+}
+
+/*Remove any existing metadata keys and create the provided data.
+
+{"nickname":"Set metadata on product","request":"setProductMetadataRequest.html","response":"setProductMetadataResponse.html"}
+*/
+func (a *Client) SetMetadataForProduct(params *SetMetadataForProductParams) (*SetMetadataForProductOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetMetadataForProductParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "setMetadataForProduct",
+		Method:      "POST",
+		PathPattern: "/products/{product-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &SetMetadataForProductReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*SetMetadataForProductOK), nil
+}
+
+/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+
+{"nickname":"Upsert metadata on product","request":"upsertProductMetadataRequest.html","response":"upsertProductMetadataResponse.html"}
+*/
+func (a *Client) UpsertMetadataForProduct(params *UpsertMetadataForProductParams) (*UpsertMetadataForProductOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpsertMetadataForProductParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "upsertMetadataForProduct",
+		Method:      "PUT",
+		PathPattern: "/products/{product-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpsertMetadataForProductReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpsertMetadataForProductOK), nil
 }
 
 // SetTransport changes the transport on the client

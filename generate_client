@@ -1,6 +1,25 @@
 #!/bin/bash
 
 swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O getAllPayments \
+    -O getPaymentByID \
+    -O getPaymentByInvoiceID \
+    -O getMetadataForAccount \
+    -O getMetadataForSubscription \
+    -O getMetadataForRatePlan \
+    -O getMetadataForProduct \
+    -O setMetadataForAccount \
+    -O setMetadataForSubscription \
+    -O setMetadataForRatePlan \
+    -O setMetadataForProduct \
+    -O upsertMetadataForAccount \
+    -O upsertMetadataForSubscription \
+    -O upsertMetadataForRatePlan \
+    -O upsertMetadataForProduct \
+    -O deleteMetadataForAccount \
+    -O deleteMetadataForSubscription \
+    -O deleteMetadataForRatePlan \
+    -O deleteMetadataForProduct \
     -O deleteAccount \
     -O getInvoiceByID \
     -O getInvoiceAsPDF \
@@ -82,5 +101,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Payment \
     -M DunningLine \
     -M JaxbDynamicMetadata \
+    -M MetadataKeyValuesPagedMetadata \
+    -M PaymentPagedMetadata \
     -M Notification
 

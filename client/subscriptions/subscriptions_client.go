@@ -119,6 +119,54 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 	return result.(*CreateSubscriptionOK), nil
 }
 
+/*Remove any associated metadata.
+
+{"nickname":"Clear from subscription","request" :"deleteSubscriptionMetadataRequest.html","response":"deleteSubscriptionMetadataResponse.html"}
+*/
+func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscriptionParams) (*DeleteMetadataForSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMetadataForSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "deleteMetadataForSubscription",
+		Method:      "DELETE",
+		PathPattern: "/subscriptions/{subscription-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteMetadataForSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteMetadataForSubscriptionOK), nil
+}
+
+/*Retrieve any associated metadata.
+
+{"nickname":"Retrieve on subscription","request":"getSubscriptionMetadataRequest.html","response":"getSubscriptionMetadataResponse.html"}
+*/
+func (a *Client) GetMetadataForSubscription(params *GetMetadataForSubscriptionParams) (*GetMetadataForSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetadataForSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "getMetadataForSubscription",
+		Method:      "GET",
+		PathPattern: "/subscriptions/{subscription-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetMetadataForSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetadataForSubscriptionOK), nil
+}
+
 /*Retrieves a collection of subscriptions, specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.
 
 {"nickname":"Retrieve by account","response":"getSubscriptionByAccount.html"}
@@ -141,6 +189,54 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 		return nil, err
 	}
 	return result.(*GetSubscriptionByAccountIDOK), nil
+}
+
+/*Remove any existing metadata keys and create the provided data.
+
+{"nickname":"Set on subscription","request":"setSubscriptionMetadataRequest.html","response":"setSubscriptionMetadataResponse.html"}
+*/
+func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionParams) (*SetMetadataForSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetMetadataForSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "setMetadataForSubscription",
+		Method:      "POST",
+		PathPattern: "/subscriptions/{subscription-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &SetMetadataForSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*SetMetadataForSubscriptionOK), nil
+}
+
+/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+
+{"nickname":"Upsert on subscription","request":"upsertSubscriptionMetadataRequest.html","response":"upsertSubscriptionMetadataResponse.html"}
+*/
+func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscriptionParams) (*UpsertMetadataForSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpsertMetadataForSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "upsertMetadataForSubscription",
+		Method:      "PUT",
+		PathPattern: "/subscriptions/{subscription-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpsertMetadataForSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpsertMetadataForSubscriptionOK), nil
 }
 
 // SetTransport changes the transport on the client

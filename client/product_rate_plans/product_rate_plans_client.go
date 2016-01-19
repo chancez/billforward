@@ -23,6 +23,30 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+/*Remove any associated metadata.
+
+{"nickname":"Clear metadata from rate-plan","request" :"deleteRatePlanMetadataRequest.html","response":"deleteRatePlanMetadataResponse.html"}
+*/
+func (a *Client) DeleteMetadataForRatePlan(params *DeleteMetadataForRatePlanParams) (*DeleteMetadataForRatePlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteMetadataForRatePlanParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "deleteMetadataForRatePlan",
+		Method:      "DELETE",
+		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &DeleteMetadataForRatePlanReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteMetadataForRatePlanOK), nil
+}
+
 /*Returns a collection of product-rate-plans. By default 10 values are returned. Records are returned in natural order.
 
 {"nickname":"Get all rate-plans","response":"getPRPAll.html"}
@@ -45,6 +69,30 @@ func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlan
 		return nil, err
 	}
 	return result.(*GetAllRatePlansOK), nil
+}
+
+/*Retrieve any associated metadata.
+
+{"nickname":"Retrieve metadata on rate-plan","request":"getRatePlanMetadataRequest.html","response":"getRatePlanMetadataResponse.html"}
+*/
+func (a *Client) GetMetadataForRatePlan(params *GetMetadataForRatePlanParams) (*GetMetadataForRatePlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetadataForRatePlanParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "getMetadataForRatePlan",
+		Method:      "GET",
+		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &GetMetadataForRatePlanReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetadataForRatePlanOK), nil
 }
 
 /*Returns product-rate-plans, specified by the product-rate-plan id or name.
@@ -117,6 +165,54 @@ func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAnd
 		return nil, err
 	}
 	return result.(*GetRatePlanByProductAndRatePlanOK), nil
+}
+
+/*Remove any existing metadata keys and create the provided data.
+
+{"nickname":"Set metadata on rate-plan","request":"setRatePlanMetadataRequest.html","response":"setRatePlanMetadataResponse.html"}
+*/
+func (a *Client) SetMetadataForRatePlan(params *SetMetadataForRatePlanParams) (*SetMetadataForRatePlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetMetadataForRatePlanParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "setMetadataForRatePlan",
+		Method:      "POST",
+		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &SetMetadataForRatePlanReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*SetMetadataForRatePlanOK), nil
+}
+
+/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+
+{"nickname":"Upsert metadata on rate-plan","request":"upsertRatePlanMetadataRequest.html","response":"upsertRatePlanMetadataResponse.html"}
+*/
+func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanParams) (*UpsertMetadataForRatePlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpsertMetadataForRatePlanParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:          "upsertMetadataForRatePlan",
+		Method:      "PUT",
+		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		Schemes:     []string{"https"},
+		Params:      params,
+		Reader:      &UpsertMetadataForRatePlanReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpsertMetadataForRatePlanOK), nil
 }
 
 // SetTransport changes the transport on the client
