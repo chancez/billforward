@@ -8,197 +8,197 @@
   "basePath": "/RestAPI",
   "tags": [
     {
-      "name": "credit-notes"
-    },
-    {
-      "name": "taxation-strategies"
-    },
-    {
-      "name": "payment-method-subscription-links"
-    },
-    {
-      "name": "vaulted-gateways"
-    },
-    {
-      "name": "pricing-components"
-    },
-    {
-      "name": "audit-logs"
-    },
-    {
-      "name": "refunds"
-    },
-    {
-      "name": "coupon-modifier"
-    },
-    {
-      "name": "coupon-instance"
-    },
-    {
-      "name": "pricing-component-tiers"
-    },
-    {
-      "name": "payment-methods"
-    },
-    {
-      "name": "periods"
-    },
-    {
-      "name": "clients"
-    },
-    {
       "name": "fixed-term-definitions"
-    },
-    {
-      "name": "taxation-links"
-    },
-    {
-      "name": "configurations"
-    },
-    {
-      "name": "coupon-rule"
-    },
-    {
-      "name": "dunning-lines"
-    },
-    {
-      "name": "product-rate-plans"
-    },
-    {
-      "name": "pricing-component-values"
-    },
-    {
-      "name": "search"
-    },
-    {
-      "name": "metadata"
-    },
-    {
-      "name": "permissions"
-    },
-    {
-      "name": "emails"
-    },
-    {
-      "name": "profiles"
-    },
-    {
-      "name": "usage-sessions"
-    },
-    {
-      "name": "subscriptions"
-    },
-    {
-      "name": "receipts"
-    },
-    {
-      "name": "quotes"
-    },
-    {
-      "name": "coupon-book"
-    },
-    {
-      "name": "roles"
-    },
-    {
-      "name": "pricing-calculator"
-    },
-    {
-      "name": "products"
-    },
-    {
-      "name": "webhooks"
-    },
-    {
-      "name": "synchConfigs"
-    },
-    {
-      "name": "addresses"
-    },
-    {
-      "name": "coupons"
-    },
-    {
-      "name": "accounts"
-    },
-    {
-      "name": "unit-of-measure"
-    },
-    {
-      "name": "usage-periods"
-    },
-    {
-      "name": "coupon-definition"
     },
     {
       "name": "usage-rounding-strategies"
     },
     {
+      "name": "usage"
+    },
+    {
       "name": "notifications"
     },
     {
-      "name": "usernames"
-    },
-    {
-      "name": "fixed-terms"
-    },
-    {
-      "name": "amendments"
-    },
-    {
-      "name": "passwords"
-    },
-    {
-      "name": "time"
-    },
-    {
-      "name": "cybersource-tokens"
+      "name": "coupon-rule"
     },
     {
       "name": "invoices"
     },
     {
-      "name": "analytics"
-    },
-    {
-      "name": "email-providers"
-    },
-    {
-      "name": "usage"
-    },
-    {
-      "name": "email-subscriptions"
-    },
-    {
-      "name": "synchJobs"
-    },
-    {
-      "name": "coupon-book-definition"
-    },
-    {
-      "name": "pricing-component-value-changes"
-    },
-    {
-      "name": "charges"
-    },
-    {
-      "name": "payments"
+      "name": "pricing-calculator"
     },
     {
       "name": "organizations"
     },
     {
+      "name": "configurations"
+    },
+    {
+      "name": "receipts"
+    },
+    {
+      "name": "permissions"
+    },
+    {
+      "name": "refunds"
+    },
+    {
+      "name": "quotes"
+    },
+    {
+      "name": "coupons"
+    },
+    {
+      "name": "charges"
+    },
+    {
+      "name": "webhooks"
+    },
+    {
+      "name": "dunning-lines"
+    },
+    {
+      "name": "cybersource-tokens"
+    },
+    {
+      "name": "coupon-instance"
+    },
+    {
+      "name": "pricing-component-values"
+    },
+    {
+      "name": "amendments"
+    },
+    {
+      "name": "pricing-components"
+    },
+    {
+      "name": "metadata"
+    },
+    {
+      "name": "products"
+    },
+    {
+      "name": "search"
+    },
+    {
+      "name": "passwords"
+    },
+    {
+      "name": "emails"
+    },
+    {
+      "name": "email-providers"
+    },
+    {
+      "name": "payment-method-subscription-links"
+    },
+    {
+      "name": "payment-methods"
+    },
+    {
+      "name": "clients"
+    },
+    {
+      "name": "usage-periods"
+    },
+    {
       "name": "tokenization"
+    },
+    {
+      "name": "coupon-book"
+    },
+    {
+      "name": "fixed-terms"
+    },
+    {
+      "name": "accounts"
+    },
+    {
+      "name": "analytics"
+    },
+    {
+      "name": "credit-notes"
+    },
+    {
+      "name": "usage-sessions"
+    },
+    {
+      "name": "coupon-book-definition"
+    },
+    {
+      "name": "coupon-definition"
+    },
+    {
+      "name": "audit-logs"
+    },
+    {
+      "name": "taxation-links"
+    },
+    {
+      "name": "profiles"
+    },
+    {
+      "name": "unit-of-measure"
+    },
+    {
+      "name": "coupon-modifier"
+    },
+    {
+      "name": "addresses"
+    },
+    {
+      "name": "pricing-component-value-changes"
+    },
+    {
+      "name": "subscriptions"
+    },
+    {
+      "name": "taxation-strategies"
+    },
+    {
+      "name": "email-subscriptions"
+    },
+    {
+      "name": "vaulted-gateways"
+    },
+    {
+      "name": "synchConfigs"
+    },
+    {
+      "name": "time"
     },
     {
       "name": "synchAppConfigs"
     },
     {
       "name": "users"
+    },
+    {
+      "name": "periods"
+    },
+    {
+      "name": "usernames"
+    },
+    {
+      "name": "pricing-component-tiers"
+    },
+    {
+      "name": "synchJobs"
+    },
+    {
+      "name": "payments"
+    },
+    {
+      "name": "product-rate-plans"
+    },
+    {
+      "name": "roles"
     }
   ],
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/accounts": {
@@ -330,11 +330,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "request",
+            "name": "account",
             "description": "The account object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CreateAccountRequest"
+              "$ref": "#/definitions/Account"
             }
           }
         ],
@@ -1423,11 +1423,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "request",
+            "name": "address",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CreateAddressRequest"
+              "$ref": "#/definitions/Address"
             }
           }
         ],
@@ -1464,11 +1464,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "request",
+            "name": "address",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UpdateAddressRequest"
+              "$ref": "#/definitions/Address"
             }
           }
         ],
@@ -1590,7 +1590,8 @@
               "UpdateComponentValue",
               "ServiceEnd",
               "ResumeSubscription",
-              "CreateSubscriptionCharge"
+              "CreateSubscriptionCharge",
+              "Timer"
             ]
           }
         ],
@@ -9722,6 +9723,14 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child invoices be excluded.",
+            "required": false,
+            "type": "boolean",
             "default": true
           },
           {
@@ -9864,6 +9873,14 @@
             "name": "include_retired",
             "in": "query",
             "description": "Whether retired products should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child invoices be excluded.",
             "required": false,
             "type": "boolean",
             "default": true
@@ -10704,7 +10721,7 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
-            "default": true
+            "default": false
           }
         ],
         "responses": {
@@ -10808,7 +10825,7 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
-            "default": true
+            "default": false
           }
         ],
         "responses": {
@@ -11235,7 +11252,7 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
-            "default": true
+            "default": false
           }
         ],
         "responses": {
@@ -11457,7 +11474,7 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
-            "default": true
+            "default": false
           }
         ],
         "responses": {
@@ -11671,6 +11688,14 @@
             "description": "Whether retired products should be returned.",
             "required": false,
             "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child invoices be excluded.",
+            "required": false,
+            "type": "boolean",
             "default": true
           }
         ],
@@ -11766,6 +11791,14 @@
             "name": "include_retired",
             "in": "query",
             "description": "Whether retired products should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child invoices be excluded.",
             "required": false,
             "type": "boolean",
             "default": true
@@ -12018,12 +12051,82 @@
             "collectionFormat": "multi"
           },
           {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset from the first invoice to return.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "The maximum number of invoices to return.",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Specify a field used to order the result set.",
+            "required": false,
+            "type": "string",
+            "default": "created"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Ihe direction of any ordering, either ASC or DESC.",
+            "required": false,
+            "type": "string",
+            "default": "DESC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          {
+            "name": "include_retired",
+            "in": "query",
+            "description": "Whether retired products should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
             "name": "tier_breakdown",
             "in": "query",
             "description": "Whether to provide a breakdown of charge tiering.",
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "inclusive_end",
+            "in": "query",
+            "description": "Whether to present in the Invoice date range only those dates whose entirety are involved in the billing period. In other words: when true, this subtracts 1 from the \"period end\" date shown to the customer.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "show_zero_cost",
+            "in": "query",
+            "description": "Whether to show zero-cost lines.",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "show_plan_only_when_ambiguous",
+            "in": "query",
+            "description": "Whether to state which plan the Invoice lines came from, regardless of whether there's only one plan involved in this Invoice.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -12077,12 +12180,82 @@
             "collectionFormat": "multi"
           },
           {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset from the first invoice to return.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "The maximum number of invoices to return.",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Specify a field used to order the result set.",
+            "required": false,
+            "type": "string",
+            "default": "created"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Ihe direction of any ordering, either ASC or DESC.",
+            "required": false,
+            "type": "string",
+            "default": "DESC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          {
+            "name": "include_retired",
+            "in": "query",
+            "description": "Whether retired products should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
             "name": "tier_breakdown",
             "in": "query",
             "description": "Whether to provide a breakdown of charge tiering.",
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "inclusive_end",
+            "in": "query",
+            "description": "Whether to present in the Invoice date range only those dates whose entirety are involved in the billing period. In other words: when true, this subtracts 1 from the \"period end\" date shown to the customer.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "show_zero_cost",
+            "in": "query",
+            "description": "Whether to show zero-cost lines.",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "show_plan_only_when_ambiguous",
+            "in": "query",
+            "description": "Whether to state which plan the Invoice lines came from, regardless of whether there's only one plan involved in this Invoice.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -12095,7 +12268,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "type": "file"
+              "type": "string"
             }
           }
         }
@@ -12177,6 +12350,14 @@
             "name": "include_retired",
             "in": "query",
             "description": "Whether retired products should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child invoices be excluded.",
             "required": false,
             "type": "boolean",
             "default": true
@@ -13273,6 +13454,15 @@
             "required": false,
             "type": "boolean",
             "default": true
+          },
+          {
+            "name": "safety_margin",
+            "in": "query",
+            "description": "How many seconds behind server-time upperThreshold may approach.",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
           }
         ],
         "responses": {
@@ -13380,6 +13570,15 @@
             "required": false,
             "type": "boolean",
             "default": true
+          },
+          {
+            "name": "safety_margin",
+            "in": "query",
+            "description": "How many seconds behind server-time upperThreshold may approach.",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
           }
         ],
         "responses": {
@@ -15530,6 +15729,7 @@
               "Quote",
               "Receipt",
               "Refund",
+              "Salesforce",
               "Search",
               "Subscription",
               "Tax",
@@ -18872,11 +19072,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "request",
+            "name": "profile",
             "description": "The profile object to be updated.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UpdateProfileRequest"
+              "$ref": "#/definitions/Profile"
             }
           }
         ],
@@ -20599,6 +20799,7 @@
               "Quote",
               "Receipt",
               "Refund",
+              "Salesforce",
               "Search",
               "Subscription",
               "Tax",
@@ -20621,6 +20822,7 @@
               "AddToProductRatePlan",
               "AddToSubscription",
               "Advance",
+              "Aggregate",
               "RemoveFromInvoice",
               "RemoveFromProductRatePlan",
               "RemoveFromSubscription",
@@ -20840,6 +21042,14 @@
             "default": false
           },
           {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child subscriptiosn be excluded.",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
             "name": "metadata",
             "in": "query",
             "required": false,
@@ -21022,6 +21232,14 @@
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child subscriptiosn be excluded.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -21567,6 +21785,14 @@
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child subscriptiosn be excluded.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -21664,6 +21890,14 @@
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child subscriptiosn be excluded.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -21770,6 +22004,14 @@
             "required": false,
             "type": "boolean",
             "default": false
+          },
+          {
+            "name": "exclude_children",
+            "in": "query",
+            "description": "Should child subscriptiosn be excluded.",
+            "required": false,
+            "type": "boolean",
+            "default": true
           }
         ],
         "responses": {
@@ -23717,6 +23959,159 @@
             "description": "success",
             "schema": {
               "$ref": "#/definitions/SubscriptionPagedMetadata"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscription-ID}/timer": {
+      "get": {
+        "tags": [
+          "subscriptions"
+        ],
+        "summary": "Retrieves a collection timer amendments for the specified subscription.. By default 10 values are returned. Records are returned in natural order.",
+        "description": "{\"nickname\":\"Get Timers\",\"response\":\"getTimersforSubscription.html\"}",
+        "operationId": "getTimersForSubscription",
+        "consumes": [
+          "text/plain",
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription-ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "organizations",
+            "in": "query",
+            "description": "A list of organization-IDs used to restrict the scope of API calls.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset from the first subscription to return.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32"
+          },
+          {
+            "name": "records",
+            "in": "query",
+            "description": "The maximum number of subscriptions to return.",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Specify a field used to order the result set.",
+            "required": false,
+            "type": "string",
+            "default": "created"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Ihe direction of any ordering, either ASC or DESC.",
+            "required": false,
+            "type": "string",
+            "default": "DESC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          {
+            "name": "include_retired",
+            "in": "query",
+            "description": "Whether retired timers should be returned.",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "The state of the timer amendment",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Succeeded",
+              "Failed",
+              "Discarded"
+            ]
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "description": "The type of timer event",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "TrialExpiry",
+              "SubscriptionExpiry",
+              "PeriodEnd"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimerAmendment"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "subscriptions"
+        ],
+        "summary": "Create a timer for a subscription event.",
+        "description": "{\"nickname\":\"Create Timer\",\"response\":\"createSubscriptionTimer.html\",\"request\":\"createSubscriptionTimer.request.html\"}",
+        "operationId": "createTimer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscription-ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BillingEntityBase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimerAmendment"
             }
           }
         }
@@ -28011,6 +28406,48 @@
         }
       }
     },
+    "/users/password-reset": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create a password reset request.",
+        "description": "{\"nickname\":\"Create a password reset request\",\"request\":\"PasswordResetRequest.html\",\"response\":\"PasswordResetResponse.html\"}",
+        "operationId": "resetUserPassword",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/xml",
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PasswordResetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/BFError"
+            }
+          },
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/UserPagedMetadata"
+            }
+          }
+        }
+      }
+    },
     "/users/password-reset-code/{password-reset-code}": {
       "get": {
         "tags": [
@@ -28279,58 +28716,6 @@
             "in": "query",
             "description": "A list of organization-IDs used to restrict the scope of API calls.",
             "required": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "error",
-            "schema": {
-              "$ref": "#/definitions/BFError"
-            }
-          },
-          "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/UserPagedMetadata"
-            }
-          }
-        }
-      }
-    },
-    "/users/{user-ID}/password-reset": {
-      "get": {
-        "tags": [
-          "users"
-        ],
-        "summary": "Generate a new password reset code.",
-        "description": "{ \"nickname\" : \"Reset a users password\",\"response\" : \"userPasswordReset.html\"}",
-        "operationId": "resetUserPassword",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/xml",
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "user-ID",
-            "in": "path",
-            "description": "ID of the user.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "organizations",
-            "in": "query",
-            "description": "A list of organization-IDs used to restrict the scope of API calls.",
-            "required": false,
             "type": "array",
             "items": {
               "type": "string"
@@ -29566,17 +29951,6 @@
         "name": "user"
       }
     },
-    "flatPricingComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PricingComponent"
-        },
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    },
     "CouponInstance": {
       "type": "object",
       "required": [
@@ -29684,10 +30058,10 @@
           "description": "{ \"description\" : \"The coupon-book object associated with the coupon-instance\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
           "$ref": "#/definitions/CouponBook"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -30472,10 +30846,10 @@
             "type": "string"
           }
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -30733,10 +31107,15 @@
         {
           "type": "object",
           "required": [
+            "@type",
             "forcePaid",
             "invoiceID"
           ],
           "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"InvoiceNextExecutionAttemptAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
             "invoiceID": {
               "type": "string",
               "description": "{ \"description\" : \"ID of the Invoice to which the amendment pertains.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
@@ -30897,6 +31276,18 @@
         },
         "notificationObjectGraph": {
           "type": "string"
+        },
+        "productNameForDisplay": {
+          "type": "string"
+        },
+        "productRatePlanNameForDisplay": {
+          "type": "string"
+        },
+        "pricingComponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QuoteRequestValue"
+          }
         },
         "billingEntity": {
           "type": "string",
@@ -31075,18 +31466,6 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
-        },
-        "pricingComponents": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/QuoteRequestValue"
-          }
-        },
-        "productNameForDisplay": {
-          "type": "string"
-        },
-        "productRatePlanNameForDisplay": {
-          "type": "string"
         }
       },
       "description": "Entity for requesting a price quote."
@@ -31669,7 +32048,6 @@
     "Email": {
       "type": "object",
       "required": [
-        "notificationID",
         "organizationID",
         "state"
       ],
@@ -32337,6 +32715,48 @@
         "name": "metadata"
       }
     },
+    "tieredPricingComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricingComponent"
+        },
+        {
+          "type": "object",
+          "required": [
+            "@type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"tieredPricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            }
+          },
+          "description": "Pricing component with tiered pricing.",
+          "xml": {
+            "name": "pricingComponent"
+          }
+        }
+      ]
+    },
+    "PricingComponentCouponModifier": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/CouponModifierBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "pricingComponentID": {
+              "type": "string"
+            }
+          },
+          "description": "A coupon-modifier.",
+          "xml": {
+            "name": "couponModifier"
+          }
+        }
+      ]
+    },
     "ProfilePagedMetadata": {
       "type": "object",
       "properties": {
@@ -32380,25 +32800,6 @@
       "xml": {
         "name": "metadata"
       }
-    },
-    "PricingComponentCouponModifier": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/CouponModifierBase"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "pricingComponentID": {
-              "type": "string"
-            }
-          },
-          "description": "A coupon-modifier.",
-          "xml": {
-            "name": "couponModifier"
-          }
-        }
-      ]
     },
     "Period": {
       "type": "object",
@@ -33727,9 +34128,7 @@
     "BillingEntityBase": {
       "type": "object",
       "required": [
-        "newPassword",
-        "organizationID",
-        "userID"
+        "name"
       ],
       "properties": {
         "created": {
@@ -33737,20 +34136,29 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
         },
-        "userID": {
-          "type": "string"
-        },
         "organizationID": {
-          "type": "string"
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"\"] }"
         },
-        "passwordResetCode": {
-          "type": "string"
+        "name": {
+          "type": "string",
+          "description": "{ \"description\" : \"Friendly name of the role.\", \"verbs\":[\"GET\",\"POST\",\"PUT\"] }"
         },
-        "passwordResetSMSCode": {
-          "type": "string"
+        "description": {
+          "type": "string",
+          "description": "{ \"description\" : \"Friendly description of the role.\", \"verbs\":[\"GET\",\"POST\",\"PUT\"] }"
         },
-        "newPassword": {
-          "type": "string"
+        "defaultRole": {
+          "type": "boolean",
+          "description": "{ \"default\" : \"false\", \"description\" : \"If set this role will become the default role for the organization. Any accounts without an explicitly set role will have this applied.\", \"verbs\":[\"GET\",\"POST\",\"PUT\"] }",
+          "default": false
+        },
+        "permissions": {
+          "type": "array",
+          "description": "{ \"description\" : \"List of permissions to add to this role.\", \"verbs\":[\"GET\",\"POST\",\"PUT\"] }",
+          "items": {
+            "$ref": "#/definitions/BillingEntityBase"
+          }
         },
         "billingEntity": {
           "type": "string",
@@ -33931,10 +34339,7 @@
           ]
         }
       },
-      "description": "Billing entities are models in the BillForward system, of objects in the real-world or otherwise.",
-      "xml": {
-        "name": "PasswordReset"
-      }
+      "description": "Billing entities are models in the BillForward system, of objects in the real-world or otherwise."
     },
     "UpdateComponentValueAmendment": {
       "allOf": [
@@ -33944,18 +34349,15 @@
         {
           "type": "object",
           "required": [
-            "dummyField",
+            "@type",
             "pricingComponentID",
             "pricingComponentValueChangeID",
             "pricingComponentValueID",
             "value"
           ],
           "properties": {
-            "dummyField": {
+            "@type": {
               "type": "string",
-              "xml": {
-                "name": "@type"
-              },
               "description": "{ \"description\" : \"UpdateComponentValueAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
             },
             "pricingComponentValueID": {
@@ -33995,6 +34397,50 @@
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
             "$ref": "#/definitions/UsageSession"
+          }
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsReturned": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        }
+      },
+      "xml": {
+        "name": "metadata"
+      }
+    },
+    "StripeTokenPagedMetadata": {
+      "type": "object",
+      "properties": {
+        "executionTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "results": {
+          "type": "array",
+          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
+          "items": {
+            "$ref": "#/definitions/MutableBillingEntity"
           }
         },
         "nextPage": {
@@ -34101,6 +34547,7 @@
             "Quote",
             "Receipt",
             "Refund",
+            "Salesforce",
             "Search",
             "Subscription",
             "Tax",
@@ -34121,6 +34568,7 @@
             "AddToProductRatePlan",
             "AddToSubscription",
             "Advance",
+            "Aggregate",
             "RemoveFromInvoice",
             "RemoveFromProductRatePlan",
             "RemoveFromSubscription",
@@ -34354,50 +34802,6 @@
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
             "$ref": "#/definitions/DunningLine"
-          }
-        },
-        "nextPage": {
-          "type": "string",
-          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentPage": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentOffset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsRequested": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsReturned": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        }
-      },
-      "xml": {
-        "name": "metadata"
-      }
-    },
-    "StripeTokenPagedMetadata": {
-      "type": "object",
-      "properties": {
-        "executionTime": {
-          "type": "integer",
-          "format": "int64",
-          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "results": {
-          "type": "array",
-          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
-          "items": {
-            "$ref": "#/definitions/MutableBillingEntity"
           }
         },
         "nextPage": {
@@ -34949,17 +35353,14 @@
         {
           "type": "object",
           "required": [
+            "@type",
             "cancellationCredit",
-            "dummyField",
             "serviceEnd",
             "source"
           ],
           "properties": {
-            "dummyField": {
+            "@type": {
               "type": "string",
-              "xml": {
-                "name": "@type"
-              },
               "description": "{ \"description\" : \"CancellationAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
             },
             "source": {
@@ -35187,10 +35588,10 @@
             "type": "string"
           }
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -35477,6 +35878,21 @@
         "notificationObjectGraph": {
           "type": "string"
         },
+        "secretRequired": {
+          "type": "boolean",
+          "default": false
+        },
+        "scoped": {
+          "type": "boolean",
+          "default": false
+        },
+        "registeredRedirectUri": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
         "billingEntity": {
           "type": "string",
           "enum": [
@@ -35654,21 +36070,6 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
-        },
-        "secretRequired": {
-          "type": "boolean",
-          "default": false
-        },
-        "scoped": {
-          "type": "boolean",
-          "default": false
-        },
-        "registeredRedirectUri": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
         }
       },
       "description": "An oAuth2 client with which BillForward users may authenticate.",
@@ -35742,6 +36143,11 @@
             "Failed",
             "Expired"
           ]
+        },
+        "trialEnd": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{\"default\":\"(null)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should leave the trial period.\",\"verbs\":[\"POST\"]}"
         },
         "type": {
           "type": "string",
@@ -36570,6 +36976,50 @@
         "name": "metadata"
       }
     },
+    "ReceiptPagedMetadata": {
+      "type": "object",
+      "properties": {
+        "executionTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "results": {
+          "type": "array",
+          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
+          "items": {
+            "$ref": "#/definitions/Receipt"
+          }
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsReturned": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        }
+      },
+      "xml": {
+        "name": "metadata"
+      }
+    },
     "AuthCaptureRequest": {
       "type": "object",
       "required": [
@@ -36824,50 +37274,6 @@
       "description": "[Note: this request can be built automatically by our client-side card capture library, <a href=\"https://github.com/billforward/billforward-js\">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).",
       "xml": {
         "name": "AuthCaptureRequest"
-      }
-    },
-    "ReceiptPagedMetadata": {
-      "type": "object",
-      "properties": {
-        "executionTime": {
-          "type": "integer",
-          "format": "int64",
-          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "results": {
-          "type": "array",
-          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
-          "items": {
-            "$ref": "#/definitions/Receipt"
-          }
-        },
-        "nextPage": {
-          "type": "string",
-          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentPage": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentOffset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsRequested": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsReturned": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        }
-      },
-      "xml": {
-        "name": "metadata"
       }
     },
     "Role": {
@@ -37270,9 +37676,6 @@
             "Payment"
           ]
         },
-        "account": {
-          "type": "string"
-        },
         "notificationObjectGraph": {
           "type": "string"
         },
@@ -37456,6 +37859,9 @@
         },
         "refundedValue": {
           "type": "number"
+        },
+        "account": {
+          "type": "string"
         }
       },
       "description": "Refund",
@@ -37466,8 +37872,8 @@
     "ProductRatePlanMigrationAmendment": {
       "type": "object",
       "required": [
+        "@type",
         "deleted",
-        "dummyField",
         "internalState",
         "invoicingType",
         "pricingBehaviour",
@@ -37490,11 +37896,8 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
         },
-        "dummyField": {
+        "@type": {
           "type": "string",
-          "xml": {
-            "name": "@type"
-          },
           "description": "{ \"description\" : \"ProductRatePlanMigrationAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
         },
         "id": {
@@ -37530,7 +37933,8 @@
             "UpdateComponentValue",
             "ServiceEnd",
             "ResumeSubscription",
-            "CreateSubscriptionCharge"
+            "CreateSubscriptionCharge",
+            "Timer"
           ]
         },
         "actioningTime": {
@@ -38477,6 +38881,14 @@
         "name": "metadata"
       }
     },
+    "PeriodType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "UsagePagedMetadata": {
       "type": "object",
       "properties": {
@@ -38519,14 +38931,6 @@
       },
       "xml": {
         "name": "metadata"
-      }
-    },
-    "PeriodType": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
       }
     },
     "PaymentPagedMetadata": {
@@ -39787,15 +40191,12 @@
         {
           "type": "object",
           "required": [
-            "dummyField",
+            "@type",
             "invoiceID"
           ],
           "properties": {
-            "dummyField": {
+            "@type": {
               "type": "string",
-              "xml": {
-                "name": "@type"
-              },
               "description": "{ \"description\" : \"IssueInvoiceAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
             },
             "invoiceID": {
@@ -40078,10 +40479,10 @@
           "description": "{ \"description\" : \"Account associated with the payment-method.\", \"verbs\":[] }",
           "$ref": "#/definitions/Account"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -40268,7 +40669,7 @@
         "name": "paymentMethod"
       }
     },
-    "SubscriptionCancellationPagedMetadata": {
+    "UsageRoundingStrategyPagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -40312,7 +40713,7 @@
         "name": "metadata"
       }
     },
-    "UsageRoundingStrategyPagedMetadata": {
+    "SubscriptionCancellationPagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -40459,9 +40860,14 @@
         {
           "type": "object",
           "required": [
+            "@type",
             "invoiceID"
           ],
           "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"InvoiceOutstandingChargesAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
             "invoiceID": {
               "type": "string",
               "description": "{ \"description\" : \"ID of the Invoice with which the amendment is associated.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
@@ -40477,10 +40883,14 @@
         }
       ]
     },
-    "PricingComponentValueRequest": {
+    "TimerAmendment": {
       "type": "object",
       "required": [
-        "value"
+        "@type",
+        "deleted",
+        "internalState",
+        "state",
+        "subscriptionID"
       ],
       "properties": {
         "created": {
@@ -40488,31 +40898,315 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
         },
-        "value": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":\"<span class=\\\"label label-default\\\"></span>\",\"description\":\"Modifies the current value used to calculate the recurring costs of the subscription. This can effectively be thought of as an upsert.Note: altering costs on invoices are made be editing charges.<br><span class=\\\"label label-default\\\">Setup Pricing</span> &mdash; Value changed if initial invoice has not been issued.<br><span class=\\\"label label-default\\\">In-Advance/Subscription Pricing</span> &mdash; Value changed and a charge added. If the change is delayed the current value on the subscription will show the delayed change.<br><span class=\\\"label label-default\\\">Arrears Pricing</span> &mdash; Value updated, and a pro-rated charge added to the subscription if required.<br><span class=\\\"label label-default\\\">Usage Pricing</span> &mdash; Usage created or updated for the current billing cycle.which is generated naturally &mdash; i.e. the invoice raised at the current period's end.\",\"verbs\":[\"POST\",\"GET\"]}"
-        },
-        "changeMode": {
+        "changedBy": {
           "type": "string",
-          "description": "{\"default\":\"<span class=\\\"label label-default\\\">as on pricing component</span>\",\"description\":\"Default behaviour when a value is changed by default the change mode from the pricing component is used.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Change will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Change will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
+        },
+        "@type": {
+          "type": "string",
+          "description": "{ \"description\" : \"TimerAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "id": {
+          "type": "string",
+          "description": "id"
+        },
+        "organizationID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"\"] }"
+        },
+        "subscriptionID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "subscription": {
+          "$ref": "#/definitions/Subscription"
+        },
+        "amendmentType": {
+          "type": "string",
+          "description": "amendmentType",
           "enum": [
-            "immediate",
-            "delayed"
+            "InvoiceNextExecutionAttempt",
+            "Cancellation",
+            "PricingComponentValue",
+            "AmendmentDiscard",
+            "Compound",
+            "FixedTermExpiry",
+            "InvoiceRecalculation",
+            "EndTrial",
+            "InvoiceOutstandingCharges",
+            "IssueInvoice",
+            "ProductRatePlanMigration",
+            "UpdateComponentValue",
+            "ServiceEnd",
+            "ResumeSubscription",
+            "CreateSubscriptionCharge",
+            "Timer"
           ]
         },
-        "invoicingType": {
+        "actioningTime": {
           "type": "string",
-          "description": "{\"default\":\"<span class=\\\"label label-default\\\">Aggregated</span>\",\"description\":\"If the change results in a charge should it be invoiced straight away or on the next invoice.<br><span class=\\\"label label-default\\\">Immediate</span> &mdash; If the change has a cost associated with it , for example a pro-rated upgrade charge, an invoice will be raised at the time the request is made. If the invoice fails to be paid the upgrade will fail and the invoice will be voided. No credit or refund is issued for immediate downgrades.<br><span class=\\\"label label-default\\\">Aggregated</span> &mdash; If the change has a cost associated with it , for example a pro-rated upgrade charge, the charge will be added to the next invoice raised for this subscription. As no payment is required when the change is request the change always succeeds.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "format": "date-time",
+          "description": "{ \"description\" : \"When the amendment will run\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "actionedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The time the amendment completed.\", \"verbs\":[\"GET\"] }"
+        },
+        "state": {
+          "type": "string",
+          "description": "state",
           "enum": [
-            "Immediate",
-            "Aggregated"
+            "Pending",
+            "Succeeded",
+            "Failed",
+            "Discarded"
           ]
         },
-        "noCharge": {
+        "internalState": {
+          "type": "string",
+          "description": "This is a slightly more granular state field, a proper superset of amendmentState unioned with: subsystemInstanceCreated (the amendment has made an object that will have the intended effect) and pendingDiscard (a request has been received to discard the amendment, and discard the subsystem instance). Default: Pending",
+          "enum": [
+            "Pending",
+            "Succeeded",
+            "Failed",
+            "Discarded",
+            "SubsystemInstanceCreated"
+          ]
+        },
+        "deleted": {
           "type": "boolean",
-          "description": "{\"default\":\"<span class=\\\"label label-default\\\">false</span>\",\"description\":\"If specified the change will have no cost associated with it. This is useful for immediately changing a value without creating any upgrade charge.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "description": "{ \"description\" : \"Is the amendment deleted.\", \"verbs\":[\"GET\"] }",
           "default": false
+        },
+        "entityID": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string",
+          "enum": [
+            "Notification",
+            "Organization",
+            "OrganizationGateway",
+            "Product",
+            "User",
+            "Subscription",
+            "Profile",
+            "ProductRatePlan",
+            "Client",
+            "Invoice",
+            "PricingComponentValue",
+            "Account",
+            "PricingComponentValueChange",
+            "PricingComponentTier",
+            "PricingComponent",
+            "PricingCalculation",
+            "CouponDefinition",
+            "CouponInstance",
+            "CouponModifier",
+            "CouponRule",
+            "CouponBookDefinition",
+            "CouponBook",
+            "InvoiceLine",
+            "Webhook",
+            "SubscriptionCancellation",
+            "NotificationSnapshot",
+            "InvoicePayment",
+            "InvoiceLinePayment",
+            "Payment",
+            "PaymentMethod",
+            "PaymentMethodSubscriptionLink",
+            "DunningLine",
+            "CybersourceToken",
+            "Card",
+            "Alias",
+            "PaypalSimplePaymentReconciliation",
+            "FreePaymentReconciliation",
+            "LocustworldPaymentReconciliation",
+            "CouponInstanceExistingValue",
+            "TaxLine",
+            "TaxationStrategy",
+            "TaxationLink",
+            "Address",
+            "AmendmentPriceNTime",
+            "Authority",
+            "UnitOfMeasure",
+            "SearchResult",
+            "Amendment",
+            "AuditLog",
+            "Password",
+            "Username",
+            "FixedTermDefinition",
+            "FixedTerm",
+            "Refund",
+            "CreditNote",
+            "Receipt",
+            "AmendmentCompoundConstituent",
+            "APIConfiguration",
+            "StripeToken",
+            "BraintreeToken",
+            "BalancedToken",
+            "PaypalToken",
+            "AuthorizeNetToken",
+            "SpreedlyToken",
+            "GatewayRevenue",
+            "AmendmentDiscardAmendment",
+            "CancellationAmendment",
+            "CompoundAmendment",
+            "CompoundAmendmentConstituent",
+            "FixedTermExpiryAmendment",
+            "InvoiceNextExecutionAttemptAmendment",
+            "PricingComponentValueAmendment",
+            "BraintreeMerchantAccount",
+            "WebhookSubscription",
+            "Migration",
+            "CassResult",
+            "CassPaymentResult",
+            "CassProductRatePlanResult",
+            "CassChurnResult",
+            "CassUpgradeResult",
+            "SubscriptionCharge",
+            "CassPaymentPProductResult",
+            "ProductPaymentsArgs",
+            "StripeACHToken",
+            "UsageAmount",
+            "UsageSession",
+            "Usage",
+            "UsagePeriod",
+            "Period",
+            "OfflinePayment",
+            "CreditNotePayment",
+            "CardVaultPayment",
+            "FreePayment",
+            "BraintreePayment",
+            "BalancedPayment",
+            "CybersourcePayment",
+            "PaypalPayment",
+            "PaypalSimplePayment",
+            "LocustWorldPayment",
+            "StripeOnlyPayment",
+            "ProductPaymentsResult",
+            "StripeACHPayment",
+            "AuthorizeNetPayment",
+            "CompoundUsageSession",
+            "CompoundUsage",
+            "UsageRoundingStrategies",
+            "BillforwardManagedPaymentsResult",
+            "PricingComponentValueMigrationChargeAmendmentMapping",
+            "SubscriptionLTVResult",
+            "AccountLTVResult",
+            "ProductRatePlanPaymentsResult",
+            "DebtsResult",
+            "AccountPaymentsResult",
+            "ComponentChange",
+            "QuoteRequest",
+            "Quote",
+            "CouponCharge",
+            "CouponInstanceInvoiceLink",
+            "Coupon",
+            "CouponDiscount",
+            "CouponUniqueCodesRequest",
+            "CouponUniqueCodesResponse",
+            "GetCouponsResponse",
+            "AddCouponCodeRequest",
+            "AddCouponCodeResponse",
+            "RemoveCouponFromSubscriptionRequest",
+            "TokenizationPreAuth",
+            "StripeTokenizationPreAuth",
+            "BraintreeTokenizationPreAuth",
+            "SpreedlyTokenizationPreAuth",
+            "SagePayTokenizationPreAuth",
+            "PayVisionTokenizationPreAuth",
+            "TokenizationPreAuthRequest",
+            "AuthCaptureRequest",
+            "StripeACHBankAccountVerification",
+            "PasswordReset",
+            "PricingRequest",
+            "AddTaxationStrategyRequest",
+            "AddPaymentMethodRequest",
+            "APIRequest",
+            "SagePayToken",
+            "SagePayNotificationRequest",
+            "SagePayNotificationResponse",
+            "SagePayOutstandingTransaction",
+            "SagePayEnabledCardType",
+            "TrustCommerceToken",
+            "SagePayTransaction",
+            "PricingComponentValueResponse",
+            "MigrationResponse",
+            "TimeResponse",
+            "EntityTime",
+            "Email",
+            "AggregationLink",
+            "BFPermission",
+            "Role",
+            "PermissionLink",
+            "PayVisionToken",
+            "PayVisionTransaction",
+            "KashToken",
+            "EmailProvider",
+            "DataSynchronizationJob",
+            "DataSynchronizationJobError",
+            "DataSynchronizationConfiguration",
+            "DataSynchronizationAppConfiguration",
+            "AggregationChildrenResponse",
+            "MetadataKeyValue",
+            "Metadata",
+            "AggregatingComponent",
+            "PricingComponentMigrationValue",
+            "InvoiceRecalculationAmendment",
+            "IssueInvoiceAmendment",
+            "EmailSubscription",
+            "RevenueAttribution"
+          ]
+        },
+        "offsetDirection": {
+          "type": "string",
+          "enum": [
+            "Before",
+            "After"
+          ]
+        },
+        "offsetPeriod": {
+          "type": "string",
+          "enum": [
+            "Minutes",
+            "Hours",
+            "Days"
+          ]
+        },
+        "offsetDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "originalEventDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timerEvent": {
+          "type": "string",
+          "enum": [
+            "TrialExpiry",
+            "SubscriptionExpiry",
+            "PeriodEnd"
+          ]
+        },
+        "notificationObjectGraph": {
+          "type": "string"
+        },
+        "discardableSubsystemObject": {
+          "$ref": "#/definitions/IDiscardable"
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "billingEntity": {
           "type": "string",
@@ -40691,9 +41385,18 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
+        },
+        "discardable": {
+          "type": "boolean",
+          "default": false
+        },
+        "discardWarningString": {
+          "type": "string"
         }
       },
-      "description": "Request object for recalculating an invoice."
+      "xml": {
+        "name": "amendment"
+      }
     },
     "UpdateSubscriptionRequest": {
       "type": "object",
@@ -40935,6 +41638,224 @@
       },
       "description": "Entity for requesting that a subscription be updated."
     },
+    "PricingComponentValueRequest": {
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":\"<span class=\\\"label label-default\\\"></span>\",\"description\":\"Modifies the current value used to calculate the recurring costs of the subscription. This can effectively be thought of as an upsert.Note: altering costs on invoices are made be editing charges.<br><span class=\\\"label label-default\\\">Setup Pricing</span> &mdash; Value changed if initial invoice has not been issued.<br><span class=\\\"label label-default\\\">In-Advance/Subscription Pricing</span> &mdash; Value changed and a charge added. If the change is delayed the current value on the subscription will show the delayed change.<br><span class=\\\"label label-default\\\">Arrears Pricing</span> &mdash; Value updated, and a pro-rated charge added to the subscription if required.<br><span class=\\\"label label-default\\\">Usage Pricing</span> &mdash; Usage created or updated for the current billing cycle.which is generated naturally &mdash; i.e. the invoice raised at the current period's end.\",\"verbs\":[\"POST\",\"GET\"]}"
+        },
+        "changeMode": {
+          "type": "string",
+          "description": "{\"default\":\"<span class=\\\"label label-default\\\">as on pricing component</span>\",\"description\":\"Default behaviour when a value is changed by default the change mode from the pricing component is used.<br><span class=\\\"label label-default\\\">immediate</span> &mdash; Change will apply at the time the request is made.<br><span class=\\\"label label-default\\\">delayed</span> &mdash; Change will apply at the end of the current billing cycle.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "enum": [
+            "immediate",
+            "delayed"
+          ]
+        },
+        "invoicingType": {
+          "type": "string",
+          "description": "{\"default\":\"<span class=\\\"label label-default\\\">Aggregated</span>\",\"description\":\"If the change results in a charge should it be invoiced straight away or on the next invoice.<br><span class=\\\"label label-default\\\">Immediate</span> &mdash; If the change has a cost associated with it , for example a pro-rated upgrade charge, an invoice will be raised at the time the request is made. If the invoice fails to be paid the upgrade will fail and the invoice will be voided. No credit or refund is issued for immediate downgrades.<br><span class=\\\"label label-default\\\">Aggregated</span> &mdash; If the change has a cost associated with it , for example a pro-rated upgrade charge, the charge will be added to the next invoice raised for this subscription. As no payment is required when the change is request the change always succeeds.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "enum": [
+            "Immediate",
+            "Aggregated"
+          ]
+        },
+        "noCharge": {
+          "type": "boolean",
+          "description": "{\"default\":\"<span class=\\\"label label-default\\\">false</span>\",\"description\":\"If specified the change will have no cost associated with it. This is useful for immediately changing a value without creating any upgrade charge.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "default": false
+        },
+        "billingEntity": {
+          "type": "string",
+          "enum": [
+            "Notification",
+            "Organization",
+            "OrganizationGateway",
+            "Product",
+            "User",
+            "Subscription",
+            "Profile",
+            "ProductRatePlan",
+            "Client",
+            "Invoice",
+            "PricingComponentValue",
+            "Account",
+            "PricingComponentValueChange",
+            "PricingComponentTier",
+            "PricingComponent",
+            "PricingCalculation",
+            "CouponDefinition",
+            "CouponInstance",
+            "CouponModifier",
+            "CouponRule",
+            "CouponBookDefinition",
+            "CouponBook",
+            "InvoiceLine",
+            "Webhook",
+            "SubscriptionCancellation",
+            "NotificationSnapshot",
+            "InvoicePayment",
+            "InvoiceLinePayment",
+            "Payment",
+            "PaymentMethod",
+            "PaymentMethodSubscriptionLink",
+            "DunningLine",
+            "CybersourceToken",
+            "Card",
+            "Alias",
+            "PaypalSimplePaymentReconciliation",
+            "FreePaymentReconciliation",
+            "LocustworldPaymentReconciliation",
+            "CouponInstanceExistingValue",
+            "TaxLine",
+            "TaxationStrategy",
+            "TaxationLink",
+            "Address",
+            "AmendmentPriceNTime",
+            "Authority",
+            "UnitOfMeasure",
+            "SearchResult",
+            "Amendment",
+            "AuditLog",
+            "Password",
+            "Username",
+            "FixedTermDefinition",
+            "FixedTerm",
+            "Refund",
+            "CreditNote",
+            "Receipt",
+            "AmendmentCompoundConstituent",
+            "APIConfiguration",
+            "StripeToken",
+            "BraintreeToken",
+            "BalancedToken",
+            "PaypalToken",
+            "AuthorizeNetToken",
+            "SpreedlyToken",
+            "GatewayRevenue",
+            "AmendmentDiscardAmendment",
+            "CancellationAmendment",
+            "CompoundAmendment",
+            "CompoundAmendmentConstituent",
+            "FixedTermExpiryAmendment",
+            "InvoiceNextExecutionAttemptAmendment",
+            "PricingComponentValueAmendment",
+            "BraintreeMerchantAccount",
+            "WebhookSubscription",
+            "Migration",
+            "CassResult",
+            "CassPaymentResult",
+            "CassProductRatePlanResult",
+            "CassChurnResult",
+            "CassUpgradeResult",
+            "SubscriptionCharge",
+            "CassPaymentPProductResult",
+            "ProductPaymentsArgs",
+            "StripeACHToken",
+            "UsageAmount",
+            "UsageSession",
+            "Usage",
+            "UsagePeriod",
+            "Period",
+            "OfflinePayment",
+            "CreditNotePayment",
+            "CardVaultPayment",
+            "FreePayment",
+            "BraintreePayment",
+            "BalancedPayment",
+            "CybersourcePayment",
+            "PaypalPayment",
+            "PaypalSimplePayment",
+            "LocustWorldPayment",
+            "StripeOnlyPayment",
+            "ProductPaymentsResult",
+            "StripeACHPayment",
+            "AuthorizeNetPayment",
+            "CompoundUsageSession",
+            "CompoundUsage",
+            "UsageRoundingStrategies",
+            "BillforwardManagedPaymentsResult",
+            "PricingComponentValueMigrationChargeAmendmentMapping",
+            "SubscriptionLTVResult",
+            "AccountLTVResult",
+            "ProductRatePlanPaymentsResult",
+            "DebtsResult",
+            "AccountPaymentsResult",
+            "ComponentChange",
+            "QuoteRequest",
+            "Quote",
+            "CouponCharge",
+            "CouponInstanceInvoiceLink",
+            "Coupon",
+            "CouponDiscount",
+            "CouponUniqueCodesRequest",
+            "CouponUniqueCodesResponse",
+            "GetCouponsResponse",
+            "AddCouponCodeRequest",
+            "AddCouponCodeResponse",
+            "RemoveCouponFromSubscriptionRequest",
+            "TokenizationPreAuth",
+            "StripeTokenizationPreAuth",
+            "BraintreeTokenizationPreAuth",
+            "SpreedlyTokenizationPreAuth",
+            "SagePayTokenizationPreAuth",
+            "PayVisionTokenizationPreAuth",
+            "TokenizationPreAuthRequest",
+            "AuthCaptureRequest",
+            "StripeACHBankAccountVerification",
+            "PasswordReset",
+            "PricingRequest",
+            "AddTaxationStrategyRequest",
+            "AddPaymentMethodRequest",
+            "APIRequest",
+            "SagePayToken",
+            "SagePayNotificationRequest",
+            "SagePayNotificationResponse",
+            "SagePayOutstandingTransaction",
+            "SagePayEnabledCardType",
+            "TrustCommerceToken",
+            "SagePayTransaction",
+            "PricingComponentValueResponse",
+            "MigrationResponse",
+            "TimeResponse",
+            "EntityTime",
+            "Email",
+            "AggregationLink",
+            "BFPermission",
+            "Role",
+            "PermissionLink",
+            "PayVisionToken",
+            "PayVisionTransaction",
+            "KashToken",
+            "EmailProvider",
+            "DataSynchronizationJob",
+            "DataSynchronizationJobError",
+            "DataSynchronizationConfiguration",
+            "DataSynchronizationAppConfiguration",
+            "AggregationChildrenResponse",
+            "MetadataKeyValue",
+            "Metadata",
+            "AggregatingComponent",
+            "PricingComponentMigrationValue",
+            "InvoiceRecalculationAmendment",
+            "IssueInvoiceAmendment",
+            "EmailSubscription",
+            "RevenueAttribution"
+          ]
+        }
+      },
+      "description": "Request object for recalculating an invoice."
+    },
     "PeriodPagedMetadata": {
       "type": "object",
       "properties": {
@@ -40992,6 +41913,7 @@
         "productID",
         "productRatePlanID",
         "state",
+        "trialEnd",
         "versionNumber",
         "versionStart"
       ],
@@ -41009,6 +41931,10 @@
           "type": "string",
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
+        },
+        "metadata": {
+          "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
+          "$ref": "#/definitions/JaxbDynamicMetadata"
         },
         "id": {
           "type": "string",
@@ -41108,6 +42034,11 @@
           "format": "int32",
           "description": "{\"description\":\"Total number of subscription periods.\",\"verbs\":[\"GET\"]}"
         },
+        "trialEnd": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{\"description\":\"The end time of the trial period, if one existed\",\"verbs\":[\"GET\"]}"
+        },
         "dunning": {
           "type": "boolean",
           "description": "{  \"default\":\"false\", \"description\":\"Are there outstanding invoices which are currently in dunning.\",\"verbs\":[\"GET\", \"PUT\", \"POST\"]}",
@@ -41186,13 +42117,10 @@
             "type": "string"
           }
         },
-        "crmid": {
-          "type": "string"
-        },
-        "shortID": {
-          "type": "string"
-        },
         "notificationObjectGraph": {
+          "type": "string"
+        },
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -41372,6 +42300,9 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
+        },
+        "shortID": {
+          "type": "string"
         },
         "fixedTerm": {
           "type": "boolean",
@@ -41859,10 +42790,13 @@
     "MutableBillingEntity": {
       "type": "object",
       "required": [
-        "appID",
-        "appSecret",
-        "platform",
-        "refreshTokenUrl"
+        "country",
+        "currency",
+        "deleted",
+        "id",
+        "name",
+        "percentage",
+        "validFrom"
       ],
       "properties": {
         "created": {
@@ -41881,30 +42815,77 @@
         },
         "id": {
           "type": "string",
-          "description": "ID of the data synchronisationAppConfiguration."
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
+        },
+        "versionID": {
+          "type": "string",
+          "description": "{ \"PUT_description\" : \"If specified update this tax version\", \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
         },
         "organizationID": {
           "type": "string",
-          "description": "Organization associated with Synchronization Configuration."
+          "description": "{ \"description\" : \"\", \"verbs\":[] }"
         },
-        "appID": {
+        "country": {
           "type": "string",
-          "description": "This is the app id."
-        },
-        "appSecret": {
-          "type": "string",
-          "description": "This is the app secret."
-        },
-        "refreshTokenUrl": {
-          "type": "string",
-          "description": "This is the refresh token url."
-        },
-        "platform": {
-          "type": "string",
-          "description": "This is the platform of the job.",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
           "enum": [
-            "Salesforce"
+            "UK",
+            "USA",
+            "Canada",
+            "Mexico",
+            "Brazil",
+            "Argentina",
+            "China",
+            "France",
+            "Germany",
+            "Ireland"
           ]
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"State/Province to apply this tax to, only used set when creating a localized tax.\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "currency": {
+          "type": "string",
+          "description": "{ \"description\" : \"Currency this tax applies to specified by a three character ISO 4217 currency code\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "name": {
+          "type": "string",
+          "description": "{ \"PUT_description\" : \"Not required for update, updates the tax change which has validTill of null (unbounded) with the matching name\", \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "percentage": {
+          "type": "number",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "appliedAt": {
+          "type": "string",
+          "enum": [
+            "checkout",
+            "immediate"
+          ]
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "{  \"default\" : \"false\", \"description\" : \"\", \"verbs\":[] }",
+          "default": false
+        },
+        "defaultTaxationStrategy": {
+          "type": "boolean",
+          "description": "{ \"default\" : \"false\", \"description\" : \"Indicates if this is the default taxation for any rate-plans which do not have a tax explicitly defined\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{  \"default\" : \"immediately\", \"description\" : \"UTC DateTime from which the tax applies\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "validTill": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{   \"default\" : \"&infin;\",  \"description\" : \"UTC DateTime after which the tax no longer applies. This is automatically set by the API on creation of a tax strategy that supersedes the current tax version\", \"verbs\":[\"GET\"] }"
+        },
+        "organization": {
+          "$ref": "#/definitions/Organization"
         },
         "notificationObjectGraph": {
           "type": "string"
@@ -42090,7 +43071,7 @@
       },
       "description": "Mutable entities are those entities that can be updated after their initial creation.",
       "xml": {
-        "name": "dataSynchronizationAppConfiguration"
+        "name": "taxationStrategy"
       }
     },
     "PaymentMethodSubscriptionLink": {
@@ -42141,10 +43122,10 @@
           "description": "{ \"description\" : \"\", \"verbs\":[] }",
           "$ref": "#/definitions/Subscription"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -42781,7 +43762,7 @@
         },
         "advanceInclusively": {
           "type": "boolean",
-          "description": "{\"default\":false,\"description\":\"When advancing onto an instant in time:<br><span class=\\\"label label-default\\\">true</span> &mdash; Action the events scheduled for your destination time. Amendments scheduled at your destined time will be actioned during this time travel. Advancing to a period boundary will promote your subscription to the period on the future side of that boundary.<br><span class=\\\"label label-default\\\">false</span> &mdash; Do not action events scheduled for your destination time. Amendments scheduled at your destined time will not be actioned during this time travel. Advancing to a period boundary will result in your subscription's remaining within the period on the past side of that boundary.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "description": "{\"default\":true,\"description\":\"When advancing onto an instant in time:<br><span class=\\\"label label-default\\\">true</span> &mdash; Action the events scheduled for your destination time. Amendments scheduled at your destined time will be actioned during this time travel. Advancing to a period boundary will promote your subscription to the period on the future side of that boundary.<br><span class=\\\"label label-default\\\">false</span> &mdash; Do not action events scheduled for your destination time. Amendments scheduled at your destined time will not be actioned during this time travel. Advancing to a period boundary will result in your subscription's remaining within the period on the past side of that boundary.\",\"verbs\":[\"POST\",\"GET\"]}",
           "default": false
         },
         "from": {
@@ -43979,6 +44960,27 @@
         "name": "metadata"
       }
     },
+    "UnitDiscount": {
+      "type": "object",
+      "properties": {
+        "unitValue": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tierID": {
+          "type": "string"
+        },
+        "unalteredValue": {
+          "type": "number"
+        },
+        "discountValue": {
+          "type": "number"
+        },
+        "discountedValue": {
+          "type": "number"
+        }
+      }
+    },
     "BraintreeAuthCaptureRequest": {
       "allOf": [
         {
@@ -44005,27 +45007,6 @@
           }
         }
       ]
-    },
-    "UnitDiscount": {
-      "type": "object",
-      "properties": {
-        "unitValue": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "tierID": {
-          "type": "string"
-        },
-        "unalteredValue": {
-          "type": "number"
-        },
-        "discountValue": {
-          "type": "number"
-        },
-        "discountedValue": {
-          "type": "number"
-        }
-      }
     },
     "TimeRequest": {
       "type": "object",
@@ -44076,7 +45057,7 @@
         },
         "advanceInclusively": {
           "type": "boolean",
-          "description": "{\"default\":false,\"description\":\"When advancing onto an instant in time:<br><span class=\\\"label label-default\\\">true</span> &mdash; Action the events scheduled for your destination time. Amendments scheduled at your destined time will be actioned during this time travel. Advancing to a period boundary will promote your subscription to the period on the future side of that boundary.<br><span class=\\\"label label-default\\\">false</span> &mdash; Do not action events scheduled for your destination time. Amendments scheduled at your destined time will not be actioned during this time travel. Advancing to a period boundary will result in your subscription's remaining within the period on the past side of that boundary.\",\"verbs\":[\"POST\",\"GET\"]}",
+          "description": "{\"default\":true,\"description\":\"When advancing onto an instant in time:<br><span class=\\\"label label-default\\\">true</span> &mdash; Action the events scheduled for your destination time. Amendments scheduled at your destined time will be actioned during this time travel. Advancing to a period boundary will promote your subscription to the period on the future side of that boundary.<br><span class=\\\"label label-default\\\">false</span> &mdash; Do not action events scheduled for your destination time. Amendments scheduled at your destined time will not be actioned during this time travel. Advancing to a period boundary will result in your subscription's remaining within the period on the past side of that boundary.\",\"verbs\":[\"POST\",\"GET\"]}",
           "default": false
         },
         "from": {
@@ -44603,7 +45584,7 @@
       },
       "description": "[Warning: for use only in PCI-compliant environments; for more information, <a href=\"mailto:support@billforward.net\">contact us</a> regarding provisioning of your own on-premise BillForward instance] This entity is for specifying raw credit card details, to be captured into the Braintree vault."
     },
-    "TokenizationPreAuthPagedMetadata": {
+    "ProductRatePlanPagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -44615,7 +45596,7 @@
           "type": "array",
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
-            "$ref": "#/definitions/BillingEntityBase"
+            "$ref": "#/definitions/ProductRatePlan"
           }
         },
         "nextPage": {
@@ -44647,7 +45628,7 @@
         "name": "metadata"
       }
     },
-    "ProductRatePlanPagedMetadata": {
+    "TokenizationPreAuthPagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -44659,7 +45640,7 @@
           "type": "array",
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
-            "$ref": "#/definitions/ProductRatePlan"
+            "$ref": "#/definitions/BillingEntityBase"
           }
         },
         "nextPage": {
@@ -44973,9 +45954,6 @@
           "type": "string",
           "description": "{ \"description\" : \"\", \"verbs\":[] }"
         },
-        "productRatePlanMigrationChargeAmendment": {
-          "$ref": "#/definitions/ProductRatePlanMigrationAmendment"
-        },
         "notificationObjectGraph": {
           "type": "string"
         },
@@ -45156,54 +46134,13 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
+        },
+        "productRatePlanMigrationChargeAmendment": {
+          "$ref": "#/definitions/ProductRatePlanMigrationAmendment"
         }
       },
       "xml": {
         "name": "pricingComponentValueMigrationAmendmentMapping"
-      }
-    },
-    "TimeResponsePagedMetadata": {
-      "type": "object",
-      "properties": {
-        "executionTime": {
-          "type": "integer",
-          "format": "int64",
-          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "results": {
-          "type": "array",
-          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
-          "items": {
-            "$ref": "#/definitions/TimeResponse"
-          }
-        },
-        "nextPage": {
-          "type": "string",
-          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentPage": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentOffset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsRequested": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsReturned": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        }
-      },
-      "xml": {
-        "name": "metadata"
       }
     },
     "Username": {
@@ -45431,6 +46368,50 @@
         "name": "username"
       }
     },
+    "TimeResponsePagedMetadata": {
+      "type": "object",
+      "properties": {
+        "executionTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "results": {
+          "type": "array",
+          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
+          "items": {
+            "$ref": "#/definitions/TimeResponse"
+          }
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsReturned": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        }
+      },
+      "xml": {
+        "name": "metadata"
+      }
+    },
     "CassChurnResultPagedMetadata": {
       "type": "object",
       "properties": {
@@ -45573,10 +46554,10 @@
           "format": "date-time",
           "description": "{\"description\":\"The date when the associated payment was refunded.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -46183,6 +47164,40 @@
         "name": "metadata"
       }
     },
+    "ImportInvoiceLine": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "calculation": {
+          "type": "string"
+        },
+        "pricingComponent": {
+          "type": "string"
+        },
+        "organizationID": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number"
+        },
+        "tax": {
+          "type": "number"
+        },
+        "periodStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "periodEnd": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "CreditAccountRequest": {
       "type": "object",
       "required": [
@@ -46399,42 +47414,31 @@
         "name": "CreditAccountRequest"
       }
     },
-    "ImportInvoiceLine": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "calculation": {
-          "type": "string"
-        },
-        "pricingComponent": {
-          "type": "string"
-        },
-        "organizationID": {
-          "type": "string"
-        },
-        "cost": {
-          "type": "number"
-        },
-        "tax": {
-          "type": "number"
-        },
-        "periodStart": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "periodEnd": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "StripeObject": {
       "type": "object"
+    },
+    "tieredVolumePricingComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricingComponent"
+        },
+        {
+          "type": "object",
+          "required": [
+            "@type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"tieredVolumePricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            }
+          },
+          "description": "Pricing component with tiered volume pricing.",
+          "xml": {
+            "name": "pricingComponent"
+          }
+        }
+      ]
     },
     "Notification": {
       "type": "object",
@@ -46638,10 +47642,18 @@
           "default": false
         },
         "entity": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
         },
         "changes": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
         },
         "lastSendAttempt": {
           "type": "string",
@@ -46975,10 +47987,10 @@
           "description": "{ \"description\" : \"The coupon-definition associated with the coupon-book-definition.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
           "$ref": "#/definitions/CouponDefinition"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -47173,14 +48185,11 @@
         {
           "type": "object",
           "required": [
-            "dummyField"
+            "@type"
           ],
           "properties": {
-            "dummyField": {
+            "@type": {
               "type": "string",
-              "xml": {
-                "name": "@type"
-              },
               "description": "{ \"description\" : \"ResumeSubscriptionAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
             }
           },
@@ -47268,10 +48277,10 @@
           "description": "{ \"description\" : \"Has the coupon book been deleted?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
           "default": false
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -47458,24 +48467,16 @@
         "name": "couponBook"
       }
     },
-    "tieredPricingComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PricingComponent"
-        },
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    },
     "InsertableBillingEntity": {
       "type": "object",
       "required": [
-        "account",
-        "accountID",
+        "amount",
+        "invoice",
+        "invoiceID",
+        "name",
         "organizationID",
-        "role"
+        "percentage",
+        "taxationStrategyID"
       ],
       "properties": {
         "created": {
@@ -47489,26 +48490,35 @@
         },
         "id": {
           "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
+          "description": "{ \"description\" : \"ID of the tax-line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "accountID": {
+        "invoiceID": {
           "type": "string",
-          "description": "{ \"description\" : \"The accountID associated with the authority.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+          "description": "{ \"description\" : \"ID of the invoice associated with the tax-line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
         "organizationID": {
           "type": "string",
-          "description": "{ \"description\" : \"The accountID associated with the authority.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+          "description": "{ \"description\" : \"Organization associated with the  Tax Line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "role": {
+        "taxationStrategyID": {
           "type": "string",
-          "description": "{ \"description\" : \"The role granted to the authority.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+          "description": "{ \"description\" : \"The consistent ID of the taxation-strategy associated with the tax-line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "account": {
-          "description": "{ \"description\" : \"The account object associated with the notification.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "$ref": "#/definitions/Account"
+        "name": {
+          "type": "string",
+          "description": "{ \"description\" : \"The human readable name of the tax-line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "authority": {
-          "type": "string"
+        "percentage": {
+          "type": "number",
+          "description": "{ \"description\" : \"The percentage of tax.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "amount": {
+          "type": "number",
+          "description": "{ \"description\" : \"The amount of tax.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "invoice": {
+          "description": "{ \"description\" : \"The invoice associated with the tax-line.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "$ref": "#/definitions/Invoice"
         },
         "notificationObjectGraph": {
           "type": "string"
@@ -47694,7 +48704,7 @@
       },
       "description": "Insertable entities are those entities that can be created.",
       "xml": {
-        "name": "authority"
+        "name": "tax_line"
       }
     },
     "EndTrialAmendment": {
@@ -47704,12 +48714,31 @@
         },
         {
           "type": "object",
-          "properties": {},
+          "required": [
+            "@type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"EndTrialAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            }
+          },
           "xml": {
             "name": "amendment"
           }
         }
       ]
+    },
+    "JaxbDynamicMetadata": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
     },
     "OrganizationPagedMetadata": {
       "type": "object",
@@ -48542,18 +49571,15 @@
         {
           "type": "object",
           "required": [
-            "dummyField",
+            "@type",
             "includeInvoicedChargesOnly",
             "invoiceID",
             "newInvoiceState",
             "recalculationBehaviour"
           ],
           "properties": {
-            "dummyField": {
+            "@type": {
               "type": "string",
-              "xml": {
-                "name": "@type"
-              },
               "description": "{ \"description\" : \"InvoiceRecalculationAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
             },
             "invoiceID": {
@@ -48671,6 +49697,14 @@
         }
       }
     },
+    "GrantedAuthority": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        }
+      }
+    },
     "PricingComponentValuePagedMetadata": {
       "type": "object",
       "properties": {
@@ -48715,14 +49749,6 @@
         "name": "metadata"
       }
     },
-    "GrantedAuthority": {
-      "type": "object",
-      "properties": {
-        "authority": {
-          "type": "string"
-        }
-      }
-    },
     "ProductRatePlan": {
       "type": "object",
       "required": [
@@ -48752,6 +49778,10 @@
           "type": "string",
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
+        },
+        "metadata": {
+          "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
+          "$ref": "#/definitions/JaxbDynamicMetadata"
         },
         "id": {
           "type": "string",
@@ -48928,10 +49958,10 @@
         "displayName": {
           "type": "string"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -49123,6 +50153,94 @@
       "description": "A rate plan describes a pricing system under which a subscription can be made to a product.",
       "xml": {
         "name": "productRatePlan"
+      }
+    },
+    "BraintreeTokenPagedMetadata": {
+      "type": "object",
+      "properties": {
+        "executionTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "results": {
+          "type": "array",
+          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
+          "items": {
+            "$ref": "#/definitions/MutableBillingEntity"
+          }
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsReturned": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        }
+      },
+      "xml": {
+        "name": "metadata"
+      }
+    },
+    "CassPaymentResultPagedMetadata": {
+      "type": "object",
+      "properties": {
+        "executionTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "results": {
+          "type": "array",
+          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
+          "items": {
+            "$ref": "#/definitions/BillingEntityBase"
+          }
+        },
+        "nextPage": {
+          "type": "string",
+          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "currentOffset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsRequested": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        },
+        "recordsReturned": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
+        }
+      },
+      "xml": {
+        "name": "metadata"
       }
     },
     "AddPaymentMethodRequest": {
@@ -49330,94 +50448,6 @@
       "description": "AddPaymentMethodRequest",
       "xml": {
         "name": "AddPaymentMethodRequest"
-      }
-    },
-    "BraintreeTokenPagedMetadata": {
-      "type": "object",
-      "properties": {
-        "executionTime": {
-          "type": "integer",
-          "format": "int64",
-          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "results": {
-          "type": "array",
-          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
-          "items": {
-            "$ref": "#/definitions/MutableBillingEntity"
-          }
-        },
-        "nextPage": {
-          "type": "string",
-          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentPage": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentOffset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsRequested": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsReturned": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        }
-      },
-      "xml": {
-        "name": "metadata"
-      }
-    },
-    "CassPaymentResultPagedMetadata": {
-      "type": "object",
-      "properties": {
-        "executionTime": {
-          "type": "integer",
-          "format": "int64",
-          "description": "{\"description\":\"Number of milliseconds taken by API to calculate response.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "results": {
-          "type": "array",
-          "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
-          "items": {
-            "$ref": "#/definitions/BillingEntityBase"
-          }
-        },
-        "nextPage": {
-          "type": "string",
-          "description": "{\"description\":\"Paging parameter. URL fragment that can be used to fetch next page of results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentPage": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes which page (given a page size of `recordsRequested`) of the result set you are viewing.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "currentOffset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Paging parameter. 0-indexed. Describes your current location within a pageable list of query results.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsRequested": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"default\":10,\"description\":\"Paging parameter. Describes how many records you requested.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        },
-        "recordsReturned": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Describes how many records were returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}"
-        }
-      },
-      "xml": {
-        "name": "metadata"
       }
     },
     "AddCouponCodeRequest": {
@@ -49680,6 +50710,19 @@
       "xml": {
         "name": "metadata"
       }
+    },
+    "PasswordResetRequest": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "{\"description\":\"Login E-mail address of the User.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}"
+        }
+      },
+      "description": "Request entity for reset user's password."
     },
     "RevenueAttribution": {
       "type": "object",
@@ -50511,6 +51554,252 @@
         "name": "metadata"
       }
     },
+    "CouponDiscount": {
+      "type": "object",
+      "required": [
+        "coupon",
+        "organizationID"
+      ],
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
+        },
+        "changedBy": {
+          "type": "string",
+          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
+        },
+        "id": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
+        },
+        "pricingComponent": {
+          "type": "string",
+          "description": "{ \"description\" : \"Name or ID of the pricing component to apply the discount to. If not set blank discount is applied at the invoice level.\", \"verbs\":[\"POST\"] }"
+        },
+        "pricingComponentName": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "pricingComponentID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "unitOfMeasureName": {
+          "type": "string"
+        },
+        "unitOfMeasureID": {
+          "type": "string"
+        },
+        "unitsFree": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{ \"description\" : \"Number of units that are free for a pricing-component.\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "percentageDiscount": {
+          "type": "number",
+          "description": "{ \"description\" : \"Percentage to be discounted\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "cashDiscount": {
+          "type": "number",
+          "description": "{ \"description\" : \"Fixed monetary amount to be discounted\", \"verbs\":[\"POST\",\"GET\"] }"
+        },
+        "organizationID": {
+          "type": "string"
+        },
+        "coupon": {
+          "$ref": "#/definitions/Coupon"
+        },
+        "notificationObjectGraph": {
+          "type": "string"
+        },
+        "billingEntity": {
+          "type": "string",
+          "enum": [
+            "Notification",
+            "Organization",
+            "OrganizationGateway",
+            "Product",
+            "User",
+            "Subscription",
+            "Profile",
+            "ProductRatePlan",
+            "Client",
+            "Invoice",
+            "PricingComponentValue",
+            "Account",
+            "PricingComponentValueChange",
+            "PricingComponentTier",
+            "PricingComponent",
+            "PricingCalculation",
+            "CouponDefinition",
+            "CouponInstance",
+            "CouponModifier",
+            "CouponRule",
+            "CouponBookDefinition",
+            "CouponBook",
+            "InvoiceLine",
+            "Webhook",
+            "SubscriptionCancellation",
+            "NotificationSnapshot",
+            "InvoicePayment",
+            "InvoiceLinePayment",
+            "Payment",
+            "PaymentMethod",
+            "PaymentMethodSubscriptionLink",
+            "DunningLine",
+            "CybersourceToken",
+            "Card",
+            "Alias",
+            "PaypalSimplePaymentReconciliation",
+            "FreePaymentReconciliation",
+            "LocustworldPaymentReconciliation",
+            "CouponInstanceExistingValue",
+            "TaxLine",
+            "TaxationStrategy",
+            "TaxationLink",
+            "Address",
+            "AmendmentPriceNTime",
+            "Authority",
+            "UnitOfMeasure",
+            "SearchResult",
+            "Amendment",
+            "AuditLog",
+            "Password",
+            "Username",
+            "FixedTermDefinition",
+            "FixedTerm",
+            "Refund",
+            "CreditNote",
+            "Receipt",
+            "AmendmentCompoundConstituent",
+            "APIConfiguration",
+            "StripeToken",
+            "BraintreeToken",
+            "BalancedToken",
+            "PaypalToken",
+            "AuthorizeNetToken",
+            "SpreedlyToken",
+            "GatewayRevenue",
+            "AmendmentDiscardAmendment",
+            "CancellationAmendment",
+            "CompoundAmendment",
+            "CompoundAmendmentConstituent",
+            "FixedTermExpiryAmendment",
+            "InvoiceNextExecutionAttemptAmendment",
+            "PricingComponentValueAmendment",
+            "BraintreeMerchantAccount",
+            "WebhookSubscription",
+            "Migration",
+            "CassResult",
+            "CassPaymentResult",
+            "CassProductRatePlanResult",
+            "CassChurnResult",
+            "CassUpgradeResult",
+            "SubscriptionCharge",
+            "CassPaymentPProductResult",
+            "ProductPaymentsArgs",
+            "StripeACHToken",
+            "UsageAmount",
+            "UsageSession",
+            "Usage",
+            "UsagePeriod",
+            "Period",
+            "OfflinePayment",
+            "CreditNotePayment",
+            "CardVaultPayment",
+            "FreePayment",
+            "BraintreePayment",
+            "BalancedPayment",
+            "CybersourcePayment",
+            "PaypalPayment",
+            "PaypalSimplePayment",
+            "LocustWorldPayment",
+            "StripeOnlyPayment",
+            "ProductPaymentsResult",
+            "StripeACHPayment",
+            "AuthorizeNetPayment",
+            "CompoundUsageSession",
+            "CompoundUsage",
+            "UsageRoundingStrategies",
+            "BillforwardManagedPaymentsResult",
+            "PricingComponentValueMigrationChargeAmendmentMapping",
+            "SubscriptionLTVResult",
+            "AccountLTVResult",
+            "ProductRatePlanPaymentsResult",
+            "DebtsResult",
+            "AccountPaymentsResult",
+            "ComponentChange",
+            "QuoteRequest",
+            "Quote",
+            "CouponCharge",
+            "CouponInstanceInvoiceLink",
+            "Coupon",
+            "CouponDiscount",
+            "CouponUniqueCodesRequest",
+            "CouponUniqueCodesResponse",
+            "GetCouponsResponse",
+            "AddCouponCodeRequest",
+            "AddCouponCodeResponse",
+            "RemoveCouponFromSubscriptionRequest",
+            "TokenizationPreAuth",
+            "StripeTokenizationPreAuth",
+            "BraintreeTokenizationPreAuth",
+            "SpreedlyTokenizationPreAuth",
+            "SagePayTokenizationPreAuth",
+            "PayVisionTokenizationPreAuth",
+            "TokenizationPreAuthRequest",
+            "AuthCaptureRequest",
+            "StripeACHBankAccountVerification",
+            "PasswordReset",
+            "PricingRequest",
+            "AddTaxationStrategyRequest",
+            "AddPaymentMethodRequest",
+            "APIRequest",
+            "SagePayToken",
+            "SagePayNotificationRequest",
+            "SagePayNotificationResponse",
+            "SagePayOutstandingTransaction",
+            "SagePayEnabledCardType",
+            "TrustCommerceToken",
+            "SagePayTransaction",
+            "PricingComponentValueResponse",
+            "MigrationResponse",
+            "TimeResponse",
+            "EntityTime",
+            "Email",
+            "AggregationLink",
+            "BFPermission",
+            "Role",
+            "PermissionLink",
+            "PayVisionToken",
+            "PayVisionTransaction",
+            "KashToken",
+            "EmailProvider",
+            "DataSynchronizationJob",
+            "DataSynchronizationJobError",
+            "DataSynchronizationConfiguration",
+            "DataSynchronizationAppConfiguration",
+            "AggregationChildrenResponse",
+            "MetadataKeyValue",
+            "Metadata",
+            "AggregatingComponent",
+            "PricingComponentMigrationValue",
+            "InvoiceRecalculationAmendment",
+            "IssueInvoiceAmendment",
+            "EmailSubscription",
+            "RevenueAttribution"
+          ]
+        }
+      },
+      "description": "<p> A coupon discount specifies how and what will be deducted from the subscription's invoices. The target of a discount, i.e. an Unit of Measure, Pricing Component or the Invoice itself, depends on the information received: </p><dl class=\"dl-horizontal\"><dt>Pricing Component</dt><dd>One value must be defined between the name and the identifier of the pricing component. </dd><dt>Unit of Measure</dt><dd>One value must be defined between the name and the identifier of the unit of measure but no values for the pricing component.</dd><dt>Invoice</dt> If no values are defined."
+    },
     "CreditNote": {
       "type": "object",
       "required": [
@@ -50785,263 +52074,6 @@
       "xml": {
         "name": "creditNote"
       }
-    },
-    "CouponDiscount": {
-      "type": "object",
-      "required": [
-        "coupon",
-        "organizationID"
-      ],
-      "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
-        "changedBy": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-        },
-        "updated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
-        },
-        "id": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
-        },
-        "pricingComponent": {
-          "type": "string",
-          "description": "{ \"description\" : \"Name or ID of the pricing component to apply the discount to. If not set blank discount is applied at the invoice level.\", \"verbs\":[\"POST\"] }"
-        },
-        "pricingComponentName": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
-        },
-        "pricingComponentID": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
-        },
-        "unitOfMeasureName": {
-          "type": "string"
-        },
-        "unitOfMeasureID": {
-          "type": "string"
-        },
-        "unitsFree": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{ \"description\" : \"Number of units that are free for a pricing-component.\", \"verbs\":[\"POST\",\"GET\"] }"
-        },
-        "percentageDiscount": {
-          "type": "number",
-          "description": "{ \"description\" : \"Percentage to be discounted\", \"verbs\":[\"POST\",\"GET\"] }"
-        },
-        "cashDiscount": {
-          "type": "number",
-          "description": "{ \"description\" : \"Fixed monetary amount to be discounted\", \"verbs\":[\"POST\",\"GET\"] }"
-        },
-        "organizationID": {
-          "type": "string"
-        },
-        "coupon": {
-          "$ref": "#/definitions/Coupon"
-        },
-        "notificationObjectGraph": {
-          "type": "string"
-        },
-        "billingEntity": {
-          "type": "string",
-          "enum": [
-            "Notification",
-            "Organization",
-            "OrganizationGateway",
-            "Product",
-            "User",
-            "Subscription",
-            "Profile",
-            "ProductRatePlan",
-            "Client",
-            "Invoice",
-            "PricingComponentValue",
-            "Account",
-            "PricingComponentValueChange",
-            "PricingComponentTier",
-            "PricingComponent",
-            "PricingCalculation",
-            "CouponDefinition",
-            "CouponInstance",
-            "CouponModifier",
-            "CouponRule",
-            "CouponBookDefinition",
-            "CouponBook",
-            "InvoiceLine",
-            "Webhook",
-            "SubscriptionCancellation",
-            "NotificationSnapshot",
-            "InvoicePayment",
-            "InvoiceLinePayment",
-            "Payment",
-            "PaymentMethod",
-            "PaymentMethodSubscriptionLink",
-            "DunningLine",
-            "CybersourceToken",
-            "Card",
-            "Alias",
-            "PaypalSimplePaymentReconciliation",
-            "FreePaymentReconciliation",
-            "LocustworldPaymentReconciliation",
-            "CouponInstanceExistingValue",
-            "TaxLine",
-            "TaxationStrategy",
-            "TaxationLink",
-            "Address",
-            "AmendmentPriceNTime",
-            "Authority",
-            "UnitOfMeasure",
-            "SearchResult",
-            "Amendment",
-            "AuditLog",
-            "Password",
-            "Username",
-            "FixedTermDefinition",
-            "FixedTerm",
-            "Refund",
-            "CreditNote",
-            "Receipt",
-            "AmendmentCompoundConstituent",
-            "APIConfiguration",
-            "StripeToken",
-            "BraintreeToken",
-            "BalancedToken",
-            "PaypalToken",
-            "AuthorizeNetToken",
-            "SpreedlyToken",
-            "GatewayRevenue",
-            "AmendmentDiscardAmendment",
-            "CancellationAmendment",
-            "CompoundAmendment",
-            "CompoundAmendmentConstituent",
-            "FixedTermExpiryAmendment",
-            "InvoiceNextExecutionAttemptAmendment",
-            "PricingComponentValueAmendment",
-            "BraintreeMerchantAccount",
-            "WebhookSubscription",
-            "Migration",
-            "CassResult",
-            "CassPaymentResult",
-            "CassProductRatePlanResult",
-            "CassChurnResult",
-            "CassUpgradeResult",
-            "SubscriptionCharge",
-            "CassPaymentPProductResult",
-            "ProductPaymentsArgs",
-            "StripeACHToken",
-            "UsageAmount",
-            "UsageSession",
-            "Usage",
-            "UsagePeriod",
-            "Period",
-            "OfflinePayment",
-            "CreditNotePayment",
-            "CardVaultPayment",
-            "FreePayment",
-            "BraintreePayment",
-            "BalancedPayment",
-            "CybersourcePayment",
-            "PaypalPayment",
-            "PaypalSimplePayment",
-            "LocustWorldPayment",
-            "StripeOnlyPayment",
-            "ProductPaymentsResult",
-            "StripeACHPayment",
-            "AuthorizeNetPayment",
-            "CompoundUsageSession",
-            "CompoundUsage",
-            "UsageRoundingStrategies",
-            "BillforwardManagedPaymentsResult",
-            "PricingComponentValueMigrationChargeAmendmentMapping",
-            "SubscriptionLTVResult",
-            "AccountLTVResult",
-            "ProductRatePlanPaymentsResult",
-            "DebtsResult",
-            "AccountPaymentsResult",
-            "ComponentChange",
-            "QuoteRequest",
-            "Quote",
-            "CouponCharge",
-            "CouponInstanceInvoiceLink",
-            "Coupon",
-            "CouponDiscount",
-            "CouponUniqueCodesRequest",
-            "CouponUniqueCodesResponse",
-            "GetCouponsResponse",
-            "AddCouponCodeRequest",
-            "AddCouponCodeResponse",
-            "RemoveCouponFromSubscriptionRequest",
-            "TokenizationPreAuth",
-            "StripeTokenizationPreAuth",
-            "BraintreeTokenizationPreAuth",
-            "SpreedlyTokenizationPreAuth",
-            "SagePayTokenizationPreAuth",
-            "PayVisionTokenizationPreAuth",
-            "TokenizationPreAuthRequest",
-            "AuthCaptureRequest",
-            "StripeACHBankAccountVerification",
-            "PasswordReset",
-            "PricingRequest",
-            "AddTaxationStrategyRequest",
-            "AddPaymentMethodRequest",
-            "APIRequest",
-            "SagePayToken",
-            "SagePayNotificationRequest",
-            "SagePayNotificationResponse",
-            "SagePayOutstandingTransaction",
-            "SagePayEnabledCardType",
-            "TrustCommerceToken",
-            "SagePayTransaction",
-            "PricingComponentValueResponse",
-            "MigrationResponse",
-            "TimeResponse",
-            "EntityTime",
-            "Email",
-            "AggregationLink",
-            "BFPermission",
-            "Role",
-            "PermissionLink",
-            "PayVisionToken",
-            "PayVisionTransaction",
-            "KashToken",
-            "EmailProvider",
-            "DataSynchronizationJob",
-            "DataSynchronizationJobError",
-            "DataSynchronizationConfiguration",
-            "DataSynchronizationAppConfiguration",
-            "AggregationChildrenResponse",
-            "MetadataKeyValue",
-            "Metadata",
-            "AggregatingComponent",
-            "PricingComponentMigrationValue",
-            "InvoiceRecalculationAmendment",
-            "IssueInvoiceAmendment",
-            "EmailSubscription",
-            "RevenueAttribution"
-          ]
-        }
-      },
-      "description": "<p> A coupon discount specifies how and what will be deducted from the subscription's invoices. The target of a discount, i.e. an Unit of Measure, Pricing Component or the Invoice itself, depends on the information received: </p><dl class=\"dl-horizontal\"><dt>Pricing Component</dt><dd>One value must be defined between the name and the identifier of the pricing component. </dd><dt>Unit of Measure</dt><dd>One value must be defined between the name and the identifier of the unit of measure but no values for the pricing component.</dd><dt>Invoice</dt> If no values are defined."
-    },
-    "tieredVolumePricingComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PricingComponent"
-        },
-        {
-          "type": "object",
-          "properties": {}
-        }
-      ]
     },
     "CouponModifierBase": {
       "type": "object",
@@ -51409,10 +52441,10 @@
             "$ref": "#/definitions/MutableBillingEntity"
           }
         },
-        "notificationObjectGraph": {
+        "organizationID": {
           "type": "string"
         },
-        "organizationID": {
+        "notificationObjectGraph": {
           "type": "string"
         },
         "billingEntity": {
@@ -51656,7 +52688,15 @@
         },
         {
           "type": "object",
-          "properties": {},
+          "required": [
+            "@type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"ServiceEndAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            }
+          },
           "xml": {
             "name": "amendment"
           }
@@ -51781,10 +52821,10 @@
             "$ref": "#/definitions/CouponRule"
           }
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -52031,14 +53071,14 @@
           "type": "number",
           "description": "{ \"description\" : \"Cost associated with tier. When the pricingType is fixed this is the total value. When pricingType is unit, this is the cost of each unit. \", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "crmid": {
-          "type": "string"
-        },
-        "componentID": {
-          "type": "string",
-          "description": "{ \"description\" : \"Version ID of the pricing-component associated with the pricing-component-tier.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        "pricingComponent": {
+          "description": "{ \"description\" : \"The pricing-component associated with the tier.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "$ref": "#/definitions/PricingComponent"
         },
         "notificationObjectGraph": {
+          "type": "string"
+        },
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -52218,6 +53258,10 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
+        },
+        "componentID": {
+          "type": "string",
+          "description": "{ \"description\" : \"Version ID of the pricing-component associated with the pricing-component-tier.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         }
       },
       "description": "PricingComponentTier",
@@ -52687,10 +53731,10 @@
           "format": "date-time",
           "description": "{\"description\":\"\",\"verbs\":[]}"
         },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -53147,6 +54191,20 @@
             "$ref": "#/definitions/InvoicePayment"
           }
         },
+        "invoiceRefunds": {
+          "type": "array",
+          "description": "{ \"description\" : \"Refunds associated with this invoice. Multiple refunds may be associated with the invoice.\", \"verbs\":[\"GET\"] }",
+          "items": {
+            "$ref": "#/definitions/Refund"
+          }
+        },
+        "invoiceCreditNotes": {
+          "type": "array",
+          "description": "{ \"description\" : \"Credit Notes associated with this invoice. Multiple credit notes may be associated with the invoice.\", \"verbs\":[\"GET\"] }",
+          "items": {
+            "$ref": "#/definitions/CreditNote"
+          }
+        },
         "charges": {
           "type": "array",
           "items": {
@@ -53168,8 +54226,189 @@
             "type": "string"
           }
         },
+        "notificationObjectGraph": {
+          "type": "string"
+        },
         "crmid": {
           "type": "string"
+        },
+        "billingEntity": {
+          "type": "string",
+          "enum": [
+            "Notification",
+            "Organization",
+            "OrganizationGateway",
+            "Product",
+            "User",
+            "Subscription",
+            "Profile",
+            "ProductRatePlan",
+            "Client",
+            "Invoice",
+            "PricingComponentValue",
+            "Account",
+            "PricingComponentValueChange",
+            "PricingComponentTier",
+            "PricingComponent",
+            "PricingCalculation",
+            "CouponDefinition",
+            "CouponInstance",
+            "CouponModifier",
+            "CouponRule",
+            "CouponBookDefinition",
+            "CouponBook",
+            "InvoiceLine",
+            "Webhook",
+            "SubscriptionCancellation",
+            "NotificationSnapshot",
+            "InvoicePayment",
+            "InvoiceLinePayment",
+            "Payment",
+            "PaymentMethod",
+            "PaymentMethodSubscriptionLink",
+            "DunningLine",
+            "CybersourceToken",
+            "Card",
+            "Alias",
+            "PaypalSimplePaymentReconciliation",
+            "FreePaymentReconciliation",
+            "LocustworldPaymentReconciliation",
+            "CouponInstanceExistingValue",
+            "TaxLine",
+            "TaxationStrategy",
+            "TaxationLink",
+            "Address",
+            "AmendmentPriceNTime",
+            "Authority",
+            "UnitOfMeasure",
+            "SearchResult",
+            "Amendment",
+            "AuditLog",
+            "Password",
+            "Username",
+            "FixedTermDefinition",
+            "FixedTerm",
+            "Refund",
+            "CreditNote",
+            "Receipt",
+            "AmendmentCompoundConstituent",
+            "APIConfiguration",
+            "StripeToken",
+            "BraintreeToken",
+            "BalancedToken",
+            "PaypalToken",
+            "AuthorizeNetToken",
+            "SpreedlyToken",
+            "GatewayRevenue",
+            "AmendmentDiscardAmendment",
+            "CancellationAmendment",
+            "CompoundAmendment",
+            "CompoundAmendmentConstituent",
+            "FixedTermExpiryAmendment",
+            "InvoiceNextExecutionAttemptAmendment",
+            "PricingComponentValueAmendment",
+            "BraintreeMerchantAccount",
+            "WebhookSubscription",
+            "Migration",
+            "CassResult",
+            "CassPaymentResult",
+            "CassProductRatePlanResult",
+            "CassChurnResult",
+            "CassUpgradeResult",
+            "SubscriptionCharge",
+            "CassPaymentPProductResult",
+            "ProductPaymentsArgs",
+            "StripeACHToken",
+            "UsageAmount",
+            "UsageSession",
+            "Usage",
+            "UsagePeriod",
+            "Period",
+            "OfflinePayment",
+            "CreditNotePayment",
+            "CardVaultPayment",
+            "FreePayment",
+            "BraintreePayment",
+            "BalancedPayment",
+            "CybersourcePayment",
+            "PaypalPayment",
+            "PaypalSimplePayment",
+            "LocustWorldPayment",
+            "StripeOnlyPayment",
+            "ProductPaymentsResult",
+            "StripeACHPayment",
+            "AuthorizeNetPayment",
+            "CompoundUsageSession",
+            "CompoundUsage",
+            "UsageRoundingStrategies",
+            "BillforwardManagedPaymentsResult",
+            "PricingComponentValueMigrationChargeAmendmentMapping",
+            "SubscriptionLTVResult",
+            "AccountLTVResult",
+            "ProductRatePlanPaymentsResult",
+            "DebtsResult",
+            "AccountPaymentsResult",
+            "ComponentChange",
+            "QuoteRequest",
+            "Quote",
+            "CouponCharge",
+            "CouponInstanceInvoiceLink",
+            "Coupon",
+            "CouponDiscount",
+            "CouponUniqueCodesRequest",
+            "CouponUniqueCodesResponse",
+            "GetCouponsResponse",
+            "AddCouponCodeRequest",
+            "AddCouponCodeResponse",
+            "RemoveCouponFromSubscriptionRequest",
+            "TokenizationPreAuth",
+            "StripeTokenizationPreAuth",
+            "BraintreeTokenizationPreAuth",
+            "SpreedlyTokenizationPreAuth",
+            "SagePayTokenizationPreAuth",
+            "PayVisionTokenizationPreAuth",
+            "TokenizationPreAuthRequest",
+            "AuthCaptureRequest",
+            "StripeACHBankAccountVerification",
+            "PasswordReset",
+            "PricingRequest",
+            "AddTaxationStrategyRequest",
+            "AddPaymentMethodRequest",
+            "APIRequest",
+            "SagePayToken",
+            "SagePayNotificationRequest",
+            "SagePayNotificationResponse",
+            "SagePayOutstandingTransaction",
+            "SagePayEnabledCardType",
+            "TrustCommerceToken",
+            "SagePayTransaction",
+            "PricingComponentValueResponse",
+            "MigrationResponse",
+            "TimeResponse",
+            "EntityTime",
+            "Email",
+            "AggregationLink",
+            "BFPermission",
+            "Role",
+            "PermissionLink",
+            "PayVisionToken",
+            "PayVisionTransaction",
+            "KashToken",
+            "EmailProvider",
+            "DataSynchronizationJob",
+            "DataSynchronizationJobError",
+            "DataSynchronizationConfiguration",
+            "DataSynchronizationAppConfiguration",
+            "AggregationChildrenResponse",
+            "MetadataKeyValue",
+            "Metadata",
+            "AggregatingComponent",
+            "PricingComponentMigrationValue",
+            "InvoiceRecalculationAmendment",
+            "IssueInvoiceAmendment",
+            "EmailSubscription",
+            "RevenueAttribution"
+          ]
         },
         "shortID": {
           "type": "string"
@@ -53193,409 +54432,12 @@
         },
         "totalInvoiceCost": {
           "type": "number"
-        },
-        "notificationObjectGraph": {
-          "type": "string"
-        },
-        "billingEntity": {
-          "type": "string",
-          "enum": [
-            "Notification",
-            "Organization",
-            "OrganizationGateway",
-            "Product",
-            "User",
-            "Subscription",
-            "Profile",
-            "ProductRatePlan",
-            "Client",
-            "Invoice",
-            "PricingComponentValue",
-            "Account",
-            "PricingComponentValueChange",
-            "PricingComponentTier",
-            "PricingComponent",
-            "PricingCalculation",
-            "CouponDefinition",
-            "CouponInstance",
-            "CouponModifier",
-            "CouponRule",
-            "CouponBookDefinition",
-            "CouponBook",
-            "InvoiceLine",
-            "Webhook",
-            "SubscriptionCancellation",
-            "NotificationSnapshot",
-            "InvoicePayment",
-            "InvoiceLinePayment",
-            "Payment",
-            "PaymentMethod",
-            "PaymentMethodSubscriptionLink",
-            "DunningLine",
-            "CybersourceToken",
-            "Card",
-            "Alias",
-            "PaypalSimplePaymentReconciliation",
-            "FreePaymentReconciliation",
-            "LocustworldPaymentReconciliation",
-            "CouponInstanceExistingValue",
-            "TaxLine",
-            "TaxationStrategy",
-            "TaxationLink",
-            "Address",
-            "AmendmentPriceNTime",
-            "Authority",
-            "UnitOfMeasure",
-            "SearchResult",
-            "Amendment",
-            "AuditLog",
-            "Password",
-            "Username",
-            "FixedTermDefinition",
-            "FixedTerm",
-            "Refund",
-            "CreditNote",
-            "Receipt",
-            "AmendmentCompoundConstituent",
-            "APIConfiguration",
-            "StripeToken",
-            "BraintreeToken",
-            "BalancedToken",
-            "PaypalToken",
-            "AuthorizeNetToken",
-            "SpreedlyToken",
-            "GatewayRevenue",
-            "AmendmentDiscardAmendment",
-            "CancellationAmendment",
-            "CompoundAmendment",
-            "CompoundAmendmentConstituent",
-            "FixedTermExpiryAmendment",
-            "InvoiceNextExecutionAttemptAmendment",
-            "PricingComponentValueAmendment",
-            "BraintreeMerchantAccount",
-            "WebhookSubscription",
-            "Migration",
-            "CassResult",
-            "CassPaymentResult",
-            "CassProductRatePlanResult",
-            "CassChurnResult",
-            "CassUpgradeResult",
-            "SubscriptionCharge",
-            "CassPaymentPProductResult",
-            "ProductPaymentsArgs",
-            "StripeACHToken",
-            "UsageAmount",
-            "UsageSession",
-            "Usage",
-            "UsagePeriod",
-            "Period",
-            "OfflinePayment",
-            "CreditNotePayment",
-            "CardVaultPayment",
-            "FreePayment",
-            "BraintreePayment",
-            "BalancedPayment",
-            "CybersourcePayment",
-            "PaypalPayment",
-            "PaypalSimplePayment",
-            "LocustWorldPayment",
-            "StripeOnlyPayment",
-            "ProductPaymentsResult",
-            "StripeACHPayment",
-            "AuthorizeNetPayment",
-            "CompoundUsageSession",
-            "CompoundUsage",
-            "UsageRoundingStrategies",
-            "BillforwardManagedPaymentsResult",
-            "PricingComponentValueMigrationChargeAmendmentMapping",
-            "SubscriptionLTVResult",
-            "AccountLTVResult",
-            "ProductRatePlanPaymentsResult",
-            "DebtsResult",
-            "AccountPaymentsResult",
-            "ComponentChange",
-            "QuoteRequest",
-            "Quote",
-            "CouponCharge",
-            "CouponInstanceInvoiceLink",
-            "Coupon",
-            "CouponDiscount",
-            "CouponUniqueCodesRequest",
-            "CouponUniqueCodesResponse",
-            "GetCouponsResponse",
-            "AddCouponCodeRequest",
-            "AddCouponCodeResponse",
-            "RemoveCouponFromSubscriptionRequest",
-            "TokenizationPreAuth",
-            "StripeTokenizationPreAuth",
-            "BraintreeTokenizationPreAuth",
-            "SpreedlyTokenizationPreAuth",
-            "SagePayTokenizationPreAuth",
-            "PayVisionTokenizationPreAuth",
-            "TokenizationPreAuthRequest",
-            "AuthCaptureRequest",
-            "StripeACHBankAccountVerification",
-            "PasswordReset",
-            "PricingRequest",
-            "AddTaxationStrategyRequest",
-            "AddPaymentMethodRequest",
-            "APIRequest",
-            "SagePayToken",
-            "SagePayNotificationRequest",
-            "SagePayNotificationResponse",
-            "SagePayOutstandingTransaction",
-            "SagePayEnabledCardType",
-            "TrustCommerceToken",
-            "SagePayTransaction",
-            "PricingComponentValueResponse",
-            "MigrationResponse",
-            "TimeResponse",
-            "EntityTime",
-            "Email",
-            "AggregationLink",
-            "BFPermission",
-            "Role",
-            "PermissionLink",
-            "PayVisionToken",
-            "PayVisionTransaction",
-            "KashToken",
-            "EmailProvider",
-            "DataSynchronizationJob",
-            "DataSynchronizationJobError",
-            "DataSynchronizationConfiguration",
-            "DataSynchronizationAppConfiguration",
-            "AggregationChildrenResponse",
-            "MetadataKeyValue",
-            "Metadata",
-            "AggregatingComponent",
-            "PricingComponentMigrationValue",
-            "InvoiceRecalculationAmendment",
-            "IssueInvoiceAmendment",
-            "EmailSubscription",
-            "RevenueAttribution"
-          ]
         }
       },
       "description": "An invoice encapsulates the cumulative charges of a subscription's pricing-components and their respective pricing-component-values for a specific period of time.",
       "xml": {
         "name": "invoice"
       }
-    },
-    "PricingComponentMigrationValue": {
-      "type": "object",
-      "required": [
-        "pricingComponent",
-        "value"
-      ],
-      "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
-        "changedBy": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-        },
-        "id": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
-        },
-        "pricingComponent": {
-          "type": "string",
-          "description": "{\"description\":\"ID or name of the pricing component whose migration value is being described.\",\"verbs\":[\"POST\",\"GET\"]}"
-        },
-        "value": {
-          "type": "integer",
-          "format": "int32",
-          "description": "{\"description\":\"Amount consumed of the pricing component whose migration value is being described.\",\"verbs\":[\"POST\",\"GET\"]}"
-        },
-        "charge": {
-          "$ref": "#/definitions/SubscriptionCharge"
-        },
-        "notificationObjectGraph": {
-          "type": "string"
-        },
-        "billingEntity": {
-          "type": "string",
-          "enum": [
-            "Notification",
-            "Organization",
-            "OrganizationGateway",
-            "Product",
-            "User",
-            "Subscription",
-            "Profile",
-            "ProductRatePlan",
-            "Client",
-            "Invoice",
-            "PricingComponentValue",
-            "Account",
-            "PricingComponentValueChange",
-            "PricingComponentTier",
-            "PricingComponent",
-            "PricingCalculation",
-            "CouponDefinition",
-            "CouponInstance",
-            "CouponModifier",
-            "CouponRule",
-            "CouponBookDefinition",
-            "CouponBook",
-            "InvoiceLine",
-            "Webhook",
-            "SubscriptionCancellation",
-            "NotificationSnapshot",
-            "InvoicePayment",
-            "InvoiceLinePayment",
-            "Payment",
-            "PaymentMethod",
-            "PaymentMethodSubscriptionLink",
-            "DunningLine",
-            "CybersourceToken",
-            "Card",
-            "Alias",
-            "PaypalSimplePaymentReconciliation",
-            "FreePaymentReconciliation",
-            "LocustworldPaymentReconciliation",
-            "CouponInstanceExistingValue",
-            "TaxLine",
-            "TaxationStrategy",
-            "TaxationLink",
-            "Address",
-            "AmendmentPriceNTime",
-            "Authority",
-            "UnitOfMeasure",
-            "SearchResult",
-            "Amendment",
-            "AuditLog",
-            "Password",
-            "Username",
-            "FixedTermDefinition",
-            "FixedTerm",
-            "Refund",
-            "CreditNote",
-            "Receipt",
-            "AmendmentCompoundConstituent",
-            "APIConfiguration",
-            "StripeToken",
-            "BraintreeToken",
-            "BalancedToken",
-            "PaypalToken",
-            "AuthorizeNetToken",
-            "SpreedlyToken",
-            "GatewayRevenue",
-            "AmendmentDiscardAmendment",
-            "CancellationAmendment",
-            "CompoundAmendment",
-            "CompoundAmendmentConstituent",
-            "FixedTermExpiryAmendment",
-            "InvoiceNextExecutionAttemptAmendment",
-            "PricingComponentValueAmendment",
-            "BraintreeMerchantAccount",
-            "WebhookSubscription",
-            "Migration",
-            "CassResult",
-            "CassPaymentResult",
-            "CassProductRatePlanResult",
-            "CassChurnResult",
-            "CassUpgradeResult",
-            "SubscriptionCharge",
-            "CassPaymentPProductResult",
-            "ProductPaymentsArgs",
-            "StripeACHToken",
-            "UsageAmount",
-            "UsageSession",
-            "Usage",
-            "UsagePeriod",
-            "Period",
-            "OfflinePayment",
-            "CreditNotePayment",
-            "CardVaultPayment",
-            "FreePayment",
-            "BraintreePayment",
-            "BalancedPayment",
-            "CybersourcePayment",
-            "PaypalPayment",
-            "PaypalSimplePayment",
-            "LocustWorldPayment",
-            "StripeOnlyPayment",
-            "ProductPaymentsResult",
-            "StripeACHPayment",
-            "AuthorizeNetPayment",
-            "CompoundUsageSession",
-            "CompoundUsage",
-            "UsageRoundingStrategies",
-            "BillforwardManagedPaymentsResult",
-            "PricingComponentValueMigrationChargeAmendmentMapping",
-            "SubscriptionLTVResult",
-            "AccountLTVResult",
-            "ProductRatePlanPaymentsResult",
-            "DebtsResult",
-            "AccountPaymentsResult",
-            "ComponentChange",
-            "QuoteRequest",
-            "Quote",
-            "CouponCharge",
-            "CouponInstanceInvoiceLink",
-            "Coupon",
-            "CouponDiscount",
-            "CouponUniqueCodesRequest",
-            "CouponUniqueCodesResponse",
-            "GetCouponsResponse",
-            "AddCouponCodeRequest",
-            "AddCouponCodeResponse",
-            "RemoveCouponFromSubscriptionRequest",
-            "TokenizationPreAuth",
-            "StripeTokenizationPreAuth",
-            "BraintreeTokenizationPreAuth",
-            "SpreedlyTokenizationPreAuth",
-            "SagePayTokenizationPreAuth",
-            "PayVisionTokenizationPreAuth",
-            "TokenizationPreAuthRequest",
-            "AuthCaptureRequest",
-            "StripeACHBankAccountVerification",
-            "PasswordReset",
-            "PricingRequest",
-            "AddTaxationStrategyRequest",
-            "AddPaymentMethodRequest",
-            "APIRequest",
-            "SagePayToken",
-            "SagePayNotificationRequest",
-            "SagePayNotificationResponse",
-            "SagePayOutstandingTransaction",
-            "SagePayEnabledCardType",
-            "TrustCommerceToken",
-            "SagePayTransaction",
-            "PricingComponentValueResponse",
-            "MigrationResponse",
-            "TimeResponse",
-            "EntityTime",
-            "Email",
-            "AggregationLink",
-            "BFPermission",
-            "Role",
-            "PermissionLink",
-            "PayVisionToken",
-            "PayVisionTransaction",
-            "KashToken",
-            "EmailProvider",
-            "DataSynchronizationJob",
-            "DataSynchronizationJobError",
-            "DataSynchronizationConfiguration",
-            "DataSynchronizationAppConfiguration",
-            "AggregationChildrenResponse",
-            "MetadataKeyValue",
-            "Metadata",
-            "AggregatingComponent",
-            "PricingComponentMigrationValue",
-            "InvoiceRecalculationAmendment",
-            "IssueInvoiceAmendment",
-            "EmailSubscription",
-            "RevenueAttribution"
-          ]
-        }
-      },
-      "description": "Entity describing the amount consumed of some pricing component in a migration."
     },
     "CreateSubscriptionBatchRequest": {
       "type": "object",
@@ -53840,6 +54682,222 @@
       "xml": {
         "name": "metadata"
       }
+    },
+    "PricingComponentMigrationValue": {
+      "type": "object",
+      "required": [
+        "pricingComponent",
+        "value"
+      ],
+      "properties": {
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
+        },
+        "changedBy": {
+          "type": "string",
+          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
+        },
+        "id": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
+        },
+        "pricingComponent": {
+          "type": "string",
+          "description": "{\"description\":\"ID or name of the pricing component whose migration value is being described.\",\"verbs\":[\"POST\",\"GET\"]}"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32",
+          "description": "{\"description\":\"Amount consumed of the pricing component whose migration value is being described.\",\"verbs\":[\"POST\",\"GET\"]}"
+        },
+        "charge": {
+          "$ref": "#/definitions/SubscriptionCharge"
+        },
+        "notificationObjectGraph": {
+          "type": "string"
+        },
+        "billingEntity": {
+          "type": "string",
+          "enum": [
+            "Notification",
+            "Organization",
+            "OrganizationGateway",
+            "Product",
+            "User",
+            "Subscription",
+            "Profile",
+            "ProductRatePlan",
+            "Client",
+            "Invoice",
+            "PricingComponentValue",
+            "Account",
+            "PricingComponentValueChange",
+            "PricingComponentTier",
+            "PricingComponent",
+            "PricingCalculation",
+            "CouponDefinition",
+            "CouponInstance",
+            "CouponModifier",
+            "CouponRule",
+            "CouponBookDefinition",
+            "CouponBook",
+            "InvoiceLine",
+            "Webhook",
+            "SubscriptionCancellation",
+            "NotificationSnapshot",
+            "InvoicePayment",
+            "InvoiceLinePayment",
+            "Payment",
+            "PaymentMethod",
+            "PaymentMethodSubscriptionLink",
+            "DunningLine",
+            "CybersourceToken",
+            "Card",
+            "Alias",
+            "PaypalSimplePaymentReconciliation",
+            "FreePaymentReconciliation",
+            "LocustworldPaymentReconciliation",
+            "CouponInstanceExistingValue",
+            "TaxLine",
+            "TaxationStrategy",
+            "TaxationLink",
+            "Address",
+            "AmendmentPriceNTime",
+            "Authority",
+            "UnitOfMeasure",
+            "SearchResult",
+            "Amendment",
+            "AuditLog",
+            "Password",
+            "Username",
+            "FixedTermDefinition",
+            "FixedTerm",
+            "Refund",
+            "CreditNote",
+            "Receipt",
+            "AmendmentCompoundConstituent",
+            "APIConfiguration",
+            "StripeToken",
+            "BraintreeToken",
+            "BalancedToken",
+            "PaypalToken",
+            "AuthorizeNetToken",
+            "SpreedlyToken",
+            "GatewayRevenue",
+            "AmendmentDiscardAmendment",
+            "CancellationAmendment",
+            "CompoundAmendment",
+            "CompoundAmendmentConstituent",
+            "FixedTermExpiryAmendment",
+            "InvoiceNextExecutionAttemptAmendment",
+            "PricingComponentValueAmendment",
+            "BraintreeMerchantAccount",
+            "WebhookSubscription",
+            "Migration",
+            "CassResult",
+            "CassPaymentResult",
+            "CassProductRatePlanResult",
+            "CassChurnResult",
+            "CassUpgradeResult",
+            "SubscriptionCharge",
+            "CassPaymentPProductResult",
+            "ProductPaymentsArgs",
+            "StripeACHToken",
+            "UsageAmount",
+            "UsageSession",
+            "Usage",
+            "UsagePeriod",
+            "Period",
+            "OfflinePayment",
+            "CreditNotePayment",
+            "CardVaultPayment",
+            "FreePayment",
+            "BraintreePayment",
+            "BalancedPayment",
+            "CybersourcePayment",
+            "PaypalPayment",
+            "PaypalSimplePayment",
+            "LocustWorldPayment",
+            "StripeOnlyPayment",
+            "ProductPaymentsResult",
+            "StripeACHPayment",
+            "AuthorizeNetPayment",
+            "CompoundUsageSession",
+            "CompoundUsage",
+            "UsageRoundingStrategies",
+            "BillforwardManagedPaymentsResult",
+            "PricingComponentValueMigrationChargeAmendmentMapping",
+            "SubscriptionLTVResult",
+            "AccountLTVResult",
+            "ProductRatePlanPaymentsResult",
+            "DebtsResult",
+            "AccountPaymentsResult",
+            "ComponentChange",
+            "QuoteRequest",
+            "Quote",
+            "CouponCharge",
+            "CouponInstanceInvoiceLink",
+            "Coupon",
+            "CouponDiscount",
+            "CouponUniqueCodesRequest",
+            "CouponUniqueCodesResponse",
+            "GetCouponsResponse",
+            "AddCouponCodeRequest",
+            "AddCouponCodeResponse",
+            "RemoveCouponFromSubscriptionRequest",
+            "TokenizationPreAuth",
+            "StripeTokenizationPreAuth",
+            "BraintreeTokenizationPreAuth",
+            "SpreedlyTokenizationPreAuth",
+            "SagePayTokenizationPreAuth",
+            "PayVisionTokenizationPreAuth",
+            "TokenizationPreAuthRequest",
+            "AuthCaptureRequest",
+            "StripeACHBankAccountVerification",
+            "PasswordReset",
+            "PricingRequest",
+            "AddTaxationStrategyRequest",
+            "AddPaymentMethodRequest",
+            "APIRequest",
+            "SagePayToken",
+            "SagePayNotificationRequest",
+            "SagePayNotificationResponse",
+            "SagePayOutstandingTransaction",
+            "SagePayEnabledCardType",
+            "TrustCommerceToken",
+            "SagePayTransaction",
+            "PricingComponentValueResponse",
+            "MigrationResponse",
+            "TimeResponse",
+            "EntityTime",
+            "Email",
+            "AggregationLink",
+            "BFPermission",
+            "Role",
+            "PermissionLink",
+            "PayVisionToken",
+            "PayVisionTransaction",
+            "KashToken",
+            "EmailProvider",
+            "DataSynchronizationJob",
+            "DataSynchronizationJobError",
+            "DataSynchronizationConfiguration",
+            "DataSynchronizationAppConfiguration",
+            "AggregationChildrenResponse",
+            "MetadataKeyValue",
+            "Metadata",
+            "AggregatingComponent",
+            "PricingComponentMigrationValue",
+            "InvoiceRecalculationAmendment",
+            "IssueInvoiceAmendment",
+            "EmailSubscription",
+            "RevenueAttribution"
+          ]
+        }
+      },
+      "description": "Entity describing the amount consumed of some pricing component in a migration."
     },
     "APIQuotePagedMetadata": {
       "type": "object",
@@ -54569,7 +55627,7 @@
       },
       "description": "<p>A coupon allows the customer to apply one or more discounts to a subscription.A coupon can be used to generate coupon codes which can then be added or removed from subscription.</p>"
     },
-    "CassUpgradeResultPagedMetadata": {
+    "UsernamePagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -54581,7 +55639,7 @@
           "type": "array",
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
-            "$ref": "#/definitions/BillingEntityBase"
+            "$ref": "#/definitions/Username"
           }
         },
         "nextPage": {
@@ -54888,7 +55946,7 @@
         "name": "dunningLine"
       }
     },
-    "UsernamePagedMetadata": {
+    "CassUpgradeResultPagedMetadata": {
       "type": "object",
       "properties": {
         "executionTime": {
@@ -54900,7 +55958,7 @@
           "type": "array",
           "description": "{\"description\":\"The results returned by your query.\",\"verbs\":[\"GET\",\"PUT\",\"POST\"]}",
           "items": {
-            "$ref": "#/definitions/Username"
+            "$ref": "#/definitions/BillingEntityBase"
           }
         },
         "nextPage": {
@@ -55256,8 +56314,8 @@
     "PricingComponentValueChangeAmendment": {
       "type": "object",
       "required": [
+        "@type",
         "deleted",
-        "dummyField",
         "internalState",
         "invoicingType",
         "state",
@@ -55278,11 +56336,8 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
         },
-        "dummyField": {
+        "@type": {
           "type": "string",
-          "xml": {
-            "name": "@type"
-          },
           "description": "{ \"description\" : \"PricingComponentValueChangeAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
         },
         "id": {
@@ -55318,7 +56373,8 @@
             "UpdateComponentValue",
             "ServiceEnd",
             "ResumeSubscription",
-            "CreateSubscriptionCharge"
+            "CreateSubscriptionCharge",
+            "Timer"
           ]
         },
         "actioningTime": {
@@ -55649,6 +56705,10 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
         },
+        "metadata": {
+          "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
+          "$ref": "#/definitions/JaxbDynamicMetadata"
+        },
         "id": {
           "type": "string",
           "description": "{ \"description\" : \"ID of the account.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
@@ -55693,13 +56753,10 @@
             "$ref": "#/definitions/PaymentMethod"
           }
         },
-        "profile": {
-            "$ref": "#/definitions/Profile"
-        },
-        "crmid": {
+        "notificationObjectGraph": {
           "type": "string"
         },
-        "notificationObjectGraph": {
+        "crmid": {
           "type": "string"
         },
         "billingEntity": {
@@ -56203,8 +57260,8 @@
     "Amendment": {
       "type": "object",
       "required": [
+        "@type",
         "deleted",
-        "dummyField",
         "internalState",
         "state",
         "subscriptionID"
@@ -56225,26 +57282,25 @@
           "format": "date-time",
           "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
         },
-        "dummyField": {
+        "@type": {
           "type": "string",
-          "xml": {
-            "name": "@type"
-          },
           "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
           "enum": [
-            "DefaultQuantityAmendment",
             "InvoiceOutstandingChargesAmendment",
-            "CreateSubscriptionChargeAmendment",
             "IssueInvoiceAmendment",
             "PricingComponentValueAmendment",
-            "GatewayMigrationAmendment",
             "InvoiceRecalculationAmendment",
             "CancellationAmendment",
             "InvoiceNextExecutionAttemptAmendment",
             "FixedTermExpiryAmendment",
             "EndTrialAmendment",
             "ProductRatePlanMigrationAmendment",
-            "AmendmentDiscardAmendment"
+            "AmendmentDiscardAmendment",
+            "UpdateComponentValueAmendment",
+            "ServiceEndAmendment",
+            "ResumeSubscriptionAmendment",
+            "CreateSubscriptionChargeAmendment",
+            "TimerAmendment"
           ]
         },
         "id": {
@@ -56280,7 +57336,8 @@
             "UpdateComponentValue",
             "ServiceEnd",
             "ResumeSubscription",
-            "CreateSubscriptionCharge"
+            "CreateSubscriptionCharge",
+            "Timer"
           ]
         },
         "actioningTime": {
@@ -56530,9 +57587,14 @@
         {
           "type": "object",
           "required": [
+            "@type",
             "fixedTermID"
           ],
           "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"FixedTermExpiryAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
             "fixedTermID": {
               "type": "string",
               "description": "{ \"description\" : \"ID of the fixed term to be expired by the amendment.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
@@ -56823,6 +57885,91 @@
       "xml": {
         "name": "metadata"
       }
+    },
+    "CreateSubscriptionChargeAmendment": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Amendment"
+        },
+        {
+          "type": "object",
+          "required": [
+            "@type",
+            "amount",
+            "invoicingType",
+            "taxStatus",
+            "type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"CreateSubscriptionChargeAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
+            "subscriptionChargeID": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+            },
+            "description": {
+              "type": "string",
+              "description": "{ \"description\" : \".\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
+            "amount": {
+              "type": "number",
+              "description": "{ \"description\" : \"Monetary value to charge in the same currency as the subscription.\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
+            "discount": {
+              "type": "number",
+              "description": "{ \"description\" : \"\", \"verbs\":[] }"
+            },
+            "type": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"default\" : \"Manual\",  \"verbs\":[] }",
+              "enum": [
+                "Setup",
+                "Upgrade",
+                "Manual",
+                "ProductRatePlanMigration",
+                "Arrears",
+                "Advance",
+                "Coupon",
+                "Usage",
+                "PricingComponent"
+              ]
+            },
+            "invoicingType": {
+              "type": "string",
+              "description": "{ \"description\" : \"<span class=\\\"label label-default\\\">Immediate</span> invoicing will result in an invoice being issued immediately for the charge. <span class=\\\"label label-default\\\">Aggregated</span> invoicing will generate a charge to be added to the next issued invoice, for example at the current billing period end.\", \"default\" : \"Aggregated\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+              "enum": [
+                "Immediate",
+                "Aggregated"
+              ]
+            },
+            "taxStatus": {
+              "type": "string",
+              "description": "{ \"description\" : \"Whether the amount specified is <span class=\\\"label label-default\\\">inclusive</span> or <span class=\\\"label label-default\\\">exclusive</span> of tax\",  \"default\" : \"inclusive\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+              "enum": [
+                "inclusive",
+                "exclusive"
+              ]
+            },
+            "subscriptionCharge": {
+              "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }",
+              "$ref": "#/definitions/SubscriptionCharge"
+            },
+            "pricingComponentValueChange": {
+              "description": "{ \"description\" : \"\", \"verbs\":[] }",
+              "$ref": "#/definitions/InsertableBillingEntity"
+            },
+            "pricingComponentID": {
+              "type": "string",
+              "description": "{ \"description\" : \"\", \"verbs\":[] }"
+            }
+          },
+          "xml": {
+            "name": "amendment"
+          }
+        }
+      ]
     },
     "CreateAggregatingComponentRequest": {
       "type": "object",
@@ -57361,6 +58508,29 @@
       },
       "description": "Entity containing a price quote."
     },
+    "flatPricingComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PricingComponent"
+        },
+        {
+          "type": "object",
+          "required": [
+            "@type"
+          ],
+          "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"flatPricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            }
+          },
+          "description": "Pricing component with flat price tiering.",
+          "xml": {
+            "name": "pricingComponent"
+          }
+        }
+      ]
+    },
     "TimeZone": {
       "type": "object",
       "properties": {
@@ -57476,9 +58646,14 @@
         {
           "type": "object",
           "required": [
+            "@type",
             "amendmentToDiscardID"
           ],
           "properties": {
+            "@type": {
+              "type": "string",
+              "description": "{ \"description\" : \"AmendmentDiscardAmendment\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
+            },
             "amendmentToDiscardID": {
               "type": "string",
               "description": "{ \"description\" : \"ID of the amendment to discard.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
@@ -58084,11 +59259,11 @@
     "PricingComponent": {
       "type": "object",
       "required": [
+        "@type",
         "chargeModel",
         "chargeType",
         "consistentID",
         "defaultQuantity",
-        "@type",
         "name",
         "organizationID",
         "productRatePlan",
@@ -58096,7 +59271,7 @@
         "unitOfMeasureID",
         "validFrom"
       ],
-      "discriminator": "@type",
+      "discriminator": "chargeModel",
       "properties": {
         "created": {
           "type": "string",
@@ -58114,9 +59289,6 @@
         },
         "@type": {
           "type": "string",
-          "xml": {
-            "name": "@type"
-          },
           "description": "{ \"description\" : \"\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }",
           "enum": [
             "tieredPricingComponent",
@@ -58248,9 +59420,6 @@
         "crmid": {
           "type": "string"
         },
-        "cost": {
-          "type": "number"
-        },
         "priceExplanation": {
           "type": "array",
           "items": {
@@ -58259,10 +59428,6 @@
         },
         "priceExplanationString": {
           "type": "string"
-
-        },
-        "unitOfMeasure": {
-          "$ref": "#/definitions/UnitOfMeasure"
         },
         "billingEntity": {
           "type": "string",
@@ -58442,70 +59607,15 @@
             "RevenueAttribution"
           ]
         },
+        "cost": {
+          "type": "number"
+        },
         "notificationObjectGraph": {
           "type": "string"
         }
       },
       "xml": {
         "name": "pricingComponent"
-      }
-    },
-    "EmailProvider": {
-      "type": "object",
-      "required": [
-        "deleted",
-        "host",
-        "name",
-        "organizationID",
-        "port"
-      ],
-      "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
-        "changedBy": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-        },
-        "updated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
-        },
-        "id": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
-        },
-        "organizationID": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the organization associated with the email provider.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "name": {
-          "type": "string"
-        },
-        "host": {
-          "type": "string"
-        },
-        "port": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "deleted": {
-          "type": "boolean",
-          "description": "{ \"description\" : \"Has the dunning-line been deleted?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "default": false
-        },
-        "notificationObjectGraph": {
-          "type": "string"
-        }
       }
     },
     "CouponInstanceExistingValue": {
@@ -58566,6 +59676,9 @@
         "notificationObjectGraph": {
           "type": "string"
         },
+        "pricingComponentWithValue": {
+          "$ref": "#/definitions/PricingComponent"
+        },
         "billingEntity": {
           "type": "string",
           "enum": [
@@ -58743,9 +59856,6 @@
             "EmailSubscription",
             "RevenueAttribution"
           ]
-        },
-        "pricingComponentWithValue": {
-          "$ref": "#/definitions/PricingComponent"
         }
       },
       "description": "A coupon-instance-existing-value.",
@@ -58771,249 +59881,61 @@
         "name": "PaymentRetryRequest"
       }
     },
-    "CreateAccountRequest": {
-      "type": "object",
-      "properties": {
-        "profile": {
-          "$ref": "#/definitions/Profile"
-        },
-        "organizationID": {
-          "type": "string",
-          "description": "{ \"description\" : \"Organization associated with the account.\", \"verbs\":[] }"
-        },
-        "userID": {
-          "type": "string",
-          "description": "{ \"description\" : \"User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.\", \"verbs\":[] }"
-        },
-        "aggregatingProductRatePlanID": {
-          "type": "string",
-          "description": "{ \"description\" : \"If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.\", \"verbs\":[] }"
-        },
-        "aggregatingSubscriptionID": {
-          "type": "string",
-          "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
-        }
-      },
-      "description": "CreateAccountRequest"
-    },
-    "CreateAddressRequest": {
+    "EmailProvider": {
       "type": "object",
       "required": [
-        "profileID",
-        "addressLine1",
-        "city",
-        "country",
-        "postcode",
-        "province"
+        "deleted",
+        "host",
+        "name",
+        "organizationID",
+        "port"
       ],
       "properties": {
-        "profileID": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
-        },
-        "addressLine1": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "addressLine2": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "addressLine3": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "city": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "province": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "country": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "postcode": {
-          "type": "string",
-          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "landline": {
-          "type": "string",
-          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "primaryAddress": {
-          "type": "boolean",
-          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "default": false
-        }
-      },
-      "description": "CreateAddressRequest"
-    },
-    "UpdateAddressRequest": {
-      "type": "object",
-      "required": [
-        "id",
-        "profileID"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "profileID": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
-        },
-        "addressLine1": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "addressLine2": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "addressLine3": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "city": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "province": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "country": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "postcode": {
-          "type": "string",
-          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "landline": {
-          "type": "string",
-          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "primaryAddress": {
-          "type": "boolean",
-          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "default": false
-        }
-      },
-      "description": "CreateAddressRequest"
-    },
-    "UpdateProfileRequest": {
-      "type": "object",
-      "required": [
-        "accountID"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "accountID": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
-        },
-        "organizationID": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"\", \"verbs\":[] }"
-        },
-        "email": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"E-mail address\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "firstName": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "lastName": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "companyName": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "logoURL": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "addresses": {
-          "type": "array",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Address associated with the profile\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "items": {
-            "$ref": "#/definitions/Address"
-          }
-        },
-        "mobile": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Mobile telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "landline": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Home telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "fax": {
-          "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Fax number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        },
-        "dob": {
+        "created": {
           "type": "string",
           "format": "date-time",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
         },
-        "vatNumber": {
+        "changedBy": {
           "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"VAT number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
         },
-        "additionalInformation": {
+        "updated": {
           "type": "string",
-          "x-isnullable": true,
-          "description": "{ \"description\" : \"Any additional information\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
-        }
-      },
-      "description": "UpdateProfileRequest"
-    },
-    "UnitOfMeasure": {
-      "type": "object",
-      "required": [
-        "name",
-        "displayedAs"
-      ],
-      "properties": {
+          "format": "date-time",
+          "description": "{ \"description\" : \"The UTC DateTime when the object was last updated. \", \"verbs\":[] }"
+        },
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\", \"PUT\"] }"
+        },
+        "organizationID": {
+          "type": "string",
+          "description": "{ \"description\" : \"ID of the organization associated with the email provider.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
         "name": {
           "type": "string"
         },
-        "displayedAs": {
+        "host": {
           "type": "string"
         },
-        "rounding": {
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
           "type": "string"
         },
-        "organizationID": {
+        "password": {
           "type": "string"
         },
         "deleted": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "{ \"description\" : \"Has the dunning-line been deleted?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        },
+        "notificationObjectGraph": {
+          "type": "string"
         }
       }
     }
