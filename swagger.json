@@ -1045,7 +1045,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on account\",\"request\":\"setAccountMetadataRequest.html\",\"response\":\"setAccountMetadataResponse.html\"}",
-        "operationId": "setMetadataOnAccount",
+        "operationId": "setMetadataForAccount",
         "consumes": [
           "application/json"
         ],
@@ -1100,7 +1100,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert metadata on account\",\"request\":\"upsertAccountMetadataRequest.html\",\"response\":\"upsertAccountMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnAccount",
+        "operationId": "upsertMetadataForAccount",
         "consumes": [
           "application/json"
         ],
@@ -1155,7 +1155,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear metadata from account\",\"request\" :\"deleteAccountMetadataRequest.html\",\"response\":\"deleteAccountMetadataResponse.html\"}",
-        "operationId": "deleteMetadataFromAccount",
+        "operationId": "deleteMetadataForAccount",
         "consumes": [
           "text/plain",
           "application/json"
@@ -12711,7 +12711,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve metadata on invoice\",\"request\":\"getInvoiceMetadataRequest.html\",\"response\":\"getInvoiceMetadataResponse.html\"}",
-        "operationId": "getMetadataFromInvoice",
+        "operationId": "getMetadataForInvoice",
         "consumes": [
           "text/plain",
           "application/json"
@@ -12759,7 +12759,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on invoice\",\"request\":\"setInvoiceMetadataRequest.html\",\"response\":\"setInvoiceMetadataResponse.html\"}",
-        "operationId": "setMetadataOnInvoice",
+        "operationId": "setMetadataForInvoice",
         "consumes": [
           "application/json"
         ],
@@ -12814,7 +12814,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert metadata on invoice\",\"request\":\"upsertInvoiceMetadataRequest.html\",\"response\":\"upsertInvoiceMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnInvoice",
+        "operationId": "upsertMetadataForInvoice",
         "consumes": [
           "application/json"
         ],
@@ -18216,7 +18216,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear metadata from rate-plan\",\"request\" :\"deleteRatePlanMetadataRequest.html\",\"response\":\"deleteRatePlanMetadataResponse.html\"}",
-        "operationId": "deleteMetadataFromRatePlan",
+        "operationId": "deleteMetadataForRatePlan",
         "consumes": [
           "text/plain",
           "application/json"
@@ -18776,7 +18776,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve metadata on product\",\"request\":\"getProductMetadataRequest.html\",\"response\":\"getProductMetadataResponse.html\"}",
-        "operationId": "getMetadata",
+        "operationId": "getMetadataForProduct",
         "consumes": [
           "application/json",
           "text/plain"
@@ -18824,7 +18824,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on product\",\"request\":\"setProductMetadataRequest.html\",\"response\":\"setProductMetadataResponse.html\"}",
-        "operationId": "setMetadataOnProduct",
+        "operationId": "setMetadataForProduct",
         "consumes": [
           "application/json"
         ],
@@ -23334,7 +23334,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve on subscription\",\"request\":\"getSubscriptionMetadataRequest.html\",\"response\":\"getSubscriptionMetadataResponse.html\"}",
-        "operationId": "getSubscriptionMetadata",
+        "operationId": "getMetadataForSubscription",
         "consumes": [
           "text/plain",
           "application/json"
@@ -23382,7 +23382,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set on subscription\",\"request\":\"setSubscriptionMetadataRequest.html\",\"response\":\"setSubscriptionMetadataResponse.html\"}",
-        "operationId": "setSubscriptionMetadata",
+        "operationId": "setMetadataForSubscription",
         "consumes": [
           "application/json"
         ],
@@ -23437,7 +23437,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert on subscription\",\"request\":\"upsertSubscriptionMetadataRequest.html\",\"response\":\"upsertSubscriptionMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnSubscription",
+        "operationId": "upsertMetadataForSubscription",
         "consumes": [
           "application/json"
         ],
@@ -23492,7 +23492,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear from subscription\",\"request\" :\"deleteSubscriptionMetadataRequest.html\",\"response\":\"deleteSubscriptionMetadataResponse.html\"}",
-        "operationId": "deleteSubscriptionMetadata",
+        "operationId": "deleteMetadataForSubscription",
         "consumes": [
           "text/plain",
           "application/json"
