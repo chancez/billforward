@@ -198,7 +198,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/accounts": {
@@ -330,11 +330,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "account",
+            "name": "request",
             "description": "The account object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Account"
+              "$ref": "#/definitions/CreateAccountRequest"
             }
           }
         ],
@@ -1423,11 +1423,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "address",
+            "name": "request",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Address"
+              "$ref": "#/definitions/CreateAddressRequest"
             }
           }
         ],
@@ -1464,11 +1464,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "address",
+            "name": "request",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Address"
+              "$ref": "#/definitions/UpdateAddressRequest"
             }
           }
         ],
@@ -12268,7 +12268,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "type": "string"
+              "type": "file"
             }
           }
         }
@@ -19072,11 +19072,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "profile",
+            "name": "request",
             "description": "The profile object to be updated.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Profile"
+              "$ref": "#/definitions/UpdateProfileRequest"
             }
           }
         ],
@@ -32722,14 +32722,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "@type"
-          ],
           "properties": {
-            "@type": {
-              "type": "string",
-              "description": "{ \"description\" : \"tieredPricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
-            }
           },
           "description": "Pricing component with tiered pricing.",
           "xml": {
@@ -47424,14 +47417,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "@type"
-          ],
           "properties": {
-            "@type": {
-              "type": "string",
-              "description": "{ \"description\" : \"tieredVolumePricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
-            }
           },
           "description": "Pricing component with tiered volume pricing.",
           "xml": {
@@ -56746,6 +56732,9 @@
             "$ref": "#/definitions/InsertableBillingEntity"
           }
         },
+        "profile": {
+            "$ref": "#/definitions/Profile"
+        },
         "paymentMethods": {
           "type": "array",
           "description": "{ \"description\" : \"The payment-methods associated with the account.\", \"verbs\":[\"GET\"] }",
@@ -58515,14 +58504,7 @@
         },
         {
           "type": "object",
-          "required": [
-            "@type"
-          ],
           "properties": {
-            "@type": {
-              "type": "string",
-              "description": "{ \"description\" : \"flatPricingComponent\", \"default\" : \"\", \"verbs\":[\"POST\",\"GET\"] }"
-            }
           },
           "description": "Pricing component with flat price tiering.",
           "xml": {
@@ -59271,7 +59253,7 @@
         "unitOfMeasureID",
         "validFrom"
       ],
-      "discriminator": "chargeModel",
+      "discriminator": "@type",
       "properties": {
         "created": {
           "type": "string",
@@ -59936,6 +59918,252 @@
         },
         "notificationObjectGraph": {
           "type": "string"
+        }
+      }
+    },
+    "CreateAccountRequest": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "organizationID": {
+          "type": "string",
+          "description": "{ \"description\" : \"Organization associated with the account.\", \"verbs\":[] }"
+        },
+        "userID": {
+          "type": "string",
+          "description": "{ \"description\" : \"User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.\", \"verbs\":[] }"
+        },
+        "aggregatingProductRatePlanID": {
+          "type": "string",
+          "description": "{ \"description\" : \"If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.\", \"verbs\":[] }"
+        },
+        "aggregatingSubscriptionID": {
+          "type": "string",
+          "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
+        }
+      },
+      "description": "CreateAccountRequest"
+    },
+    "CreateAddressRequest": {
+      "type": "object",
+      "required": [
+        "profileID",
+        "addressLine1",
+        "city",
+        "country",
+        "postcode",
+        "province"
+      ],
+      "properties": {
+        "profileID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "city": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "country": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "primaryAddress": {
+          "type": "boolean",
+          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        }
+      },
+      "description": "CreateAddressRequest"
+    },
+    "UpdateAddressRequest": {
+      "type": "object",
+      "required": [
+        "id",
+        "profileID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "profileID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "city": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "country": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "primaryAddress": {
+          "type": "boolean",
+          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        }
+      },
+      "description": "CreateAddressRequest"
+    },
+    "UpdateProfileRequest": {
+      "type": "object",
+      "required": [
+        "accountID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "organizationID": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[] }"
+        },
+        "email": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"E-mail address\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "firstName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "lastName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "companyName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "logoURL": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addresses": {
+          "type": "array",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Address associated with the profile\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "mobile": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Mobile telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Home telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "fax": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Fax number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date-time",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "vatNumber": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"VAT number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "additionalInformation": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Any additional information\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        }
+      },
+      "description": "UpdateProfileRequest"
+    },
+    "UnitOfMeasure": {
+      "type": "object",
+      "required": [
+        "name",
+        "displayedAs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "displayedAs": {
+          "type": "string"
+        },
+        "rounding": {
+          "type": "string"
+        },
+        "organizationID": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
         }
       }
     }
