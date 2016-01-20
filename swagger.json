@@ -59380,6 +59380,9 @@
           "format": "date-time",
           "description": "{  \"default\" : \"null\", \"description\" : \"The UTC DateTime specifying when the pricing-component is valid till.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
+        "unitOfMeasure": {
+          "$ref": "#/definitions/UnitOfMeasure"
+        },
         "tiers": {
           "type": "array",
           "description": "{  \"default\" : \"[]\", \"description\" : \"The pricing-component-tiers associated with the pricing-component.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",

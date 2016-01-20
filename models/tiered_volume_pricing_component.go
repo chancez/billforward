@@ -67,6 +67,8 @@ type TieredVolumePricingComponent struct {
 
 	tiersField []*PricingComponentTier
 
+	unitOfMeasureField *UnitOfMeasure
+
 	unitOfMeasureIdField string
 
 	updatedField strfmt.DateTime
@@ -260,6 +262,13 @@ func (m *TieredVolumePricingComponent) SetTiers(val []*PricingComponentTier) {
 	m.tiersField = val
 }
 
+func (m *TieredVolumePricingComponent) UnitOfMeasure() *UnitOfMeasure {
+	return m.unitOfMeasureField
+}
+func (m *TieredVolumePricingComponent) SetUnitOfMeasure(val *UnitOfMeasure) {
+	m.unitOfMeasureField = val
+}
+
 func (m *TieredVolumePricingComponent) UnitOfMeasureID() string {
 	return m.unitOfMeasureIdField
 }
@@ -350,6 +359,8 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		Tiers []*PricingComponentTier `json:"tiers,omitempty"`
 
+		UnitOfMeasure *UnitOfMeasure `json:"unitOfMeasure,omitempty"`
+
 		UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 
 		Updated strfmt.DateTime `json:"updated,omitempty"`
@@ -390,6 +401,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 	m.productRatePlanIdField = data.ProductRatePlanID
 	m.publicNameField = data.PublicName
 	m.tiersField = data.Tiers
+	m.unitOfMeasureField = data.UnitOfMeasure
 	m.unitOfMeasureIdField = data.UnitOfMeasureID
 	m.updatedField = data.Updated
 	m.upgradeModeField = data.UpgradeMode
@@ -454,6 +466,8 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		Tiers []*PricingComponentTier `json:"tiers,omitempty"`
 
+		UnitOfMeasure *UnitOfMeasure `json:"unitOfMeasure,omitempty"`
+
 		UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 
 		Updated strfmt.DateTime `json:"updated,omitempty"`
@@ -490,6 +504,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	data.ProductRatePlanID = m.productRatePlanIdField
 	data.PublicName = m.publicNameField
 	data.Tiers = m.tiersField
+	data.UnitOfMeasure = m.unitOfMeasureField
 	data.UnitOfMeasureID = m.unitOfMeasureIdField
 	data.Updated = m.updatedField
 	data.UpgradeMode = m.upgradeModeField
