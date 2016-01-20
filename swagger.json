@@ -53057,10 +53057,6 @@
           "type": "number",
           "description": "{ \"description\" : \"Cost associated with tier. When the pricingType is fixed this is the total value. When pricingType is unit, this is the cost of each unit. \", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
-        "pricingComponent": {
-          "description": "{ \"description\" : \"The pricing-component associated with the tier.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
-          "$ref": "#/definitions/PricingComponent"
-        },
         "notificationObjectGraph": {
           "type": "string"
         },
