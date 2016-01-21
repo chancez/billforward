@@ -100,7 +100,7 @@ type Subscription struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 	/* {"description":"User definable friendly name for the subscription.","verbs":["POST","PUT","GET"]}
 

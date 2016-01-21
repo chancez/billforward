@@ -47,7 +47,7 @@ func NewGetMetadataForAccountOK() *GetMetadataForAccountOK {
 success
 */
 type GetMetadataForAccountOK struct {
-	Payload *models.MetadataKeyValuesPagedMetadata
+	Payload *models.DynamicMetadata
 }
 
 func (o *GetMetadataForAccountOK) Error() string {
@@ -56,7 +56,7 @@ func (o *GetMetadataForAccountOK) Error() string {
 
 func (o *GetMetadataForAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.MetadataKeyValuesPagedMetadata)
+	o.Payload = new(models.DynamicMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

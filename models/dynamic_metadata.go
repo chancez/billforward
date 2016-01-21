@@ -10,19 +10,19 @@ import (
 	"github.com/go-swagger/go-swagger/swag"
 )
 
-/*JaxbDynamicMetadata JaxbDynamicMetadata jaxb dynamic metadata
+/*DynamicMetadata DynamicMetadata dynamic metadata
 
-swagger:model JaxbDynamicMetadata
+swagger:model DynamicMetadata
 */
-type JaxbDynamicMetadata struct {
+type DynamicMetadata struct {
 
 	/* Values values
 	 */
 	Values map[string]string `json:"values,omitempty"`
 }
 
-// Validate validates this jaxb dynamic metadata
-func (m *JaxbDynamicMetadata) Validate(formats strfmt.Registry) error {
+// Validate validates this dynamic metadata
+func (m *DynamicMetadata) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateValues(formats); err != nil {
@@ -36,7 +36,7 @@ func (m *JaxbDynamicMetadata) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JaxbDynamicMetadata) validateValues(formats strfmt.Registry) error {
+func (m *DynamicMetadata) validateValues(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Values) { // not required
 		return nil
