@@ -330,11 +330,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "account",
+            "name": "request",
             "description": "The account object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Account"
+              "$ref": "#/definitions/CreateAccountRequest"
             }
           }
         ],
@@ -1045,7 +1045,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on account\",\"request\":\"setAccountMetadataRequest.html\",\"response\":\"setAccountMetadataResponse.html\"}",
-        "operationId": "setMetadataOnAccount",
+        "operationId": "setMetadataForAccount",
         "consumes": [
           "application/json"
         ],
@@ -1100,7 +1100,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert metadata on account\",\"request\":\"upsertAccountMetadataRequest.html\",\"response\":\"upsertAccountMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnAccount",
+        "operationId": "upsertMetadataForAccount",
         "consumes": [
           "application/json"
         ],
@@ -1155,7 +1155,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear metadata from account\",\"request\" :\"deleteAccountMetadataRequest.html\",\"response\":\"deleteAccountMetadataResponse.html\"}",
-        "operationId": "deleteMetadataFromAccount",
+        "operationId": "deleteMetadataForAccount",
         "consumes": [
           "text/plain",
           "application/json"
@@ -1423,11 +1423,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "address",
+            "name": "request",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Address"
+              "$ref": "#/definitions/CreateAddressRequest"
             }
           }
         ],
@@ -1464,11 +1464,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "address",
+            "name": "request",
             "description": "The address object to be created.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Address"
+              "$ref": "#/definitions/UpdateAddressRequest"
             }
           }
         ],
@@ -12711,7 +12711,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve metadata on invoice\",\"request\":\"getInvoiceMetadataRequest.html\",\"response\":\"getInvoiceMetadataResponse.html\"}",
-        "operationId": "getMetadataFromInvoice",
+        "operationId": "getMetadataForInvoice",
         "consumes": [
           "text/plain",
           "application/json"
@@ -12759,7 +12759,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on invoice\",\"request\":\"setInvoiceMetadataRequest.html\",\"response\":\"setInvoiceMetadataResponse.html\"}",
-        "operationId": "setMetadataOnInvoice",
+        "operationId": "setMetadataForInvoice",
         "consumes": [
           "application/json"
         ],
@@ -12814,7 +12814,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert metadata on invoice\",\"request\":\"upsertInvoiceMetadataRequest.html\",\"response\":\"upsertInvoiceMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnInvoice",
+        "operationId": "upsertMetadataForInvoice",
         "consumes": [
           "application/json"
         ],
@@ -18216,7 +18216,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear metadata from rate-plan\",\"request\" :\"deleteRatePlanMetadataRequest.html\",\"response\":\"deleteRatePlanMetadataResponse.html\"}",
-        "operationId": "deleteMetadataFromRatePlan",
+        "operationId": "deleteMetadataForRatePlan",
         "consumes": [
           "text/plain",
           "application/json"
@@ -18776,7 +18776,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve metadata on product\",\"request\":\"getProductMetadataRequest.html\",\"response\":\"getProductMetadataResponse.html\"}",
-        "operationId": "getMetadata",
+        "operationId": "getMetadataForProduct",
         "consumes": [
           "application/json",
           "text/plain"
@@ -18824,7 +18824,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set metadata on product\",\"request\":\"setProductMetadataRequest.html\",\"response\":\"setProductMetadataResponse.html\"}",
-        "operationId": "setMetadataOnProduct",
+        "operationId": "setMetadataForProduct",
         "consumes": [
           "application/json"
         ],
@@ -19072,11 +19072,11 @@
         "parameters": [
           {
             "in": "body",
-            "name": "profile",
+            "name": "request",
             "description": "The profile object to be updated.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Profile"
+              "$ref": "#/definitions/UpdateProfileRequest"
             }
           }
         ],
@@ -23334,7 +23334,7 @@
         ],
         "summary": "Retrieve any associated metadata.",
         "description": "{\"nickname\":\"Retrieve on subscription\",\"request\":\"getSubscriptionMetadataRequest.html\",\"response\":\"getSubscriptionMetadataResponse.html\"}",
-        "operationId": "getSubscriptionMetadata",
+        "operationId": "getMetadataForSubscription",
         "consumes": [
           "text/plain",
           "application/json"
@@ -23382,7 +23382,7 @@
         ],
         "summary": "Remove any existing metadata keys and create the provided data.",
         "description": "{\"nickname\":\"Set on subscription\",\"request\":\"setSubscriptionMetadataRequest.html\",\"response\":\"setSubscriptionMetadataResponse.html\"}",
-        "operationId": "setSubscriptionMetadata",
+        "operationId": "setMetadataForSubscription",
         "consumes": [
           "application/json"
         ],
@@ -23437,7 +23437,7 @@
         ],
         "summary": "Update any existing metadata key-values and insert any new key-values, no keys will be removed.",
         "description": "{\"nickname\":\"Upsert on subscription\",\"request\":\"upsertSubscriptionMetadataRequest.html\",\"response\":\"upsertSubscriptionMetadataResponse.html\"}",
-        "operationId": "upsertMetadataOnSubscription",
+        "operationId": "upsertMetadataForSubscription",
         "consumes": [
           "application/json"
         ],
@@ -23492,7 +23492,7 @@
         ],
         "summary": "Remove any associated metadata.",
         "description": "{\"nickname\":\"Clear from subscription\",\"request\" :\"deleteSubscriptionMetadataRequest.html\",\"response\":\"deleteSubscriptionMetadataResponse.html\"}",
-        "operationId": "deleteSubscriptionMetadata",
+        "operationId": "deleteMetadataForSubscription",
         "consumes": [
           "text/plain",
           "application/json"
@@ -43476,6 +43476,225 @@
       "xml": {
         "name": "PaymentRetryRequest"
       }
+    },
+    "CreateAccountRequest": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "organizationID": {
+          "type": "string",
+          "description": "{ \"description\" : \"Organization associated with the account.\", \"verbs\":[] }"
+        },
+        "userID": {
+          "type": "string",
+          "description": "{ \"description\" : \"User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.\", \"verbs\":[] }"
+        },
+        "aggregatingProductRatePlanID": {
+          "type": "string",
+          "description": "{ \"description\" : \"If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.\", \"verbs\":[] }"
+        },
+        "aggregatingSubscriptionID": {
+          "type": "string",
+          "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
+        }
+      },
+      "description": "CreateAccountRequest"
+    },
+    "CreateAddressRequest": {
+      "type": "object",
+      "required": [
+        "profileID",
+        "addressLine1",
+        "city",
+        "country",
+        "postcode",
+        "province"
+      ],
+      "properties": {
+        "profileID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "city": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "country": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "primaryAddress": {
+          "type": "boolean",
+          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        }
+      },
+      "description": "CreateAddressRequest"
+    },
+    "UpdateAddressRequest": {
+      "type": "object",
+      "required": [
+        "id",
+        "profileID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "profileID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "city": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "country": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "primaryAddress": {
+          "type": "boolean",
+          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        }
+      },
+      "description": "CreateAddressRequest"
+    },
+    "UpdateProfileRequest": {
+      "type": "object",
+      "required": [
+        "accountID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "organizationID": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[] }"
+        },
+        "email": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"E-mail address\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "firstName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "lastName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "companyName": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "logoURL": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addresses": {
+          "type": "array",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Address associated with the profile\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "mobile": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Mobile telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Home telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "fax": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Fax number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date-time",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "vatNumber": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"VAT number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "additionalInformation": {
+          "type": "string",
+          "x-isnullable": true,
+          "description": "{ \"description\" : \"Any additional information\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        }
+      },
+      "description": "UpdateProfileRequest"
     }
   }
 }
