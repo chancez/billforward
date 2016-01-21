@@ -1034,7 +1034,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -1089,7 +1089,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -1144,7 +1144,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -1192,7 +1192,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -12748,7 +12748,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -12803,7 +12803,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -12858,7 +12858,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -12906,7 +12906,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -12995,7 +12995,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -13044,7 +13044,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -13093,7 +13093,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -13134,7 +13134,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18095,7 +18095,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18150,7 +18150,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18205,7 +18205,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18253,7 +18253,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18813,7 +18813,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18868,7 +18868,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18923,7 +18923,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -18971,7 +18971,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -23371,7 +23371,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -23426,7 +23426,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -23481,7 +23481,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -23529,7 +23529,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/MetadataKeyValuesPagedMetadata"
+              "$ref": "#/definitions/DynamicMetadata"
             }
           }
         }
@@ -35152,7 +35152,7 @@
         },
         "metadata": {
           "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
-          "$ref": "#/definitions/JaxbDynamicMetadata"
+          "$ref": "#/definitions/DynamicMetadata"
         },
         "id": {
           "type": "string",
@@ -38595,7 +38595,7 @@
         }
       ]
     },
-    "JaxbDynamicMetadata": {
+    "DynamicMetadata": {
       "type": "object",
       "properties": {
         "values": {
@@ -39092,7 +39092,7 @@
         },
         "metadata": {
           "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
-          "$ref": "#/definitions/JaxbDynamicMetadata"
+          "$ref": "#/definitions/DynamicMetadata"
         },
         "id": {
           "type": "string",
@@ -41891,7 +41891,7 @@
         },
         "metadata": {
           "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
-          "$ref": "#/definitions/JaxbDynamicMetadata"
+          "$ref": "#/definitions/DynamicMetadata"
         },
         "id": {
           "type": "string",
