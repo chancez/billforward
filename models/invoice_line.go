@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*InvoiceLine An invoice-line represents the portion of an invoice specific to one particular pricing-component and its associated pricing-component-value.
@@ -17,10 +16,6 @@ import (
 swagger:model InvoiceLine
 */
 type InvoiceLine struct {
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "A human readable explanation of how the value of the invoice-line was calculated.", "verbs":["POST","PUT","GET"] }
 
@@ -66,14 +61,6 @@ type InvoiceLine struct {
 	*/
 	Description string `json:"description,omitempty"`
 
-	/* Discount discount
-	 */
-	Discount *float64 `json:"discount,omitempty"`
-
-	/* DiscountExcludingTax discount excluding tax
-	 */
-	DiscountExcludingTax *float64 `json:"discountExcludingTax,omitempty"`
-
 	/* { "description" : "ID of the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
@@ -89,10 +76,6 @@ type InvoiceLine struct {
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "ID of the organization associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 
@@ -184,13 +167,13 @@ type InvoiceLine struct {
 
 	/* { "description" : "The unit-of-measure associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	UnitOfMeasure *MutableBillingEntity `json:"unitOfMeasure,omitempty"`
+	UnitOfMeasure *UnitOfMeasure `json:"unitOfMeasure,omitempty"`
 
 	/* { "description" : "unit-of-measure associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
 	UnitOfMeasureID *string `json:"unitOfMeasureID,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
@@ -198,11 +181,6 @@ type InvoiceLine struct {
 // Validate validates this invoice line
 func (m *InvoiceLine) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
 
 	if err := m.validateCalculation(formats); err != nil {
 		// prop
@@ -297,37 +275,6 @@ func (m *InvoiceLine) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-var invoiceLineBillingEntityEnum []interface{}
-
-func (m *InvoiceLine) validateBillingEntityEnum(path, location string, value string) error {
-	if invoiceLineBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			invoiceLineBillingEntityEnum = append(invoiceLineBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, invoiceLineBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *InvoiceLine) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*PricingComponentTier PricingComponentTier
@@ -18,23 +17,9 @@ swagger:model PricingComponentTier
 */
 type PricingComponentTier struct {
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
-
-	/* { "description" : "Version ID of the pricing-component associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	ComponentID string `json:"componentID,omitempty"`
-
-	/* { "description" : "ID of the pricing-component associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
-	 */
-	ConsistentPricingComponentID *string `json:"consistentPricingComponentID,omitempty" xml:"pricingComponentID"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
@@ -44,23 +29,13 @@ type PricingComponentTier struct {
 	 */
 	CrmID *string `json:"crmID,omitempty"`
 
-	/* Crmid crmid
-	 */
-	Crmid *string `json:"crmid,omitempty"`
-
-	/* { "description" : "ID of the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "", "verbs":["GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "The lower threshold of the tier.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	LowerThreshold int32 `json:"lowerThreshold,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
 	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
+	LowerThreshold int32 `json:"lowerThreshold,omitempty"`
 
 	/* { "description" : "Organization associated with the pricing-component-tier.", "verbs":[] }
 	 */
@@ -72,11 +47,25 @@ type PricingComponentTier struct {
 	*/
 	Price float64 `json:"price,omitempty"`
 
+	/* { "description" : "ID of the pricing-component associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
+	 */
+	PricingComponentID *string `json:"pricingComponentID,omitempty"`
+
+	/* { "description" : "Version ID of the associated pricing-component", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	PricingComponentVersionID string `json:"pricingComponentVersionID,omitempty"`
+
 	/* { "description" : "Pricing calculation used to price items in this pricing tier. Unit pricing means every distinct value is used in the calculation. Fixed means that the total price of the tier is fixed regardless of the purchased amount.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	PricingType string `json:"pricingType,omitempty"`
+
+	/* { "description" : "ID of the product-rate-plan associated with the pricing-component-tier.", "verbs":["POST","PUT","GET"] }
+	 */
+	ProductRatePlanID *string `json:"productRatePlanID,omitempty"`
 
 	/* {  "default" : "&infin;",  "description" : "The upper threshold of the tier. If this is left null the tier will be infinite", "verbs":["POST","PUT","GET"] }
 	 */
@@ -87,22 +76,12 @@ type PricingComponentTier struct {
 func (m *PricingComponentTier) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateComponentID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateLowerThreshold(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validatePrice(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePricingComponentVersionID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -118,58 +97,18 @@ func (m *PricingComponentTier) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var pricingComponentTierBillingEntityEnum []interface{}
-
-func (m *PricingComponentTier) validateBillingEntityEnum(path, location string, value string) error {
-	if pricingComponentTierBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			pricingComponentTierBillingEntityEnum = append(pricingComponentTierBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, pricingComponentTierBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *PricingComponentTier) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PricingComponentTier) validateComponentID(formats strfmt.Registry) error {
-
-	if err := validate.Required("componentID", "body", string(m.ComponentID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PricingComponentTier) validateLowerThreshold(formats strfmt.Registry) error {
-
-	if err := validate.Required("lowerThreshold", "body", int32(m.LowerThreshold)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *PricingComponentTier) validatePrice(formats strfmt.Registry) error {
 
 	if err := validate.Required("price", "body", float64(m.Price)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PricingComponentTier) validatePricingComponentVersionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("pricingComponentVersionID", "body", string(m.PricingComponentVersionID)); err != nil {
 		return err
 	}
 

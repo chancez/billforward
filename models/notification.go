@@ -35,10 +35,6 @@ type Notification struct {
 	*/
 	Action string `json:"action,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
@@ -73,10 +69,6 @@ type Notification struct {
 	*/
 	EntityID string `json:"entityID,omitempty"`
 
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
 	/* { "description" : "The UTC DateTime of the notification's final send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
 	FinalSendAttempt strfmt.DateTime `json:"finalSendAttempt,omitempty"`
@@ -99,10 +91,6 @@ type Notification struct {
 	 */
 	NextSendAttempt strfmt.DateTime `json:"nextSendAttempt,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 	/* { "description" : "Organization associated with the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
@@ -119,7 +107,7 @@ type Notification struct {
 	 */
 	TotalSendAttempts int32 `json:"totalSendAttempts,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -140,11 +128,6 @@ func (m *Notification) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAction(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -170,11 +153,6 @@ func (m *Notification) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEntityID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -239,37 +217,6 @@ func (m *Notification) validateAction(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateActionEnum("action", "body", m.Action); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var notificationBillingEntityEnum []interface{}
-
-func (m *Notification) validateBillingEntityEnum(path, location string, value string) error {
-	if notificationBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			notificationBillingEntityEnum = append(notificationBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, notificationBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Notification) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 
@@ -353,19 +300,6 @@ func (m *Notification) validateEntity(formats strfmt.Registry) error {
 func (m *Notification) validateEntityID(formats strfmt.Registry) error {
 
 	if err := validate.Required("entityID", "body", string(m.EntityID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Notification) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 

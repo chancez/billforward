@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Refund Refund
@@ -17,10 +16,6 @@ import (
 swagger:model Refund
 */
 type Refund struct {
-
-	/* Account account
-	 */
-	Account *string `json:"account,omitempty"`
 
 	/* { "description" : "Identifier of account to refund.", "verbs":["GET"] }
 	 */
@@ -37,10 +32,6 @@ type Refund struct {
 	Required: true
 	*/
 	ActualValue float64 `json:"actualValue,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -59,10 +50,6 @@ type Refund struct {
 	Required: true
 	*/
 	Currency string `json:"currency,omitempty"`
-
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
 
 	/* { "description" : "", "verbs":["GET", "PUT"] }
 	 */
@@ -88,10 +75,6 @@ type Refund struct {
 	*/
 	NominalValue float64 `json:"nominalValue,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 	/* { "description" : "", "verbs":[] }
 	 */
 	OrganizationID *string `json:"organizationID,omitempty"`
@@ -104,10 +87,6 @@ type Refund struct {
 	 */
 	OriginalPaymentID *string `json:"originalPaymentID,omitempty"`
 
-	/* OriginalReceipt original receipt
-	 */
-	OriginalReceipt *Receipt `json:"originalReceipt,omitempty"`
-
 	/* { "description" : "ID of the receipt for the successful payment that this entity refunds.", "verbs":["POST","GET"] }
 	 */
 	OriginalReceiptID *string `json:"originalReceiptID,omitempty"`
@@ -119,10 +98,6 @@ type Refund struct {
 	/* { "description" : "The reason for the refund.", "verbs":["GET"] }
 	 */
 	Reason *string `json:"reason,omitempty"`
-
-	/* Receipt receipt
-	 */
-	Receipt *Receipt `json:"receipt,omitempty"`
 
 	/* { "description" : "ID of the receipt for this refund.", "verbs":["POST","GET"] }
 	 */
@@ -142,10 +117,6 @@ type Refund struct {
 	*/
 	RefundNature string `json:"refundNature,omitempty"`
 
-	/* RefundPayment refund payment
-	 */
-	RefundPayment *Payment `json:"refundPayment,omitempty"`
-
 	/* { "description" : "Identifier for the payment used to refund", "verbs":["GET"] }
 	 */
 	RefundPaymentID *string `json:"refundPaymentID,omitempty"`
@@ -156,19 +127,17 @@ type Refund struct {
 	*/
 	RefundState string `json:"refundState,omitempty"`
 
+	/* { "description" : "This is the type of refund. Refunds are associated with either an invoice and payment, a payment or unreferenced.", "verbs":[] }
+
+	Required: true
+	*/
+	RefundType string `json:"refundType,omitempty"`
+
 	/* { "description" : "Value refunded", "verbs":["GET"] }
 	 */
 	Refunded *float64 `json:"refunded,omitempty"`
 
-	/* RefundedValue refunded value
-	 */
-	RefundedValue *float64 `json:"refundedValue,omitempty"`
-
-	/* Type type
-	 */
-	Type *string `json:"type,omitempty"`
-
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -191,17 +160,7 @@ func (m *Refund) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateCurrency(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -226,7 +185,7 @@ func (m *Refund) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateRefundType(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -255,53 +214,9 @@ func (m *Refund) validateActualValue(formats strfmt.Registry) error {
 	return nil
 }
 
-var refundBillingEntityEnum []interface{}
-
-func (m *Refund) validateBillingEntityEnum(path, location string, value string) error {
-	if refundBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			refundBillingEntityEnum = append(refundBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, refundBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Refund) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Refund) validateCurrency(formats strfmt.Registry) error {
 
 	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Refund) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 
@@ -388,31 +303,31 @@ func (m *Refund) validateRefundState(formats strfmt.Registry) error {
 	return nil
 }
 
-var refundTypeEnum []interface{}
+var refundRefundTypeEnum []interface{}
 
-func (m *Refund) validateTypeEnum(path, location string, value string) error {
-	if refundTypeEnum == nil {
+func (m *Refund) validateRefundTypeEnum(path, location string, value string) error {
+	if refundRefundTypeEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["InvoicePayment","Payment"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			refundTypeEnum = append(refundTypeEnum, v)
+			refundRefundTypeEnum = append(refundRefundTypeEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, refundTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, refundRefundTypeEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *Refund) validateType(formats strfmt.Registry) error {
+func (m *Refund) validateRefundType(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Type) { // not required
-		return nil
+	if err := validate.Required("refundType", "body", string(m.RefundType)); err != nil {
+		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+	if err := m.validateRefundTypeEnum("refundType", "body", m.RefundType); err != nil {
 		return err
 	}
 

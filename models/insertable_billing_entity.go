@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*InsertableBillingEntity Insertable entities are those entities that can be created.
@@ -18,15 +17,15 @@ swagger:model InsertableBillingEntity
 */
 type InsertableBillingEntity struct {
 
-	/* { "description" : "The amount of tax.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "The UTC DateTime when the pricing-component-value-change was processed.", "verbs":["POST","PUT","GET"] }
+	 */
+	Applied strfmt.DateTime `json:"applied,omitempty"`
+
+	/* { "description" : "The UTC DateTime when the pricing-component-value-change was calculated.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Amount float64 `json:"amount,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
+	AsOf strfmt.DateTime `json:"asOf,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -36,66 +35,68 @@ type InsertableBillingEntity struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* { "description" : "ID of the tax-line.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "ID of the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
-	/* { "description" : "The invoice associated with the tax-line.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	Invoice *Invoice `json:"invoice,omitempty"`
-
-	/* { "description" : "ID of the invoice associated with the tax-line.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "ID of the invoice associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	InvoiceID string `json:"invoiceID,omitempty"`
 
-	/* { "description" : "The human readable name of the tax-line.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "The value change mode.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Mode string `json:"mode,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
+	/* { "description" : "The new value of the pricing-component.", "verbs":["POST","PUT","GET"] }
 
-	/* { "description" : "Organization associated with the  Tax Line.", "verbs":["POST","PUT","GET"] }
+	Required: true
+	*/
+	NewValue int32 `json:"newValue,omitempty"`
+
+	/* { "description" : "The new value of the pricing-component.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	OldValue int32 `json:"oldValue,omitempty"`
+
+	/* { "description" : "The organizationID.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* { "description" : "The percentage of tax.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "ID of the pricing-component associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Percentage float64 `json:"percentage,omitempty"`
+	PricingComponentID string `json:"pricingComponentID,omitempty"`
 
-	/* { "description" : "The consistent ID of the taxation-strategy associated with the tax-line.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "The value change state.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	TaxationStrategyID string `json:"taxationStrategyID,omitempty"`
+	State string `json:"state,omitempty"`
+
+	/* { "description" : "ID of the subscription associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	SubscriptionID string `json:"subscriptionID,omitempty"`
+
+	/* { "description" : "ID of the unit-of-measure associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
+	 */
+	UnitOfMeasureID *string `json:"unitOfMeasureID,omitempty"`
 }
 
 // Validate validates this insertable billing entity
 func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAmount(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateInvoice(formats); err != nil {
+	if err := m.validateAsOf(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -105,7 +106,17 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateMode(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateNewValue(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateOldValue(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -115,12 +126,17 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePercentage(formats); err != nil {
+	if err := m.validatePricingComponentID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateTaxationStrategyID(formats); err != nil {
+	if err := m.validateState(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateSubscriptionID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -131,53 +147,10 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InsertableBillingEntity) validateAmount(formats strfmt.Registry) error {
+func (m *InsertableBillingEntity) validateAsOf(formats strfmt.Registry) error {
 
-	if err := validate.Required("amount", "body", float64(m.Amount)); err != nil {
+	if err := validate.Required("asOf", "body", strfmt.DateTime(m.AsOf)); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-var insertableBillingEntityBillingEntityEnum []interface{}
-
-func (m *InsertableBillingEntity) validateBillingEntityEnum(path, location string, value string) error {
-	if insertableBillingEntityBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			insertableBillingEntityBillingEntityEnum = append(insertableBillingEntityBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, insertableBillingEntityBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *InsertableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *InsertableBillingEntity) validateInvoice(formats strfmt.Registry) error {
-
-	if m.Invoice != nil {
-
-		if err := m.Invoice.Validate(formats); err != nil {
-			return err
-		}
 	}
 
 	return nil
@@ -192,9 +165,49 @@ func (m *InsertableBillingEntity) validateInvoiceID(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *InsertableBillingEntity) validateName(formats strfmt.Registry) error {
+var insertableBillingEntityModeEnum []interface{}
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+func (m *InsertableBillingEntity) validateModeEnum(path, location string, value string) error {
+	if insertableBillingEntityModeEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["immediate","delayed"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			insertableBillingEntityModeEnum = append(insertableBillingEntityModeEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, insertableBillingEntityModeEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateMode(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode", "body", string(m.Mode)); err != nil {
+		return err
+	}
+
+	if err := m.validateModeEnum("mode", "body", m.Mode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateNewValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("newValue", "body", int32(m.NewValue)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateOldValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("oldValue", "body", int32(m.OldValue)); err != nil {
 		return err
 	}
 
@@ -210,18 +223,49 @@ func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry
 	return nil
 }
 
-func (m *InsertableBillingEntity) validatePercentage(formats strfmt.Registry) error {
+func (m *InsertableBillingEntity) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("percentage", "body", float64(m.Percentage)); err != nil {
+	if err := validate.Required("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *InsertableBillingEntity) validateTaxationStrategyID(formats strfmt.Registry) error {
+var insertableBillingEntityStateEnum []interface{}
 
-	if err := validate.Required("taxationStrategyID", "body", string(m.TaxationStrategyID)); err != nil {
+func (m *InsertableBillingEntity) validateStateEnum(path, location string, value string) error {
+	if insertableBillingEntityStateEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["New","Accepted","Rejected","ChargeCreated"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			insertableBillingEntityStateEnum = append(insertableBillingEntityStateEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, insertableBillingEntityStateEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateState(formats strfmt.Registry) error {
+
+	if err := validate.Required("state", "body", string(m.State)); err != nil {
+		return err
+	}
+
+	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InsertableBillingEntity) validateSubscriptionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

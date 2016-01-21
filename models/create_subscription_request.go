@@ -32,10 +32,6 @@ type CreateSubscriptionRequest struct {
 	 */
 	AlignPeriodWithAggregatingSubscription *bool `json:"alignPeriodWithAggregatingSubscription,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
@@ -70,19 +66,11 @@ type CreateSubscriptionRequest struct {
 	*/
 	Product string `json:"product,omitempty"`
 
-	/* {"description":"ID of the product to which the subscription will be subscribing. If omitted: the product's ID will be inferred from the rate plan -- if and only if the rate plan is specified by ID.","verbs":["POST"]}
-	 */
-	ProductID *string `json:"productID,omitempty"`
-
 	/* {"description":"ID or name of the rate plan to which the subscription will be subscribing. Lookup by name is only possible if a `productID` is specified.","verbs":["POST"]}
 
 	Required: true
 	*/
 	ProductRatePlan string `json:"productRatePlan,omitempty"`
-
-	/* ProductRatePlanID product rate plan ID
-	 */
-	ProductRatePlanID *string `json:"productRatePlanID,omitempty"`
 
 	/* {"default":"(ServerNow upon receiving request)","description":"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.","verbs":["POST"]}
 	 */
@@ -106,11 +94,6 @@ func (m *CreateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -149,37 +132,6 @@ func (m *CreateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 func (m *CreateSubscriptionRequest) validateAccountID(formats strfmt.Registry) error {
 
 	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var createSubscriptionRequestBillingEntityEnum []interface{}
-
-func (m *CreateSubscriptionRequest) validateBillingEntityEnum(path, location string, value string) error {
-	if createSubscriptionRequestBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			createSubscriptionRequestBillingEntityEnum = append(createSubscriptionRequestBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, createSubscriptionRequestBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *CreateSubscriptionRequest) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

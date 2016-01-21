@@ -2,7 +2,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
@@ -17,23 +16,15 @@ import (
 swagger:model tieredVolumePricingComponent
 */
 type TieredVolumePricingComponent struct {
-	billingEntityField *string
-
 	changedByField *string
 
 	chargeModelField string
 
 	chargeTypeField string
 
-	componentValueField int32
-
-	consistentIdField string
-
-	costField *float64
-
 	createdField strfmt.DateTime
 
-	crmidField *string
+	crmIdField *string
 
 	defaultQuantityField int32
 
@@ -41,7 +32,7 @@ type TieredVolumePricingComponent struct {
 
 	downgradeModeField *string
 
-	idField *string
+	idField string
 
 	invoicingTypeField *string
 
@@ -51,15 +42,7 @@ type TieredVolumePricingComponent struct {
 
 	nameField string
 
-	notificationObjectGraphField *string
-
 	organizationIdField string
-
-	priceExplanationField []string
-
-	priceExplanationStringField *string
-
-	productRatePlanField *ProductRatePlan
 
 	productRatePlanIdField string
 
@@ -78,6 +61,8 @@ type TieredVolumePricingComponent struct {
 	validFromField strfmt.DateTime
 
 	validTillField strfmt.DateTime
+
+	versionIdField string
 }
 
 func (m *TieredVolumePricingComponent) Type() string {
@@ -85,13 +70,6 @@ func (m *TieredVolumePricingComponent) Type() string {
 }
 func (m *TieredVolumePricingComponent) SetType(val string) {
 
-}
-
-func (m *TieredVolumePricingComponent) BillingEntity() *string {
-	return m.billingEntityField
-}
-func (m *TieredVolumePricingComponent) SetBillingEntity(val *string) {
-	m.billingEntityField = val
 }
 
 func (m *TieredVolumePricingComponent) ChangedBy() *string {
@@ -115,27 +93,6 @@ func (m *TieredVolumePricingComponent) SetChargeType(val string) {
 	m.chargeTypeField = val
 }
 
-func (m *TieredVolumePricingComponent) ComponentValue() int32 {
-	return m.componentValueField
-}
-func (m *TieredVolumePricingComponent) SetComponentValue(val int32) {
-	m.componentValueField = val
-}
-
-func (m *TieredVolumePricingComponent) ConsistentID() string {
-	return m.consistentIdField
-}
-func (m *TieredVolumePricingComponent) SetConsistentID(val string) {
-	m.consistentIdField = val
-}
-
-func (m *TieredVolumePricingComponent) Cost() *float64 {
-	return m.costField
-}
-func (m *TieredVolumePricingComponent) SetCost(val *float64) {
-	m.costField = val
-}
-
 func (m *TieredVolumePricingComponent) Created() strfmt.DateTime {
 	return m.createdField
 }
@@ -143,11 +100,11 @@ func (m *TieredVolumePricingComponent) SetCreated(val strfmt.DateTime) {
 	m.createdField = val
 }
 
-func (m *TieredVolumePricingComponent) Crmid() *string {
-	return m.crmidField
+func (m *TieredVolumePricingComponent) CrmID() *string {
+	return m.crmIdField
 }
-func (m *TieredVolumePricingComponent) SetCrmid(val *string) {
-	m.crmidField = val
+func (m *TieredVolumePricingComponent) SetCrmID(val *string) {
+	m.crmIdField = val
 }
 
 func (m *TieredVolumePricingComponent) DefaultQuantity() int32 {
@@ -171,10 +128,10 @@ func (m *TieredVolumePricingComponent) SetDowngradeMode(val *string) {
 	m.downgradeModeField = val
 }
 
-func (m *TieredVolumePricingComponent) ID() *string {
+func (m *TieredVolumePricingComponent) ID() string {
 	return m.idField
 }
-func (m *TieredVolumePricingComponent) SetID(val *string) {
+func (m *TieredVolumePricingComponent) SetID(val string) {
 	m.idField = val
 }
 
@@ -206,39 +163,11 @@ func (m *TieredVolumePricingComponent) SetName(val string) {
 	m.nameField = val
 }
 
-func (m *TieredVolumePricingComponent) NotificationObjectGraph() *string {
-	return m.notificationObjectGraphField
-}
-func (m *TieredVolumePricingComponent) SetNotificationObjectGraph(val *string) {
-	m.notificationObjectGraphField = val
-}
-
 func (m *TieredVolumePricingComponent) OrganizationID() string {
 	return m.organizationIdField
 }
 func (m *TieredVolumePricingComponent) SetOrganizationID(val string) {
 	m.organizationIdField = val
-}
-
-func (m *TieredVolumePricingComponent) PriceExplanation() []string {
-	return m.priceExplanationField
-}
-func (m *TieredVolumePricingComponent) SetPriceExplanation(val []string) {
-	m.priceExplanationField = val
-}
-
-func (m *TieredVolumePricingComponent) PriceExplanationString() *string {
-	return m.priceExplanationStringField
-}
-func (m *TieredVolumePricingComponent) SetPriceExplanationString(val *string) {
-	m.priceExplanationStringField = val
-}
-
-func (m *TieredVolumePricingComponent) ProductRatePlan() *ProductRatePlan {
-	return m.productRatePlanField
-}
-func (m *TieredVolumePricingComponent) SetProductRatePlan(val *ProductRatePlan) {
-	m.productRatePlanField = val
 }
 
 func (m *TieredVolumePricingComponent) ProductRatePlanID() string {
@@ -304,12 +233,17 @@ func (m *TieredVolumePricingComponent) SetValidTill(val strfmt.DateTime) {
 	m.validTillField = val
 }
 
+func (m *TieredVolumePricingComponent) VersionID() string {
+	return m.versionIdField
+}
+func (m *TieredVolumePricingComponent) SetVersionID(val string) {
+	m.versionIdField = val
+}
+
 // UnmarshalJSON unmarshals this polymorphic type from a JSON structure
 func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 	var data struct {
 		Type string `json:"@type,omitempty"`
-
-		BillingEntity *string `json:"billingEntity,omitempty"`
 
 		ChangedBy *string `json:"changedBy,omitempty"`
 
@@ -317,15 +251,9 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		ChargeType string `json:"chargeType,omitempty"`
 
-		ComponentValue int32 `json:"componentValue,omitempty"`
-
-		ConsistentID string `json:"consistentID,omitempty" xml:"id"`
-
-		Cost *float64 `json:"cost,omitempty"`
-
 		Created strfmt.DateTime `json:"created,omitempty"`
 
-		Crmid *string `json:"crmid,omitempty"`
+		CrmID *string `json:"crmID,omitempty"`
 
 		DefaultQuantity int32 `json:"defaultQuantity,omitempty"`
 
@@ -333,7 +261,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		DowngradeMode *string `json:"downgradeMode,omitempty"`
 
-		ID *string `json:"id,omitempty" xml:"versionID"`
+		ID string `json:"id,omitempty"`
 
 		InvoicingType *string `json:"invoicingType,omitempty"`
 
@@ -343,15 +271,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		Name string `json:"name,omitempty"`
 
-		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 		OrganizationID string `json:"organizationID,omitempty"`
-
-		PriceExplanation []string `json:"priceExplanation,omitempty"`
-
-		PriceExplanationString *string `json:"priceExplanationString,omitempty"`
-
-		ProductRatePlan *ProductRatePlan `json:"productRatePlan,omitempty"`
 
 		ProductRatePlanID string `json:"productRatePlanID,omitempty"`
 
@@ -370,21 +290,19 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
 		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+
+		VersionID string `json:"versionID,omitempty"`
 	}
 
 	if err := json.Unmarshal(raw, &data); err != nil {
 		return err
 	}
 
-	m.billingEntityField = data.BillingEntity
 	m.changedByField = data.ChangedBy
 	m.chargeModelField = data.ChargeModel
 	m.chargeTypeField = data.ChargeType
-	m.componentValueField = data.ComponentValue
-	m.consistentIdField = data.ConsistentID
-	m.costField = data.Cost
 	m.createdField = data.Created
-	m.crmidField = data.Crmid
+	m.crmIdField = data.CrmID
 	m.defaultQuantityField = data.DefaultQuantity
 	m.descriptionField = data.Description
 	m.downgradeModeField = data.DowngradeMode
@@ -393,11 +311,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 	m.maxQuantityField = data.MaxQuantity
 	m.minQuantityField = data.MinQuantity
 	m.nameField = data.Name
-	m.notificationObjectGraphField = data.NotificationObjectGraph
 	m.organizationIdField = data.OrganizationID
-	m.priceExplanationField = data.PriceExplanation
-	m.priceExplanationStringField = data.PriceExplanationString
-	m.productRatePlanField = data.ProductRatePlan
 	m.productRatePlanIdField = data.ProductRatePlanID
 	m.publicNameField = data.PublicName
 	m.tiersField = data.Tiers
@@ -407,6 +321,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 	m.upgradeModeField = data.UpgradeMode
 	m.validFromField = data.ValidFrom
 	m.validTillField = data.ValidTill
+	m.versionIdField = data.VersionID
 
 	return nil
 }
@@ -416,23 +331,15 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	var data struct {
 		Type string `json:"@type,omitempty"`
 
-		BillingEntity *string `json:"billingEntity,omitempty"`
-
 		ChangedBy *string `json:"changedBy,omitempty"`
 
 		ChargeModel string `json:"chargeModel,omitempty"`
 
 		ChargeType string `json:"chargeType,omitempty"`
 
-		ComponentValue int32 `json:"componentValue,omitempty"`
-
-		ConsistentID string `json:"consistentID,omitempty" xml:"id"`
-
-		Cost *float64 `json:"cost,omitempty"`
-
 		Created strfmt.DateTime `json:"created,omitempty"`
 
-		Crmid *string `json:"crmid,omitempty"`
+		CrmID *string `json:"crmID,omitempty"`
 
 		DefaultQuantity int32 `json:"defaultQuantity,omitempty"`
 
@@ -440,7 +347,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		DowngradeMode *string `json:"downgradeMode,omitempty"`
 
-		ID *string `json:"id,omitempty" xml:"versionID"`
+		ID string `json:"id,omitempty"`
 
 		InvoicingType *string `json:"invoicingType,omitempty"`
 
@@ -450,15 +357,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		Name string `json:"name,omitempty"`
 
-		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 		OrganizationID string `json:"organizationID,omitempty"`
-
-		PriceExplanation []string `json:"priceExplanation,omitempty"`
-
-		PriceExplanationString *string `json:"priceExplanationString,omitempty"`
-
-		ProductRatePlan *ProductRatePlan `json:"productRatePlan,omitempty"`
 
 		ProductRatePlanID string `json:"productRatePlanID,omitempty"`
 
@@ -477,17 +376,15 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
 		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+
+		VersionID string `json:"versionID,omitempty"`
 	}
 
-	data.BillingEntity = m.billingEntityField
 	data.ChangedBy = m.changedByField
 	data.ChargeModel = m.chargeModelField
 	data.ChargeType = m.chargeTypeField
-	data.ComponentValue = m.componentValueField
-	data.ConsistentID = m.consistentIdField
-	data.Cost = m.costField
 	data.Created = m.createdField
-	data.Crmid = m.crmidField
+	data.CrmID = m.crmIdField
 	data.DefaultQuantity = m.defaultQuantityField
 	data.Description = m.descriptionField
 	data.DowngradeMode = m.downgradeModeField
@@ -496,11 +393,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	data.MaxQuantity = m.maxQuantityField
 	data.MinQuantity = m.minQuantityField
 	data.Name = m.nameField
-	data.NotificationObjectGraph = m.notificationObjectGraphField
 	data.OrganizationID = m.organizationIdField
-	data.PriceExplanation = m.priceExplanationField
-	data.PriceExplanationString = m.priceExplanationStringField
-	data.ProductRatePlan = m.productRatePlanField
 	data.ProductRatePlanID = m.productRatePlanIdField
 	data.PublicName = m.publicNameField
 	data.Tiers = m.tiersField
@@ -510,6 +403,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	data.UpgradeMode = m.upgradeModeField
 	data.ValidFrom = m.validFromField
 	data.ValidTill = m.validTillField
+	data.VersionID = m.versionIdField
 	data.Type = "tieredVolumePricingComponent"
 	return json.Marshal(data)
 }
@@ -517,10 +411,6 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 // Validate validates this tiered volume pricing component
 func (m *TieredVolumePricingComponent) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateBillingEntity(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateChargeModel(formats); err != nil {
 		res = append(res, err)
@@ -530,15 +420,15 @@ func (m *TieredVolumePricingComponent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateConsistentID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateDefaultQuantity(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateDowngradeMode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -551,14 +441,6 @@ func (m *TieredVolumePricingComponent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOrganizationID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePriceExplanation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateProductRatePlan(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -582,36 +464,13 @@ func (m *TieredVolumePricingComponent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVersionID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-var tieredVolumePricingComponentBillingEntityEnum []interface{}
-
-func (m *TieredVolumePricingComponent) validateBillingEntityEnum(path, location string, value string) error {
-	if tieredVolumePricingComponentBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			tieredVolumePricingComponentBillingEntityEnum = append(tieredVolumePricingComponentBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, tieredVolumePricingComponentBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *TieredVolumePricingComponent) validateBillingEntity(formats strfmt.Registry) error {
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity()); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -677,15 +536,6 @@ func (m *TieredVolumePricingComponent) validateChargeType(formats strfmt.Registr
 	return nil
 }
 
-func (m *TieredVolumePricingComponent) validateConsistentID(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistentID", "body", string(m.ConsistentID())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *TieredVolumePricingComponent) validateDefaultQuantity(formats strfmt.Registry) error {
 
 	if err := validate.Required("defaultQuantity", "body", int32(m.DefaultQuantity())); err != nil {
@@ -716,6 +566,15 @@ func (m *TieredVolumePricingComponent) validateDowngradeModeEnum(path, location 
 func (m *TieredVolumePricingComponent) validateDowngradeMode(formats strfmt.Registry) error {
 
 	if err := m.validateDowngradeModeEnum("downgradeMode", "body", *m.DowngradeMode()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TieredVolumePricingComponent) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", string(m.ID())); err != nil {
 		return err
 	}
 
@@ -762,31 +621,6 @@ func (m *TieredVolumePricingComponent) validateOrganizationID(formats strfmt.Reg
 
 	if err := validate.Required("organizationID", "body", string(m.OrganizationID())); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *TieredVolumePricingComponent) validatePriceExplanation(formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.PriceExplanation()); i++ {
-
-		if err := validate.Required("priceExplanation"+"."+strconv.Itoa(i), "body", string(m.priceExplanationField[i])); err != nil {
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TieredVolumePricingComponent) validateProductRatePlan(formats strfmt.Registry) error {
-
-	if m.ProductRatePlan() != nil {
-
-		if err := m.ProductRatePlan().Validate(formats); err != nil {
-			return err
-		}
 	}
 
 	return nil
@@ -856,6 +690,15 @@ func (m *TieredVolumePricingComponent) validateUpgradeMode(formats strfmt.Regist
 func (m *TieredVolumePricingComponent) validateValidFrom(formats strfmt.Registry) error {
 
 	if err := validate.Required("validFrom", "body", strfmt.DateTime(m.ValidFrom())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TieredVolumePricingComponent) validateVersionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("versionID", "body", string(m.VersionID())); err != nil {
 		return err
 	}
 

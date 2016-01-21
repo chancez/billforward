@@ -24,10 +24,6 @@ type ProductRatePlan struct {
 	 */
 	AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
@@ -42,19 +38,15 @@ type ProductRatePlan struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* Crmid crmid
+	/* {"description":"Customer-relationship-management ID of the rate plan.","verbs":["GET","PUT","POST"]}
 	 */
-	Crmid *string `json:"crmid,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* {"description":"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).","verbs":["POST","GET"]}
 
 	Required: true
 	*/
 	Currency string `json:"currency,omitempty"`
-
-	/* DisplayName display name
-	 */
-	DisplayName *string `json:"displayName,omitempty"`
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
@@ -76,7 +68,7 @@ type ProductRatePlan struct {
 	 */
 	FixedTermDefinitions []*MutableBillingEntity `json:"fixedTermDefinitions,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* {"description":"ID uniquely identifying this rate plan.","verbs":["GET"]}
 	 */
 	ID *string `json:"id,omitempty"`
 
@@ -91,12 +83,6 @@ type ProductRatePlan struct {
 	/* {"description":"Measure describing the magnitude of the invoice issuance period.","verbs":["POST","GET"]}
 	 */
 	IssuePeriod *string `json:"issuePeriod,omitempty"`
-
-	/* {"default":"false","description":"Whether the taxes of the rate plan take into account localised taxes.","verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	LocalisedTax bool `json:"localisedTax,omitempty"`
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
@@ -113,10 +99,6 @@ type ProductRatePlan struct {
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
 
@@ -144,10 +126,6 @@ type ProductRatePlan struct {
 	 */
 	PublicName *string `json:"publicName,omitempty"`
 
-	/* RecursionType recursion type
-	 */
-	RecursionType *string `json:"recursionType,omitempty"`
-
 	/* {"description":"The current status of the rate plan.","verbs":[]}
 	 */
 	Status *string `json:"status,omitempty"`
@@ -170,7 +148,7 @@ type ProductRatePlan struct {
 	 */
 	TrialPeriod *string `json:"trialPeriod,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -188,11 +166,6 @@ func (m *ProductRatePlan) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAggregatingComponents(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -232,11 +205,6 @@ func (m *ProductRatePlan) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateLocalisedTax(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateMigrationBehaviour(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -263,11 +231,6 @@ func (m *ProductRatePlan) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateProductType(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateRecursionType(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -308,37 +271,6 @@ func (m *ProductRatePlan) validateAggregatingComponents(formats strfmt.Registry)
 			}
 		}
 
-	}
-
-	return nil
-}
-
-var productRatePlanBillingEntityEnum []interface{}
-
-func (m *ProductRatePlan) validateBillingEntityEnum(path, location string, value string) error {
-	if productRatePlanBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			productRatePlanBillingEntityEnum = append(productRatePlanBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, productRatePlanBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *ProductRatePlan) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
 	}
 
 	return nil
@@ -506,15 +438,6 @@ func (m *ProductRatePlan) validateIssuePeriod(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ProductRatePlan) validateLocalisedTax(formats strfmt.Registry) error {
-
-	if err := validate.Required("localisedTax", "body", bool(m.LocalisedTax)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var productRatePlanMigrationBehaviourEnum []interface{}
 
 func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, value string) error {
@@ -646,37 +569,6 @@ func (m *ProductRatePlan) validateProductType(formats strfmt.Registry) error {
 	return nil
 }
 
-var productRatePlanRecursionTypeEnum []interface{}
-
-func (m *ProductRatePlan) validateRecursionTypeEnum(path, location string, value string) error {
-	if productRatePlanRecursionTypeEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["nonrecurring","recurring"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			productRatePlanRecursionTypeEnum = append(productRatePlanRecursionTypeEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, productRatePlanRecursionTypeEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *ProductRatePlan) validateRecursionType(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.RecursionType) { // not required
-		return nil
-	}
-
-	if err := m.validateRecursionTypeEnum("recursionType", "body", *m.RecursionType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var productRatePlanTaxStatusEnum []interface{}
 
 func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value string) error {
@@ -764,19 +656,15 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
 
-		BillingEntity *string `json:"billingEntity,omitempty"`
-
 		ChangedBy *string `json:"changedBy,omitempty"`
 
 		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
 
 		Created strfmt.DateTime `json:"created,omitempty"`
 
-		Crmid *string `json:"crmid,omitempty"`
+		CrmID *string `json:"crmID,omitempty"`
 
 		Currency string `json:"currency,omitempty"`
-
-		DisplayName *string `json:"displayName,omitempty"`
 
 		Duration int32 `json:"duration,omitempty"`
 
@@ -794,15 +682,11 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		LocalisedTax bool `json:"localisedTax,omitempty"`
-
 		Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
 		Name string `json:"name,omitempty"`
-
-		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 		ProRataMode string `json:"proRataMode,omitempty"`
 
@@ -813,8 +697,6 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 		ProductType *string `json:"productType,omitempty"`
 
 		PublicName *string `json:"publicName,omitempty"`
-
-		RecursionType *string `json:"recursionType,omitempty"`
 
 		Status *string `json:"status,omitempty"`
 
@@ -857,13 +739,11 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 	var result ProductRatePlan
 	result.AggregatingComponents = data.AggregatingComponents
-	result.BillingEntity = data.BillingEntity
 	result.ChangedBy = data.ChangedBy
 	result.CreateZeroValuedInvoices = data.CreateZeroValuedInvoices
 	result.Created = data.Created
-	result.Crmid = data.Crmid
+	result.CrmID = data.CrmID
 	result.Currency = data.Currency
-	result.DisplayName = data.DisplayName
 	result.Duration = data.Duration
 	result.DurationPeriod = data.DurationPeriod
 	result.FailedPaymentBehaviour = data.FailedPaymentBehaviour
@@ -872,18 +752,15 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 	result.InvoiceIssueType = data.InvoiceIssueType
 	result.IssueDuration = data.IssueDuration
 	result.IssuePeriod = data.IssuePeriod
-	result.LocalisedTax = data.LocalisedTax
 	result.Metadata = data.Metadata
 	result.MigrationBehaviour = data.MigrationBehaviour
 	result.Name = data.Name
-	result.NotificationObjectGraph = data.NotificationObjectGraph
 	result.PricingComponents = pricingComponents
 	result.ProRataMode = data.ProRataMode
 	result.Product = data.Product
 	result.ProductID = data.ProductID
 	result.ProductType = data.ProductType
 	result.PublicName = data.PublicName
-	result.RecursionType = data.RecursionType
 	result.Status = data.Status
 	result.TaxStatus = data.TaxStatus
 	result.Taxation = data.Taxation
@@ -903,19 +780,15 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
 
-		BillingEntity *string `json:"billingEntity,omitempty"`
-
 		ChangedBy *string `json:"changedBy,omitempty"`
 
 		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
 
 		Created strfmt.DateTime `json:"created,omitempty"`
 
-		Crmid *string `json:"crmid,omitempty"`
+		CrmID *string `json:"crmID,omitempty"`
 
 		Currency string `json:"currency,omitempty"`
-
-		DisplayName *string `json:"displayName,omitempty"`
 
 		Duration int32 `json:"duration,omitempty"`
 
@@ -933,15 +806,11 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		LocalisedTax bool `json:"localisedTax,omitempty"`
-
 		Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
 		Name string `json:"name,omitempty"`
-
-		NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 		ProRataMode string `json:"proRataMode,omitempty"`
 
@@ -952,8 +821,6 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		ProductType *string `json:"productType,omitempty"`
 
 		PublicName *string `json:"publicName,omitempty"`
-
-		RecursionType *string `json:"recursionType,omitempty"`
 
 		Status *string `json:"status,omitempty"`
 
@@ -972,13 +839,11 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
 	}{
 		AggregatingComponents:    m.AggregatingComponents,
-		BillingEntity:            m.BillingEntity,
 		ChangedBy:                m.ChangedBy,
 		CreateZeroValuedInvoices: m.CreateZeroValuedInvoices,
 		Created:                  m.Created,
-		Crmid:                    m.Crmid,
+		CrmID:                    m.CrmID,
 		Currency:                 m.Currency,
-		DisplayName:              m.DisplayName,
 		Duration:                 m.Duration,
 		DurationPeriod:           m.DurationPeriod,
 		FailedPaymentBehaviour:   m.FailedPaymentBehaviour,
@@ -987,25 +852,22 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		InvoiceIssueType:         m.InvoiceIssueType,
 		IssueDuration:            m.IssueDuration,
 		IssuePeriod:              m.IssuePeriod,
-		LocalisedTax:             m.LocalisedTax,
 		Metadata:                 m.Metadata,
 		MigrationBehaviour:       m.MigrationBehaviour,
 		Name:                     m.Name,
-		NotificationObjectGraph: m.NotificationObjectGraph,
-		ProRataMode:             m.ProRataMode,
-		Product:                 m.Product,
-		ProductID:               m.ProductID,
-		ProductType:             m.ProductType,
-		PublicName:              m.PublicName,
-		RecursionType:           m.RecursionType,
-		Status:                  m.Status,
-		TaxStatus:               m.TaxStatus,
-		Taxation:                m.Taxation,
-		Trial:                   m.Trial,
-		TrialPeriod:             m.TrialPeriod,
-		Updated:                 m.Updated,
-		ValidFrom:               m.ValidFrom,
-		ValidTill:               m.ValidTill,
+		ProRataMode:              m.ProRataMode,
+		Product:                  m.Product,
+		ProductID:                m.ProductID,
+		ProductType:              m.ProductType,
+		PublicName:               m.PublicName,
+		Status:                   m.Status,
+		TaxStatus:                m.TaxStatus,
+		Taxation:                 m.Taxation,
+		Trial:                    m.Trial,
+		TrialPeriod:              m.TrialPeriod,
+		Updated:                  m.Updated,
+		ValidFrom:                m.ValidFrom,
+		ValidTill:                m.ValidTill,
 	})
 	if err != nil {
 		return nil, err

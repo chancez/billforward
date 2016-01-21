@@ -53,11 +53,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Subscription \
     -M CreateSubscriptionRequest  \
     -M FixedTerm \
-    -M Days \
-    -M Minutes \
     -M PaymentMethodSubscriptionLink \
-    -M Seconds \
-    -M PeriodType \
     -M DurationFieldType \
     -M MutableBillingEntity \
     -M PendingComponentValueChange \
@@ -95,7 +91,6 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Organization \
     -M Alias \
     -M Client \
-    -M GrantedAuthority \
     -M Refund \
     -M Receipt \
     -M Payment \

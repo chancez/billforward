@@ -9,44 +9,65 @@ import (
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
-/*UnitOfMeasure UnitOfMeasure unit of measure
+/*UnitOfMeasure Units in which a "quantity of consumed PricingComponent" can be measured
 
 swagger:model UnitOfMeasure
 */
 type UnitOfMeasure struct {
 
-	/* Deleted deleted
+	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	Deleted *bool `json:"deleted,omitempty"`
+	ChangedBy *string `json:"changedBy,omitempty"`
 
-	/* DisplayedAs displayed as
+	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
+	 */
+	Created strfmt.DateTime `json:"created,omitempty"`
+
+	/* { "description" : "", "verbs":["POST","PUT","GET"] }
+	 */
+	CrmID *string `json:"crmID,omitempty"`
+
+	/* { "description" : "", "verbs":["GET"] }
+
+	Required: true
+	*/
+	Deleted bool `json:"deleted,omitempty"`
+
+	/* { "description" : "Unit of measurement, such as users, pounds, minutes.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	DisplayedAs string `json:"displayedAs,omitempty"`
 
-	/* ID id
+	/* { "description" : "", "verbs":["GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
-	/* Name name
+	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
 
-	/* OrganizationID organization ID
-	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	/* { "description" : "", "verbs":[] }
 
-	/* Rounding rounding
+	Required: true
+	*/
+	OrganizationID string `json:"organizationID,omitempty"`
+
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Rounding *string `json:"rounding,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this unit of measure
 func (m *UnitOfMeasure) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateDeleted(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
 
 	if err := m.validateDisplayedAs(formats); err != nil {
 		// prop
@@ -58,9 +79,23 @@ func (m *UnitOfMeasure) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOrganizationID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UnitOfMeasure) validateDeleted(formats strfmt.Registry) error {
+
+	if err := validate.Required("deleted", "body", bool(m.Deleted)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -76,6 +111,15 @@ func (m *UnitOfMeasure) validateDisplayedAs(formats strfmt.Registry) error {
 func (m *UnitOfMeasure) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UnitOfMeasure) validateOrganizationID(formats strfmt.Registry) error {
+
+	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 

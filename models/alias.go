@@ -4,12 +4,9 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Alias The alias used to encrypt card details
@@ -23,10 +20,6 @@ type Alias struct {
 	Required: true
 	*/
 	Alias string `json:"alias,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -42,19 +35,11 @@ type Alias struct {
 	*/
 	Deleted bool `json:"deleted,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
-	 */
-	ID *string `json:"id,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
-	/* { "description" : "The organization associated with the alias", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "ID of the alias.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Organization *Organization `json:"organization,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "ID of the organization associated with the alias.", "verbs":["POST","PUT","GET"] }
 
@@ -62,7 +47,7 @@ type Alias struct {
 	*/
 	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
@@ -76,17 +61,12 @@ func (m *Alias) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateDeleted(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateOrganization(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -111,37 +91,6 @@ func (m *Alias) validateAlias(formats strfmt.Registry) error {
 	return nil
 }
 
-var aliasBillingEntityEnum []interface{}
-
-func (m *Alias) validateBillingEntityEnum(path, location string, value string) error {
-	if aliasBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			aliasBillingEntityEnum = append(aliasBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, aliasBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Alias) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Alias) validateDeleted(formats strfmt.Registry) error {
 
 	if err := validate.Required("deleted", "body", bool(m.Deleted)); err != nil {
@@ -151,13 +100,10 @@ func (m *Alias) validateDeleted(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Alias) validateOrganization(formats strfmt.Registry) error {
+func (m *Alias) validateID(formats strfmt.Registry) error {
 
-	if m.Organization != nil {
-
-		if err := m.Organization.Validate(formats); err != nil {
-			return err
-		}
+	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+		return err
 	}
 
 	return nil

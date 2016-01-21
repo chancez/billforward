@@ -28,11 +28,6 @@ type PricingComponent interface {
 	Type() string
 	SetType(string)
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity() *string
-	SetBillingEntity(*string)
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy() *string
@@ -52,32 +47,15 @@ type PricingComponent interface {
 	ChargeType() string
 	SetChargeType(string)
 
-	/* ComponentValue component value
-	 */
-	ComponentValue() int32
-	SetComponentValue(int32)
-
-	/* { "description" : "ID of the pricing-component. This ID does not change with new versions of the pricing component.", "verbs":["POST","PUT","GET"] } When associating a pricing component with a product rate plan, this ID should be used.
-
-	Required: true
-	*/
-	ConsistentID() string
-	SetConsistentID(string)
-
-	/* Cost cost
-	 */
-	Cost() *float64
-	SetCost(*float64)
-
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
 	Created() strfmt.DateTime
 	SetCreated(strfmt.DateTime)
 
-	/* Crmid crmid
+	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	Crmid() *string
-	SetCrmid(*string)
+	CrmID() *string
+	SetCrmID(*string)
 
 	/* { "description" : "The default quantity of the pricing-component. If no value is supplied on a subscription this value will be used. This is useful for setting an expected purchase level of for introducing new pricing components to existing subscriptions and not having to back-fill values", "verbs":["POST","PUT","GET"] }
 
@@ -96,10 +74,12 @@ type PricingComponent interface {
 	DowngradeMode() *string
 	SetDowngradeMode(*string)
 
-	/* { "description" : "Version ID of the pricing-component. Unique ID for each version of a pricing-component.", "verbs":["POST","PUT","GET"] }
-	 */
-	ID() *string
-	SetID(*string)
+	/* { "description" : "", "verbs":["GET"] } When associating a pricing component with a product rate plan, this ID should be used.
+
+	Required: true
+	*/
+	ID() string
+	SetID(string)
 
 	/* { "default" : "Aggregated",  "description" : "For <span class=\"label label-default\">setup</span> pricing components <span class=\"label label-default\">Immediate</span> invoicing will result in an invoice being issued on subscription being set to the AwaitingPayment state, irrespective of the subscription start date. <span class=\"label label-default\">Aggregated</span> invoicing will add a charge to the first invoice of the subscription.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -123,34 +103,12 @@ type PricingComponent interface {
 	Name() string
 	SetName(string)
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph() *string
-	SetNotificationObjectGraph(*string)
-
 	/* { "description" : "", "verbs":[] }
 
 	Required: true
 	*/
 	OrganizationID() string
 	SetOrganizationID(string)
-
-	/* PriceExplanation price explanation
-	 */
-	PriceExplanation() []string
-	SetPriceExplanation([]string)
-
-	/* PriceExplanationString price explanation string
-	 */
-	PriceExplanationString() *string
-	SetPriceExplanationString(*string)
-
-	/* { "description" : "The product-rate-plan associated with the pricing-component.", "verbs":["POST","PUT","GET"] }
-
-	Required: true
-	*/
-	ProductRatePlan() *ProductRatePlan
-	SetProductRatePlan(*ProductRatePlan)
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -169,7 +127,7 @@ type PricingComponent interface {
 	Tiers() []*PricingComponentTier
 	SetTiers([]*PricingComponentTier)
 
-	/* UnitOfMeasure unit of measure
+	/* { "description" : "The unit-of-measure associated with the pricing-component.", "verbs":["POST","PUT","GET"] }
 	 */
 	UnitOfMeasure() *UnitOfMeasure
 	SetUnitOfMeasure(*UnitOfMeasure)
@@ -181,7 +139,7 @@ type PricingComponent interface {
 	UnitOfMeasureID() string
 	SetUnitOfMeasureID(string)
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated() strfmt.DateTime
 	SetUpdated(strfmt.DateTime)
@@ -202,6 +160,13 @@ type PricingComponent interface {
 	 */
 	ValidTill() strfmt.DateTime
 	SetValidTill(strfmt.DateTime)
+
+	/* { "description" : "", "verbs":["GET"] }
+
+	Required: true
+	*/
+	VersionID() string
+	SetVersionID(string)
 }
 
 // UnmarshalPricingComponentSlice unmarshals polymorphic slices of PricingComponent

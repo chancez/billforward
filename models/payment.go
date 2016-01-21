@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Payment Payment
@@ -24,10 +23,6 @@ type Payment struct {
 	*/
 	ActualValue float64 `json:"actualValue,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
@@ -36,19 +31,17 @@ type Payment struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* Crmid crmid
-	 */
-	Crmid *string `json:"crmid,omitempty"`
+	/* { "description" : "CRM ID of the invoice.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	CrmID string `json:"crmID,omitempty"`
 
 	/* { "description" : "The currency of the payment specified by a three character ISO 4217 currency code.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
 	Currency string `json:"currency,omitempty"`
-
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
 
 	/* { "description" : "Payment gateway associated with the payment", "verbs":["POST","PUT","GET"] }
 
@@ -72,10 +65,6 @@ type Payment struct {
 	*/
 	NominalValue float64 `json:"nominalValue,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 	/* { "description" : "ID of the organization associated with the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
@@ -92,6 +81,12 @@ type Payment struct {
 	 */
 	PaymentReceived strfmt.DateTime `json:"paymentReceived,omitempty"`
 
+	/* { "description" : "ID of the refund associated with the payment.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	RefundID string `json:"refundID,omitempty"`
+
 	/* { "description" : "Refunded nominal value of the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
@@ -102,7 +97,7 @@ type Payment struct {
 
 	Required: true
 	*/
-	RemainingValue float64 `json:"remainingValue,omitempty" xml:"remainingNominalValue"`
+	RemainingNominalValue float64 `json:"remainingNominalValue,omitempty"`
 
 	/* { "description" : "Type of payment.", "verbs":["POST","PUT","GET"] }
 
@@ -110,7 +105,7 @@ type Payment struct {
 	*/
 	Type string `json:"type,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
@@ -124,17 +119,12 @@ func (m *Payment) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateBillingEntity(formats); err != nil {
+	if err := m.validateCrmID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCurrency(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -164,12 +154,17 @@ func (m *Payment) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRefundID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateRefundedValue(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateRemainingValue(formats); err != nil {
+	if err := m.validateRemainingNominalValue(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -194,31 +189,9 @@ func (m *Payment) validateActualValue(formats strfmt.Registry) error {
 	return nil
 }
 
-var paymentBillingEntityEnum []interface{}
+func (m *Payment) validateCrmID(formats strfmt.Registry) error {
 
-func (m *Payment) validateBillingEntityEnum(path, location string, value string) error {
-	if paymentBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			paymentBillingEntityEnum = append(paymentBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, paymentBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Payment) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
+	if err := validate.Required("crmID", "body", string(m.CrmID)); err != nil {
 		return err
 	}
 
@@ -228,19 +201,6 @@ func (m *Payment) validateBillingEntity(formats strfmt.Registry) error {
 func (m *Payment) validateCurrency(formats strfmt.Registry) error {
 
 	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Payment) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 
@@ -314,6 +274,15 @@ func (m *Payment) validatePaymentMethodID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Payment) validateRefundID(formats strfmt.Registry) error {
+
+	if err := validate.Required("refundID", "body", string(m.RefundID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Payment) validateRefundedValue(formats strfmt.Registry) error {
 
 	if err := validate.Required("refundedValue", "body", float64(m.RefundedValue)); err != nil {
@@ -323,9 +292,9 @@ func (m *Payment) validateRefundedValue(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Payment) validateRemainingValue(formats strfmt.Registry) error {
+func (m *Payment) validateRemainingNominalValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("remainingValue", "body", float64(m.RemainingValue)); err != nil {
+	if err := validate.Required("remainingNominalValue", "body", float64(m.RemainingNominalValue)); err != nil {
 		return err
 	}
 

@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*SubscriptionCharge Represents a monetary amount &mdash; or quantity consumed &mdash; attributed to some invoice or subscription.
@@ -29,10 +28,6 @@ type SubscriptionCharge struct {
 	/* {"description":"Monetary amount of the charge &mdash; excluding any tax applied to the final amount.","verbs":["GET"]}
 	 */
 	AmountExcludingTax *float64 `json:"amountExcludingTax,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* {"default":"(Empty string)","description":"A human-readable explanation of how the value of the charge was calculated.","verbs":["GET"]}
 	 */
@@ -64,17 +59,9 @@ type SubscriptionCharge struct {
 	 */
 	Description *string `json:"description,omitempty"`
 
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* {"description":"The ID of the charge.","verbs":["GET"]}
 	 */
 	ID *string `json:"id,omitempty"`
-
-	/* {"description":"The invoice to which this charge applies (if the charge targets a specific invoice).","verbs":["GET"]}
-	 */
-	Invoice *Invoice `json:"invoice,omitempty"`
 
 	/* {"description":"ID of the invoice to which this charge applies (if the charge targets a specific invoice).","verbs":["POST","GET"]}
 	 */
@@ -89,10 +76,6 @@ type SubscriptionCharge struct {
 	/* {"description":"Friendly name given to the charge to help identify it.","verbs":["POST","GET","PUT"]}
 	 */
 	Name *string `json:"name,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"default":"(End of current period)","description":"The time-ending of the interval to which the charge applies. This can be used to apply a charge across partial or multiple periods,to pro-rate its price.","verbs":["POST","GET"]}
 	 */
@@ -132,7 +115,7 @@ type SubscriptionCharge struct {
 	*/
 	Type string `json:"type,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -151,17 +134,7 @@ type SubscriptionCharge struct {
 func (m *SubscriptionCharge) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateChargeType(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -197,37 +170,6 @@ func (m *SubscriptionCharge) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var subscriptionChargeBillingEntityEnum []interface{}
-
-func (m *SubscriptionCharge) validateBillingEntityEnum(path, location string, value string) error {
-	if subscriptionChargeBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			subscriptionChargeBillingEntityEnum = append(subscriptionChargeBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, subscriptionChargeBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *SubscriptionCharge) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var subscriptionChargeChargeTypeEnum []interface{}
 
 func (m *SubscriptionCharge) validateChargeTypeEnum(path, location string, value string) error {
@@ -253,19 +195,6 @@ func (m *SubscriptionCharge) validateChargeType(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateChargeTypeEnum("chargeType", "body", m.ChargeType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SubscriptionCharge) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 

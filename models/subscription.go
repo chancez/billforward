@@ -28,10 +28,6 @@ type Subscription struct {
 	 */
 	AggregateAllSubscriptionsOnAccount *bool `json:"aggregateAllSubscriptionsOnAccount,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
@@ -48,13 +44,9 @@ type Subscription struct {
 	 */
 	CreditEnabled *bool `json:"creditEnabled,omitempty"`
 
-	/* Crmid crmid
+	/* {"description":"","verbs":["POST","PUT","GET"]}
 	 */
-	Crmid *string `json:"crmid,omitempty"`
-
-	/* CurrentFixedTerm current fixed term
-	 */
-	CurrentFixedTerm *FixedTerm `json:"currentFixedTerm,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* {"description":"End of the current period invoiced for. This can be manually updated to extend trials or delay invoice generation.","verbs":["PUT","GET"]}
 	 */
@@ -74,14 +66,6 @@ type Subscription struct {
 	*/
 	CurrentTime strfmt.DateTime `json:"currentTime,omitempty"`
 
-	/* DaysElapsed days elapsed
-	 */
-	DaysElapsed *Days `json:"daysElapsed,omitempty"`
-
-	/* DaysRemaining days remaining
-	 */
-	DaysRemaining *Days `json:"daysRemaining,omitempty"`
-
 	/* {"description":"","verbs":["POST","PUT","GET"]}
 	 */
 	Description *string `json:"description,omitempty"`
@@ -90,18 +74,8 @@ type Subscription struct {
 	 */
 	Dunning *bool `json:"dunning,omitempty"`
 
-	/* Fields fields
+	/* {"description":"List of fixed terms that have been or are applied to the subscription","verbs":["GET"]}
 	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
-	/* FixedTerm fixed term
-	 */
-	FixedTerm *bool `json:"fixedTerm,omitempty"`
-
-	/* List of fixed terms that have been or are applied to the subscription
-
-	Required: true
-	*/
 	FixedTerms []*FixedTerm `json:"fixedTerms,omitempty"`
 
 	/* {"description":"","verbs":["GET"]}
@@ -128,27 +102,11 @@ type Subscription struct {
 	 */
 	Metadata *JaxbDynamicMetadata `json:"metadata,omitempty"`
 
-	/* MinutesElapsed minutes elapsed
-	 */
-	MinutesElapsed *Minutes `json:"minutesElapsed,omitempty"`
-
-	/* MinutesRemaining minutes remaining
-	 */
-	MinutesRemaining *Minutes `json:"minutesRemaining,omitempty"`
-
 	/* {"description":"User definable friendly name for the subscription.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
-
-	/* NewSubscription new subscription
-	 */
-	NewSubscription *bool `json:"newSubscription,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* {"description":"Organization associated with the subscription.","verbs":[]}
 
@@ -179,14 +137,6 @@ type Subscription struct {
 	Required: true
 	*/
 	ProductRatePlanID string `json:"productRatePlanID,omitempty"`
-
-	/* SecondsRemaining seconds remaining
-	 */
-	SecondsRemaining *Seconds `json:"secondsRemaining,omitempty"`
-
-	/* ShortID short ID
-	 */
-	ShortID *string `json:"shortID,omitempty"`
 
 	/* {"PUT_description":"A <span class=\"label label-default\">Provisioned</span> subscription can be updated to either <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>, this will start the subscription. Any updates to the state of a non-<span class=\"label label-default\">Provisioned</span> will be ignored. To cancel or otherwise amend a subscription please use the explict amendment calls.", "description":"A <span class=\"label label-default\">Provisioned</span> subscription will not begin until marked as <span class=\"label label-default\">Trial</span> or <span class=\"label label-default\">AwaitingPayment</span>. Trial subscriptions transition to <span class=\"label label-default\">AwaitingPayment</span> when the trial period is over. On subscription renewal the state becomes <span class=\"label label-default\">AwaitingPayment</span>. Once outstanding invoices are paid the state changes to <span class=\"label label-default\">Paid</span>. A subscription is set as either <span class=\"label label-default\">Failed</span> or left as <span class=\"label label-default\">AwaitingPayment</span>, depending on the rate-plan configuration. If a subscription is non-recurring or fixed-term and ends naturally, it will be marked as <span class=\"label label-default\">Expired</span>. If all payment attempts have failed a subscription is marked as <span class=\"label label-default\">Cancelled</span> if it has been manually ended. Once a subscription is marked as <span class=\"label label-default\">Failed</span>, <span class=\"label label-default\">Expired</span>, or <span class=\"label label-default\">Cancelled</span> no invoices other than a final invoice will be issued. Note: Updating account card details will not lead to BillForward automatically retrying payment, manual payment attempts can be made.","verbs":["POST","PUT","GET"]}
 
@@ -220,7 +170,7 @@ type Subscription struct {
 	 */
 	Type *string `json:"type,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -254,17 +204,7 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateCurrentTime(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -359,37 +299,6 @@ func (m *Subscription) validateAccountID(formats strfmt.Registry) error {
 	return nil
 }
 
-var subscriptionBillingEntityEnum []interface{}
-
-func (m *Subscription) validateBillingEntityEnum(path, location string, value string) error {
-	if subscriptionBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			subscriptionBillingEntityEnum = append(subscriptionBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, subscriptionBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Subscription) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Subscription) validateCurrentTime(formats strfmt.Registry) error {
 
 	if err := validate.Required("currentTime", "body", strfmt.DateTime(m.CurrentTime)); err != nil {
@@ -399,23 +308,10 @@ func (m *Subscription) validateCurrentTime(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Subscription) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Subscription) validateFixedTerms(formats strfmt.Registry) error {
 
-	if err := validate.Required("fixedTerms", "body", m.FixedTerms); err != nil {
-		return err
+	if swag.IsZero(m.FixedTerms) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.FixedTerms); i++ {

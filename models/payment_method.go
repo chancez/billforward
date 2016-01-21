@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*PaymentMethod PaymentMethod
@@ -18,25 +17,11 @@ swagger:model PaymentMethod
 */
 type PaymentMethod struct {
 
-	/* { "description" : "Account associated with the payment-method.", "verbs":[] }
-
-	Required: true
-	*/
-	Account *Account `json:"account,omitempty"`
-
 	/* { "description" : "ID of the account associated with the payment-method.", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
 	AccountID string `json:"accountID,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
-	/* CardExpiry card expiry
-	 */
-	CardExpiry strfmt.DateTime `json:"cardExpiry,omitempty"`
 
 	/* { "description" : "Name of the card holder", "verbs":["POST","PUT","GET"] }
 	 */
@@ -58,9 +43,9 @@ type PaymentMethod struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* Crmid crmid
+	/* { "description" : "CRM ID of the product-rate-plan.", "verbs":] }
 	 */
-	Crmid *string `json:"crmid,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* {"default" : "false", "description" : "Indicates if this is the default payment method for the account.", "verbs":["GET","POST","PUT"]  }
 	 */
@@ -98,7 +83,7 @@ type PaymentMethod struct {
 	*/
 	Gateway string `json:"gateway,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* { "description" : "ID of the payment-method.", "verbs":["GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
@@ -126,10 +111,6 @@ type PaymentMethod struct {
 	*/
 	Name string `json:"name,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 	/* OrganizationID organization ID
 	 */
 	OrganizationID *string `json:"organizationID,omitempty"`
@@ -144,7 +125,7 @@ type PaymentMethod struct {
 	*/
 	State string `json:"state,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
@@ -153,17 +134,7 @@ type PaymentMethod struct {
 func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccount(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -199,52 +170,9 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *PaymentMethod) validateAccount(formats strfmt.Registry) error {
-
-	if m.Account != nil {
-
-		if err := m.Account.Validate(formats); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *PaymentMethod) validateAccountID(formats strfmt.Registry) error {
 
 	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var paymentMethodBillingEntityEnum []interface{}
-
-func (m *PaymentMethod) validateBillingEntityEnum(path, location string, value string) error {
-	if paymentMethodBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			paymentMethodBillingEntityEnum = append(paymentMethodBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, paymentMethodBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *PaymentMethod) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
 		return err
 	}
 

@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*MutableBillingEntity Mutable entities are those entities that can be updated after their initial creation.
@@ -18,117 +17,114 @@ swagger:model MutableBillingEntity
 */
 type MutableBillingEntity struct {
 
-	/* AppliedAt applied at
-	 */
-	AppliedAt *string `json:"appliedAt,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
 
-	/* { "description" : "", "verbs":["POST","GET"] }
+	/* This is config id which links to this sync job.
 
 	Required: true
 	*/
-	Country string `json:"country,omitempty"`
+	ConfigID string `json:"configID,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* { "description" : "Currency this tax applies to specified by a three character ISO 4217 currency code", "verbs":["POST","GET"] }
-
-	Required: true
-	*/
-	Currency string `json:"currency,omitempty"`
-
-	/* { "default" : "false", "description" : "Indicates if this is the default taxation for any rate-plans which do not have a tax explicitly defined", "verbs":["POST","PUT","GET"] }
+	/* The account who created the synch job.
 	 */
-	DefaultTaxationStrategy *bool `json:"defaultTaxationStrategy,omitempty"`
+	CreatedBy *string `json:"createdBy,omitempty"`
 
-	/* {  "default" : "false", "description" : "", "verbs":[] }
+	/* UTC DateTime of the start of the data to sync.
+	 */
+	DataFrom strfmt.DateTime `json:"dataFrom,omitempty"`
+
+	/* UTC DateTime of the start of the data to sync.
+	 */
+	DataTill strfmt.DateTime `json:"dataTill,omitempty"`
+
+	/* Is the sync job deleted.
 
 	Required: true
 	*/
 	Deleted bool `json:"deleted,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* Description of the Job.
 
 	Required: true
 	*/
-	ID string `json:"id,omitempty"`
+	Description string `json:"description,omitempty"`
 
-	/* { "PUT_description" : "Not required for update, updates the tax change which has validTill of null (unbounded) with the matching name", "description" : "", "verbs":["POST","PUT","GET"] }
+	/* ID of the Synchronization Job.
+	 */
+	ID *string `json:"id,omitempty"`
+
+	/* The max number of times the records will try to resync.
+
+	Required: true
+	*/
+	MaxRetryTimes int32 `json:"maxRetryTimes,omitempty"`
+
+	/* Name of the Job.
 
 	Required: true
 	*/
 	Name string `json:"name,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
-	/* Organization organization
-	 */
-	Organization *Organization `json:"organization,omitempty"`
-
-	/* { "description" : "", "verbs":[] }
-	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
-
-	/* { "description" : "", "verbs":["POST","PUT","GET"] }
+	/* Organization associated with the refund.
 
 	Required: true
 	*/
-	Percentage float64 `json:"percentage,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* { "description" : "State/Province to apply this tax to, only used set when creating a localized tax.", "verbs":["POST","GET"] }
+	/* The number of times the records tried to resync.
+
+	Required: true
+	*/
+	RetryAttempted int32 `json:"retryAttempted,omitempty"`
+
+	/* The scope of the data synch'd.
+
+	Required: true
+	*/
+	Scope string `json:"scope,omitempty"`
+
+	/* UTC DateTime of the end of the data to sync.
 	 */
-	Province *string `json:"province,omitempty"`
+	Started strfmt.DateTime `json:"started,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* This is the state of job. Pending jobs have not run. Complete jobs have run without error. Failed jobs have one of more errors. Cancelled jobs did not run.
+
+	Required: true
+	*/
+	State string `json:"state,omitempty"`
+
+	/* UTC DateTime of the start of the data to sync.
+	 */
+	Stopped strfmt.DateTime `json:"stopped,omitempty"`
+
+	/* This is the target of the job.
+
+	Required: true
+	*/
+	Target string `json:"target,omitempty"`
+
+	/* This is the type of job. Incremental jobs just sync changes, fully jobs sync all data.
+
+	Required: true
+	*/
+	Type string `json:"type,omitempty"`
+
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
-
-	/* {  "default" : "immediately", "description" : "UTC DateTime from which the tax applies", "verbs":["POST","GET"] }
-
-	Required: true
-	*/
-	ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
-
-	/* {   "default" : "&infin;",  "description" : "UTC DateTime after which the tax no longer applies. This is automatically set by the API on creation of a tax strategy that supersedes the current tax version", "verbs":["GET"] }
-	 */
-	ValidTill strfmt.DateTime `json:"validTill,omitempty"`
-
-	/* { "PUT_description" : "If specified update this tax version", "description" : "", "verbs":["GET", "PUT"] }
-	 */
-	VersionID *string `json:"versionID,omitempty"`
 }
 
 // Validate validates this mutable billing entity
 func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAppliedAt(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateCountry(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateCurrency(formats); err != nil {
+	if err := m.validateConfigID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -138,7 +134,12 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateDescription(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxRetryTimes(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -148,12 +149,32 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePercentage(formats); err != nil {
+	if err := m.validateOrganizationID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateValidFrom(formats); err != nil {
+	if err := m.validateRetryAttempted(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateScope(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateState(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTarget(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -164,102 +185,9 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var mutableBillingEntityAppliedAtEnum []interface{}
+func (m *MutableBillingEntity) validateConfigID(formats strfmt.Registry) error {
 
-func (m *MutableBillingEntity) validateAppliedAtEnum(path, location string, value string) error {
-	if mutableBillingEntityAppliedAtEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["checkout","immediate"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			mutableBillingEntityAppliedAtEnum = append(mutableBillingEntityAppliedAtEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityAppliedAtEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *MutableBillingEntity) validateAppliedAt(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.AppliedAt) { // not required
-		return nil
-	}
-
-	if err := m.validateAppliedAtEnum("appliedAt", "body", *m.AppliedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var mutableBillingEntityBillingEntityEnum []interface{}
-
-func (m *MutableBillingEntity) validateBillingEntityEnum(path, location string, value string) error {
-	if mutableBillingEntityBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			mutableBillingEntityBillingEntityEnum = append(mutableBillingEntityBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *MutableBillingEntity) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var mutableBillingEntityCountryEnum []interface{}
-
-func (m *MutableBillingEntity) validateCountryEnum(path, location string, value string) error {
-	if mutableBillingEntityCountryEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["UK","USA","Canada","Mexico","Brazil","Argentina","China","France","Germany","Ireland"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			mutableBillingEntityCountryEnum = append(mutableBillingEntityCountryEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityCountryEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *MutableBillingEntity) validateCountry(formats strfmt.Registry) error {
-
-	if err := validate.Required("country", "body", string(m.Country)); err != nil {
-		return err
-	}
-
-	if err := m.validateCountryEnum("country", "body", m.Country); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *MutableBillingEntity) validateCurrency(formats strfmt.Registry) error {
-
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.Required("configID", "body", string(m.ConfigID)); err != nil {
 		return err
 	}
 
@@ -275,9 +203,18 @@ func (m *MutableBillingEntity) validateDeleted(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MutableBillingEntity) validateID(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.Required("description", "body", string(m.Description)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MutableBillingEntity) validateMaxRetryTimes(formats strfmt.Registry) error {
+
+	if err := validate.Required("maxRetryTimes", "body", int32(m.MaxRetryTimes)); err != nil {
 		return err
 	}
 
@@ -293,18 +230,142 @@ func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MutableBillingEntity) validatePercentage(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("percentage", "body", float64(m.Percentage)); err != nil {
+	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *MutableBillingEntity) validateValidFrom(formats strfmt.Registry) error {
+func (m *MutableBillingEntity) validateRetryAttempted(formats strfmt.Registry) error {
 
-	if err := validate.Required("validFrom", "body", strfmt.DateTime(m.ValidFrom)); err != nil {
+	if err := validate.Required("retryAttempted", "body", int32(m.RetryAttempted)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var mutableBillingEntityScopeEnum []interface{}
+
+func (m *MutableBillingEntity) validateScopeEnum(path, location string, value string) error {
+	if mutableBillingEntityScopeEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["Manual","Scheduled"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			mutableBillingEntityScopeEnum = append(mutableBillingEntityScopeEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, mutableBillingEntityScopeEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MutableBillingEntity) validateScope(formats strfmt.Registry) error {
+
+	if err := validate.Required("scope", "body", string(m.Scope)); err != nil {
+		return err
+	}
+
+	if err := m.validateScopeEnum("scope", "body", m.Scope); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var mutableBillingEntityStateEnum []interface{}
+
+func (m *MutableBillingEntity) validateStateEnum(path, location string, value string) error {
+	if mutableBillingEntityStateEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["Pending","Complete","Failed","Cancelled","Processing"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			mutableBillingEntityStateEnum = append(mutableBillingEntityStateEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, mutableBillingEntityStateEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MutableBillingEntity) validateState(formats strfmt.Registry) error {
+
+	if err := validate.Required("state", "body", string(m.State)); err != nil {
+		return err
+	}
+
+	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var mutableBillingEntityTargetEnum []interface{}
+
+func (m *MutableBillingEntity) validateTargetEnum(path, location string, value string) error {
+	if mutableBillingEntityTargetEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["Salesforce"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			mutableBillingEntityTargetEnum = append(mutableBillingEntityTargetEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, mutableBillingEntityTargetEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MutableBillingEntity) validateTarget(formats strfmt.Registry) error {
+
+	if err := validate.Required("target", "body", string(m.Target)); err != nil {
+		return err
+	}
+
+	if err := m.validateTargetEnum("target", "body", m.Target); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var mutableBillingEntityTypeEnum []interface{}
+
+func (m *MutableBillingEntity) validateTypeEnum(path, location string, value string) error {
+	if mutableBillingEntityTypeEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["Incremental","Full"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			mutableBillingEntityTypeEnum = append(mutableBillingEntityTypeEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, mutableBillingEntityTypeEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MutableBillingEntity) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+		return err
+	}
+
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 

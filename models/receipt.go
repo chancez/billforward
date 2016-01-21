@@ -23,10 +23,6 @@ type Receipt struct {
 	 */
 	AccountID *string `json:"accountID,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* CardCountry card country
 	 */
 	CardCountry *string `json:"cardCountry,omitempty"`
@@ -59,9 +55,11 @@ type Receipt struct {
 	 */
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	/* Crmid crmid
-	 */
-	Crmid *string `json:"crmid,omitempty"`
+	/* { "description" : "CRM ID of the subscription.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	CrmID string `json:"crmID,omitempty"`
 
 	/* { "description" : "Currency of the invoice specified by a three character ISO 4217 currency code.", "verbs":["POST","PUT","GET"] }
 
@@ -77,15 +75,11 @@ type Receipt struct {
 	 */
 	ExecutionAttempt int32 `json:"executionAttempt,omitempty"`
 
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
 	/* GatewayReferenceID gateway reference ID
 	 */
 	GatewayReferenceID *string `json:"gatewayReferenceID,omitempty"`
 
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* ID id
 	 */
 	ID *string `json:"id,omitempty"`
 
@@ -106,10 +100,6 @@ type Receipt struct {
 	/* {"description":"Country of the IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
 	IPAddressCountry *string `json:"ipAddressCountry,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* OrganizationID organization ID
 	 */
@@ -145,6 +135,12 @@ type Receipt struct {
 	*/
 	RefundID string `json:"refundID,omitempty"`
 
+	/* { "description" : "Type of transaction.", "verbs":["POST","PUT","GET"] }
+
+	Required: true
+	*/
+	Type string `json:"type,omitempty"`
+
 	/* Value value
 	 */
 	Value *float64 `json:"value,omitempty"`
@@ -154,7 +150,7 @@ type Receipt struct {
 func (m *Receipt) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBillingEntity(formats); err != nil {
+	if err := m.validateCrmID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -165,11 +161,6 @@ func (m *Receipt) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDecision(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -194,37 +185,20 @@ func (m *Receipt) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-var receiptBillingEntityEnum []interface{}
+func (m *Receipt) validateCrmID(formats strfmt.Registry) error {
 
-func (m *Receipt) validateBillingEntityEnum(path, location string, value string) error {
-	if receiptBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			receiptBillingEntityEnum = append(receiptBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, receiptBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Receipt) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
+	if err := validate.Required("crmID", "body", string(m.CrmID)); err != nil {
 		return err
 	}
 
@@ -265,19 +239,6 @@ func (m *Receipt) validateDecision(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDecisionEnum("decision", "body", *m.Decision); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Receipt) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 
@@ -366,6 +327,37 @@ func (m *Receipt) validateRawData(formats strfmt.Registry) error {
 func (m *Receipt) validateRefundID(formats strfmt.Registry) error {
 
 	if err := validate.Required("refundID", "body", string(m.RefundID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var receiptTypeEnum []interface{}
+
+func (m *Receipt) validateTypeEnum(path, location string, value string) error {
+	if receiptTypeEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["credit","debit"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			receiptTypeEnum = append(receiptTypeEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, receiptTypeEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Receipt) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+		return err
+	}
+
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 

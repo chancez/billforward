@@ -24,10 +24,6 @@ type Invoice struct {
 	*/
 	AccountID string `json:"accountID,omitempty"`
 
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
-
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
 	ChangedBy *string `json:"changedBy,omitempty"`
@@ -60,9 +56,9 @@ type Invoice struct {
 	 */
 	CreditRolledOverExcludingTax *float64 `json:"creditRolledOverExcludingTax,omitempty"`
 
-	/* Crmid crmid
+	/* { "description" : "CRM identifier of the invoice.", "verbs":["PUT","GET"] }
 	 */
-	Crmid *string `json:"crmid,omitempty"`
+	CrmID *string `json:"crmID,omitempty"`
 
 	/* { "description" : "Currency of the invoice specified by a three character ISO 4217 currency code.", "verbs":["GET"] }
 
@@ -88,15 +84,11 @@ type Invoice struct {
 	 */
 	DiscountAmountExcludingTax *float64 `json:"discountAmountExcludingTax,omitempty"`
 
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
 	/* { "description" : "UTC DateTime of the invoice's final execution attempt. The final execution attempt. This may be less than the next execution attempt if the next execution attempt never occurred.", "verbs":["GET"] }
 	 */
 	FinalExecutionAttempt strfmt.DateTime `json:"finalExecutionAttempt,omitempty"`
 
-	/* { "description" : "ID of the invoice.", "verbs":["POST","PUT","GET"] }
+	/* { "description" : "Unique identifier for the invoice.", "verbs":["GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
@@ -172,23 +164,11 @@ type Invoice struct {
 	*/
 	NonDiscountedCostExcludingTax float64 `json:"nonDiscountedCostExcludingTax,omitempty"`
 
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
-
 	/* { "description" : "", "verbs":[] }
 
 	Required: true
 	*/
 	OrganizationID string `json:"organizationID,omitempty"`
-
-	/* Paid paid
-	 */
-	Paid *bool `json:"paid,omitempty"`
-
-	/* Parent parent
-	 */
-	Parent *Invoice `json:"parent,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
@@ -205,10 +185,6 @@ type Invoice struct {
 	/* { "description" : "Start of the period being billed by this invoice, UTC DateTime", "verbs":["GET"] }
 	 */
 	PeriodStart strfmt.DateTime `json:"periodStart,omitempty"`
-
-	/* ShortID short ID
-	 */
-	ShortID *string `json:"shortID,omitempty"`
 
 	/* { "description" : "Initially an invoice is set as unpaid. Once payment for the full value of the invoice has been received it is marked as paid. An invoice may be paid from various sources including cards, coupons or manual payments.", "verbs":["GET"] }
 
@@ -230,25 +206,9 @@ type Invoice struct {
 	 */
 	TaxLines []*InsertableBillingEntity `json:"taxLines,omitempty"`
 
-	/* TotalDiscountAmount total discount amount
-	 */
-	TotalDiscountAmount *float64 `json:"totalDiscountAmount,omitempty"`
-
 	/* { "description" : "Number of payment attempts for this invoice. This includes any manual execution attempts.", "verbs":["GET"] }
 	 */
 	TotalExecutionAttempts int32 `json:"totalExecutionAttempts,omitempty"`
-
-	/* TotalInvoiceCost total invoice cost
-	 */
-	TotalInvoiceCost *float64 `json:"totalInvoiceCost,omitempty"`
-
-	/* TotalNominalPaid total nominal paid
-	 */
-	TotalNominalPaid *float64 `json:"totalNominalPaid,omitempty"`
-
-	/* TotalNominalUnpaid total nominal unpaid
-	 */
-	TotalNominalUnpaid *float64 `json:"totalNominalUnpaid,omitempty"`
 
 	/* { "description" : "The type of the invoice. A subscription invoice is raised every time a subscription recurs. An amendment is created for intra-contract changes. An Adhoc invoice is created for payment that is taken out-of-band of a subscription. Finally the invoice generated for a trial period is marked as Trial.", "verbs":["GET"] }
 
@@ -256,7 +216,7 @@ type Invoice struct {
 	*/
 	Type string `json:"type,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -269,10 +229,6 @@ type Invoice struct {
 	Required: true
 	*/
 	VersionNumber int32 `json:"versionNumber,omitempty"`
-
-	/* ZeroCost zero cost
-	 */
-	ZeroCost *bool `json:"zeroCost,omitempty"`
 }
 
 // Validate validates this invoice
@@ -280,11 +236,6 @@ func (m *Invoice) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountID(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -315,11 +266,6 @@ func (m *Invoice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDeleted(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -414,37 +360,6 @@ func (m *Invoice) validateAccountID(formats strfmt.Registry) error {
 	return nil
 }
 
-var invoiceBillingEntityEnum []interface{}
-
-func (m *Invoice) validateBillingEntityEnum(path, location string, value string) error {
-	if invoiceBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			invoiceBillingEntityEnum = append(invoiceBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, invoiceBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Invoice) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Invoice) validateCharges(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Charges) { // not required
@@ -515,19 +430,6 @@ func (m *Invoice) validateCurrency(formats strfmt.Registry) error {
 func (m *Invoice) validateDeleted(formats strfmt.Registry) error {
 
 	if err := validate.Required("deleted", "body", bool(m.Deleted)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Invoice) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
 		return err
 	}
 

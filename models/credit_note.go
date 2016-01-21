@@ -9,7 +9,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*CreditNote CreditNote
@@ -23,16 +22,6 @@ type CreditNote struct {
 	Required: true
 	*/
 	AccountID string `json:"accountID,omitempty"`
-
-	/* { "description" : "", "verbs":[] }
-
-	Required: true
-	*/
-	ActualValue float64 `json:"actualValue,omitempty"`
-
-	/* BillingEntity billing entity
-	 */
-	BillingEntity *string `json:"billingEntity,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -56,27 +45,13 @@ type CreditNote struct {
 	 */
 	Description *string `json:"description,omitempty"`
 
-	/* Fields fields
-	 */
-	Fields map[string]string `json:"fields,omitempty"`
-
-	/* { "description" : "", "verbs":["GET", "PUT"] }
+	/* { "description" : "", "verbs":["GET"] }
 	 */
 	ID *string `json:"id,omitempty"`
 
 	/* { "description" : "References an invoice from this credit note. This has no side-effects, such as limited scope of credit note.", "verbs":["POST","GET"] }
 	 */
 	InvoiceID *string `json:"invoiceID,omitempty"`
-
-	/* { "description" : "", "verbs":[] }
-
-	Required: true
-	*/
-	NominalValue float64 `json:"nominalValue,omitempty"`
-
-	/* NotificationObjectGraph notification object graph
-	 */
-	NotificationObjectGraph *string `json:"notificationObjectGraph,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
@@ -98,7 +73,7 @@ type CreditNote struct {
 	*/
 	Type string `json:"type,omitempty"`
 
-	/* { "description" : "The UTC DateTime when the object was last updated. ", "verbs":[] }
+	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
 	Updated strfmt.DateTime `json:"updated,omitempty"`
 
@@ -118,27 +93,7 @@ func (m *CreditNote) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateActualValue(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateBillingEntity(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validateCurrency(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateFields(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateNominalValue(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -173,71 +128,9 @@ func (m *CreditNote) validateAccountID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CreditNote) validateActualValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("actualValue", "body", float64(m.ActualValue)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var creditNoteBillingEntityEnum []interface{}
-
-func (m *CreditNote) validateBillingEntityEnum(path, location string, value string) error {
-	if creditNoteBillingEntityEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","InvoiceLinePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","PaypalToken","AuthorizeNetToken","SpreedlyToken","GatewayRevenue","AmendmentDiscardAmendment","CancellationAmendment","CompoundAmendment","CompoundAmendmentConstituent","FixedTermExpiryAmendment","InvoiceNextExecutionAttemptAmendment","PricingComponentValueAmendment","BraintreeMerchantAccount","WebhookSubscription","Migration","CassResult","CassPaymentResult","CassProductRatePlanResult","CassChurnResult","CassUpgradeResult","SubscriptionCharge","CassPaymentPProductResult","ProductPaymentsArgs","StripeACHToken","UsageAmount","UsageSession","Usage","UsagePeriod","Period","OfflinePayment","CreditNotePayment","CardVaultPayment","FreePayment","BraintreePayment","BalancedPayment","CybersourcePayment","PaypalPayment","PaypalSimplePayment","LocustWorldPayment","StripeOnlyPayment","ProductPaymentsResult","StripeACHPayment","AuthorizeNetPayment","CompoundUsageSession","CompoundUsage","UsageRoundingStrategies","BillforwardManagedPaymentsResult","PricingComponentValueMigrationChargeAmendmentMapping","SubscriptionLTVResult","AccountLTVResult","ProductRatePlanPaymentsResult","DebtsResult","AccountPaymentsResult","ComponentChange","QuoteRequest","Quote","CouponCharge","CouponInstanceInvoiceLink","Coupon","CouponDiscount","CouponUniqueCodesRequest","CouponUniqueCodesResponse","GetCouponsResponse","AddCouponCodeRequest","AddCouponCodeResponse","RemoveCouponFromSubscriptionRequest","TokenizationPreAuth","StripeTokenizationPreAuth","BraintreeTokenizationPreAuth","SpreedlyTokenizationPreAuth","SagePayTokenizationPreAuth","PayVisionTokenizationPreAuth","TokenizationPreAuthRequest","AuthCaptureRequest","StripeACHBankAccountVerification","PasswordReset","PricingRequest","AddTaxationStrategyRequest","AddPaymentMethodRequest","APIRequest","SagePayToken","SagePayNotificationRequest","SagePayNotificationResponse","SagePayOutstandingTransaction","SagePayEnabledCardType","TrustCommerceToken","SagePayTransaction","PricingComponentValueResponse","MigrationResponse","TimeResponse","EntityTime","Email","AggregationLink","BFPermission","Role","PermissionLink","PayVisionToken","PayVisionTransaction","KashToken","EmailProvider","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","MetadataKeyValue","Metadata","AggregatingComponent","PricingComponentMigrationValue","InvoiceRecalculationAmendment","IssueInvoiceAmendment","EmailSubscription","RevenueAttribution"]`), &res); err != nil {
-			return err
-		}
-		for _, v := range res {
-			creditNoteBillingEntityEnum = append(creditNoteBillingEntityEnum, v)
-		}
-	}
-	if err := validate.Enum(path, location, value, creditNoteBillingEntityEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *CreditNote) validateBillingEntity(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BillingEntity) { // not required
-		return nil
-	}
-
-	if err := m.validateBillingEntityEnum("billingEntity", "body", *m.BillingEntity); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *CreditNote) validateCurrency(formats strfmt.Registry) error {
 
 	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CreditNote) validateFields(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Fields) { // not required
-		return nil
-	}
-
-	if err := validate.Required("fields", "body", m.Fields); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *CreditNote) validateNominalValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("nominalValue", "body", float64(m.NominalValue)); err != nil {
 		return err
 	}
 
