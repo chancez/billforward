@@ -4,108 +4,147 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
+	"bytes"
+	"io"
+	"io/ioutil"
 
 	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*AuthCaptureRequest [Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
 
-swagger:model AuthCaptureRequest
+swagger:discriminator AuthCaptureRequest @type
 */
-type AuthCaptureRequest struct {
+type AuthCaptureRequest interface {
+	httpkit.Validatable
 
-	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
-	 */
-	AccountID *string `json:"accountID,omitempty"`
-
-	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
-	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
-
-	/* {"description":"The name of the company of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
-	 */
-	CompanyName *string `json:"companyName,omitempty"`
-
-	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
-	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
-
-	/* {"default":false,"description":"Whether the PaymentMethod produced by this request should be elected as the 'default' payment method for the concerned BillForward Account. Whichever PaymentMethod is elected as an Account's default payment method, will be consulted whenever payment is demanded of that Account (i.e. upon the execution of any of the Account's invoices).","verbs":["POST"]}
-	 */
-	DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
-
-	/* {"description":"The email address of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
-	 */
-	Email *string `json:"email,omitempty"`
-
-	/* {"description":"The first name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
-	 */
-	FirstName *string `json:"firstName,omitempty"`
-
-	/* {"description":"The gateway with which your funding instrument has been vaulted.","verbs":["POST"]}
+	/* Type type
 
 	Required: true
 	*/
-	Gateway string `json:"gateway,omitempty"`
+	Type() string
+	SetType(string)
+
+	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
+	 */
+	AccountID() *string
+	SetAccountID(*string)
+
+	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
+	 */
+	ChangedBy() *string
+	SetChangedBy(*string)
+
+	/* {"description":"The name of the company of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
+	 */
+	CompanyName() *string
+	SetCompanyName(*string)
+
+	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
+	 */
+	Created() strfmt.DateTime
+	SetCreated(strfmt.DateTime)
+
+	/* {"default":false,"description":"Whether the PaymentMethod produced by this request should be elected as the 'default' payment method for the concerned BillForward Account. Whichever PaymentMethod is elected as an Account's default payment method, will be consulted whenever payment is demanded of that Account (i.e. upon the execution of any of the Account's invoices).","verbs":["POST"]}
+	 */
+	DefaultPaymentMethod() *bool
+	SetDefaultPaymentMethod(*bool)
+
+	/* {"description":"The email address of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
+	 */
+	Email() *string
+	SetEmail(*string)
+
+	/* {"description":"The first name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
+	 */
+	FirstName() *string
+	SetFirstName(*string)
+
+	/* {"description":"The gateway with which your funding instrument has been vaulted.","verbs":["POST"]}
+	 */
+	Gateway() *string
+	SetGateway(*string)
 
 	/* {"description":"The last name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	LastName *string `json:"lastName,omitempty"`
+	LastName() *string
+	SetLastName(*string)
 
 	/* {"description":"The mobile phone number of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	Mobile *string `json:"mobile,omitempty"`
+	Mobile() *string
+	SetMobile(*string)
 
 	/* {"description":"ID of the BillForward Organization within which the requested PaymentMethod should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID() *string
+	SetOrganizationID(*string)
 }
 
-// Validate validates this auth capture request
-func (m *AuthCaptureRequest) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateGateway(formats); err != nil {
-		// prop
-		res = append(res, err)
+// UnmarshalAuthCaptureRequestSlice unmarshals polymorphic slices of AuthCaptureRequest
+func UnmarshalAuthCaptureRequestSlice(reader io.Reader, consumer httpkit.Consumer) ([]AuthCaptureRequest, error) {
+	var elements [][]byte
+	if err := consumer.Consume(reader, &elements); err != nil {
+		return nil, err
 	}
 
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-var authCaptureRequestGatewayEnum []interface{}
-
-func (m *AuthCaptureRequest) validateGatewayEnum(path, location string, value string) error {
-	if authCaptureRequestGatewayEnum == nil {
-		var res []string
-		if err := json.Unmarshal([]byte(`["Balanced","Braintree","Cybersource","Paypal","Stripe","AuthorizeNet","Spreedly","SagePay","TrustCommerce","Payvision","Kash"]`), &res); err != nil {
-			return err
+	var result []AuthCaptureRequest
+	for _, element := range elements {
+		obj, err := unmarshalAuthCaptureRequest(element, consumer)
+		if err != nil {
+			return nil, err
 		}
-		for _, v := range res {
-			authCaptureRequestGatewayEnum = append(authCaptureRequestGatewayEnum, v)
-		}
+		result = append(result, obj)
 	}
-	if err := validate.Enum(path, location, value, authCaptureRequestGatewayEnum); err != nil {
-		return err
-	}
-	return nil
+	return result, nil
 }
 
-func (m *AuthCaptureRequest) validateGateway(formats strfmt.Registry) error {
+// UnmarshalAuthCaptureRequest unmarshals polymorphic AuthCaptureRequest
+func UnmarshalAuthCaptureRequest(reader io.Reader, consumer httpkit.Consumer) (AuthCaptureRequest, error) {
+	// we need to read this twice, so first into a buffer
+	data, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return nil, err
+	}
+	return unmarshalAuthCaptureRequest(data, consumer)
+}
 
-	if err := validate.Required("gateway", "body", string(m.Gateway)); err != nil {
-		return err
+func unmarshalAuthCaptureRequest(data []byte, consumer httpkit.Consumer) (AuthCaptureRequest, error) {
+	buf := bytes.NewBuffer(data)
+	buf2 := bytes.NewBuffer(data)
+
+	// the first time this is read is to fetch the value of the @type property.
+	var getType struct {
+		Type string `json:"@type"`
+	}
+	if err := consumer.Consume(buf, &getType); err != nil {
+		return nil, err
 	}
 
-	if err := m.validateGatewayEnum("gateway", "body", m.Gateway); err != nil {
-		return err
+	if err := validate.RequiredString("@type", "body", getType.Type); err != nil {
+		return nil, err
 	}
 
-	return nil
+	// The value of @type is used to determine which type to create and unmarshal the data into
+	switch getType.Type {
+	case "BraintreeAuthCaptureRequest":
+		var result BraintreeAuthCaptureRequest
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+
+	case "StripeAuthCaptureRequest":
+		var result StripeAuthCaptureRequest
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+
+	}
+	return nil, errors.New(422, "invalid @type value: %q", getType.Type)
+
 }

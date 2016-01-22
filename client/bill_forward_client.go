@@ -11,11 +11,13 @@ import (
 	"github.com/authclub/billforward/client/accounts"
 	"github.com/authclub/billforward/client/addresses"
 	"github.com/authclub/billforward/client/invoices"
+	"github.com/authclub/billforward/client/payment_methods"
 	"github.com/authclub/billforward/client/payments"
 	"github.com/authclub/billforward/client/product_rate_plans"
 	"github.com/authclub/billforward/client/products"
 	"github.com/authclub/billforward/client/profiles"
 	"github.com/authclub/billforward/client/subscriptions"
+	"github.com/authclub/billforward/client/tokenization"
 )
 
 // Default bill forward HTTP client.
@@ -41,6 +43,8 @@ func New(transport client.Transport, formats strfmt.Registry) *BillForward {
 
 	cli.Invoices = invoices.New(transport, formats)
 
+	cli.PaymentMethods = payment_methods.New(transport, formats)
+
 	cli.Payments = payments.New(transport, formats)
 
 	cli.ProductRatePlans = product_rate_plans.New(transport, formats)
@@ -50,6 +54,8 @@ func New(transport client.Transport, formats strfmt.Registry) *BillForward {
 	cli.Profiles = profiles.New(transport, formats)
 
 	cli.Subscriptions = subscriptions.New(transport, formats)
+
+	cli.Tokenization = tokenization.New(transport, formats)
 
 	return cli
 }
@@ -62,6 +68,8 @@ type BillForward struct {
 
 	Invoices *invoices.Client
 
+	PaymentMethods *payment_methods.Client
+
 	Payments *payments.Client
 
 	ProductRatePlans *product_rate_plans.Client
@@ -71,6 +79,8 @@ type BillForward struct {
 	Profiles *profiles.Client
 
 	Subscriptions *subscriptions.Client
+
+	Tokenization *tokenization.Client
 
 	Transport client.Transport
 }
@@ -85,6 +95,8 @@ func (c *BillForward) SetTransport(transport client.Transport) {
 
 	c.Invoices.SetTransport(transport)
 
+	c.PaymentMethods.SetTransport(transport)
+
 	c.Payments.SetTransport(transport)
 
 	c.ProductRatePlans.SetTransport(transport)
@@ -94,5 +106,7 @@ func (c *BillForward) SetTransport(transport client.Transport) {
 	c.Profiles.SetTransport(transport)
 
 	c.Subscriptions.SetTransport(transport)
+
+	c.Tokenization.SetTransport(transport)
 
 }
