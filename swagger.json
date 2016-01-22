@@ -26442,7 +26442,7 @@
         }
       }
     },
-    "/tokenization/braintree": {
+      "/tokenization/braintree": {
       "post": {
         "tags": [
           "tokenization"
@@ -32865,9 +32865,16 @@
     "AuthCaptureRequest": {
       "type": "object",
       "required": [
-        "gateway"
+        "@type"
       ],
+      "discriminator": "@type",
       "properties": {
+        "@type": {
+          "type": "string",
+          "enum": [
+            "StripeAuthCaptureRequest"
+          ]
+        },
         "created": {
           "type": "string",
           "format": "date-time",
