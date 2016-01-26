@@ -7,44 +7,24 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*DynamicMetadata DynamicMetadata dynamic metadata
 
 swagger:model DynamicMetadata
 */
-type DynamicMetadata struct {
-
-	/* Values values
-	 */
-	Values map[string]string `json:"values,omitempty"`
-}
+type DynamicMetadata map[string]string
 
 // Validate validates this dynamic metadata
-func (m *DynamicMetadata) Validate(formats strfmt.Registry) error {
+func (m DynamicMetadata) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateValues(formats); err != nil {
-		// prop
-		res = append(res, err)
+	if err := validate.Required("", "body", map[string]string(m)); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DynamicMetadata) validateValues(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Values) { // not required
-		return nil
-	}
-
-	if err := validate.Required("values", "body", m.Values); err != nil {
-		return err
-	}
-
 	return nil
 }

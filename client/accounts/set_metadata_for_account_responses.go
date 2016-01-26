@@ -47,7 +47,7 @@ func NewSetMetadataForAccountOK() *SetMetadataForAccountOK {
 success
 */
 type SetMetadataForAccountOK struct {
-	Payload *models.DynamicMetadata
+	Payload models.DynamicMetadata
 }
 
 func (o *SetMetadataForAccountOK) Error() string {
@@ -56,10 +56,8 @@ func (o *SetMetadataForAccountOK) Error() string {
 
 func (o *SetMetadataForAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.DynamicMetadata)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

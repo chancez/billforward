@@ -47,7 +47,7 @@ func NewGetMetadataForRatePlanOK() *GetMetadataForRatePlanOK {
 success
 */
 type GetMetadataForRatePlanOK struct {
-	Payload *models.DynamicMetadata
+	Payload models.DynamicMetadata
 }
 
 func (o *GetMetadataForRatePlanOK) Error() string {
@@ -56,10 +56,8 @@ func (o *GetMetadataForRatePlanOK) Error() string {
 
 func (o *GetMetadataForRatePlanOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.DynamicMetadata)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

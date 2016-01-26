@@ -47,7 +47,7 @@ func NewSetMetadataForProductOK() *SetMetadataForProductOK {
 success
 */
 type SetMetadataForProductOK struct {
-	Payload *models.DynamicMetadata
+	Payload models.DynamicMetadata
 }
 
 func (o *SetMetadataForProductOK) Error() string {
@@ -56,10 +56,8 @@ func (o *SetMetadataForProductOK) Error() string {
 
 func (o *SetMetadataForProductOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.DynamicMetadata)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
