@@ -38605,7 +38605,7 @@
     "DynamicMetadata": {
       "type": "object",
       "additionalProperties": {
-        "type": "string"
+        "type": "object"
       }
     },
     "OrganizationPagedMetadata": {
