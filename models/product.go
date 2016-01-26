@@ -61,6 +61,10 @@ type Product struct {
 	 */
 	ID *string `json:"id,omitempty"`
 
+	/* Metadata metadata
+	 */
+	Metadata DynamicMetadata `json:"metadata,omitempty"`
+
 	/* {"description":"A unique name &mdash; for your benefit &mdash; used to identify this product within BillForward. It should reflect the fact that this product confers some service to a customer (e.g. \"Gold membership\").<br>The product can also be defined by the frequency with which it recurs (e.g. \"Monthly Gold membership\").<br>Remember also that rate plans can override the timing prescribed by their product. If you intend to override that timing, you may consider the product's period duration to be an unimportant factor when it comes to naming it.","verbs":["POST","PUT","GET"]}
 
 	Required: true

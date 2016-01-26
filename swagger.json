@@ -40627,6 +40627,9 @@
             "years"
           ]
         },
+        "metadata": {
+          "$ref": "#/definitions/DynamicMetadata"
+        },
         "trial": {
           "type": "integer",
           "format": "int32",
