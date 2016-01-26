@@ -38604,13 +38604,8 @@
     },
     "DynamicMetadata": {
       "type": "object",
-      "properties": {
-        "values": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
+      "additionalProperties": {
+        "type": "string"
       }
     },
     "OrganizationPagedMetadata": {
