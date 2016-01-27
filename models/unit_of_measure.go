@@ -101,7 +101,7 @@ func (m *UnitOfMeasure) validateDeleted(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateDisplayedAs(formats strfmt.Registry) error {
 
-	if err := validate.Required("displayedAs", "body", string(m.DisplayedAs)); err != nil {
+	if err := validate.RequiredString("displayedAs", "body", string(m.DisplayedAs)); err != nil {
 		return err
 	}
 
@@ -110,7 +110,7 @@ func (m *UnitOfMeasure) validateDisplayedAs(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -119,7 +119,7 @@ func (m *UnitOfMeasure) validateName(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 

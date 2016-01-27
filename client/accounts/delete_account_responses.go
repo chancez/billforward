@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// DeleteAccountReader is a Reader for the DeleteAccount structure.
 type DeleteAccountReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewDeleteAccountOK() *DeleteAccountOK {
 	return &DeleteAccountOK{}
 }
 
-/*DeleteAccountOK
+/*DeleteAccountOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewDeleteAccountDefault(code int) *DeleteAccountDefault {
 	}
 }
 
-/*DeleteAccountDefault
+/*DeleteAccountDefault handles this case with default header values.
 
 error
 */

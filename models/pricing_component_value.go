@@ -108,7 +108,7 @@ func (m *PricingComponentValue) Validate(formats strfmt.Registry) error {
 
 func (m *PricingComponentValue) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -117,7 +117,7 @@ func (m *PricingComponentValue) validateID(formats strfmt.Registry) error {
 
 func (m *PricingComponentValue) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
 		return err
 	}
 
@@ -126,7 +126,7 @@ func (m *PricingComponentValue) validatePricingComponentID(formats strfmt.Regist
 
 func (m *PricingComponentValue) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

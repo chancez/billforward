@@ -132,7 +132,7 @@ func (m *PaymentMethodPagedMetadata) validateExecutionTime(formats strfmt.Regist
 
 func (m *PaymentMethodPagedMetadata) validateNextPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("nextPage", "body", string(m.NextPage)); err != nil {
+	if err := validate.RequiredString("nextPage", "body", string(m.NextPage)); err != nil {
 		return err
 	}
 

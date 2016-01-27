@@ -48,7 +48,7 @@ type Account struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata DynamicMetadata `json:"metadata,omitempty"`
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 
@@ -104,7 +104,7 @@ func (m *Account) Validate(formats strfmt.Registry) error {
 
 func (m *Account) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -113,7 +113,7 @@ func (m *Account) validateID(formats strfmt.Registry) error {
 
 func (m *Account) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 

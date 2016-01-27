@@ -25,7 +25,7 @@ for the set metadata for product operation typically these are written to a http
 type SetMetadataForProductParams struct {
 
 	/*Metadata*/
-	Metadata models.DynamicMetadata
+	Metadata *models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -36,7 +36,7 @@ type SetMetadataForProductParams struct {
 }
 
 // WithMetadata adds the metadata to the set metadata for product params
-func (o *SetMetadataForProductParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForProductParams {
+func (o *SetMetadataForProductParams) WithMetadata(metadata *models.DynamicMetadata) *SetMetadataForProductParams {
 	o.Metadata = metadata
 	return o
 }

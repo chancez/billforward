@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetMetadataForAccountReader is a Reader for the GetMetadataForAccount structure.
 type GetMetadataForAccountReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetMetadataForAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetMetadataForAccountOK() *GetMetadataForAccountOK {
 	return &GetMetadataForAccountOK{}
 }
 
-/*GetMetadataForAccountOK
+/*GetMetadataForAccountOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewGetMetadataForAccountDefault(code int) *GetMetadataForAccountDefault {
 	}
 }
 
-/*GetMetadataForAccountDefault
+/*GetMetadataForAccountDefault handles this case with default header values.
 
 error
 */

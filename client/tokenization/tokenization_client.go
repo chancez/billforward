@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*[Note: this API can be invoked more simply by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements]
+/*
+AuthCapture notes this API can be invoked more simply by our client side card capture library a href https github com billforward billforward js bill forward js a you should not need to interact with this API manually unless you have particularly bespoke requirements
 
 {"nickname":"Authorized card capture","response":"BFJSAuthCapture.html","request":"BFJSAuthCapture.request.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) AuthCapture(params *AuthCaptureParams) (*AuthCaptureOK, error) 
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "authCapture",
-		Method:      "POST",
-		PathPattern: "/tokenization/auth-capture",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &AuthCaptureReader{formats: a.formats},
+		ID:                 "authCapture",
+		Method:             "POST",
+		PathPattern:        "/tokenization/auth-capture",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AuthCaptureReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

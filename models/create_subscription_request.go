@@ -131,7 +131,7 @@ func (m *CreateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 
 func (m *CreateSubscriptionRequest) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -160,7 +160,7 @@ func (m *CreateSubscriptionRequest) validatePricingComponentQuantities(formats s
 
 func (m *CreateSubscriptionRequest) validateProduct(formats strfmt.Registry) error {
 
-	if err := validate.Required("product", "body", string(m.Product)); err != nil {
+	if err := validate.RequiredString("product", "body", string(m.Product)); err != nil {
 		return err
 	}
 
@@ -169,7 +169,7 @@ func (m *CreateSubscriptionRequest) validateProduct(formats strfmt.Registry) err
 
 func (m *CreateSubscriptionRequest) validateProductRatePlan(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlan", "body", string(m.ProductRatePlan)); err != nil {
+	if err := validate.RequiredString("productRatePlan", "body", string(m.ProductRatePlan)); err != nil {
 		return err
 	}
 

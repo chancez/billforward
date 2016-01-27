@@ -198,7 +198,7 @@ func (m *Receipt) Validate(formats strfmt.Registry) error {
 
 func (m *Receipt) validateCrmID(formats strfmt.Registry) error {
 
-	if err := validate.Required("crmID", "body", string(m.CrmID)); err != nil {
+	if err := validate.RequiredString("crmID", "body", string(m.CrmID)); err != nil {
 		return err
 	}
 
@@ -207,7 +207,7 @@ func (m *Receipt) validateCrmID(formats strfmt.Registry) error {
 
 func (m *Receipt) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -265,7 +265,7 @@ func (m *Receipt) validateInvoiceTypeEnum(path, location string, value string) e
 
 func (m *Receipt) validateInvoiceType(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoiceType", "body", string(m.InvoiceType)); err != nil {
+	if err := validate.RequiredString("invoiceType", "body", string(m.InvoiceType)); err != nil {
 		return err
 	}
 
@@ -326,7 +326,7 @@ func (m *Receipt) validateRawData(formats strfmt.Registry) error {
 
 func (m *Receipt) validateRefundID(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundID", "body", string(m.RefundID)); err != nil {
+	if err := validate.RequiredString("refundID", "body", string(m.RefundID)); err != nil {
 		return err
 	}
 
@@ -353,7 +353,7 @@ func (m *Receipt) validateTypeEnum(path, location string, value string) error {
 
 func (m *Receipt) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

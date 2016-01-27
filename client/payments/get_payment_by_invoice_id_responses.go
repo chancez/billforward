@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetPaymentByInvoiceIDReader is a Reader for the GetPaymentByInvoiceID structure.
 type GetPaymentByInvoiceIDReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetPaymentByInvoiceIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetPaymentByInvoiceIDOK() *GetPaymentByInvoiceIDOK {
 	return &GetPaymentByInvoiceIDOK{}
 }
 
-/*GetPaymentByInvoiceIDOK
+/*GetPaymentByInvoiceIDOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetPaymentByInvoiceIDDefault(code int) *GetPaymentByInvoiceIDDefault {
 	}
 }
 
-/*GetPaymentByInvoiceIDDefault
+/*GetPaymentByInvoiceIDDefault handles this case with default header values.
 
 error
 */

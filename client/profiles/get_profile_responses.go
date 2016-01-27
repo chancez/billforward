@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetProfileReader is a Reader for the GetProfile structure.
 type GetProfileReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetProfileReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetProfileOK() *GetProfileOK {
 	return &GetProfileOK{}
 }
 
-/*GetProfileOK
+/*GetProfileOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetProfileDefault(code int) *GetProfileDefault {
 	}
 }
 
-/*GetProfileDefault
+/*GetProfileDefault handles this case with default header values.
 
 error
 */

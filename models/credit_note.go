@@ -121,7 +121,7 @@ func (m *CreditNote) Validate(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -130,7 +130,7 @@ func (m *CreditNote) validateAccountID(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -166,7 +166,7 @@ func (m *CreditNote) validateTypeEnum(path, location string, value string) error
 
 func (m *CreditNote) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

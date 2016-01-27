@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetAllRatePlansReader is a Reader for the GetAllRatePlans structure.
 type GetAllRatePlansReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetAllRatePlansReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetAllRatePlansOK() *GetAllRatePlansOK {
 	return &GetAllRatePlansOK{}
 }
 
-/*GetAllRatePlansOK
+/*GetAllRatePlansOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetAllRatePlansDefault(code int) *GetAllRatePlansDefault {
 	}
 }
 
-/*GetAllRatePlansDefault
+/*GetAllRatePlansDefault handles this case with default header values.
 
 error
 */

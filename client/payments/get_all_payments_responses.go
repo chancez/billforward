@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetAllPaymentsReader is a Reader for the GetAllPayments structure.
 type GetAllPaymentsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetAllPaymentsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetAllPaymentsOK() *GetAllPaymentsOK {
 	return &GetAllPaymentsOK{}
 }
 
-/*GetAllPaymentsOK
+/*GetAllPaymentsOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetAllPaymentsDefault(code int) *GetAllPaymentsDefault {
 	}
 }
 
-/*GetAllPaymentsDefault
+/*GetAllPaymentsDefault handles this case with default header values.
 
 error
 */

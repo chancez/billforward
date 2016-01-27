@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// DeleteMetadataForAccountReader is a Reader for the DeleteMetadataForAccount structure.
 type DeleteMetadataForAccountReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *DeleteMetadataForAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewDeleteMetadataForAccountOK() *DeleteMetadataForAccountOK {
 	return &DeleteMetadataForAccountOK{}
 }
 
-/*DeleteMetadataForAccountOK
+/*DeleteMetadataForAccountOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewDeleteMetadataForAccountDefault(code int) *DeleteMetadataForAccountDefau
 	}
 }
 
-/*DeleteMetadataForAccountDefault
+/*DeleteMetadataForAccountDefault handles this case with default header values.
 
 error
 */

@@ -108,7 +108,7 @@ func (m *PricingComponentTier) validatePrice(formats strfmt.Registry) error {
 
 func (m *PricingComponentTier) validatePricingComponentVersionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentVersionID", "body", string(m.PricingComponentVersionID)); err != nil {
+	if err := validate.RequiredString("pricingComponentVersionID", "body", string(m.PricingComponentVersionID)); err != nil {
 		return err
 	}
 
@@ -135,7 +135,7 @@ func (m *PricingComponentTier) validatePricingTypeEnum(path, location string, va
 
 func (m *PricingComponentTier) validatePricingType(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingType", "body", string(m.PricingType)); err != nil {
+	if err := validate.RequiredString("pricingType", "body", string(m.PricingType)); err != nil {
 		return err
 	}
 

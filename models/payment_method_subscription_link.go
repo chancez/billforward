@@ -82,7 +82,7 @@ func (m *PaymentMethodSubscriptionLink) Validate(formats strfmt.Registry) error 
 
 func (m *PaymentMethodSubscriptionLink) validatePaymentMethodID(formats strfmt.Registry) error {
 
-	if err := validate.Required("paymentMethodID", "body", string(m.PaymentMethodID)); err != nil {
+	if err := validate.RequiredString("paymentMethodID", "body", string(m.PaymentMethodID)); err != nil {
 		return err
 	}
 
@@ -91,7 +91,7 @@ func (m *PaymentMethodSubscriptionLink) validatePaymentMethodID(formats strfmt.R
 
 func (m *PaymentMethodSubscriptionLink) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

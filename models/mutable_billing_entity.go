@@ -187,7 +187,7 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateConfigID(formats strfmt.Registry) error {
 
-	if err := validate.Required("configID", "body", string(m.ConfigID)); err != nil {
+	if err := validate.RequiredString("configID", "body", string(m.ConfigID)); err != nil {
 		return err
 	}
 
@@ -205,7 +205,7 @@ func (m *MutableBillingEntity) validateDeleted(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", string(m.Description)); err != nil {
+	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
 		return err
 	}
 
@@ -223,7 +223,7 @@ func (m *MutableBillingEntity) validateMaxRetryTimes(formats strfmt.Registry) er
 
 func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -232,7 +232,7 @@ func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -268,7 +268,7 @@ func (m *MutableBillingEntity) validateScopeEnum(path, location string, value st
 
 func (m *MutableBillingEntity) validateScope(formats strfmt.Registry) error {
 
-	if err := validate.Required("scope", "body", string(m.Scope)); err != nil {
+	if err := validate.RequiredString("scope", "body", string(m.Scope)); err != nil {
 		return err
 	}
 
@@ -299,7 +299,7 @@ func (m *MutableBillingEntity) validateStateEnum(path, location string, value st
 
 func (m *MutableBillingEntity) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -330,7 +330,7 @@ func (m *MutableBillingEntity) validateTargetEnum(path, location string, value s
 
 func (m *MutableBillingEntity) validateTarget(formats strfmt.Registry) error {
 
-	if err := validate.Required("target", "body", string(m.Target)); err != nil {
+	if err := validate.RequiredString("target", "body", string(m.Target)); err != nil {
 		return err
 	}
 
@@ -361,7 +361,7 @@ func (m *MutableBillingEntity) validateTypeEnum(path, location string, value str
 
 func (m *MutableBillingEntity) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

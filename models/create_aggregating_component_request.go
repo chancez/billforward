@@ -47,7 +47,7 @@ func (m *CreateAggregatingComponentRequest) Validate(formats strfmt.Registry) er
 
 func (m *CreateAggregatingComponentRequest) validatePricingComponent(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponent", "body", string(m.PricingComponent)); err != nil {
+	if err := validate.RequiredString("pricingComponent", "body", string(m.PricingComponent)); err != nil {
 		return err
 	}
 

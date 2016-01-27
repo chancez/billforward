@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Create multiple subscriptions.
+/*
+BatchCreateSubscriptions creates multiple subscriptions
 
 {"nickname":"Create multiple subscriptions","response":"createMultipleSubscriptionViaHelper.html","request":"createMultipleSubscriptionViaHelper.request.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) BatchCreateSubscriptions(params *BatchCreateSubscriptionsParams
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "batchCreateSubscriptions",
-		Method:      "POST",
-		PathPattern: "/subscriptions/batch",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &BatchCreateSubscriptionsReader{formats: a.formats},
+		ID:                 "batchCreateSubscriptions",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/batch",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BatchCreateSubscriptionsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) BatchCreateSubscriptions(params *BatchCreateSubscriptionsParams
 	return result.(*BatchCreateSubscriptionsOK), nil
 }
 
-/*Retires the subscription specified by the subscription-ID parameter. Retiring a subscription causes it to cancel based on the specified retirement settings for the product.
+/*
+CancelSubscription retires the subscription specified by the subscription ID parameter retiring a subscription causes it to cancel based on the specified retirement settings for the product
 
 {"nickname":"Cancel subscription","response":"deleteSubscription.html","request":"deleteSubscriptionRequest.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams) (*CancelSu
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "cancelSubscription",
-		Method:      "POST",
-		PathPattern: "/subscriptions/{subscription-ID}/cancel",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CancelSubscriptionReader{formats: a.formats},
+		ID:                 "cancelSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/{subscription-ID}/cancel",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CancelSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -71,7 +75,8 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams) (*CancelSu
 	return result.(*CancelSubscriptionOK), nil
 }
 
-/*Create an aggregating subscription.
+/*
+CreateAggregatingSubscription creates an aggregating subscription
 
 {"nickname":"Create aggregating subscription","response":"createAggregatingSubscription.html","request":"createAggregatingSubscription.request.html"}
 */
@@ -82,12 +87,13 @@ func (a *Client) CreateAggregatingSubscription(params *CreateAggregatingSubscrip
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createAggregatingSubscription",
-		Method:      "POST",
-		PathPattern: "/subscriptions/aggregating",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateAggregatingSubscriptionReader{formats: a.formats},
+		ID:                 "createAggregatingSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/aggregating",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateAggregatingSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -95,7 +101,8 @@ func (a *Client) CreateAggregatingSubscription(params *CreateAggregatingSubscrip
 	return result.(*CreateAggregatingSubscriptionOK), nil
 }
 
-/*Create a new subscription.
+/*
+CreateSubscription creates a new subscription
 
 {"nickname":"Create a new subscription","request":"createSubscriptionRequest.html","response":"createSubscriptionResponse.html"}
 */
@@ -106,12 +113,13 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createSubscription",
-		Method:      "POST",
-		PathPattern: "/subscriptions",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateSubscriptionReader{formats: a.formats},
+		ID:                 "createSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -119,7 +127,8 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 	return result.(*CreateSubscriptionOK), nil
 }
 
-/*Remove any associated metadata.
+/*
+DeleteMetadataForSubscription removes any associated metadata
 
 {"nickname":"Clear from subscription","request" :"deleteSubscriptionMetadataRequest.html","response":"deleteSubscriptionMetadataResponse.html"}
 */
@@ -130,12 +139,13 @@ func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscrip
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteMetadataForSubscription",
-		Method:      "DELETE",
-		PathPattern: "/subscriptions/{subscription-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteMetadataForSubscriptionReader{formats: a.formats},
+		ID:                 "deleteMetadataForSubscription",
+		Method:             "DELETE",
+		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteMetadataForSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -143,7 +153,8 @@ func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscrip
 	return result.(*DeleteMetadataForSubscriptionOK), nil
 }
 
-/*Retrieve any associated metadata.
+/*
+GetMetadataForSubscription retrieves any associated metadata
 
 {"nickname":"Retrieve on subscription","request":"getSubscriptionMetadataRequest.html","response":"getSubscriptionMetadataResponse.html"}
 */
@@ -154,12 +165,13 @@ func (a *Client) GetMetadataForSubscription(params *GetMetadataForSubscriptionPa
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getMetadataForSubscription",
-		Method:      "GET",
-		PathPattern: "/subscriptions/{subscription-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetMetadataForSubscriptionReader{formats: a.formats},
+		ID:                 "getMetadataForSubscription",
+		Method:             "GET",
+		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetadataForSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -167,7 +179,8 @@ func (a *Client) GetMetadataForSubscription(params *GetMetadataForSubscriptionPa
 	return result.(*GetMetadataForSubscriptionOK), nil
 }
 
-/*Retrieves a collection of subscriptions, specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetSubscriptionByAccountID retrieves a collection of subscriptions specified by the account ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Retrieve by account","response":"getSubscriptionByAccount.html"}
 */
@@ -178,12 +191,13 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getSubscriptionByAccountID",
-		Method:      "GET",
-		PathPattern: "/subscriptions/account/{account-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetSubscriptionByAccountIDReader{formats: a.formats},
+		ID:                 "getSubscriptionByAccountID",
+		Method:             "GET",
+		PathPattern:        "/subscriptions/account/{account-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSubscriptionByAccountIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -191,7 +205,8 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 	return result.(*GetSubscriptionByAccountIDOK), nil
 }
 
-/*Remove any existing metadata keys and create the provided data.
+/*
+SetMetadataForSubscription removes any existing metadata keys and create the provided data
 
 {"nickname":"Set on subscription","request":"setSubscriptionMetadataRequest.html","response":"setSubscriptionMetadataResponse.html"}
 */
@@ -202,12 +217,13 @@ func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionPa
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "setMetadataForSubscription",
-		Method:      "POST",
-		PathPattern: "/subscriptions/{subscription-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &SetMetadataForSubscriptionReader{formats: a.formats},
+		ID:                 "setMetadataForSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetMetadataForSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -215,7 +231,8 @@ func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionPa
 	return result.(*SetMetadataForSubscriptionOK), nil
 }
 
-/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+/*
+UpsertMetadataForSubscription updates any existing metadata key values and insert any new key values no keys will be removed
 
 {"nickname":"Upsert on subscription","request":"upsertSubscriptionMetadataRequest.html","response":"upsertSubscriptionMetadataResponse.html"}
 */
@@ -226,12 +243,13 @@ func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscrip
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "upsertMetadataForSubscription",
-		Method:      "PUT",
-		PathPattern: "/subscriptions/{subscription-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpsertMetadataForSubscriptionReader{formats: a.formats},
+		ID:                 "upsertMetadataForSubscription",
+		Method:             "PUT",
+		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpsertMetadataForSubscriptionReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

@@ -163,7 +163,7 @@ func (m *Client) validateAccessTokenValiditySeconds(formats strfmt.Registry) err
 
 func (m *Client) validateAuthorities(formats strfmt.Registry) error {
 
-	if err := validate.Required("authorities", "body", string(m.Authorities)); err != nil {
+	if err := validate.RequiredString("authorities", "body", string(m.Authorities)); err != nil {
 		return err
 	}
 
@@ -172,7 +172,7 @@ func (m *Client) validateAuthorities(formats strfmt.Registry) error {
 
 func (m *Client) validateAuthorizedGrantTypes(formats strfmt.Registry) error {
 
-	if err := validate.Required("authorizedGrantTypes", "body", string(m.AuthorizedGrantTypes)); err != nil {
+	if err := validate.RequiredString("authorizedGrantTypes", "body", string(m.AuthorizedGrantTypes)); err != nil {
 		return err
 	}
 
@@ -181,7 +181,7 @@ func (m *Client) validateAuthorizedGrantTypes(formats strfmt.Registry) error {
 
 func (m *Client) validateClientSecret(formats strfmt.Registry) error {
 
-	if err := validate.Required("clientSecret", "body", string(m.ClientSecret)); err != nil {
+	if err := validate.RequiredString("clientSecret", "body", string(m.ClientSecret)); err != nil {
 		return err
 	}
 
@@ -199,7 +199,7 @@ func (m *Client) validateDeleted(formats strfmt.Registry) error {
 
 func (m *Client) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -217,7 +217,7 @@ func (m *Client) validateRefreshTokenValiditySeconds(formats strfmt.Registry) er
 
 func (m *Client) validateRegisteredRedirectUris(formats strfmt.Registry) error {
 
-	if err := validate.Required("registeredRedirectUris", "body", string(m.RegisteredRedirectUris)); err != nil {
+	if err := validate.RequiredString("registeredRedirectUris", "body", string(m.RegisteredRedirectUris)); err != nil {
 		return err
 	}
 
@@ -226,7 +226,7 @@ func (m *Client) validateRegisteredRedirectUris(formats strfmt.Registry) error {
 
 func (m *Client) validateResourceIds(formats strfmt.Registry) error {
 
-	if err := validate.Required("resourceIds", "body", string(m.ResourceIds)); err != nil {
+	if err := validate.RequiredString("resourceIds", "body", string(m.ResourceIds)); err != nil {
 		return err
 	}
 
@@ -235,7 +235,7 @@ func (m *Client) validateResourceIds(formats strfmt.Registry) error {
 
 func (m *Client) validateScope(formats strfmt.Registry) error {
 
-	if err := validate.Required("scope", "body", string(m.Scope)); err != nil {
+	if err := validate.RequiredString("scope", "body", string(m.Scope)); err != nil {
 		return err
 	}
 

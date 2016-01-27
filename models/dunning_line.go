@@ -159,7 +159,7 @@ func (m *DunningLine) validateGatewayEnum(path, location string, value string) e
 
 func (m *DunningLine) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
 		return err
 	}
 
@@ -193,7 +193,7 @@ func (m *DunningLine) validateOrganization(formats strfmt.Registry) error {
 
 func (m *DunningLine) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -220,7 +220,7 @@ func (m *DunningLine) validateTypeEnum(path, location string, value string) erro
 
 func (m *DunningLine) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

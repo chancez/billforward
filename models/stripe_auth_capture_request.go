@@ -294,7 +294,7 @@ func (m *StripeAuthCaptureRequest) validateGateway(formats strfmt.Registry) erro
 
 func (m *StripeAuthCaptureRequest) validateStripeToken(formats strfmt.Registry) error {
 
-	if err := validate.Required("stripeToken", "body", string(m.StripeToken)); err != nil {
+	if err := validate.RequiredString("stripeToken", "body", string(m.StripeToken)); err != nil {
 		return err
 	}
 

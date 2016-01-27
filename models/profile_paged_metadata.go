@@ -132,7 +132,7 @@ func (m *ProfilePagedMetadata) validateExecutionTime(formats strfmt.Registry) er
 
 func (m *ProfilePagedMetadata) validateNextPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("nextPage", "body", string(m.NextPage)); err != nil {
+	if err := validate.RequiredString("nextPage", "body", string(m.NextPage)); err != nil {
 		return err
 	}
 

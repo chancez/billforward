@@ -86,7 +86,7 @@ type ProductRatePlan struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata DynamicMetadata `json:"metadata,omitempty"`
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 	/* {"default":"CreditAccount","description":"The action that should be taken, should the pro-rata calculation result in a negative value.<br><span class=\"label label-default\">NoCharge</span> &mdash; Don't return to the customer any money.<br><span class=\"label label-default\">CreditAccount</span> &mdash; Credit the customer's account with the amount.","verbs":["POST","PUT","GET"]}
 
@@ -287,7 +287,7 @@ func (m *ProductRatePlan) validateCreateZeroValuedInvoices(formats strfmt.Regist
 
 func (m *ProductRatePlan) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -314,7 +314,7 @@ func (m *ProductRatePlan) validateDurationPeriodEnum(path, location string, valu
 
 func (m *ProductRatePlan) validateDurationPeriod(formats strfmt.Registry) error {
 
-	if err := validate.Required("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
+	if err := validate.RequiredString("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
 		return err
 	}
 
@@ -345,7 +345,7 @@ func (m *ProductRatePlan) validateFailedPaymentBehaviourEnum(path, location stri
 
 func (m *ProductRatePlan) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.Required("failedPaymentBehaviour", "body", string(m.FailedPaymentBehaviour)); err != nil {
+	if err := validate.RequiredString("failedPaymentBehaviour", "body", string(m.FailedPaymentBehaviour)); err != nil {
 		return err
 	}
 
@@ -458,7 +458,7 @@ func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, 
 
 func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.Required("migrationBehaviour", "body", string(m.MigrationBehaviour)); err != nil {
+	if err := validate.RequiredString("migrationBehaviour", "body", string(m.MigrationBehaviour)); err != nil {
 		return err
 	}
 
@@ -471,7 +471,7 @@ func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) er
 
 func (m *ProductRatePlan) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -518,7 +518,7 @@ func (m *ProductRatePlan) validateProRataModeEnum(path, location string, value s
 
 func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
 
-	if err := validate.Required("proRataMode", "body", string(m.ProRataMode)); err != nil {
+	if err := validate.RequiredString("proRataMode", "body", string(m.ProRataMode)); err != nil {
 		return err
 	}
 
@@ -531,7 +531,7 @@ func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
 
 func (m *ProductRatePlan) validateProductID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productID", "body", string(m.ProductID)); err != nil {
+	if err := validate.RequiredString("productID", "body", string(m.ProductID)); err != nil {
 		return err
 	}
 
@@ -589,7 +589,7 @@ func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value str
 
 func (m *ProductRatePlan) validateTaxStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("taxStatus", "body", string(m.TaxStatus)); err != nil {
+	if err := validate.RequiredString("taxStatus", "body", string(m.TaxStatus)); err != nil {
 		return err
 	}
 
@@ -682,7 +682,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		Metadata DynamicMetadata `json:"metadata,omitempty"`
+		Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
@@ -806,7 +806,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		Metadata DynamicMetadata `json:"metadata,omitempty"`
+		Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 

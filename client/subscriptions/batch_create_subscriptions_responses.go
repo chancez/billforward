@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// BatchCreateSubscriptionsReader is a Reader for the BatchCreateSubscriptions structure.
 type BatchCreateSubscriptionsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *BatchCreateSubscriptionsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewBatchCreateSubscriptionsOK() *BatchCreateSubscriptionsOK {
 	return &BatchCreateSubscriptionsOK{}
 }
 
-/*BatchCreateSubscriptionsOK
+/*BatchCreateSubscriptionsOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewBatchCreateSubscriptionsDefault(code int) *BatchCreateSubscriptionsDefau
 	}
 }
 
-/*BatchCreateSubscriptionsDefault
+/*BatchCreateSubscriptionsDefault handles this case with default header values.
 
 error
 */

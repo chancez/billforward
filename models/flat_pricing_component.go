@@ -494,7 +494,7 @@ func (m *FlatPricingComponent) validateChargeModelEnum(path, location string, va
 
 func (m *FlatPricingComponent) validateChargeModel(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeModel", "body", string(m.ChargeModel())); err != nil {
+	if err := validate.RequiredString("chargeModel", "body", string(m.ChargeModel())); err != nil {
 		return err
 	}
 
@@ -525,7 +525,7 @@ func (m *FlatPricingComponent) validateChargeTypeEnum(path, location string, val
 
 func (m *FlatPricingComponent) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeType", "body", string(m.ChargeType())); err != nil {
+	if err := validate.RequiredString("chargeType", "body", string(m.ChargeType())); err != nil {
 		return err
 	}
 
@@ -574,7 +574,7 @@ func (m *FlatPricingComponent) validateDowngradeMode(formats strfmt.Registry) er
 
 func (m *FlatPricingComponent) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID())); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID())); err != nil {
 		return err
 	}
 
@@ -610,7 +610,7 @@ func (m *FlatPricingComponent) validateInvoicingType(formats strfmt.Registry) er
 
 func (m *FlatPricingComponent) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name())); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name())); err != nil {
 		return err
 	}
 
@@ -619,7 +619,7 @@ func (m *FlatPricingComponent) validateName(formats strfmt.Registry) error {
 
 func (m *FlatPricingComponent) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID())); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID())); err != nil {
 		return err
 	}
 
@@ -628,7 +628,7 @@ func (m *FlatPricingComponent) validateOrganizationID(formats strfmt.Registry) e
 
 func (m *FlatPricingComponent) validateProductRatePlanID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID())); err != nil {
+	if err := validate.RequiredString("productRatePlanID", "body", string(m.ProductRatePlanID())); err != nil {
 		return err
 	}
 
@@ -653,7 +653,7 @@ func (m *FlatPricingComponent) validateTiers(formats strfmt.Registry) error {
 
 func (m *FlatPricingComponent) validateUnitOfMeasureID(formats strfmt.Registry) error {
 
-	if err := validate.Required("unitOfMeasureID", "body", string(m.UnitOfMeasureID())); err != nil {
+	if err := validate.RequiredString("unitOfMeasureID", "body", string(m.UnitOfMeasureID())); err != nil {
 		return err
 	}
 
@@ -698,7 +698,7 @@ func (m *FlatPricingComponent) validateValidFrom(formats strfmt.Registry) error 
 
 func (m *FlatPricingComponent) validateVersionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("versionID", "body", string(m.VersionID())); err != nil {
+	if err := validate.RequiredString("versionID", "body", string(m.VersionID())); err != nil {
 		return err
 	}
 

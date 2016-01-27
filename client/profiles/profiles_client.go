@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Returns a single profile, specified by the ID parameter.
+/*
+GetProfile returns a single profile specified by the ID parameter
 
 {"nickname":"Retrieve an existing profile","response":"getProfileByID.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) GetProfile(params *GetProfileParams) (*GetProfileOK, error) {
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getProfile",
-		Method:      "GET",
-		PathPattern: "/profiles/{profile-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetProfileReader{formats: a.formats},
+		ID:                 "getProfile",
+		Method:             "GET",
+		PathPattern:        "/profiles/{profile-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetProfileReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) GetProfile(params *GetProfileParams) (*GetProfileOK, error) {
 	return result.(*GetProfileOK), nil
 }
 
-/*Update a profile
+/*
+UpdateProfile updates a profile
 
 {"nickname":"Update a profile","request":"updateProfileRequest.html","response":"updateProfileResponse.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) UpdateProfile(params *UpdateProfileParams) (*UpdateProfileOK, e
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "updateProfile",
-		Method:      "PUT",
-		PathPattern: "/profiles",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpdateProfileReader{formats: a.formats},
+		ID:                 "updateProfile",
+		Method:             "PUT",
+		PathPattern:        "/profiles",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateProfileReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

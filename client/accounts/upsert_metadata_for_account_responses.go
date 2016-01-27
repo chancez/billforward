@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// UpsertMetadataForAccountReader is a Reader for the UpsertMetadataForAccount structure.
 type UpsertMetadataForAccountReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpsertMetadataForAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewUpsertMetadataForAccountOK() *UpsertMetadataForAccountOK {
 	return &UpsertMetadataForAccountOK{}
 }
 
-/*UpsertMetadataForAccountOK
+/*UpsertMetadataForAccountOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewUpsertMetadataForAccountDefault(code int) *UpsertMetadataForAccountDefau
 	}
 }
 
-/*UpsertMetadataForAccountDefault
+/*UpsertMetadataForAccountDefault handles this case with default header values.
 
 error
 */

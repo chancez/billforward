@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// CreateAggregatingSubscriptionReader is a Reader for the CreateAggregatingSubscription structure.
 type CreateAggregatingSubscriptionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateAggregatingSubscriptionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewCreateAggregatingSubscriptionOK() *CreateAggregatingSubscriptionOK {
 	return &CreateAggregatingSubscriptionOK{}
 }
 
-/*CreateAggregatingSubscriptionOK
+/*CreateAggregatingSubscriptionOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewCreateAggregatingSubscriptionDefault(code int) *CreateAggregatingSubscri
 	}
 }
 
-/*CreateAggregatingSubscriptionDefault
+/*CreateAggregatingSubscriptionDefault handles this case with default header values.
 
 error
 */

@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Create
+/*
+CreateAddress creates
 
 {"nickname":"Create a new address","response":"createAddressResponse.html","request":"createAddressRequest.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) CreateAddress(params *CreateAddressParams) (*CreateAddressOK, e
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createAddress",
-		Method:      "POST",
-		PathPattern: "/addresses",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateAddressReader{formats: a.formats},
+		ID:                 "createAddress",
+		Method:             "POST",
+		PathPattern:        "/addresses",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateAddressReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) CreateAddress(params *CreateAddressParams) (*CreateAddressOK, e
 	return result.(*CreateAddressOK), nil
 }
 
-/*Update
+/*
+UpdateAddress updates
 
 {"nickname":"Update an address","response":"updateAddressResponse.html","request":"updateAddressRequest.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) UpdateAddress(params *UpdateAddressParams) (*UpdateAddressOK, e
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "updateAddress",
-		Method:      "PUT",
-		PathPattern: "/addresses",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpdateAddressReader{formats: a.formats},
+		ID:                 "updateAddress",
+		Method:             "PUT",
+		PathPattern:        "/addresses",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAddressReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

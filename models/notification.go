@@ -212,7 +212,7 @@ func (m *Notification) validateActionEnum(path, location string, value string) e
 
 func (m *Notification) validateAction(formats strfmt.Registry) error {
 
-	if err := validate.Required("action", "body", string(m.Action)); err != nil {
+	if err := validate.RequiredString("action", "body", string(m.Action)); err != nil {
 		return err
 	}
 
@@ -242,7 +242,7 @@ func (m *Notification) validateChanges(formats strfmt.Registry) error {
 
 func (m *Notification) validateDestinationURL(formats strfmt.Registry) error {
 
-	if err := validate.Required("destinationURL", "body", string(m.DestinationURL)); err != nil {
+	if err := validate.RequiredString("destinationURL", "body", string(m.DestinationURL)); err != nil {
 		return err
 	}
 
@@ -269,7 +269,7 @@ func (m *Notification) validateDomainEnum(path, location string, value string) e
 
 func (m *Notification) validateDomain(formats strfmt.Registry) error {
 
-	if err := validate.Required("domain", "body", string(m.Domain)); err != nil {
+	if err := validate.RequiredString("domain", "body", string(m.Domain)); err != nil {
 		return err
 	}
 
@@ -299,7 +299,7 @@ func (m *Notification) validateEntity(formats strfmt.Registry) error {
 
 func (m *Notification) validateEntityID(formats strfmt.Registry) error {
 
-	if err := validate.Required("entityID", "body", string(m.EntityID)); err != nil {
+	if err := validate.RequiredString("entityID", "body", string(m.EntityID)); err != nil {
 		return err
 	}
 
@@ -326,7 +326,7 @@ func (m *Notification) validateFormatEnum(path, location string, value string) e
 
 func (m *Notification) validateFormat(formats strfmt.Registry) error {
 
-	if err := validate.Required("format", "body", string(m.Format)); err != nil {
+	if err := validate.RequiredString("format", "body", string(m.Format)); err != nil {
 		return err
 	}
 
@@ -339,7 +339,7 @@ func (m *Notification) validateFormat(formats strfmt.Registry) error {
 
 func (m *Notification) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -366,7 +366,7 @@ func (m *Notification) validateStateEnum(path, location string, value string) er
 
 func (m *Notification) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -379,7 +379,7 @@ func (m *Notification) validateState(formats strfmt.Registry) error {
 
 func (m *Notification) validateWebhookID(formats strfmt.Registry) error {
 
-	if err := validate.Required("webhookID", "body", string(m.WebhookID)); err != nil {
+	if err := validate.RequiredString("webhookID", "body", string(m.WebhookID)); err != nil {
 		return err
 	}
 

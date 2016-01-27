@@ -132,7 +132,7 @@ func (m *AddressPagedMetadata) validateExecutionTime(formats strfmt.Registry) er
 
 func (m *AddressPagedMetadata) validateNextPage(formats strfmt.Registry) error {
 
-	if err := validate.Required("nextPage", "body", string(m.NextPage)); err != nil {
+	if err := validate.RequiredString("nextPage", "body", string(m.NextPage)); err != nil {
 		return err
 	}
 

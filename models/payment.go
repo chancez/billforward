@@ -191,7 +191,7 @@ func (m *Payment) validateActualValue(formats strfmt.Registry) error {
 
 func (m *Payment) validateCrmID(formats strfmt.Registry) error {
 
-	if err := validate.Required("crmID", "body", string(m.CrmID)); err != nil {
+	if err := validate.RequiredString("crmID", "body", string(m.CrmID)); err != nil {
 		return err
 	}
 
@@ -200,7 +200,7 @@ func (m *Payment) validateCrmID(formats strfmt.Registry) error {
 
 func (m *Payment) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -227,7 +227,7 @@ func (m *Payment) validateGatewayEnum(path, location string, value string) error
 
 func (m *Payment) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
 		return err
 	}
 
@@ -240,7 +240,7 @@ func (m *Payment) validateGateway(formats strfmt.Registry) error {
 
 func (m *Payment) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
 		return err
 	}
 
@@ -258,7 +258,7 @@ func (m *Payment) validateNominalValue(formats strfmt.Registry) error {
 
 func (m *Payment) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -267,7 +267,7 @@ func (m *Payment) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *Payment) validatePaymentMethodID(formats strfmt.Registry) error {
 
-	if err := validate.Required("paymentMethodID", "body", string(m.PaymentMethodID)); err != nil {
+	if err := validate.RequiredString("paymentMethodID", "body", string(m.PaymentMethodID)); err != nil {
 		return err
 	}
 
@@ -276,7 +276,7 @@ func (m *Payment) validatePaymentMethodID(formats strfmt.Registry) error {
 
 func (m *Payment) validateRefundID(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundID", "body", string(m.RefundID)); err != nil {
+	if err := validate.RequiredString("refundID", "body", string(m.RefundID)); err != nil {
 		return err
 	}
 
@@ -321,7 +321,7 @@ func (m *Payment) validateTypeEnum(path, location string, value string) error {
 
 func (m *Payment) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

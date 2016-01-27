@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetInvoiceAsPDFReader is a Reader for the GetInvoiceAsPDF structure.
 type GetInvoiceAsPDFReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetInvoiceAsPDFReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetInvoiceAsPDFOK() *GetInvoiceAsPDFOK {
 	return &GetInvoiceAsPDFOK{}
 }
 
-/*GetInvoiceAsPDFOK
+/*GetInvoiceAsPDFOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewGetInvoiceAsPDFDefault(code int) *GetInvoiceAsPDFDefault {
 	}
 }
 
-/*GetInvoiceAsPDFDefault
+/*GetInvoiceAsPDFDefault handles this case with default header values.
 
 error
 */

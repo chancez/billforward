@@ -121,7 +121,7 @@ func (m *CreateAggregatingSubscriptionRequest) Validate(formats strfmt.Registry)
 
 func (m *CreateAggregatingSubscriptionRequest) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -150,7 +150,7 @@ func (m *CreateAggregatingSubscriptionRequest) validateAggregatingComponents(for
 
 func (m *CreateAggregatingSubscriptionRequest) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 

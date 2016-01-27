@@ -494,7 +494,7 @@ func (m *TieredPricingComponent) validateChargeModelEnum(path, location string, 
 
 func (m *TieredPricingComponent) validateChargeModel(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeModel", "body", string(m.ChargeModel())); err != nil {
+	if err := validate.RequiredString("chargeModel", "body", string(m.ChargeModel())); err != nil {
 		return err
 	}
 
@@ -525,7 +525,7 @@ func (m *TieredPricingComponent) validateChargeTypeEnum(path, location string, v
 
 func (m *TieredPricingComponent) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeType", "body", string(m.ChargeType())); err != nil {
+	if err := validate.RequiredString("chargeType", "body", string(m.ChargeType())); err != nil {
 		return err
 	}
 
@@ -574,7 +574,7 @@ func (m *TieredPricingComponent) validateDowngradeMode(formats strfmt.Registry) 
 
 func (m *TieredPricingComponent) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID())); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID())); err != nil {
 		return err
 	}
 
@@ -610,7 +610,7 @@ func (m *TieredPricingComponent) validateInvoicingType(formats strfmt.Registry) 
 
 func (m *TieredPricingComponent) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name())); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name())); err != nil {
 		return err
 	}
 
@@ -619,7 +619,7 @@ func (m *TieredPricingComponent) validateName(formats strfmt.Registry) error {
 
 func (m *TieredPricingComponent) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID())); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID())); err != nil {
 		return err
 	}
 
@@ -628,7 +628,7 @@ func (m *TieredPricingComponent) validateOrganizationID(formats strfmt.Registry)
 
 func (m *TieredPricingComponent) validateProductRatePlanID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID())); err != nil {
+	if err := validate.RequiredString("productRatePlanID", "body", string(m.ProductRatePlanID())); err != nil {
 		return err
 	}
 
@@ -653,7 +653,7 @@ func (m *TieredPricingComponent) validateTiers(formats strfmt.Registry) error {
 
 func (m *TieredPricingComponent) validateUnitOfMeasureID(formats strfmt.Registry) error {
 
-	if err := validate.Required("unitOfMeasureID", "body", string(m.UnitOfMeasureID())); err != nil {
+	if err := validate.RequiredString("unitOfMeasureID", "body", string(m.UnitOfMeasureID())); err != nil {
 		return err
 	}
 
@@ -698,7 +698,7 @@ func (m *TieredPricingComponent) validateValidFrom(formats strfmt.Registry) erro
 
 func (m *TieredPricingComponent) validateVersionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("versionID", "body", string(m.VersionID())); err != nil {
+	if err := validate.RequiredString("versionID", "body", string(m.VersionID())); err != nil {
 		return err
 	}
 

@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Retrieves a single invoice specified by the ID parameter.
+/*
+GetInvoiceAsPDF retrieves a single invoice specified by the ID parameter
 
 { "nickname" : "PDF Invoice","response" : "getInvoiceByID.pdf"}
 */
@@ -34,12 +35,13 @@ func (a *Client) GetInvoiceAsPDF(params *GetInvoiceAsPDFParams) (*GetInvoiceAsPD
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getInvoiceAsPDF",
-		Method:      "GET",
-		PathPattern: "/invoices/{ID}.pdf",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetInvoiceAsPDFReader{formats: a.formats},
+		ID:                 "getInvoiceAsPDF",
+		Method:             "GET",
+		PathPattern:        "/invoices/{ID}.pdf",
+		ProducesMediaTypes: []string{"application/pdf"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInvoiceAsPDFReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) GetInvoiceAsPDF(params *GetInvoiceAsPDFParams) (*GetInvoiceAsPD
 	return result.(*GetInvoiceAsPDFOK), nil
 }
 
-/*Retrieves a single invoice specified by the invoice-ID parameter.
+/*
+GetInvoiceByID retrieves a single invoice specified by the invoice ID parameter
 
 { "nickname" : "Retrieve an existing invoice","response" : "getInvoiceByID.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) GetInvoiceByID(params *GetInvoiceByIDParams) (*GetInvoiceByIDOK
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getInvoiceByID",
-		Method:      "GET",
-		PathPattern: "/invoices/{invoice-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetInvoiceByIDReader{formats: a.formats},
+		ID:                 "getInvoiceByID",
+		Method:             "GET",
+		PathPattern:        "/invoices/{invoice-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInvoiceByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -71,7 +75,8 @@ func (a *Client) GetInvoiceByID(params *GetInvoiceByIDParams) (*GetInvoiceByIDOK
 	return result.(*GetInvoiceByIDOK), nil
 }
 
-/*Retrieves a collection of invoices specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetInvoicesByAccountID retrieves a collection of invoices specified by the account ID parameter by default 10 values are returned records are returned in natural order
 
 { "nickname" : "Retrieve by account","response" : "getInvoiceByAccountID.html"}
 */
@@ -82,12 +87,13 @@ func (a *Client) GetInvoicesByAccountID(params *GetInvoicesByAccountIDParams) (*
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getInvoicesByAccountID",
-		Method:      "GET",
-		PathPattern: "/invoices/account/{account-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetInvoicesByAccountIDReader{formats: a.formats},
+		ID:                 "getInvoicesByAccountID",
+		Method:             "GET",
+		PathPattern:        "/invoices/account/{account-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInvoicesByAccountIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

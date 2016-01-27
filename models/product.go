@@ -63,7 +63,7 @@ type Product struct {
 
 	/* Metadata metadata
 	 */
-	Metadata DynamicMetadata `json:"metadata,omitempty"`
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 	/* {"description":"A unique name &mdash; for your benefit &mdash; used to identify this product within BillForward. It should reflect the fact that this product confers some service to a customer (e.g. \"Gold membership\").<br>The product can also be defined by the frequency with which it recurs (e.g. \"Monthly Gold membership\").<br>Remember also that rate plans can override the timing prescribed by their product. If you intend to override that timing, you may consider the product's period duration to be an unimportant factor when it comes to naming it.","verbs":["POST","PUT","GET"]}
 
@@ -163,7 +163,7 @@ func (m *Product) validateDeleted(formats strfmt.Registry) error {
 
 func (m *Product) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", string(m.Description)); err != nil {
+	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
 		return err
 	}
 
@@ -199,7 +199,7 @@ func (m *Product) validateDurationPeriodEnum(path, location string, value string
 
 func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
 
-	if err := validate.Required("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
+	if err := validate.RequiredString("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
 		return err
 	}
 
@@ -212,7 +212,7 @@ func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
 
 func (m *Product) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -239,7 +239,7 @@ func (m *Product) validateProductTypeEnum(path, location string, value string) e
 
 func (m *Product) validateProductType(formats strfmt.Registry) error {
 
-	if err := validate.Required("productType", "body", string(m.ProductType)); err != nil {
+	if err := validate.RequiredString("productType", "body", string(m.ProductType)); err != nil {
 		return err
 	}
 
@@ -279,7 +279,7 @@ func (m *Product) validateTrialPeriodEnum(path, location string, value string) e
 
 func (m *Product) validateTrialPeriod(formats strfmt.Registry) error {
 
-	if err := validate.Required("trialPeriod", "body", string(m.TrialPeriod)); err != nil {
+	if err := validate.RequiredString("trialPeriod", "body", string(m.TrialPeriod)); err != nil {
 		return err
 	}
 

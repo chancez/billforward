@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// AuthCaptureReader is a Reader for the AuthCapture structure.
 type AuthCaptureReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *AuthCaptureReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewAuthCaptureOK() *AuthCaptureOK {
 	return &AuthCaptureOK{}
 }
 
-/*AuthCaptureOK
+/*AuthCaptureOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewAuthCaptureDefault(code int) *AuthCaptureDefault {
 	}
 }
 
-/*AuthCaptureDefault
+/*AuthCaptureDefault handles this case with default header values.
 
 error
 */

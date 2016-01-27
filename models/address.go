@@ -127,7 +127,7 @@ func (m *Address) Validate(formats strfmt.Registry) error {
 
 func (m *Address) validateAddressLine1(formats strfmt.Registry) error {
 
-	if err := validate.Required("addressLine1", "body", string(m.AddressLine1)); err != nil {
+	if err := validate.RequiredString("addressLine1", "body", string(m.AddressLine1)); err != nil {
 		return err
 	}
 
@@ -136,7 +136,7 @@ func (m *Address) validateAddressLine1(formats strfmt.Registry) error {
 
 func (m *Address) validateCity(formats strfmt.Registry) error {
 
-	if err := validate.Required("city", "body", string(m.City)); err != nil {
+	if err := validate.RequiredString("city", "body", string(m.City)); err != nil {
 		return err
 	}
 
@@ -145,7 +145,7 @@ func (m *Address) validateCity(formats strfmt.Registry) error {
 
 func (m *Address) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.Required("country", "body", string(m.Country)); err != nil {
+	if err := validate.RequiredString("country", "body", string(m.Country)); err != nil {
 		return err
 	}
 
@@ -154,7 +154,7 @@ func (m *Address) validateCountry(formats strfmt.Registry) error {
 
 func (m *Address) validatePostcode(formats strfmt.Registry) error {
 
-	if err := validate.Required("postcode", "body", string(m.Postcode)); err != nil {
+	if err := validate.RequiredString("postcode", "body", string(m.Postcode)); err != nil {
 		return err
 	}
 
@@ -163,7 +163,7 @@ func (m *Address) validatePostcode(formats strfmt.Registry) error {
 
 func (m *Address) validateProvince(formats strfmt.Registry) error {
 
-	if err := validate.Required("province", "body", string(m.Province)); err != nil {
+	if err := validate.RequiredString("province", "body", string(m.Province)); err != nil {
 		return err
 	}
 

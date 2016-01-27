@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Create an Account.
+/*
+CreateAccount creates an account
 
 {"nickname":"Create a new account","response":"createAccountResponse.html","request":"createAccountRequest.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, e
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "createAccount",
-		Method:      "POST",
-		PathPattern: "/accounts",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &CreateAccountReader{formats: a.formats},
+		ID:                 "createAccount",
+		Method:             "POST",
+		PathPattern:        "/accounts",
+		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, e
 	return result.(*CreateAccountOK), nil
 }
 
-/*Delete the account specified by the account-ID parameter.
+/*
+DeleteAccount deletes the account specified by the account ID parameter
 
 {"nickname":"Retire","response":"deleteAccount.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, e
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteAccount",
-		Method:      "DELETE",
-		PathPattern: "/accounts/{account-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteAccountReader{formats: a.formats},
+		ID:                 "deleteAccount",
+		Method:             "DELETE",
+		PathPattern:        "/accounts/{account-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -71,7 +75,8 @@ func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, e
 	return result.(*DeleteAccountOK), nil
 }
 
-/*Remove any associated metadata.
+/*
+DeleteMetadataForAccount removes any associated metadata
 
 {"nickname":"Clear metadata from account","request" :"deleteAccountMetadataRequest.html","response":"deleteAccountMetadataResponse.html"}
 */
@@ -82,12 +87,13 @@ func (a *Client) DeleteMetadataForAccount(params *DeleteMetadataForAccountParams
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteMetadataForAccount",
-		Method:      "DELETE",
-		PathPattern: "/accounts/{account-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteMetadataForAccountReader{formats: a.formats},
+		ID:                 "deleteMetadataForAccount",
+		Method:             "DELETE",
+		PathPattern:        "/accounts/{account-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteMetadataForAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -95,7 +101,8 @@ func (a *Client) DeleteMetadataForAccount(params *DeleteMetadataForAccountParams
 	return result.(*DeleteMetadataForAccountOK), nil
 }
 
-/*Returns a single account, specified by the account-ID parameter.
+/*
+GetAccountByID returns a single account specified by the account ID parameter
 
 {"nickname":"Retrieve an existing account","response":"getAccountByID.html"}
 */
@@ -106,12 +113,13 @@ func (a *Client) GetAccountByID(params *GetAccountByIDParams) (*GetAccountByIDOK
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getAccountByID",
-		Method:      "GET",
-		PathPattern: "/accounts/{account-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetAccountByIDReader{formats: a.formats},
+		ID:                 "getAccountByID",
+		Method:             "GET",
+		PathPattern:        "/accounts/{account-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAccountByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -119,7 +127,8 @@ func (a *Client) GetAccountByID(params *GetAccountByIDParams) (*GetAccountByIDOK
 	return result.(*GetAccountByIDOK), nil
 }
 
-/*Returns a collection of all account objects. By default 10 values are returned. Records are returned in natural order.
+/*
+GetAllAccounts returns a collection of all account objects by default 10 values are returned records are returned in natural order
 
 {"nickname":"Get all accounts","response":"getAccountAll.html"}
 */
@@ -130,12 +139,13 @@ func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getAllAccounts",
-		Method:      "GET",
-		PathPattern: "/accounts",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetAllAccountsReader{formats: a.formats},
+		ID:                 "getAllAccounts",
+		Method:             "GET",
+		PathPattern:        "/accounts",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllAccountsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -143,7 +153,8 @@ func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK
 	return result.(*GetAllAccountsOK), nil
 }
 
-/*Retrieve any associated metadata.
+/*
+GetMetadataForAccount retrieves any associated metadata
 
 {"nickname":"Retrieve metadata on account","request":"getAccountMetadataRequest.html","response":"getAccountMetadataResponse.html"}
 */
@@ -154,12 +165,13 @@ func (a *Client) GetMetadataForAccount(params *GetMetadataForAccountParams) (*Ge
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getMetadataForAccount",
-		Method:      "GET",
-		PathPattern: "/accounts/{account-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetMetadataForAccountReader{formats: a.formats},
+		ID:                 "getMetadataForAccount",
+		Method:             "GET",
+		PathPattern:        "/accounts/{account-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetadataForAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -167,7 +179,8 @@ func (a *Client) GetMetadataForAccount(params *GetMetadataForAccountParams) (*Ge
 	return result.(*GetMetadataForAccountOK), nil
 }
 
-/*Remove any existing metadata keys and create the provided data.
+/*
+SetMetadataForAccount removes any existing metadata keys and create the provided data
 
 {"nickname":"Set metadata on account","request":"setAccountMetadataRequest.html","response":"setAccountMetadataResponse.html"}
 */
@@ -178,12 +191,13 @@ func (a *Client) SetMetadataForAccount(params *SetMetadataForAccountParams) (*Se
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "setMetadataForAccount",
-		Method:      "POST",
-		PathPattern: "/accounts/{account-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &SetMetadataForAccountReader{formats: a.formats},
+		ID:                 "setMetadataForAccount",
+		Method:             "POST",
+		PathPattern:        "/accounts/{account-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetMetadataForAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -191,7 +205,8 @@ func (a *Client) SetMetadataForAccount(params *SetMetadataForAccountParams) (*Se
 	return result.(*SetMetadataForAccountOK), nil
 }
 
-/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+/*
+UpsertMetadataForAccount updates any existing metadata key values and insert any new key values no keys will be removed
 
 {"nickname":"Upsert metadata on account","request":"upsertAccountMetadataRequest.html","response":"upsertAccountMetadataResponse.html"}
 */
@@ -202,12 +217,13 @@ func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "upsertMetadataForAccount",
-		Method:      "PUT",
-		PathPattern: "/accounts/{account-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpsertMetadataForAccountReader{formats: a.formats},
+		ID:                 "upsertMetadataForAccount",
+		Method:             "PUT",
+		PathPattern:        "/accounts/{account-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpsertMetadataForAccountReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

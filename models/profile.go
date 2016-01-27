@@ -148,7 +148,7 @@ func (m *Profile) Validate(formats strfmt.Registry) error {
 
 func (m *Profile) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -177,7 +177,7 @@ func (m *Profile) validateAddresses(formats strfmt.Registry) error {
 
 func (m *Profile) validateEmail(formats strfmt.Registry) error {
 
-	if err := validate.Required("email", "body", string(m.Email)); err != nil {
+	if err := validate.RequiredString("email", "body", string(m.Email)); err != nil {
 		return err
 	}
 
@@ -186,7 +186,7 @@ func (m *Profile) validateEmail(formats strfmt.Registry) error {
 
 func (m *Profile) validateFirstName(formats strfmt.Registry) error {
 
-	if err := validate.Required("firstName", "body", string(m.FirstName)); err != nil {
+	if err := validate.RequiredString("firstName", "body", string(m.FirstName)); err != nil {
 		return err
 	}
 
@@ -195,7 +195,7 @@ func (m *Profile) validateFirstName(formats strfmt.Registry) error {
 
 func (m *Profile) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -204,7 +204,7 @@ func (m *Profile) validateID(formats strfmt.Registry) error {
 
 func (m *Profile) validateLastName(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastName", "body", string(m.LastName)); err != nil {
+	if err := validate.RequiredString("lastName", "body", string(m.LastName)); err != nil {
 		return err
 	}
 
@@ -213,7 +213,7 @@ func (m *Profile) validateLastName(formats strfmt.Registry) error {
 
 func (m *Profile) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 

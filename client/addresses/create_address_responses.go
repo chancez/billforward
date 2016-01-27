@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// CreateAddressReader is a Reader for the CreateAddress structure.
 type CreateAddressReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateAddressReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewCreateAddressOK() *CreateAddressOK {
 	return &CreateAddressOK{}
 }
 
-/*CreateAddressOK
+/*CreateAddressOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewCreateAddressDefault(code int) *CreateAddressDefault {
 	}
 }
 
-/*CreateAddressDefault
+/*CreateAddressDefault handles this case with default header values.
 
 error
 */

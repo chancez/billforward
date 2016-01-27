@@ -27,7 +27,7 @@ type UpsertMetadataForAccountParams struct {
 	/*AccountID*/
 	AccountID string
 	/*Metadata*/
-	Metadata models.DynamicMetadata
+	Metadata *models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -42,7 +42,7 @@ func (o *UpsertMetadataForAccountParams) WithAccountID(accountId string) *Upsert
 }
 
 // WithMetadata adds the metadata to the upsert metadata for account params
-func (o *UpsertMetadataForAccountParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForAccountParams {
+func (o *UpsertMetadataForAccountParams) WithMetadata(metadata *models.DynamicMetadata) *UpsertMetadataForAccountParams {
 	o.Metadata = metadata
 	return o
 }

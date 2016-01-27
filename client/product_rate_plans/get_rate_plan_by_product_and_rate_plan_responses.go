@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetRatePlanByProductAndRatePlanReader is a Reader for the GetRatePlanByProductAndRatePlan structure.
 type GetRatePlanByProductAndRatePlanReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetRatePlanByProductAndRatePlanReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetRatePlanByProductAndRatePlanOK() *GetRatePlanByProductAndRatePlanOK {
 	return &GetRatePlanByProductAndRatePlanOK{}
 }
 
-/*GetRatePlanByProductAndRatePlanOK
+/*GetRatePlanByProductAndRatePlanOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetRatePlanByProductAndRatePlanDefault(code int) *GetRatePlanByProductAn
 	}
 }
 
-/*GetRatePlanByProductAndRatePlanDefault
+/*GetRatePlanByProductAndRatePlanDefault handles this case with default header values.
 
 error
 */

@@ -86,7 +86,7 @@ func (m *UpdateAddressRequest) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateAddressRequest) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -95,7 +95,7 @@ func (m *UpdateAddressRequest) validateID(formats strfmt.Registry) error {
 
 func (m *UpdateAddressRequest) validateProfileID(formats strfmt.Registry) error {
 
-	if err := validate.Required("profileID", "body", string(m.ProfileID)); err != nil {
+	if err := validate.RequiredString("profileID", "body", string(m.ProfileID)); err != nil {
 		return err
 	}
 

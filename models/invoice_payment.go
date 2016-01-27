@@ -176,7 +176,7 @@ func (m *InvoicePayment) validateActualAmount(formats strfmt.Registry) error {
 
 func (m *InvoicePayment) validateCrmID(formats strfmt.Registry) error {
 
-	if err := validate.Required("crmID", "body", string(m.CrmID)); err != nil {
+	if err := validate.RequiredString("crmID", "body", string(m.CrmID)); err != nil {
 		return err
 	}
 
@@ -185,7 +185,7 @@ func (m *InvoicePayment) validateCrmID(formats strfmt.Registry) error {
 
 func (m *InvoicePayment) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -212,7 +212,7 @@ func (m *InvoicePayment) validateGatewayEnum(path, location string, value string
 
 func (m *InvoicePayment) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
 		return err
 	}
 
@@ -225,7 +225,7 @@ func (m *InvoicePayment) validateGateway(formats strfmt.Registry) error {
 
 func (m *InvoicePayment) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
 		return err
 	}
 
@@ -243,7 +243,7 @@ func (m *InvoicePayment) validateNominalAmount(formats strfmt.Registry) error {
 
 func (m *InvoicePayment) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -252,7 +252,7 @@ func (m *InvoicePayment) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *InvoicePayment) validatePaymentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("paymentID", "body", string(m.PaymentID)); err != nil {
+	if err := validate.RequiredString("paymentID", "body", string(m.PaymentID)); err != nil {
 		return err
 	}
 

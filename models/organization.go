@@ -203,7 +203,7 @@ func (m *Organization) validateClients(formats strfmt.Registry) error {
 
 func (m *Organization) validateCustomerCode(formats strfmt.Registry) error {
 
-	if err := validate.Required("customerCode", "body", string(m.CustomerCode)); err != nil {
+	if err := validate.RequiredString("customerCode", "body", string(m.CustomerCode)); err != nil {
 		return err
 	}
 
@@ -241,7 +241,7 @@ func (m *Organization) validateDunningLines(formats strfmt.Registry) error {
 
 func (m *Organization) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 

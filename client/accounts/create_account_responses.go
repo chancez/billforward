@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// CreateAccountReader is a Reader for the CreateAccount structure.
 type CreateAccountReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewCreateAccountOK() *CreateAccountOK {
 	return &CreateAccountOK{}
 }
 
-/*CreateAccountOK
+/*CreateAccountOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewCreateAccountDefault(code int) *CreateAccountDefault {
 	}
 }
 
-/*CreateAccountDefault
+/*CreateAccountDefault handles this case with default header values.
 
 error
 */

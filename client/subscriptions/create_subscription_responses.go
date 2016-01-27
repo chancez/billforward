@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// CreateSubscriptionReader is a Reader for the CreateSubscription structure.
 type CreateSubscriptionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CreateSubscriptionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewCreateSubscriptionOK() *CreateSubscriptionOK {
 	return &CreateSubscriptionOK{}
 }
 
-/*CreateSubscriptionOK
+/*CreateSubscriptionOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewCreateSubscriptionDefault(code int) *CreateSubscriptionDefault {
 	}
 }
 
-/*CreateSubscriptionDefault
+/*CreateSubscriptionDefault handles this case with default header values.
 
 error
 */

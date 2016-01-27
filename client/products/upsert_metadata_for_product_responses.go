@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// UpsertMetadataForProductReader is a Reader for the UpsertMetadataForProduct structure.
 type UpsertMetadataForProductReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpsertMetadataForProductReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewUpsertMetadataForProductOK() *UpsertMetadataForProductOK {
 	return &UpsertMetadataForProductOK{}
 }
 
-/*UpsertMetadataForProductOK
+/*UpsertMetadataForProductOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewUpsertMetadataForProductDefault(code int) *UpsertMetadataForProductDefau
 	}
 }
 
-/*UpsertMetadataForProductDefault
+/*UpsertMetadataForProductDefault handles this case with default header values.
 
 error
 */

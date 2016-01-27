@@ -25,7 +25,7 @@ for the upsert metadata for product operation typically these are written to a h
 type UpsertMetadataForProductParams struct {
 
 	/*Metadata*/
-	Metadata models.DynamicMetadata
+	Metadata *models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -36,7 +36,7 @@ type UpsertMetadataForProductParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for product params
-func (o *UpsertMetadataForProductParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForProductParams {
+func (o *UpsertMetadataForProductParams) WithMetadata(metadata *models.DynamicMetadata) *UpsertMetadataForProductParams {
 	o.Metadata = metadata
 	return o
 }

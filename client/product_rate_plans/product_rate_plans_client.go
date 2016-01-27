@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Remove any associated metadata.
+/*
+DeleteMetadataForRatePlan removes any associated metadata
 
 {"nickname":"Clear metadata from rate-plan","request" :"deleteRatePlanMetadataRequest.html","response":"deleteRatePlanMetadataResponse.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) DeleteMetadataForRatePlan(params *DeleteMetadataForRatePlanPara
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "deleteMetadataForRatePlan",
-		Method:      "DELETE",
-		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &DeleteMetadataForRatePlanReader{formats: a.formats},
+		ID:                 "deleteMetadataForRatePlan",
+		Method:             "DELETE",
+		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteMetadataForRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) DeleteMetadataForRatePlan(params *DeleteMetadataForRatePlanPara
 	return result.(*DeleteMetadataForRatePlanOK), nil
 }
 
-/*Returns a collection of product-rate-plans. By default 10 values are returned. Records are returned in natural order.
+/*
+GetAllRatePlans returns a collection of product rate plans by default 10 values are returned records are returned in natural order
 
 {"nickname":"Get all rate-plans","response":"getPRPAll.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlan
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getAllRatePlans",
-		Method:      "GET",
-		PathPattern: "/product-rate-plans",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetAllRatePlansReader{formats: a.formats},
+		ID:                 "getAllRatePlans",
+		Method:             "GET",
+		PathPattern:        "/product-rate-plans",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllRatePlansReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -71,7 +75,8 @@ func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlan
 	return result.(*GetAllRatePlansOK), nil
 }
 
-/*Retrieve any associated metadata.
+/*
+GetMetadataForRatePlan retrieves any associated metadata
 
 {"nickname":"Retrieve metadata on rate-plan","request":"getRatePlanMetadataRequest.html","response":"getRatePlanMetadataResponse.html"}
 */
@@ -82,12 +87,13 @@ func (a *Client) GetMetadataForRatePlan(params *GetMetadataForRatePlanParams) (*
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getMetadataForRatePlan",
-		Method:      "GET",
-		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetMetadataForRatePlanReader{formats: a.formats},
+		ID:                 "getMetadataForRatePlan",
+		Method:             "GET",
+		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetadataForRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -95,7 +101,8 @@ func (a *Client) GetMetadataForRatePlan(params *GetMetadataForRatePlanParams) (*
 	return result.(*GetMetadataForRatePlanOK), nil
 }
 
-/*Returns product-rate-plans, specified by the product-rate-plan id or name.
+/*
+GetProductRatePlanByID returns product rate plans specified by the product rate plan id or name
 
 {"nickname":"Retrieve an existing rate-plan","response":"getPRPByID.html"}
 */
@@ -106,12 +113,13 @@ func (a *Client) GetProductRatePlanByID(params *GetProductRatePlanByIDParams) (*
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getProductRatePlanByID",
-		Method:      "GET",
-		PathPattern: "/product-rate-plans/{product-rate-plan-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetProductRatePlanByIDReader{formats: a.formats},
+		ID:                 "getProductRatePlanByID",
+		Method:             "GET",
+		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetProductRatePlanByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -119,7 +127,8 @@ func (a *Client) GetProductRatePlanByID(params *GetProductRatePlanByIDParams) (*
 	return result.(*GetProductRatePlanByIDOK), nil
 }
 
-/*Returns a collection of product-rate-plans, specified by the product-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetRatePlanByProduct returns a collection of product rate plans specified by the product ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Retrieve by product","response":"getPRPByProductID.html"}
 */
@@ -130,12 +139,13 @@ func (a *Client) GetRatePlanByProduct(params *GetRatePlanByProductParams) (*GetR
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRatePlanByProduct",
-		Method:      "GET",
-		PathPattern: "/product-rate-plans/product/{product-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRatePlanByProductReader{formats: a.formats},
+		ID:                 "getRatePlanByProduct",
+		Method:             "GET",
+		PathPattern:        "/product-rate-plans/product/{product-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRatePlanByProductReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -143,7 +153,8 @@ func (a *Client) GetRatePlanByProduct(params *GetRatePlanByProductParams) (*GetR
 	return result.(*GetRatePlanByProductOK), nil
 }
 
-/*Returns a collection of product-rate-plans, specified by the product-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetRatePlanByProductAndRatePlan returns a collection of product rate plans specified by the product ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Retrieve by name","response":"getPRPByNameAndProduct.html"}
 */
@@ -154,12 +165,13 @@ func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAnd
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getRatePlanByProductAndRatePlan",
-		Method:      "GET",
-		PathPattern: "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetRatePlanByProductAndRatePlanReader{formats: a.formats},
+		ID:                 "getRatePlanByProductAndRatePlan",
+		Method:             "GET",
+		PathPattern:        "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRatePlanByProductAndRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -167,7 +179,8 @@ func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAnd
 	return result.(*GetRatePlanByProductAndRatePlanOK), nil
 }
 
-/*Remove any existing metadata keys and create the provided data.
+/*
+SetMetadataForRatePlan removes any existing metadata keys and create the provided data
 
 {"nickname":"Set metadata on rate-plan","request":"setRatePlanMetadataRequest.html","response":"setRatePlanMetadataResponse.html"}
 */
@@ -178,12 +191,13 @@ func (a *Client) SetMetadataForRatePlan(params *SetMetadataForRatePlanParams) (*
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "setMetadataForRatePlan",
-		Method:      "POST",
-		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &SetMetadataForRatePlanReader{formats: a.formats},
+		ID:                 "setMetadataForRatePlan",
+		Method:             "POST",
+		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetMetadataForRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -191,7 +205,8 @@ func (a *Client) SetMetadataForRatePlan(params *SetMetadataForRatePlanParams) (*
 	return result.(*SetMetadataForRatePlanOK), nil
 }
 
-/*Update any existing metadata key-values and insert any new key-values, no keys will be removed.
+/*
+UpsertMetadataForRatePlan updates any existing metadata key values and insert any new key values no keys will be removed
 
 {"nickname":"Upsert metadata on rate-plan","request":"upsertRatePlanMetadataRequest.html","response":"upsertRatePlanMetadataResponse.html"}
 */
@@ -202,12 +217,13 @@ func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanPara
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "upsertMetadataForRatePlan",
-		Method:      "PUT",
-		PathPattern: "/product-rate-plans/{product-rate-plan-ID}/metadata",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &UpsertMetadataForRatePlanReader{formats: a.formats},
+		ID:                 "upsertMetadataForRatePlan",
+		Method:             "PUT",
+		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpsertMetadataForRatePlanReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

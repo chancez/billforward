@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetAllProductsReader is a Reader for the GetAllProducts structure.
 type GetAllProductsReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetAllProductsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetAllProductsOK() *GetAllProductsOK {
 	return &GetAllProductsOK{}
 }
 
-/*GetAllProductsOK
+/*GetAllProductsOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetAllProductsDefault(code int) *GetAllProductsDefault {
 	}
 }
 
-/*GetAllProductsDefault
+/*GetAllProductsDefault handles this case with default header values.
 
 error
 */

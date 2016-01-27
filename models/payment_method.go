@@ -172,7 +172,7 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -181,7 +181,7 @@ func (m *PaymentMethod) validateAccountID(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateExpiryDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("expiryDate", "body", string(m.ExpiryDate)); err != nil {
+	if err := validate.RequiredString("expiryDate", "body", string(m.ExpiryDate)); err != nil {
 		return err
 	}
 
@@ -208,7 +208,7 @@ func (m *PaymentMethod) validateGatewayEnum(path, location string, value string)
 
 func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.Required("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
 		return err
 	}
 
@@ -221,7 +221,7 @@ func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateLinkID(formats strfmt.Registry) error {
 
-	if err := validate.Required("linkID", "body", string(m.LinkID)); err != nil {
+	if err := validate.RequiredString("linkID", "body", string(m.LinkID)); err != nil {
 		return err
 	}
 
@@ -230,7 +230,7 @@ func (m *PaymentMethod) validateLinkID(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -257,7 +257,7 @@ func (m *PaymentMethod) validateStateEnum(path, location string, value string) e
 
 func (m *PaymentMethod) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 

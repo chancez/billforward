@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// CancelSubscriptionReader is a Reader for the CancelSubscription structure.
 type CancelSubscriptionReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *CancelSubscriptionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewCancelSubscriptionOK() *CancelSubscriptionOK {
 	return &CancelSubscriptionOK{}
 }
 
-/*CancelSubscriptionOK
+/*CancelSubscriptionOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewCancelSubscriptionDefault(code int) *CancelSubscriptionDefault {
 	}
 }
 
-/*CancelSubscriptionDefault
+/*CancelSubscriptionDefault handles this case with default header values.
 
 error
 */

@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// UpdateAddressReader is a Reader for the UpdateAddress structure.
 type UpdateAddressReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpdateAddressReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewUpdateAddressOK() *UpdateAddressOK {
 	return &UpdateAddressOK{}
 }
 
-/*UpdateAddressOK
+/*UpdateAddressOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewUpdateAddressDefault(code int) *UpdateAddressDefault {
 	}
 }
 
-/*UpdateAddressDefault
+/*UpdateAddressDefault handles this case with default header values.
 
 error
 */

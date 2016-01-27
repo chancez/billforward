@@ -101,7 +101,7 @@ func (m *UpdateProfileRequest) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateProfileRequest) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 

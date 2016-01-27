@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// GetSubscriptionByAccountIDReader is a Reader for the GetSubscriptionByAccountID structure.
 type GetSubscriptionByAccountIDReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *GetSubscriptionByAccountIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewGetSubscriptionByAccountIDOK() *GetSubscriptionByAccountIDOK {
 	return &GetSubscriptionByAccountIDOK{}
 }
 
-/*GetSubscriptionByAccountIDOK
+/*GetSubscriptionByAccountIDOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewGetSubscriptionByAccountIDDefault(code int) *GetSubscriptionByAccountIDD
 	}
 }
 
-/*GetSubscriptionByAccountIDDefault
+/*GetSubscriptionByAccountIDDefault handles this case with default header values.
 
 error
 */

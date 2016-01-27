@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// SetMetadataForProductReader is a Reader for the SetMetadataForProduct structure.
 type SetMetadataForProductReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *SetMetadataForProductReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewSetMetadataForProductOK() *SetMetadataForProductOK {
 	return &SetMetadataForProductOK{}
 }
 
-/*SetMetadataForProductOK
+/*SetMetadataForProductOK handles this case with default header values.
 
 success
 */
@@ -71,7 +73,7 @@ func NewSetMetadataForProductDefault(code int) *SetMetadataForProductDefault {
 	}
 }
 
-/*SetMetadataForProductDefault
+/*SetMetadataForProductDefault handles this case with default header values.
 
 error
 */

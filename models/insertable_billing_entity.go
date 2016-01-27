@@ -158,7 +158,7 @@ func (m *InsertableBillingEntity) validateAsOf(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
 		return err
 	}
 
@@ -185,7 +185,7 @@ func (m *InsertableBillingEntity) validateModeEnum(path, location string, value 
 
 func (m *InsertableBillingEntity) validateMode(formats strfmt.Registry) error {
 
-	if err := validate.Required("mode", "body", string(m.Mode)); err != nil {
+	if err := validate.RequiredString("mode", "body", string(m.Mode)); err != nil {
 		return err
 	}
 
@@ -216,7 +216,7 @@ func (m *InsertableBillingEntity) validateOldValue(formats strfmt.Registry) erro
 
 func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -225,7 +225,7 @@ func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry
 
 func (m *InsertableBillingEntity) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
 		return err
 	}
 
@@ -252,7 +252,7 @@ func (m *InsertableBillingEntity) validateStateEnum(path, location string, value
 
 func (m *InsertableBillingEntity) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -265,7 +265,7 @@ func (m *InsertableBillingEntity) validateState(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

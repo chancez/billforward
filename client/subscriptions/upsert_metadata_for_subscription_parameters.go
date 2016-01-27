@@ -25,7 +25,7 @@ for the upsert metadata for subscription operation typically these are written t
 type UpsertMetadataForSubscriptionParams struct {
 
 	/*Metadata*/
-	Metadata models.DynamicMetadata
+	Metadata *models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -36,7 +36,7 @@ type UpsertMetadataForSubscriptionParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for subscription params
-func (o *UpsertMetadataForSubscriptionParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForSubscriptionParams {
+func (o *UpsertMetadataForSubscriptionParams) WithMetadata(metadata *models.DynamicMetadata) *UpsertMetadataForSubscriptionParams {
 	o.Metadata = metadata
 	return o
 }

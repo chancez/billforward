@@ -280,7 +280,7 @@ func (m *InvoiceLine) Validate(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateCalculation(formats strfmt.Registry) error {
 
-	if err := validate.Required("calculation", "body", string(m.Calculation)); err != nil {
+	if err := validate.RequiredString("calculation", "body", string(m.Calculation)); err != nil {
 		return err
 	}
 
@@ -307,7 +307,7 @@ func (m *InvoiceLine) validateChargeTypeEnum(path, location string, value string
 
 func (m *InvoiceLine) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeType", "body", string(m.ChargeType)); err != nil {
+	if err := validate.RequiredString("chargeType", "body", string(m.ChargeType)); err != nil {
 		return err
 	}
 
@@ -320,7 +320,7 @@ func (m *InvoiceLine) validateChargeType(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateChildInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("childInvoiceID", "body", string(m.ChildInvoiceID)); err != nil {
+	if err := validate.RequiredString("childInvoiceID", "body", string(m.ChildInvoiceID)); err != nil {
 		return err
 	}
 
@@ -347,7 +347,7 @@ func (m *InvoiceLine) validateCost(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", string(m.Description)); err != nil {
+	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
 		return err
 	}
 
@@ -356,7 +356,7 @@ func (m *InvoiceLine) validateDescription(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
 		return err
 	}
 
@@ -365,7 +365,7 @@ func (m *InvoiceLine) validateInvoiceID(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -374,7 +374,7 @@ func (m *InvoiceLine) validateName(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -401,7 +401,7 @@ func (m *InvoiceLine) validatePeriodStart(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
 		return err
 	}
 
@@ -410,7 +410,7 @@ func (m *InvoiceLine) validatePricingComponentID(formats strfmt.Registry) error 
 
 func (m *InvoiceLine) validatePricingComponentName(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentName", "body", string(m.PricingComponentName)); err != nil {
+	if err := validate.RequiredString("pricingComponentName", "body", string(m.PricingComponentName)); err != nil {
 		return err
 	}
 
@@ -437,7 +437,7 @@ func (m *InvoiceLine) validatePricingComponentTypeEnum(path, location string, va
 
 func (m *InvoiceLine) validatePricingComponentType(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentType", "body", string(m.PricingComponentType)); err != nil {
+	if err := validate.RequiredString("pricingComponentType", "body", string(m.PricingComponentType)); err != nil {
 		return err
 	}
 
@@ -450,7 +450,7 @@ func (m *InvoiceLine) validatePricingComponentType(formats strfmt.Registry) erro
 
 func (m *InvoiceLine) validatePublicPricingComponentName(formats strfmt.Registry) error {
 
-	if err := validate.Required("publicPricingComponentName", "body", string(m.PublicPricingComponentName)); err != nil {
+	if err := validate.RequiredString("publicPricingComponentName", "body", string(m.PublicPricingComponentName)); err != nil {
 		return err
 	}
 
@@ -459,7 +459,7 @@ func (m *InvoiceLine) validatePublicPricingComponentName(formats strfmt.Registry
 
 func (m *InvoiceLine) validateSubscriptionChargeID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionChargeID", "body", string(m.SubscriptionChargeID)); err != nil {
+	if err := validate.RequiredString("subscriptionChargeID", "body", string(m.SubscriptionChargeID)); err != nil {
 		return err
 	}
 
@@ -495,7 +495,7 @@ func (m *InvoiceLine) validateTypeEnum(path, location string, value string) erro
 
 func (m *InvoiceLine) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

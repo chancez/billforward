@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Returns a collection of payment-methods, specified by the account-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetPaymentMethodByAccountID returns a collection of payment methods specified by the account ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Retrieve by account","response":"getPaymentMethodByAccount.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) GetPaymentMethodByAccountID(params *GetPaymentMethodByAccountID
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getPaymentMethodByAccountID",
-		Method:      "GET",
-		PathPattern: "/payment-methods/account/{account-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetPaymentMethodByAccountIDReader{formats: a.formats},
+		ID:                 "getPaymentMethodByAccountID",
+		Method:             "GET",
+		PathPattern:        "/payment-methods/account/{account-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentMethodByAccountIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

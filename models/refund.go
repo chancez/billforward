@@ -216,7 +216,7 @@ func (m *Refund) validateActualValue(formats strfmt.Registry) error {
 
 func (m *Refund) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -261,7 +261,7 @@ func (m *Refund) validateRefundNatureEnum(path, location string, value string) e
 
 func (m *Refund) validateRefundNature(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundNature", "body", string(m.RefundNature)); err != nil {
+	if err := validate.RequiredString("refundNature", "body", string(m.RefundNature)); err != nil {
 		return err
 	}
 
@@ -292,7 +292,7 @@ func (m *Refund) validateRefundStateEnum(path, location string, value string) er
 
 func (m *Refund) validateRefundState(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundState", "body", string(m.RefundState)); err != nil {
+	if err := validate.RequiredString("refundState", "body", string(m.RefundState)); err != nil {
 		return err
 	}
 
@@ -323,7 +323,7 @@ func (m *Refund) validateRefundTypeEnum(path, location string, value string) err
 
 func (m *Refund) validateRefundType(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundType", "body", string(m.RefundType)); err != nil {
+	if err := validate.RequiredString("refundType", "body", string(m.RefundType)); err != nil {
 		return err
 	}
 

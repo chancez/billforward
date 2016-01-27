@@ -353,7 +353,7 @@ func (m *Invoice) Validate(formats strfmt.Registry) error {
 
 func (m *Invoice) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -420,7 +420,7 @@ func (m *Invoice) validateCreditRolledOver(formats strfmt.Registry) error {
 
 func (m *Invoice) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.Required("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
 		return err
 	}
 
@@ -585,7 +585,7 @@ func (m *Invoice) validateNonDiscountedCostExcludingTax(formats strfmt.Registry)
 
 func (m *Invoice) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -612,7 +612,7 @@ func (m *Invoice) validateStateEnum(path, location string, value string) error {
 
 func (m *Invoice) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -625,7 +625,7 @@ func (m *Invoice) validateState(formats strfmt.Registry) error {
 
 func (m *Invoice) validateSubscriptionVersionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionVersionID", "body", string(m.SubscriptionVersionID)); err != nil {
+	if err := validate.RequiredString("subscriptionVersionID", "body", string(m.SubscriptionVersionID)); err != nil {
 		return err
 	}
 
@@ -672,7 +672,7 @@ func (m *Invoice) validateTypeEnum(path, location string, value string) error {
 
 func (m *Invoice) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

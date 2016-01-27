@@ -294,7 +294,7 @@ func (m *BraintreeAuthCaptureRequest) validateGateway(formats strfmt.Registry) e
 
 func (m *BraintreeAuthCaptureRequest) validatePaymentMethodNonce(formats strfmt.Registry) error {
 
-	if err := validate.Required("paymentMethodNonce", "body", string(m.PaymentMethodNonce)); err != nil {
+	if err := validate.RequiredString("paymentMethodNonce", "body", string(m.PaymentMethodNonce)); err != nil {
 		return err
 	}
 

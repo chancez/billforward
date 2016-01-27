@@ -84,7 +84,7 @@ func (m *Alias) Validate(formats strfmt.Registry) error {
 
 func (m *Alias) validateAlias(formats strfmt.Registry) error {
 
-	if err := validate.Required("alias", "body", string(m.Alias)); err != nil {
+	if err := validate.RequiredString("alias", "body", string(m.Alias)); err != nil {
 		return err
 	}
 
@@ -102,7 +102,7 @@ func (m *Alias) validateDeleted(formats strfmt.Registry) error {
 
 func (m *Alias) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -111,7 +111,7 @@ func (m *Alias) validateID(formats strfmt.Registry) error {
 
 func (m *Alias) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 

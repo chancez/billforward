@@ -82,7 +82,7 @@ func (m *AggregatingComponent) Validate(formats strfmt.Registry) error {
 
 func (m *AggregatingComponent) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
 		return err
 	}
 
@@ -91,7 +91,7 @@ func (m *AggregatingComponent) validatePricingComponentID(formats strfmt.Registr
 
 func (m *AggregatingComponent) validatePricingComponentName(formats strfmt.Registry) error {
 
-	if err := validate.Required("pricingComponentName", "body", string(m.PricingComponentName)); err != nil {
+	if err := validate.RequiredString("pricingComponentName", "body", string(m.PricingComponentName)); err != nil {
 		return err
 	}
 

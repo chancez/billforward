@@ -64,7 +64,7 @@ func (m *BFError) validateErrorParameters(formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.ErrorParameters); i++ {
 
-		if err := validate.Required("errorParameters"+"."+strconv.Itoa(i), "body", string(m.ErrorParameters[i])); err != nil {
+		if err := validate.RequiredString("errorParameters"+"."+strconv.Itoa(i), "body", string(m.ErrorParameters[i])); err != nil {
 			return err
 		}
 

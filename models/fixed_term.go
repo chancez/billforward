@@ -225,7 +225,7 @@ func (m *FixedTerm) validateExpiryBehaviourEnum(path, location string, value str
 
 func (m *FixedTerm) validateExpiryBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.Required("expiryBehaviour", "body", string(m.ExpiryBehaviour)); err != nil {
+	if err := validate.RequiredString("expiryBehaviour", "body", string(m.ExpiryBehaviour)); err != nil {
 		return err
 	}
 
@@ -259,7 +259,7 @@ func (m *FixedTerm) validateFixedTermDefinition(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateFixedTermDefinitionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("fixedTermDefinitionID", "body", string(m.FixedTermDefinitionID)); err != nil {
+	if err := validate.RequiredString("fixedTermDefinitionID", "body", string(m.FixedTermDefinitionID)); err != nil {
 		return err
 	}
 
@@ -277,7 +277,7 @@ func (m *FixedTerm) validateFixedTermNumber(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -331,7 +331,7 @@ func (m *FixedTerm) validateStateEnum(path, location string, value string) error
 
 func (m *FixedTerm) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -344,7 +344,7 @@ func (m *FixedTerm) validateState(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.Required("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

@@ -23,7 +23,8 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*Returns a collection of all payments. By default 10 values are returned. Records are returned in natural order.
+/*
+GetAllPayments returns a collection of all payments by default 10 values are returned records are returned in natural order
 
 {"nickname":"Get all payments","response":"getPaymentAll.html"}
 */
@@ -34,12 +35,13 @@ func (a *Client) GetAllPayments(params *GetAllPaymentsParams) (*GetAllPaymentsOK
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getAllPayments",
-		Method:      "GET",
-		PathPattern: "/payments",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetAllPaymentsReader{formats: a.formats},
+		ID:                 "getAllPayments",
+		Method:             "GET",
+		PathPattern:        "/payments",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPaymentsReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -47,7 +49,8 @@ func (a *Client) GetAllPayments(params *GetAllPaymentsParams) (*GetAllPaymentsOK
 	return result.(*GetAllPaymentsOK), nil
 }
 
-/*Returns a single payment, specified by the payment-ID parameter.
+/*
+GetPaymentByID returns a single payment specified by the payment ID parameter
 
 {"nickname":"Retrieve an existing payment","response":"getPaymentByID.html"}
 */
@@ -58,12 +61,13 @@ func (a *Client) GetPaymentByID(params *GetPaymentByIDParams) (*GetPaymentByIDOK
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getPaymentByID",
-		Method:      "GET",
-		PathPattern: "/payments/{payment-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetPaymentByIDReader{formats: a.formats},
+		ID:                 "getPaymentByID",
+		Method:             "GET",
+		PathPattern:        "/payments/{payment-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentByIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err
@@ -71,7 +75,8 @@ func (a *Client) GetPaymentByID(params *GetPaymentByIDParams) (*GetPaymentByIDOK
 	return result.(*GetPaymentByIDOK), nil
 }
 
-/*Returns a collection of payments, specified by the invoice-ID parameter. By default 10 values are returned. Records are returned in natural order.
+/*
+GetPaymentByInvoiceID returns a collection of payments specified by the invoice ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Get for invoice","response":"getPaymentByInvoice.html"}
 */
@@ -82,12 +87,13 @@ func (a *Client) GetPaymentByInvoiceID(params *GetPaymentByInvoiceIDParams) (*Ge
 	}
 
 	result, err := a.transport.Submit(&client.Operation{
-		ID:          "getPaymentByInvoiceID",
-		Method:      "GET",
-		PathPattern: "/payments/invoice/{invoice-ID}",
-		Schemes:     []string{"https"},
-		Params:      params,
-		Reader:      &GetPaymentByInvoiceIDReader{formats: a.formats},
+		ID:                 "getPaymentByInvoiceID",
+		Method:             "GET",
+		PathPattern:        "/payments/invoice/{invoice-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentByInvoiceIDReader{formats: a.formats},
 	})
 	if err != nil {
 		return nil, err

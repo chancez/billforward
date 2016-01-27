@@ -25,7 +25,7 @@ for the set metadata for rate plan operation typically these are written to a ht
 type SetMetadataForRatePlanParams struct {
 
 	/*Metadata*/
-	Metadata models.DynamicMetadata
+	Metadata *models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -36,7 +36,7 @@ type SetMetadataForRatePlanParams struct {
 }
 
 // WithMetadata adds the metadata to the set metadata for rate plan params
-func (o *SetMetadataForRatePlanParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForRatePlanParams {
+func (o *SetMetadataForRatePlanParams) WithMetadata(metadata *models.DynamicMetadata) *SetMetadataForRatePlanParams {
 	o.Metadata = metadata
 	return o
 }

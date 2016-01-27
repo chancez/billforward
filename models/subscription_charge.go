@@ -190,7 +190,7 @@ func (m *SubscriptionCharge) validateChargeTypeEnum(path, location string, value
 
 func (m *SubscriptionCharge) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.Required("chargeType", "body", string(m.ChargeType)); err != nil {
+	if err := validate.RequiredString("chargeType", "body", string(m.ChargeType)); err != nil {
 		return err
 	}
 
@@ -221,7 +221,7 @@ func (m *SubscriptionCharge) validateInvoicingTypeEnum(path, location string, va
 
 func (m *SubscriptionCharge) validateInvoicingType(formats strfmt.Registry) error {
 
-	if err := validate.Required("invoicingType", "body", string(m.InvoicingType)); err != nil {
+	if err := validate.RequiredString("invoicingType", "body", string(m.InvoicingType)); err != nil {
 		return err
 	}
 
@@ -252,7 +252,7 @@ func (m *SubscriptionCharge) validateRemainingCreditBehaviourEnum(path, location
 
 func (m *SubscriptionCharge) validateRemainingCreditBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.Required("remainingCreditBehaviour", "body", string(m.RemainingCreditBehaviour)); err != nil {
+	if err := validate.RequiredString("remainingCreditBehaviour", "body", string(m.RemainingCreditBehaviour)); err != nil {
 		return err
 	}
 
@@ -283,7 +283,7 @@ func (m *SubscriptionCharge) validateStateEnum(path, location string, value stri
 
 func (m *SubscriptionCharge) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 
@@ -314,7 +314,7 @@ func (m *SubscriptionCharge) validateTypeEnum(path, location string, value strin
 
 func (m *SubscriptionCharge) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", string(m.Type)); err != nil {
+	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
 		return err
 	}
 

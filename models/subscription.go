@@ -100,7 +100,7 @@ type Subscription struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata DynamicMetadata `json:"metadata,omitempty"`
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
 
 	/* {"description":"User definable friendly name for the subscription.","verbs":["POST","PUT","GET"]}
 
@@ -292,7 +292,7 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 
 func (m *Subscription) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.Required("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
 		return err
 	}
 
@@ -330,7 +330,7 @@ func (m *Subscription) validateFixedTerms(formats strfmt.Registry) error {
 
 func (m *Subscription) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", string(m.ID)); err != nil {
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
 		return err
 	}
 
@@ -379,7 +379,7 @@ func (m *Subscription) validateManagedBy(formats strfmt.Registry) error {
 
 func (m *Subscription) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", string(m.Name)); err != nil {
+	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
 		return err
 	}
 
@@ -388,7 +388,7 @@ func (m *Subscription) validateName(formats strfmt.Registry) error {
 
 func (m *Subscription) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
 		return err
 	}
 
@@ -437,7 +437,7 @@ func (m *Subscription) validatePricingComponentValues(formats strfmt.Registry) e
 
 func (m *Subscription) validateProductID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productID", "body", string(m.ProductID)); err != nil {
+	if err := validate.RequiredString("productID", "body", string(m.ProductID)); err != nil {
 		return err
 	}
 
@@ -446,7 +446,7 @@ func (m *Subscription) validateProductID(formats strfmt.Registry) error {
 
 func (m *Subscription) validateProductRatePlanID(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlanID", "body", string(m.ProductRatePlanID)); err != nil {
+	if err := validate.RequiredString("productRatePlanID", "body", string(m.ProductRatePlanID)); err != nil {
 		return err
 	}
 
@@ -473,7 +473,7 @@ func (m *Subscription) validateStateEnum(path, location string, value string) er
 
 func (m *Subscription) validateState(formats strfmt.Registry) error {
 
-	if err := validate.Required("state", "body", string(m.State)); err != nil {
+	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
 		return err
 	}
 

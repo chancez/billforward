@@ -14,10 +14,12 @@ import (
 	"github.com/authclub/billforward/models"
 )
 
+// UpdateProfileReader is a Reader for the UpdateProfile structure.
 type UpdateProfileReader struct {
 	formats strfmt.Registry
 }
 
+// ReadResponse reads a server response into the recieved o.
 func (o *UpdateProfileReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
 	switch response.Code() {
 
@@ -42,7 +44,7 @@ func NewUpdateProfileOK() *UpdateProfileOK {
 	return &UpdateProfileOK{}
 }
 
-/*UpdateProfileOK
+/*UpdateProfileOK handles this case with default header values.
 
 success
 */
@@ -73,7 +75,7 @@ func NewUpdateProfileDefault(code int) *UpdateProfileDefault {
 	}
 }
 
-/*UpdateProfileDefault
+/*UpdateProfileDefault handles this case with default header values.
 
 error
 */
