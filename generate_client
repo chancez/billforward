@@ -56,7 +56,6 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M CreateSubscriptionRequest  \
     -M FixedTerm \
     -M PaymentMethodSubscriptionLink \
-    -M DurationFieldType \
     -M MutableBillingEntity \
     -M PendingComponentValueChange \
     -M ProductRatePlan \
@@ -97,9 +96,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Receipt \
     -M Payment \
     -M DunningLine \
-    -M JaxbDynamicMetadata \
     -M DynamicMetadata \
-    -M MetadataKeyValuesPagedMetadata \
     -M PaymentPagedMetadata \
     -M AuthCaptureRequest \
     -M StripeAuthCaptureRequest \
