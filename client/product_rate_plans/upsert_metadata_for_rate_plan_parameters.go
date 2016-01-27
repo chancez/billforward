@@ -8,6 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/authclub/billforward/models"
 )
 
 // NewUpsertMetadataForRatePlanParams creates a new UpsertMetadataForRatePlanParams object
@@ -23,7 +25,7 @@ for the upsert metadata for rate plan operation typically these are written to a
 type UpsertMetadataForRatePlanParams struct {
 
 	/*Metadata*/
-	Metadata string
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -34,7 +36,7 @@ type UpsertMetadataForRatePlanParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for rate plan params
-func (o *UpsertMetadataForRatePlanParams) WithMetadata(metadata string) *UpsertMetadataForRatePlanParams {
+func (o *UpsertMetadataForRatePlanParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForRatePlanParams {
 	o.Metadata = metadata
 	return o
 }

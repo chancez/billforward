@@ -8,6 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/authclub/billforward/models"
 )
 
 // NewUpsertMetadataForProductParams creates a new UpsertMetadataForProductParams object
@@ -23,7 +25,7 @@ for the upsert metadata for product operation typically these are written to a h
 type UpsertMetadataForProductParams struct {
 
 	/*Metadata*/
-	Metadata string
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -34,7 +36,7 @@ type UpsertMetadataForProductParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for product params
-func (o *UpsertMetadataForProductParams) WithMetadata(metadata string) *UpsertMetadataForProductParams {
+func (o *UpsertMetadataForProductParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForProductParams {
 	o.Metadata = metadata
 	return o
 }

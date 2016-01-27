@@ -8,6 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/authclub/billforward/models"
 )
 
 // NewSetMetadataForAccountParams creates a new SetMetadataForAccountParams object
@@ -25,7 +27,7 @@ type SetMetadataForAccountParams struct {
 	/*AccountID*/
 	AccountID string
 	/*Metadata*/
-	Metadata string
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -40,7 +42,7 @@ func (o *SetMetadataForAccountParams) WithAccountID(accountId string) *SetMetada
 }
 
 // WithMetadata adds the metadata to the set metadata for account params
-func (o *SetMetadataForAccountParams) WithMetadata(metadata string) *SetMetadataForAccountParams {
+func (o *SetMetadataForAccountParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForAccountParams {
 	o.Metadata = metadata
 	return o
 }

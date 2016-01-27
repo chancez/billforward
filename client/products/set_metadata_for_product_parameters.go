@@ -8,6 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/authclub/billforward/models"
 )
 
 // NewSetMetadataForProductParams creates a new SetMetadataForProductParams object
@@ -23,7 +25,7 @@ for the set metadata for product operation typically these are written to a http
 type SetMetadataForProductParams struct {
 
 	/*Metadata*/
-	Metadata string
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -34,7 +36,7 @@ type SetMetadataForProductParams struct {
 }
 
 // WithMetadata adds the metadata to the set metadata for product params
-func (o *SetMetadataForProductParams) WithMetadata(metadata string) *SetMetadataForProductParams {
+func (o *SetMetadataForProductParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForProductParams {
 	o.Metadata = metadata
 	return o
 }

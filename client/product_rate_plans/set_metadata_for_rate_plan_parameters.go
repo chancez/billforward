@@ -8,6 +8,8 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/authclub/billforward/models"
 )
 
 // NewSetMetadataForRatePlanParams creates a new SetMetadataForRatePlanParams object
@@ -23,7 +25,7 @@ for the set metadata for rate plan operation typically these are written to a ht
 type SetMetadataForRatePlanParams struct {
 
 	/*Metadata*/
-	Metadata string
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -34,7 +36,7 @@ type SetMetadataForRatePlanParams struct {
 }
 
 // WithMetadata adds the metadata to the set metadata for rate plan params
-func (o *SetMetadataForRatePlanParams) WithMetadata(metadata string) *SetMetadataForRatePlanParams {
+func (o *SetMetadataForRatePlanParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForRatePlanParams {
 	o.Metadata = metadata
 	return o
 }
