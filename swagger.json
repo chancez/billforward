@@ -43503,6 +43503,9 @@
         "aggregatingSubscriptionID": {
           "type": "string",
           "description": "{ \"description\" : \"The consistent ID of the account level aggregating subscription, if one exists.\", \"verbs\":[] }"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DynamicMetadata"
         }
       },
       "description": "CreateAccountRequest"

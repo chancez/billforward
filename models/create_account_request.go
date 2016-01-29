@@ -19,6 +19,10 @@ type CreateAccountRequest struct {
 	 */
 	AggregatingSubscriptionID *string `json:"aggregatingSubscriptionID,omitempty"`
 
+	/* Metadata metadata
+	 */
+	Metadata *DynamicMetadata `json:"metadata,omitempty"`
+
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 	 */
 	OrganizationID *string `json:"organizationID,omitempty"`
