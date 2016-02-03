@@ -128,6 +128,32 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 }
 
 /*
+CreateSubscriptionV2 creates a subscription v2
+
+{"nickname":"Create a subscription (V2)","response":"createSubscriptionViaHelper.html","request":"createSubscriptionViaHelper.request.html"}
+*/
+func (a *Client) CreateSubscriptionV2(params *CreateSubscriptionV2Params) (*CreateSubscriptionV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSubscriptionV2Params()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "createSubscriptionV2",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/create",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateSubscriptionV2Reader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*CreateSubscriptionV2OK), nil
+}
+
+/*
 DeleteMetadataForSubscription removes any associated metadata
 
 {"nickname":"Clear from subscription","request" :"deleteSubscriptionMetadataRequest.html","response":"deleteSubscriptionMetadataResponse.html"}

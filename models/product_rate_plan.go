@@ -86,7 +86,7 @@ type ProductRatePlan struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata *DynamicMetadata `json:"metadata,omitempty"`
+	Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 	/* {"default":"CreditAccount","description":"The action that should be taken, should the pro-rata calculation result in a negative value.<br><span class=\"label label-default\">NoCharge</span> &mdash; Don't return to the customer any money.<br><span class=\"label label-default\">CreditAccount</span> &mdash; Credit the customer's account with the amount.","verbs":["POST","PUT","GET"]}
 
@@ -682,7 +682,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		Metadata *DynamicMetadata `json:"metadata,omitempty"`
+		Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 
@@ -806,7 +806,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
-		Metadata *DynamicMetadata `json:"metadata,omitempty"`
+		Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
 

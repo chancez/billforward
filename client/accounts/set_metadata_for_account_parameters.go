@@ -27,7 +27,7 @@ type SetMetadataForAccountParams struct {
 	/*AccountID*/
 	AccountID string
 	/*Metadata*/
-	Metadata *models.DynamicMetadata
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -42,7 +42,7 @@ func (o *SetMetadataForAccountParams) WithAccountID(accountId string) *SetMetada
 }
 
 // WithMetadata adds the metadata to the set metadata for account params
-func (o *SetMetadataForAccountParams) WithMetadata(metadata *models.DynamicMetadata) *SetMetadataForAccountParams {
+func (o *SetMetadataForAccountParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForAccountParams {
 	o.Metadata = metadata
 	return o
 }

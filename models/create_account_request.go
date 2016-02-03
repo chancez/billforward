@@ -21,7 +21,7 @@ type CreateAccountRequest struct {
 
 	/* Metadata metadata
 	 */
-	Metadata *DynamicMetadata `json:"metadata,omitempty"`
+	Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 	 */

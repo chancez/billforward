@@ -48,7 +48,7 @@ type Account struct {
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
-	Metadata *DynamicMetadata `json:"metadata,omitempty"`
+	Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 

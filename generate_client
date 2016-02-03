@@ -40,6 +40,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O createAccount \
     -O getAccountByID \
     -O createSubscription \
+    -O createSubscriptionV2 \
     -O getSubscriptionByAccountID \
     -O createAggregatingSubscription \
     -O batchCreateSubscriptions  \

@@ -25,7 +25,7 @@ for the upsert metadata for rate plan operation typically these are written to a
 type UpsertMetadataForRatePlanParams struct {
 
 	/*Metadata*/
-	Metadata *models.DynamicMetadata
+	Metadata models.DynamicMetadata
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -36,7 +36,7 @@ type UpsertMetadataForRatePlanParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for rate plan params
-func (o *UpsertMetadataForRatePlanParams) WithMetadata(metadata *models.DynamicMetadata) *UpsertMetadataForRatePlanParams {
+func (o *UpsertMetadataForRatePlanParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForRatePlanParams {
 	o.Metadata = metadata
 	return o
 }
