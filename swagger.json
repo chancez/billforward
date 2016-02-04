@@ -32500,11 +32500,6 @@
         "productRatePlan"
       ],
       "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
         "accountID": {
           "type": "string",
           "description": "{\"description\":\"ID of the BillForward Account who will own this subscription. You should ensure beforehand that the customer has had a BillForward Account created for them.\",\"verbs\":[\"POST\"]}"
@@ -32532,11 +32527,13 @@
         "start": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{\"default\":\"(ServerNow upon receiving request)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.\",\"verbs\":[\"POST\"]}"
         },
         "end": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{\"default\":\"(1 period ahead of the `start` time)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should finish its first service period.\",\"verbs\":[\"POST\"]}"
         },
         "state": {
@@ -32555,6 +32552,7 @@
         "trialEnd": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{\"default\":\"(null)\",\"description\":\"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should leave the trial period.\",\"verbs\":[\"POST\"]}"
         },
         "type": {
