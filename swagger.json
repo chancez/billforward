@@ -39380,19 +39380,6 @@
     "AddPaymentMethodRequest": {
       "type": "object",
       "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
-        "changedBy": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-        },
-        "organizationID": {
-          "type": "string",
-          "description": "{ \"description\" : \"\", \"verbs\":[] }"
-        },
         "id": {
           "type": "string",
           "description": "{ \"description\" : \"ID of the payment method to add\", \"verbs\":[\"POST\",\"GET\"] }"
