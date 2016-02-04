@@ -336,6 +336,32 @@ func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionPa
 }
 
 /*
+UpdateSubscriptionV2 updates a subscription v2
+
+{"nickname":"Update subscription (V2)","response":"updateSubscriptionViaHelper.html","request":"updateSubscriptionViaHelper.request.html"}
+*/
+func (a *Client) UpdateSubscriptionV2(params *UpdateSubscriptionV2Params) (*UpdateSubscriptionV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSubscriptionV2Params()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "updateSubscriptionV2",
+		Method:             "PUT",
+		PathPattern:        "/subscriptions/update",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateSubscriptionV2Reader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateSubscriptionV2OK), nil
+}
+
+/*
 UpsertMetadataForSubscription updates any existing metadata key values and insert any new key values no keys will be removed
 
 {"nickname":"Upsert on subscription","request":"upsertSubscriptionMetadataRequest.html","response":"upsertSubscriptionMetadataResponse.html"}
