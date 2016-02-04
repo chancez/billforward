@@ -24,6 +24,58 @@ type Client struct {
 }
 
 /*
+AddPaymentMethodToSubscription enables the payment method to pay invoices of this subscription
+
+{"nickname":"Add payment-method to subscription","response":"addPaymentMethod.html","request":"addPaymentMethod.request.html"}
+*/
+func (a *Client) AddPaymentMethodToSubscription(params *AddPaymentMethodToSubscriptionParams) (*AddPaymentMethodToSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddPaymentMethodToSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "addPaymentMethodToSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddPaymentMethodToSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddPaymentMethodToSubscriptionOK), nil
+}
+
+/*
+AvailablePaymentMethodsForSubscription returns all available payment methods for the specified subscription by default 10 values are returned records are returned in natural order
+
+{ "nickname" : "List on subscription","response" : "getAvailablePaymentMethods.html"}
+*/
+func (a *Client) AvailablePaymentMethodsForSubscription(params *AvailablePaymentMethodsForSubscriptionParams) (*AvailablePaymentMethodsForSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAvailablePaymentMethodsForSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "availablePaymentMethodsForSubscription",
+		Method:             "GET",
+		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AvailablePaymentMethodsForSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AvailablePaymentMethodsForSubscriptionOK), nil
+}
+
+/*
 BatchCreateSubscriptions creates multiple subscriptions
 
 {"nickname":"Create multiple subscriptions","response":"createMultipleSubscriptionViaHelper.html","request":"createMultipleSubscriptionViaHelper.request.html"}
@@ -229,6 +281,32 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 		return nil, err
 	}
 	return result.(*GetSubscriptionByAccountIDOK), nil
+}
+
+/*
+RemovePaymentMethodFromSubscription removes the specified payment method for the given subscription
+
+{"nickname":"Remove payment-method","response":"removePaymentMethod.html","request":"removePaymentMethod.request.html"}
+*/
+func (a *Client) RemovePaymentMethodFromSubscription(params *RemovePaymentMethodFromSubscriptionParams) (*RemovePaymentMethodFromSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRemovePaymentMethodFromSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "removePaymentMethodFromSubscription",
+		Method:             "DELETE",
+		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods/{payment-method-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RemovePaymentMethodFromSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*RemovePaymentMethodFromSubscriptionOK), nil
 }
 
 /*

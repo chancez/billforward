@@ -24,6 +24,58 @@ type Client struct {
 }
 
 /*
+DeletePaymentMethod deletes the payment method specified by the payment method ID parameter
+
+{"nickname":"Delete payment method","response":"deletePaymentMethod.html"}
+*/
+func (a *Client) DeletePaymentMethod(params *DeletePaymentMethodParams) (*DeletePaymentMethodOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePaymentMethodParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "deletePaymentMethod",
+		Method:             "DELETE",
+		PathPattern:        "/payment-methods/{payment-method-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePaymentMethodReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeletePaymentMethodOK), nil
+}
+
+/*
+GetAllPaymentMethods returns a collection of all payment methods by default 10 values are returned records are returned in natural order
+
+{"nickname":"Get all payment methods","response":"getPaymentMethodAll.html"}
+*/
+func (a *Client) GetAllPaymentMethods(params *GetAllPaymentMethodsParams) (*GetAllPaymentMethodsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllPaymentMethodsParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getAllPaymentMethods",
+		Method:             "GET",
+		PathPattern:        "/payment-methods",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllPaymentMethodsReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAllPaymentMethodsOK), nil
+}
+
+/*
 GetPaymentMethodByAccountID returns a collection of payment methods specified by the account ID parameter by default 10 values are returned records are returned in natural order
 
 {"nickname":"Retrieve by account","response":"getPaymentMethodByAccount.html"}
@@ -47,6 +99,32 @@ func (a *Client) GetPaymentMethodByAccountID(params *GetPaymentMethodByAccountID
 		return nil, err
 	}
 	return result.(*GetPaymentMethodByAccountIDOK), nil
+}
+
+/*
+GetPaymentMethodByID returns a single payment method specified by the payment method ID parameter
+
+{"nickname":"Get existing payment method","response":"getPaymentMethodByID.html"}
+*/
+func (a *Client) GetPaymentMethodByID(params *GetPaymentMethodByIDParams) (*GetPaymentMethodByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentMethodByIDParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getPaymentMethodByID",
+		Method:             "GET",
+		PathPattern:        "/payment-methods/{payment-method-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentMethodByIDReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetPaymentMethodByIDOK), nil
 }
 
 // SetTransport changes the transport on the client
