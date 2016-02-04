@@ -102,6 +102,32 @@ func (a *Client) GetMetadataForProduct(params *GetMetadataForProductParams) (*Ge
 }
 
 /*
+GetProductByID returns a single product specified by the product ID parameter
+
+{"nickname":"Retrieve an existing product","response":"getProductByID.html"}
+*/
+func (a *Client) GetProductByID(params *GetProductByIDParams) (*GetProductByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProductByIDParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getProductByID",
+		Method:             "GET",
+		PathPattern:        "/products/{product-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetProductByIDReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetProductByIDOK), nil
+}
+
+/*
 SetMetadataForProduct removes any existing metadata keys and create the provided data
 
 {"nickname":"Set metadata on product","request":"setProductMetadataRequest.html","response":"setProductMetadataResponse.html"}
