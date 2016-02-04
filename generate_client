@@ -1,6 +1,12 @@
 #!/bin/bash
 
 swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O getAllPaymentMethods \
+    -O removePaymentMethodFromSubscription \
+    -O addPaymentMethodToSubscription \
+    -O availablePaymentMethodsForSubscription \
+    -O deletePaymentMethod \
+    -O getPaymentMethodByID \
     -O getPaymentMethodByAccountID \
     -O authCapture \
     -O getAllPayments \
@@ -102,4 +108,5 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M AuthCaptureRequest \
     -M StripeAuthCaptureRequest \
     -M BraintreeAuthCaptureRequest \
+    -M AddPaymentMethodRequest \
     -M Notification
