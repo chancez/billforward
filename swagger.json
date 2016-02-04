@@ -35028,18 +35028,9 @@
         "subscriptionID"
       ],
       "properties": {
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
         "subscriptionID": {
           "type": "string",
           "description": "{\"description\":\"ID of the Subscription you wish to update.\",\"verbs\":[\"POST\"]}"
-        },
-        "organizationID": {
-          "type": "string",
-          "description": "{\"default\":\"(Auto-populated using your authentication credentials)\",\"description\":\"ID of the BillForward Organization within which the requested Subscription should be updated. If omitted, this will be auto-populated using your authentication credentials.\",\"verbs\":[\"POST\"]}"
         },
         "name": {
           "type": "string",
@@ -35052,11 +35043,13 @@
         "start": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{\"description\":\"[Can only be changed if subscription is still in Provisioned state] ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.\",\"verbs\":[\"POST\"]}"
         },
         "end": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{\"description\":\"[Can only be changed if subscription is still in Provisioned state] ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should finish its first service period.\",\"verbs\":[\"POST\"]}"
         },
         "state": {
