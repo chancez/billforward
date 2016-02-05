@@ -1,6 +1,7 @@
 #!/bin/bash
 
 swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O getSubscriptionByID \
     -O updateSubscriptionV2 \
     -O getAllPaymentMethods \
     -O removePaymentMethodFromSubscription \
