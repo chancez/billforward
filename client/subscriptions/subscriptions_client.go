@@ -284,6 +284,32 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 }
 
 /*
+GetSubscriptionByID retrieves a single subscription specified by the ID parameter
+
+{"nickname":"Retrieve an existing subscription","response":"getSubscriptionByID.html"}
+*/
+func (a *Client) GetSubscriptionByID(params *GetSubscriptionByIDParams) (*GetSubscriptionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSubscriptionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getSubscriptionByID",
+		Method:             "GET",
+		PathPattern:        "/subscriptions/{subscription-ID}",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSubscriptionByIDReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetSubscriptionByIDOK), nil
+}
+
+/*
 RemovePaymentMethodFromSubscription removes the specified payment method for the given subscription
 
 {"nickname":"Remove payment-method","response":"removePaymentMethod.html","request":"removePaymentMethod.request.html"}
