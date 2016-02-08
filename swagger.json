@@ -32581,11 +32581,34 @@
           "type": "array",
           "description": "{\"default\":\"(empty list)\",\"description\":\"Quantities that this subscription possesses (upon beginning service), of pricing components upon the subscription's rate plan. For example: you can set the subscription to begin its service with '5 widgets' consumed. Otherwise the 'default quantity' will be observed instead, for each pricing component upon the rate plan.\",\"verbs\":[\"POST\"]}",
           "items": {
-            "$ref": "#/definitions/BillingEntityBase"
+            "$ref": "#/definitions/PricingComponentQuantityRequest"
           }
+        },
+        "metadata": {
+          "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
+          "$ref": "#/definitions/DynamicMetadata"
         }
       },
       "description": "Entity for requesting that a subscription be created."
+    },
+    "PricingComponentQuantityRequest": {
+      "type": "object",
+      "required": [
+          "pricingComponent",
+          "quantity"
+      ],
+      "properties": {
+        "pricingComponent": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "percentageDiscount": {
+          "type": "number",
+          "description": "{ \"description\" : \"Percentage to be discounted\", \"verbs\":[\"POST\",\"GET\"] }"
+        }
+      }
     },
     "FixedTermPagedMetadata": {
       "type": "object",
