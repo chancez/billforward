@@ -40,6 +40,10 @@ type CreateSubscriptionRequest struct {
 	 */
 	End *strfmt.DateTime `json:"end,omitempty"`
 
+	/* { "description" : "Add metadata.", "verbs":["POST"] }
+	 */
+	Metadata DynamicMetadata `json:"metadata,omitempty"`
+
 	/* {"default":"(Subscription will be named after the rate plan to which the subscription subscribes)","description":"Name of the created subscription. This is primarily for your benefit &mdash; for example, to enable you to identify subscriptions at a glance in the BillForward web interface (e.g. 'Customer 1425, guy@mail.com, Premium membership').","verbs":["POST"]}
 	 */
 	Name *string `json:"name,omitempty"`
@@ -54,7 +58,7 @@ type CreateSubscriptionRequest struct {
 
 	/* {"default":"(empty list)","description":"Quantities that this subscription possesses (upon beginning service), of pricing components upon the subscription's rate plan. For example: you can set the subscription to begin its service with '5 widgets' consumed. Otherwise the 'default quantity' will be observed instead, for each pricing component upon the rate plan.","verbs":["POST"]}
 	 */
-	PricingComponentQuantities []*BillingEntityBase `json:"pricingComponentQuantities,omitempty"`
+	PricingComponentQuantities []*PricingComponentQuantityRequest `json:"pricingComponentQuantities,omitempty"`
 
 	/* {"description":"Name or ID of the product.","verbs":["POST"]}
 
