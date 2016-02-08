@@ -63,6 +63,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M Address \
     -M SubscriptionPagedMetadata \
     -M Subscription \
+    -M PricingComponentQuantityRequest \
     -M CreateSubscriptionRequest  \
     -M FixedTerm \
     -M PaymentMethodSubscriptionLink \
