@@ -762,6 +762,12 @@
             "required": true,
             "type": "string"
           },
+	  {
+            "name": "delete_gateway_data",
+            "in": "query",
+            "required": true,
+            "type": "bool"
+	  },
           {
             "name": "organizations",
             "in": "query",
