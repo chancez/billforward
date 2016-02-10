@@ -22548,7 +22548,7 @@
             "description": "The cancellation request",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/MutableBillingEntity"
+              "$ref": "#/definitions/CancelSubscriptionRequest"
             }
           }
         ],
@@ -43710,6 +43710,53 @@
         }
       },
       "description": "UpdateProfileRequest"
+    },
+    "CancelSubscriptionRequest": {
+      "type": "object",
+      "required": [
+        "subscriptionID",
+        "source"
+      ],
+      "properties": {
+        "subscriptionID": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "serviceEnd": {
+          "type": "string",
+          "enum": [
+            "Immediate",
+            "AtPeriodEnd"
+          ]
+        },
+        "serviceEnd": {
+          "type": "string",
+          "enum": [
+            "Immediate",
+            "AtPeriodEnd"
+          ]
+        },
+        "cancellationCredit": {
+          "type": "string",
+          "description": "Specifies whether the service will end immediately on cancellation or if it will continue until the end of the current period. Default: AtPeriodEnd",
+          "enum": [
+            "Credit",
+            "None"
+          ]
+        },
+        "cancelChildren": {
+          "type": "boolean"
+        },
+        "cancelEmptyParent": {
+          "type": "boolean"
+        }
+      },
+      "description": "CancelSubscriptionRequest"
     }
   }
 }
