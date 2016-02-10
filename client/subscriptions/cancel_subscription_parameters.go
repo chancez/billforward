@@ -29,7 +29,7 @@ type CancelSubscriptionParams struct {
 	  The cancellation request
 
 	*/
-	SubscriptionCancellation *models.MutableBillingEntity
+	SubscriptionCancellation *models.CancelSubscriptionRequest
 }
 
 // WithSubscriptionID adds the subscriptionId to the cancel subscription params
@@ -39,7 +39,7 @@ func (o *CancelSubscriptionParams) WithSubscriptionID(subscriptionId string) *Ca
 }
 
 // WithSubscriptionCancellation adds the subscriptionCancellation to the cancel subscription params
-func (o *CancelSubscriptionParams) WithSubscriptionCancellation(subscriptionCancellation *models.MutableBillingEntity) *CancelSubscriptionParams {
+func (o *CancelSubscriptionParams) WithSubscriptionCancellation(subscriptionCancellation *models.CancelSubscriptionRequest) *CancelSubscriptionParams {
 	o.SubscriptionCancellation = subscriptionCancellation
 	return o
 }
@@ -55,7 +55,7 @@ func (o *CancelSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.R
 	}
 
 	if o.SubscriptionCancellation == nil {
-		o.SubscriptionCancellation = new(models.MutableBillingEntity)
+		o.SubscriptionCancellation = new(models.CancelSubscriptionRequest)
 	}
 
 	if err := r.SetBodyParam(o.SubscriptionCancellation); err != nil {
