@@ -24,6 +24,8 @@ type DeleteAccountParams struct {
 
 	/*AccountID*/
 	AccountID string
+	/*DeleteGatewayData*/
+	DeleteGatewayData bool
 	/*Organizations
 	  A list of organization-IDs used to restrict the scope of API calls.
 
@@ -34,6 +36,12 @@ type DeleteAccountParams struct {
 // WithAccountID adds the accountId to the delete account params
 func (o *DeleteAccountParams) WithAccountID(accountId string) *DeleteAccountParams {
 	o.AccountID = accountId
+	return o
+}
+
+// WithDeleteGatewayData adds the deleteGatewayData to the delete account params
+func (o *DeleteAccountParams) WithDeleteGatewayData(deleteGatewayData bool) *DeleteAccountParams {
+	o.DeleteGatewayData = deleteGatewayData
 	return o
 }
 
@@ -51,6 +59,15 @@ func (o *DeleteAccountParams) WriteToRequest(r client.Request, reg strfmt.Regist
 	// path param account-ID
 	if err := r.SetPathParam("account-ID", o.AccountID); err != nil {
 		return err
+	}
+
+	// query param delete_gateway_data
+	qrDeleteGatewayData := o.DeleteGatewayData
+	qDeleteGatewayData := swag.FormatBool(qrDeleteGatewayData)
+	if qDeleteGatewayData != "" {
+		if err := r.SetQueryParam("delete_gateway_data", qDeleteGatewayData); err != nil {
+			return err
+		}
 	}
 
 	valuesOrganizations := o.Organizations
