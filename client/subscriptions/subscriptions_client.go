@@ -336,6 +336,32 @@ func (a *Client) RemovePaymentMethodFromSubscription(params *RemovePaymentMethod
 }
 
 /*
+ReviveSubscription revives a cancelled subscription and returns it to its previous state
+
+{"nickname":"Revive subscription","request":"reviveSubscriptionRequest.html", "response":"reviveSubscription.html"}
+*/
+func (a *Client) ReviveSubscription(params *ReviveSubscriptionParams) (*ReviveSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewReviveSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "reviveSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/{subscription-ID}/revive",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ReviveSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ReviveSubscriptionOK), nil
+}
+
+/*
 SetMetadataForSubscription removes any existing metadata keys and create the provided data
 
 {"nickname":"Set on subscription","request":"setSubscriptionMetadataRequest.html","response":"setSubscriptionMetadataResponse.html"}

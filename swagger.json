@@ -23950,7 +23950,7 @@
             "description": "The revive request",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BillingEntityBase"
+              "$ref": "#/definitions/ReviveSubscriptionRequest"
             }
           }
         ],
@@ -43757,6 +43757,18 @@
         }
       },
       "description": "CancelSubscriptionRequest"
+    },
+    "ReviveSubscriptionRequest": {
+      "type": "object",
+      "required": [
+        "subscriptionID"
+      ],
+      "properties": {
+        "subscriptionID": {
+          "type": "string"
+        }
+      },
+      "description": "ReviveSubscriptionRequest"
     }
   }
 }
