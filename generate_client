@@ -53,6 +53,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O getSubscriptionByAccountID \
     -O createAggregatingSubscription \
     -O batchCreateSubscriptions  \
+    -O reviveSubscription \
     -M BFError \
     -M AccountPagedMetadata \
     -M Account \
@@ -115,4 +116,5 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -M AddPaymentMethodRequest \
     -M UpdateSubscriptionRequest \
     -M CancelSubscriptionRequest \
-    -M Notification
+    -M Notification \
+    -M ReviveSubscriptionRequest
