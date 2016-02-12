@@ -29,7 +29,7 @@ type CreateAccountRequest struct {
 
 	/* Profile profile
 	 */
-	Profile *Profile `json:"profile,omitempty"`
+	Profile *CreateAccountProfileRequest `json:"profile,omitempty"`
 
 	/* { "description" : "User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.", "verbs":[] }
 	 */
