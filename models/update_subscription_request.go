@@ -30,6 +30,12 @@ type UpdateSubscriptionRequest struct {
 	 */
 	End *strfmt.DateTime `json:"end,omitempty"`
 
+	/* {"description":"ID of the Subscription you wish to update.","verbs":["POST"]}
+
+	Required: true
+	*/
+	ID string `json:"id,omitempty"`
+
 	/* {"description":"New name to assign to the updated subscription. This is primarily for your benefit &mdash; for example, to enable you to identify subscriptions at a glance in the BillForward web interface (e.g. 'Customer 1425, guy@mail.com, Premium membership').","verbs":["POST"]}
 	 */
 	Name *string `json:"name,omitempty"`
@@ -45,24 +51,18 @@ type UpdateSubscriptionRequest struct {
 	/* {"description":"[Can only be changed if subscription is still in Provisioned state] The state into which you wish to move the updated subscription.<br><span class=\"label label-default\">AwaitingPayment</span> &mdash; The subscription is activated. After `start` time is surpassed, it will begin service and raise its first invoice.","verbs":["POST"]}
 	 */
 	State *string `json:"state,omitempty"`
-
-	/* {"description":"ID of the Subscription you wish to update.","verbs":["POST"]}
-
-	Required: true
-	*/
-	SubscriptionID string `json:"subscriptionID,omitempty"`
 }
 
 // Validate validates this update subscription request
 func (m *UpdateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateState(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
-	if err := m.validateSubscriptionID(formats); err != nil {
+	if err := m.validateState(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -70,6 +70,15 @@ func (m *UpdateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *UpdateSubscriptionRequest) validateID(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -98,15 +107,6 @@ func (m *UpdateSubscriptionRequest) validateState(formats strfmt.Registry) error
 	}
 
 	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateSubscriptionRequest) validateSubscriptionID(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
 		return err
 	}
 

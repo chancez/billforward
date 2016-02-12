@@ -35054,10 +35054,10 @@
     "UpdateSubscriptionRequest": {
       "type": "object",
       "required": [
-        "subscriptionID"
+        "id"
       ],
       "properties": {
-        "subscriptionID": {
+        "id": {
           "type": "string",
           "description": "{\"description\":\"ID of the Subscription you wish to update.\",\"verbs\":[\"POST\"]}"
         },
