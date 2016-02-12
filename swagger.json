@@ -43772,12 +43772,7 @@
     },
     "CreateAccountProfileRequest": {
       "type": "object",
-      "required": [
-        "accountID",
-        "email",
-        "firstName",
-        "lastName"
-      ],
+      "required": [],
       "properties": {
         "accountID": {
           "type": "string",
