@@ -43493,7 +43493,7 @@
       "type": "object",
       "properties": {
         "profile": {
-          "$ref": "#/definitions/Profile"
+          "$ref": "#/definitions/CreateAccountProfileRequest"
         },
         "organizationID": {
           "type": "string",
@@ -43769,6 +43769,122 @@
         }
       },
       "description": "ReviveSubscriptionRequest"
+    },
+    "CreateAccountProfileRequest": {
+      "type": "object",
+      "required": [
+        "accountID",
+        "email",
+        "firstName",
+        "lastName"
+      ],
+      "properties": {
+        "accountID": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"GET\"] }"
+        },
+        "email": {
+          "type": "string",
+          "description": "{ \"description\" : \"E-mail address\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "logoURL": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addresses": {
+          "type": "array",
+          "description": "{ \"description\" : \"Address associated with the profile\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "items": {
+            "$ref": "#/definitions/CreateProfileAddressRequest"
+          }
+        },
+        "mobile": {
+          "type": "string",
+          "description": "{ \"description\" : \"Mobile telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Home telephone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "fax": {
+          "type": "string",
+          "description": "{ \"description\" : \"Fax number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "vatNumber": {
+          "type": "string",
+          "description": "{ \"description\" : \"VAT number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "additionalInformation": {
+          "type": "string",
+          "description": "{ \"description\" : \"Any additional information\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        }
+      }
+    },
+    "CreateProfileAddressRequest": {
+      "type": "object",
+      "required": [
+        "addressLine1",
+        "city",
+        "country",
+        "postcode",
+        "province"
+      ],
+      "properties": {
+        "addressLine1": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "city": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "province": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "country": {
+          "type": "string",
+          "description": "{ \"description\" : \"\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "{ \"description\" : \"ZIP code or postcode.\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "landline": {
+          "type": "string",
+          "description": "{ \"description\" : \"Phone number\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
+        },
+        "primaryAddress": {
+          "type": "boolean",
+          "description": "{ \"description\" : \"Is this the primary, default, address for the associated profile?\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }",
+          "default": false
+        }
+      }
     }
   }
 }
