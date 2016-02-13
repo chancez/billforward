@@ -33,7 +33,7 @@ type CreateAccountProfileRequest struct {
 
 	/* { "description" : "Date of birth in YYYY-MM-DD format", "verbs":["POST","PUT","GET"] }
 	 */
-	Dob strfmt.DateTime `json:"dob,omitempty"`
+	Dob *strfmt.DateTime `json:"dob,omitempty"`
 
 	/* { "description" : "E-mail address", "verbs":["POST","PUT","GET"] }
 	 */
