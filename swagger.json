@@ -43820,6 +43820,7 @@
         "dob": {
           "type": "string",
           "format": "date-time",
+          "x-isnullable": true,
           "description": "{ \"description\" : \"Date of birth in YYYY-MM-DD format\", \"verbs\":[\"POST\",\"PUT\",\"GET\"] }"
         },
         "vatNumber": {
