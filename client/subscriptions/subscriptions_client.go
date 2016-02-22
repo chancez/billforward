@@ -232,6 +232,32 @@ func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscrip
 }
 
 /*
+GetAllSubscriptions retrieves a collection of all subscriptions by default 10 values are returned records are returned in natural order
+
+{"nickname":"Retrieve all subscriptions","response":"getSubscriptionAll.html"}
+*/
+func (a *Client) GetAllSubscriptions(params *GetAllSubscriptionsParams) (*GetAllSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllSubscriptionsParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "getAllSubscriptions",
+		Method:             "GET",
+		PathPattern:        "/subscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllSubscriptionsReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAllSubscriptionsOK), nil
+}
+
+/*
 GetMetadataForSubscription retrieves any associated metadata
 
 {"nickname":"Retrieve on subscription","request":"getSubscriptionMetadataRequest.html","response":"getSubscriptionMetadataResponse.html"}
