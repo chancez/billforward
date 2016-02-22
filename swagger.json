@@ -21060,6 +21060,23 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "exclude_service_ended",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "accountID",
+            "in": "query",
+            "description": "A list of accountIDs to filter subscriptions on",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           }
         ],
         "responses": {
