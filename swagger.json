@@ -12262,6 +12262,12 @@
             "required": false,
             "type": "boolean",
             "default": true
+          },
+          {
+            "name": "include_footer",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "responses": {

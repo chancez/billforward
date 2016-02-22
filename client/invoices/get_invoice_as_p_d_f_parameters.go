@@ -39,6 +39,8 @@ type GetInvoiceAsPDFParams struct {
 
 	*/
 	ID string
+	/*IncludeFooter*/
+	IncludeFooter *bool
 	/*IncludeRetired
 	  Whether retired products should be returned.
 
@@ -94,6 +96,12 @@ type GetInvoiceAsPDFParams struct {
 // WithID adds the id to the get invoice as p d f params
 func (o *GetInvoiceAsPDFParams) WithID(id string) *GetInvoiceAsPDFParams {
 	o.ID = id
+	return o
+}
+
+// WithIncludeFooter adds the includeFooter to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithIncludeFooter(includeFooter *bool) *GetInvoiceAsPDFParams {
+	o.IncludeFooter = includeFooter
 	return o
 }
 
@@ -165,6 +173,22 @@ func (o *GetInvoiceAsPDFParams) WriteToRequest(r client.Request, reg strfmt.Regi
 	// path param ID
 	if err := r.SetPathParam("ID", o.ID); err != nil {
 		return err
+	}
+
+	if o.IncludeFooter != nil {
+
+		// query param include_footer
+		var qrIncludeFooter bool
+		if o.IncludeFooter != nil {
+			qrIncludeFooter = *o.IncludeFooter
+		}
+		qIncludeFooter := swag.FormatBool(qrIncludeFooter)
+		if qIncludeFooter != "" {
+			if err := r.SetQueryParam("include_footer", qIncludeFooter); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.IncludeRetired != nil {
