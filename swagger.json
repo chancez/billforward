@@ -32902,15 +32902,6 @@
             "StripeAuthCaptureRequest"
           ]
         },
-        "created": {
-          "type": "string",
-          "format": "date-time",
-          "description": "{ \"description\" : \"The UTC DateTime when the object was created.\", \"verbs\":[] }"
-        },
-        "changedBy": {
-          "type": "string",
-          "description": "{ \"description\" : \"ID of the user who last updated the entity.\", \"verbs\":[] }"
-        },
         "accountID": {
           "type": "string",
           "description": "{\"description\":\"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.\",\"verbs\":[\"POST\"]}"
@@ -36347,6 +36338,9 @@
             "cardID": {
               "type": "string",
               "description": "{\"description\":\"ID of the captured Card in Stripe. This can be provided as well as &mdash; or instead of &mdash; the one-use `stripeToken`, to lead BillForward to the card tokenized within the Stripe vault.\",\"verbs\":[\"POST\"]}"
+            },
+            "customerID": {
+              "type": "string"
             }
           },
           "description": "[Note: this request can be built automatically by our client-side card capture library, <a href=\"https://github.com/billforward/billforward-js\">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in Stripe. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).",

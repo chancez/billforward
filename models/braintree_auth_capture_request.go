@@ -18,11 +18,7 @@ swagger:model BraintreeAuthCaptureRequest
 type BraintreeAuthCaptureRequest struct {
 	accountIdField *string
 
-	changedByField *string
-
 	companyNameField *string
-
-	createdField strfmt.DateTime
 
 	defaultPaymentMethodField *bool
 
@@ -63,25 +59,11 @@ func (m *BraintreeAuthCaptureRequest) SetAccountID(val *string) {
 	m.accountIdField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) ChangedBy() *string {
-	return m.changedByField
-}
-func (m *BraintreeAuthCaptureRequest) SetChangedBy(val *string) {
-	m.changedByField = val
-}
-
 func (m *BraintreeAuthCaptureRequest) CompanyName() *string {
 	return m.companyNameField
 }
 func (m *BraintreeAuthCaptureRequest) SetCompanyName(val *string) {
 	m.companyNameField = val
-}
-
-func (m *BraintreeAuthCaptureRequest) Created() strfmt.DateTime {
-	return m.createdField
-}
-func (m *BraintreeAuthCaptureRequest) SetCreated(val strfmt.DateTime) {
-	m.createdField = val
 }
 
 func (m *BraintreeAuthCaptureRequest) DefaultPaymentMethod() *bool {
@@ -140,11 +122,7 @@ func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 
 		AccountID *string `json:"accountID,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
-
 		CompanyName *string `json:"companyName,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
@@ -176,9 +154,7 @@ func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	}
 
 	m.accountIdField = data.AccountID
-	m.changedByField = data.ChangedBy
 	m.companyNameField = data.CompanyName
-	m.createdField = data.Created
 	m.defaultPaymentMethodField = data.DefaultPaymentMethod
 	m.emailField = data.Email
 	m.firstNameField = data.FirstName
@@ -199,11 +175,7 @@ func (m BraintreeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 
 		AccountID *string `json:"accountID,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
-
 		CompanyName *string `json:"companyName,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
@@ -231,9 +203,7 @@ func (m BraintreeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	data.AccountID = m.accountIdField
-	data.ChangedBy = m.changedByField
 	data.CompanyName = m.companyNameField
-	data.Created = m.createdField
 	data.DefaultPaymentMethod = m.defaultPaymentMethodField
 	data.Email = m.emailField
 	data.FirstName = m.firstNameField

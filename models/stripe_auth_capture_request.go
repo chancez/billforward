@@ -18,11 +18,7 @@ swagger:model StripeAuthCaptureRequest
 type StripeAuthCaptureRequest struct {
 	accountIdField *string
 
-	changedByField *string
-
 	companyNameField *string
-
-	createdField strfmt.DateTime
 
 	defaultPaymentMethodField *bool
 
@@ -41,6 +37,10 @@ type StripeAuthCaptureRequest struct {
 	/* {"description":"ID of the captured Card in Stripe. This can be provided as well as &mdash; or instead of &mdash; the one-use `stripeToken`, to lead BillForward to the card tokenized within the Stripe vault.","verbs":["POST"]}
 	 */
 	CardID *string `json:"cardID,omitempty"`
+
+	/* CustomerID customer ID
+	 */
+	CustomerID *string `json:"customerID,omitempty"`
 
 	/* {"description":"Single-use token <a href=\"https://stripe.com/docs/stripe.js\">provided by Stripe's client-side card capture SDK</a>, in response to your capturing a card into the Stripe vault. This token will be used by BillForward to find the tokenized card within the Stripe vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card.","verbs":["POST"]}
 
@@ -63,25 +63,11 @@ func (m *StripeAuthCaptureRequest) SetAccountID(val *string) {
 	m.accountIdField = val
 }
 
-func (m *StripeAuthCaptureRequest) ChangedBy() *string {
-	return m.changedByField
-}
-func (m *StripeAuthCaptureRequest) SetChangedBy(val *string) {
-	m.changedByField = val
-}
-
 func (m *StripeAuthCaptureRequest) CompanyName() *string {
 	return m.companyNameField
 }
 func (m *StripeAuthCaptureRequest) SetCompanyName(val *string) {
 	m.companyNameField = val
-}
-
-func (m *StripeAuthCaptureRequest) Created() strfmt.DateTime {
-	return m.createdField
-}
-func (m *StripeAuthCaptureRequest) SetCreated(val strfmt.DateTime) {
-	m.createdField = val
 }
 
 func (m *StripeAuthCaptureRequest) DefaultPaymentMethod() *bool {
@@ -140,11 +126,7 @@ func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 
 		AccountID *string `json:"accountID,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
-
 		CompanyName *string `json:"companyName,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
@@ -163,6 +145,10 @@ func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 		/* {"description":"ID of the captured Card in Stripe. This can be provided as well as &mdash; or instead of &mdash; the one-use `stripeToken`, to lead BillForward to the card tokenized within the Stripe vault.","verbs":["POST"]}
 		 */
 		CardID *string `json:"cardID,omitempty"`
+
+		/* CustomerID customer ID
+		 */
+		CustomerID *string `json:"customerID,omitempty"`
 
 		/* {"description":"Single-use token <a href=\"https://stripe.com/docs/stripe.js\">provided by Stripe's client-side card capture SDK</a>, in response to your capturing a card into the Stripe vault. This token will be used by BillForward to find the tokenized card within the Stripe vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card.","verbs":["POST"]}
 
@@ -176,9 +162,7 @@ func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	}
 
 	m.accountIdField = data.AccountID
-	m.changedByField = data.ChangedBy
 	m.companyNameField = data.CompanyName
-	m.createdField = data.Created
 	m.defaultPaymentMethodField = data.DefaultPaymentMethod
 	m.emailField = data.Email
 	m.firstNameField = data.FirstName
@@ -187,6 +171,7 @@ func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	m.mobileField = data.Mobile
 	m.organizationIdField = data.OrganizationID
 	m.CardID = data.CardID
+	m.CustomerID = data.CustomerID
 	m.StripeToken = data.StripeToken
 
 	return nil
@@ -199,11 +184,7 @@ func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 
 		AccountID *string `json:"accountID,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
-
 		CompanyName *string `json:"companyName,omitempty"`
-
-		Created strfmt.DateTime `json:"created,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
@@ -223,6 +204,10 @@ func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 		 */
 		CardID *string `json:"cardID,omitempty"`
 
+		/* CustomerID customer ID
+		 */
+		CustomerID *string `json:"customerID,omitempty"`
+
 		/* {"description":"Single-use token <a href=\"https://stripe.com/docs/stripe.js\">provided by Stripe's client-side card capture SDK</a>, in response to your capturing a card into the Stripe vault. This token will be used by BillForward to find the tokenized card within the Stripe vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card.","verbs":["POST"]}
 
 		Required: true
@@ -231,9 +216,7 @@ func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	}
 
 	data.AccountID = m.accountIdField
-	data.ChangedBy = m.changedByField
 	data.CompanyName = m.companyNameField
-	data.Created = m.createdField
 	data.DefaultPaymentMethod = m.defaultPaymentMethodField
 	data.Email = m.emailField
 	data.FirstName = m.firstNameField
@@ -242,6 +225,7 @@ func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	data.Mobile = m.mobileField
 	data.OrganizationID = m.organizationIdField
 	data.CardID = m.CardID
+	data.CustomerID = m.CustomerID
 	data.StripeToken = m.StripeToken
 	data.Type = "StripeAuthCaptureRequest"
 	return json.Marshal(data)

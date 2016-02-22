@@ -11,7 +11,6 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*AuthCaptureRequest [Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
@@ -33,20 +32,10 @@ type AuthCaptureRequest interface {
 	AccountID() *string
 	SetAccountID(*string)
 
-	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
-	 */
-	ChangedBy() *string
-	SetChangedBy(*string)
-
 	/* {"description":"The name of the company of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
 	CompanyName() *string
 	SetCompanyName(*string)
-
-	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
-	 */
-	Created() strfmt.DateTime
-	SetCreated(strfmt.DateTime)
 
 	/* {"default":false,"description":"Whether the PaymentMethod produced by this request should be elected as the 'default' payment method for the concerned BillForward Account. Whichever PaymentMethod is elected as an Account's default payment method, will be consulted whenever payment is demanded of that Account (i.e. upon the execution of any of the Account's invoices).","verbs":["POST"]}
 	 */
