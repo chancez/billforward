@@ -32616,6 +32616,14 @@
         "metadata": {
           "description": "{ \"description\" : \"Add metadata.\", \"verbs\":[\"POST\"] }",
           "$ref": "#/definitions/DynamicMetadata"
+        },
+        "failedPaymentBehaviour": {
+          "type": "string",
+          "description": "{\"default\":\"None\",\"description\":\"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\\\"label label-default\\\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\\\"label label-default\\\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\\\"label label-default\\\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\\\"label label-default\\\">CancelSubscription</span> is recommended.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}",
+          "enum": [
+            "CancelSubscription",
+            "None"
+          ]
         }
       },
       "description": "Entity for requesting that a subscription be created."
@@ -35116,6 +35124,14 @@
           "type": "boolean",
           "description": "{\"description\":\"Whether this subscription should become an 'aggregating subscription', collecting charges (starting now) from all other subscriptions (current and future) belonging to this BillForward Account.\",\"verbs\":[\"POST\"]}",
           "default": false
+        },
+        "failedPaymentBehaviour": {
+          "type": "string",
+          "description": "{\"default\":\"None\",\"description\":\"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\\\"label label-default\\\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\\\"label label-default\\\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\\\"label label-default\\\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\\\"label label-default\\\">CancelSubscription</span> is recommended.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}",
+          "enum": [
+            "CancelSubscription",
+            "None"
+          ]
         }
       },
       "description": "Entity for requesting that a subscription be updated."
