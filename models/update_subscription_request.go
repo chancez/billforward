@@ -31,6 +31,10 @@ type UpdateSubscriptionRequest struct {
 	 */
 	End *strfmt.DateTime `json:"end,omitempty"`
 
+	/* {"default":"None","description":"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\"label label-default\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\"label label-default\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\"label label-default\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\"label label-default\">CancelSubscription</span> is recommended.","verbs":["POST","PUT","GET"]}
+	 */
+	FailedPaymentBehaviour *string `json:"failedPaymentBehaviour,omitempty"`
+
 	/* {"description":"ID of the Subscription you wish to update.","verbs":["POST"]}
 
 	Required: true
@@ -58,6 +62,11 @@ type UpdateSubscriptionRequest struct {
 func (m *UpdateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateFailedPaymentBehaviour(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -71,6 +80,37 @@ func (m *UpdateSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var updateSubscriptionRequestFailedPaymentBehaviourEnum []interface{}
+
+func (m *UpdateSubscriptionRequest) validateFailedPaymentBehaviourEnum(path, location string, value string) error {
+	if updateSubscriptionRequestFailedPaymentBehaviourEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["CancelSubscription","None"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			updateSubscriptionRequestFailedPaymentBehaviourEnum = append(updateSubscriptionRequestFailedPaymentBehaviourEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, updateSubscriptionRequestFailedPaymentBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UpdateSubscriptionRequest) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FailedPaymentBehaviour) { // not required
+		return nil
+	}
+
+	if err := m.validateFailedPaymentBehaviourEnum("failedPaymentBehaviour", "body", *m.FailedPaymentBehaviour); err != nil {
+		return err
+	}
+
 	return nil
 }
 
