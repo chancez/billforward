@@ -50,6 +50,32 @@ func (a *Client) AddPaymentMethodToSubscription(params *AddPaymentMethodToSubscr
 }
 
 /*
+AdvanceSubscription advances the subscription through time
+
+{"nickname":"Advance","request":"advanceSubscriptionRequest.html","response":"advanceSubscription.html"}
+*/
+func (a *Client) AdvanceSubscription(params *AdvanceSubscriptionParams) (*AdvanceSubscriptionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdvanceSubscriptionParams()
+	}
+
+	result, err := a.transport.Submit(&client.Operation{
+		ID:                 "advanceSubscription",
+		Method:             "POST",
+		PathPattern:        "/subscriptions/{subscription-ID}/advance",
+		ProducesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdvanceSubscriptionReader{formats: a.formats},
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AdvanceSubscriptionOK), nil
+}
+
+/*
 AvailablePaymentMethodsForSubscription returns all available payment methods for the specified subscription by default 10 values are returned records are returned in natural order
 
 { "nickname" : "List on subscription","response" : "getAvailablePaymentMethods.html"}
