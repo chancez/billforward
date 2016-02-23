@@ -1,6 +1,7 @@
 #!/bin/bash
 
 swagger generate client -f swagger.json -A BillForward -c client -a client \
+    -O advanceSubscription \
     -O getAllSubscriptions \
     -O getSubscriptionByID \
     -O getSubscriptionByID \
