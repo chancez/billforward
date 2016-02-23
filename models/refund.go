@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*Refund Refund
@@ -39,7 +40,7 @@ type Refund struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Refund requested by this account", "verbs":["GET"] }
 	 */
@@ -105,7 +106,7 @@ type Refund struct {
 
 	/* { "description" : "When the refund was completed", "verbs":["GET"] }
 	 */
-	RefundCompleted strfmt.DateTime `json:"refundCompleted,omitempty"`
+	RefundCompleted *strfmt.DateTime `json:"refundCompleted,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
@@ -139,7 +140,7 @@ type Refund struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "Positive decimal representing the total value to refund. This is at most the amount un-refunded on the payment. If amount is the total payment amount is refunded.", "verbs":["POST","GET"] }
 	 */

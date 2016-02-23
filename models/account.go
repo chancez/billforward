@@ -4,10 +4,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Account Account
@@ -30,7 +31,7 @@ type Account struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the account.", "verbs":["GET"] }
 	 */
@@ -66,11 +67,11 @@ type Account struct {
 
 	/* { "description" : "Number of distinct, paid subscriptions associated with this account. Initially the value will be 0 when no successful subscriptions have been taken. A subscription cancelled whilst in trial is counted as successful.", "verbs":["GET"] }
 	 */
-	SuccessfulSubscriptions int32 `json:"successfulSubscriptions,omitempty"`
+	SuccessfulSubscriptions *int32 `json:"successfulSubscriptions,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.", "verbs":[] }
 	 */

@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*Client An oAuth2 client with which BillForward users may authenticate.
@@ -49,7 +50,7 @@ type Client struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Indicates if a client has been retired. If a client has been retired it can still be retrieved using the appropriate flag on API requests.", "verbs":["POST","PUT","GET"] }
 
@@ -89,7 +90,7 @@ type Client struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this client

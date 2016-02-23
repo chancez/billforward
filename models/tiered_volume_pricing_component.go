@@ -22,7 +22,7 @@ type TieredVolumePricingComponent struct {
 
 	chargeTypeField string
 
-	createdField strfmt.DateTime
+	createdField *strfmt.DateTime
 
 	crmIdField *string
 
@@ -36,9 +36,9 @@ type TieredVolumePricingComponent struct {
 
 	invoicingTypeField *string
 
-	maxQuantityField int32
+	maxQuantityField *int32
 
-	minQuantityField int32
+	minQuantityField *int32
 
 	nameField string
 
@@ -54,21 +54,21 @@ type TieredVolumePricingComponent struct {
 
 	unitOfMeasureIdField string
 
-	updatedField strfmt.DateTime
+	updatedField *strfmt.DateTime
 
 	upgradeModeField *string
 
 	validFromField strfmt.DateTime
 
-	validTillField strfmt.DateTime
+	validTillField *strfmt.DateTime
 
 	versionIdField string
 }
 
-func (m *TieredVolumePricingComponent) Type() string {
+func (m *TieredVolumePricingComponent) AtType() string {
 	return "tieredVolumePricingComponent"
 }
-func (m *TieredVolumePricingComponent) SetType(val string) {
+func (m *TieredVolumePricingComponent) SetAtType(val string) {
 
 }
 
@@ -93,10 +93,10 @@ func (m *TieredVolumePricingComponent) SetChargeType(val string) {
 	m.chargeTypeField = val
 }
 
-func (m *TieredVolumePricingComponent) Created() strfmt.DateTime {
+func (m *TieredVolumePricingComponent) Created() *strfmt.DateTime {
 	return m.createdField
 }
-func (m *TieredVolumePricingComponent) SetCreated(val strfmt.DateTime) {
+func (m *TieredVolumePricingComponent) SetCreated(val *strfmt.DateTime) {
 	m.createdField = val
 }
 
@@ -142,17 +142,17 @@ func (m *TieredVolumePricingComponent) SetInvoicingType(val *string) {
 	m.invoicingTypeField = val
 }
 
-func (m *TieredVolumePricingComponent) MaxQuantity() int32 {
+func (m *TieredVolumePricingComponent) MaxQuantity() *int32 {
 	return m.maxQuantityField
 }
-func (m *TieredVolumePricingComponent) SetMaxQuantity(val int32) {
+func (m *TieredVolumePricingComponent) SetMaxQuantity(val *int32) {
 	m.maxQuantityField = val
 }
 
-func (m *TieredVolumePricingComponent) MinQuantity() int32 {
+func (m *TieredVolumePricingComponent) MinQuantity() *int32 {
 	return m.minQuantityField
 }
-func (m *TieredVolumePricingComponent) SetMinQuantity(val int32) {
+func (m *TieredVolumePricingComponent) SetMinQuantity(val *int32) {
 	m.minQuantityField = val
 }
 
@@ -205,10 +205,10 @@ func (m *TieredVolumePricingComponent) SetUnitOfMeasureID(val string) {
 	m.unitOfMeasureIdField = val
 }
 
-func (m *TieredVolumePricingComponent) Updated() strfmt.DateTime {
+func (m *TieredVolumePricingComponent) Updated() *strfmt.DateTime {
 	return m.updatedField
 }
-func (m *TieredVolumePricingComponent) SetUpdated(val strfmt.DateTime) {
+func (m *TieredVolumePricingComponent) SetUpdated(val *strfmt.DateTime) {
 	m.updatedField = val
 }
 
@@ -226,10 +226,10 @@ func (m *TieredVolumePricingComponent) SetValidFrom(val strfmt.DateTime) {
 	m.validFromField = val
 }
 
-func (m *TieredVolumePricingComponent) ValidTill() strfmt.DateTime {
+func (m *TieredVolumePricingComponent) ValidTill() *strfmt.DateTime {
 	return m.validTillField
 }
-func (m *TieredVolumePricingComponent) SetValidTill(val strfmt.DateTime) {
+func (m *TieredVolumePricingComponent) SetValidTill(val *strfmt.DateTime) {
 	m.validTillField = val
 }
 
@@ -243,7 +243,7 @@ func (m *TieredVolumePricingComponent) SetVersionID(val string) {
 // UnmarshalJSON unmarshals this polymorphic type from a JSON structure
 func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		ChangedBy *string `json:"changedBy,omitempty"`
 
@@ -251,7 +251,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		ChargeType string `json:"chargeType,omitempty"`
 
-		Created strfmt.DateTime `json:"created,omitempty"`
+		Created *strfmt.DateTime `json:"created,omitempty"`
 
 		CrmID *string `json:"crmID,omitempty"`
 
@@ -265,9 +265,9 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		InvoicingType *string `json:"invoicingType,omitempty"`
 
-		MaxQuantity int32 `json:"maxQuantity,omitempty"`
+		MaxQuantity *int32 `json:"maxQuantity,omitempty"`
 
-		MinQuantity int32 `json:"minQuantity,omitempty"`
+		MinQuantity *int32 `json:"minQuantity,omitempty"`
 
 		Name string `json:"name,omitempty"`
 
@@ -283,13 +283,13 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 
 		UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 
-		Updated strfmt.DateTime `json:"updated,omitempty"`
+		Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 		UpgradeMode *string `json:"upgradeMode,omitempty"`
 
 		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
 
 		VersionID string `json:"versionID,omitempty"`
 	}
@@ -329,7 +329,7 @@ func (m *TieredVolumePricingComponent) UnmarshalJSON(raw []byte) error {
 // MarshalJSON marshals this polymorphic type to a JSON structure
 func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		ChangedBy *string `json:"changedBy,omitempty"`
 
@@ -337,7 +337,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		ChargeType string `json:"chargeType,omitempty"`
 
-		Created strfmt.DateTime `json:"created,omitempty"`
+		Created *strfmt.DateTime `json:"created,omitempty"`
 
 		CrmID *string `json:"crmID,omitempty"`
 
@@ -351,9 +351,9 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		InvoicingType *string `json:"invoicingType,omitempty"`
 
-		MaxQuantity int32 `json:"maxQuantity,omitempty"`
+		MaxQuantity *int32 `json:"maxQuantity,omitempty"`
 
-		MinQuantity int32 `json:"minQuantity,omitempty"`
+		MinQuantity *int32 `json:"minQuantity,omitempty"`
 
 		Name string `json:"name,omitempty"`
 
@@ -369,13 +369,13 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 
 		UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 
-		Updated strfmt.DateTime `json:"updated,omitempty"`
+		Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 		UpgradeMode *string `json:"upgradeMode,omitempty"`
 
 		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
 
 		VersionID string `json:"versionID,omitempty"`
 	}
@@ -404,7 +404,7 @@ func (m TieredVolumePricingComponent) MarshalJSON() ([]byte, error) {
 	data.ValidFrom = m.validFromField
 	data.ValidTill = m.validTillField
 	data.VersionID = m.versionIdField
-	data.Type = "tieredVolumePricingComponent"
+	data.AtType = "tieredVolumePricingComponent"
 	return json.Marshal(data)
 }
 

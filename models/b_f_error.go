@@ -7,10 +7,11 @@ import (
 	"encoding/json"
 	"strconv"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*BFError Standard BillForward error format.
@@ -21,7 +22,7 @@ type BFError struct {
 
 	/* {"description":"Code describing the nature of the error. Currently unused; prefer `errorType`.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorCode int32 `json:"errorCode,omitempty"`
+	ErrorCode *int32 `json:"errorCode,omitempty"`
 
 	/* {"description":"Human-readable description of the reason for the error.","verbs":["GET","PUT","POST"]}
 	 */

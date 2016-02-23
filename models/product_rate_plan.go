@@ -7,11 +7,12 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-swagger/go-swagger/httpkit/validate"
 )
 
 /*ProductRatePlan A rate plan describes a pricing system under which a subscription can be made to a product.
@@ -36,7 +37,7 @@ type ProductRatePlan struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"description":"Customer-relationship-management ID of the rate plan.","verbs":["GET","PUT","POST"]}
 	 */
@@ -50,7 +51,7 @@ type ProductRatePlan struct {
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
-	Duration int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration,omitempty"`
 
 	/* {"description":"Measure describing the magnitude of the rate plan's period. If left unspecified: the rate plan will use the same `durationPeriod` magnitude as the Product to which it belongs.","verbs":["POST","GET"]}
 
@@ -78,7 +79,7 @@ type ProductRatePlan struct {
 
 	/* {"description":"Number of issue-length-measures between issuance of invoices for this rate plan.""verbs":["POST","GET"]}
 	 */
-	IssueDuration int32 `json:"issueDuration,omitempty"`
+	IssueDuration *int32 `json:"issueDuration,omitempty"`
 
 	/* {"description":"Measure describing the magnitude of the invoice issuance period.","verbs":["POST","GET"]}
 	 */
@@ -142,7 +143,7 @@ type ProductRatePlan struct {
 
 	/* {"default":0,"description":"Number of trial-length-measures which constitute the rate plan's trial period. If left unspecified: the rate plan will use the same `trial` number as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	Trial int32 `json:"trial,omitempty"`
+	Trial *int32 `json:"trial,omitempty"`
 
 	/* {"default":"none","description":"Measure describing the magnitude of the rate plan's trial period. If left unspecified: the rate plan will use the same `trialPeriod` magnitude as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
@@ -150,15 +151,15 @@ type ProductRatePlan struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* {"description":"The UTC DateTime specifying when the rate plan is valid from.","verbs":["GET"]}
 	 */
-	ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+	ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
 
 	/* {"description":"The UTC DateTime specifying when the product-rate-plan is valid till.","verbs":["GET"]}
 	 */
-	ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+	ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
 }
 
 // Validate validates this product rate plan
@@ -660,13 +661,13 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
 
-		Created strfmt.DateTime `json:"created,omitempty"`
+		Created *strfmt.DateTime `json:"created,omitempty"`
 
 		CrmID *string `json:"crmID,omitempty"`
 
 		Currency string `json:"currency,omitempty"`
 
-		Duration int32 `json:"duration,omitempty"`
+		Duration *int32 `json:"duration,omitempty"`
 
 		DurationPeriod string `json:"durationPeriod,omitempty"`
 
@@ -678,7 +679,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
 
-		IssueDuration int32 `json:"issueDuration,omitempty"`
+		IssueDuration *int32 `json:"issueDuration,omitempty"`
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
@@ -704,15 +705,15 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
 
-		Trial int32 `json:"trial,omitempty"`
+		Trial *int32 `json:"trial,omitempty"`
 
 		TrialPeriod *string `json:"trialPeriod,omitempty"`
 
-		Updated strfmt.DateTime `json:"updated,omitempty"`
+		Updated *strfmt.DateTime `json:"updated,omitempty"`
 
-		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+		ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
 	}
 
 	if err := json.Unmarshal(raw, &data); err != nil {
@@ -784,13 +785,13 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
 
-		Created strfmt.DateTime `json:"created,omitempty"`
+		Created *strfmt.DateTime `json:"created,omitempty"`
 
 		CrmID *string `json:"crmID,omitempty"`
 
 		Currency string `json:"currency,omitempty"`
 
-		Duration int32 `json:"duration,omitempty"`
+		Duration *int32 `json:"duration,omitempty"`
 
 		DurationPeriod string `json:"durationPeriod,omitempty"`
 
@@ -802,7 +803,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
 
-		IssueDuration int32 `json:"issueDuration,omitempty"`
+		IssueDuration *int32 `json:"issueDuration,omitempty"`
 
 		IssuePeriod *string `json:"issuePeriod,omitempty"`
 
@@ -828,15 +829,15 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
 
-		Trial int32 `json:"trial,omitempty"`
+		Trial *int32 `json:"trial,omitempty"`
 
 		TrialPeriod *string `json:"trialPeriod,omitempty"`
 
-		Updated strfmt.DateTime `json:"updated,omitempty"`
+		Updated *strfmt.DateTime `json:"updated,omitempty"`
 
-		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
+		ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
 	}{
 		AggregatingComponents:    m.AggregatingComponents,
 		ChangedBy:                m.ChangedBy,

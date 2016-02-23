@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*CreditNote CreditNote
@@ -29,7 +30,7 @@ type CreditNote struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
@@ -75,7 +76,7 @@ type CreditNote struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : " Monetary value of the credit-note", "verbs":["POST","GET"] }
 

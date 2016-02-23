@@ -7,10 +7,11 @@ import (
 	"encoding/json"
 	"strconv"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Receipt Receipt
@@ -53,7 +54,7 @@ type Receipt struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the subscription.", "verbs":["POST","PUT","GET"] }
 
@@ -73,7 +74,7 @@ type Receipt struct {
 
 	/* ExecutionAttempt execution attempt
 	 */
-	ExecutionAttempt int32 `json:"executionAttempt,omitempty"`
+	ExecutionAttempt *int32 `json:"executionAttempt,omitempty"`
 
 	/* GatewayReferenceID gateway reference ID
 	 */
@@ -127,7 +128,7 @@ type Receipt struct {
 
 	/* ReasonCode reason code
 	 */
-	ReasonCode int32 `json:"reasonCode,omitempty"`
+	ReasonCode *int32 `json:"reasonCode,omitempty"`
 
 	/* RefundID refund ID
 

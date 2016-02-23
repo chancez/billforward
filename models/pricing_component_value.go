@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PricingComponentValue PricingComponentValue
@@ -17,11 +18,11 @@ type PricingComponentValue struct {
 
 	/* { "description" : "<p>The appliesFrom can be left null. If appliesFrom is set, it indicates when a value came into effect.</p>", "verbs":["POST","PUT","GET"] }
 	 */
-	AppliesFrom strfmt.DateTime `json:"appliesFrom,omitempty"`
+	AppliesFrom *strfmt.DateTime `json:"appliesFrom,omitempty"`
 
 	/* { "description" : "<p>For <span class=\"label label-default\">setup</span>, <span class=\"label label-default\">subscription</span>, and <span class=\"label label-default\">arrears</span> pricing components if appliesTill is specificed the value will be used whilst the time has not been reached. If appliesTill is null the pricing component value will be used until a new value is added. When a new value is added appliesTill will be set to the time the new value will take effect.</p><p><span class=\"label label-default\">usage</span> pricing applies to the previous billing period as it is charged in-arrears. When adding usage a new pricing component value should be added with appliesTill set to the end of the usages billing period. For example a monthly subscription results in an invoice being generated on the 1<sup>st</sup> of March, the previous months usage period ended on the same date. A usage value should be added to the subscription with the appliesTill set to the invoices periodStart, the 1<sup>st</sup> of March.</p>", "verbs":["POST","PUT","GET"] }
 	 */
-	AppliesTill strfmt.DateTime `json:"appliesTill,omitempty"`
+	AppliesTill *strfmt.DateTime `json:"appliesTill,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -29,7 +30,7 @@ type PricingComponentValue struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 
@@ -63,7 +64,7 @@ type PricingComponentValue struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "Quantity of a particular pricing component the subscription should have. For example if you have a pricing component for widgets, where $5/widget/month and you set the value to 10 then the customer will be charged $50 ($5 x 10) monthly.", "verbs":["POST","PUT","GET"] }
 

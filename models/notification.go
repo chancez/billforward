@@ -7,10 +7,11 @@ import (
 	"encoding/json"
 	"strconv"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Notification Notification
@@ -27,7 +28,7 @@ type Notification struct {
 
 	/* { "description" : "The UTC DateTime when the notification was acked if it is ack enabled.", "verbs":["POST","PUT","GET"] }
 	 */
-	Acked strfmt.DateTime `json:"acked,omitempty"`
+	Acked *strfmt.DateTime `json:"acked,omitempty"`
 
 	/* { "description" : "The action associated with the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -45,7 +46,7 @@ type Notification struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "The URL the notification will be sent to.", "verbs":["POST","PUT","GET"] }
 
@@ -71,7 +72,7 @@ type Notification struct {
 
 	/* { "description" : "The UTC DateTime of the notification's final send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	FinalSendAttempt strfmt.DateTime `json:"finalSendAttempt,omitempty"`
+	FinalSendAttempt *strfmt.DateTime `json:"finalSendAttempt,omitempty"`
 
 	/* { "description" : "Format of the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -85,11 +86,11 @@ type Notification struct {
 
 	/* { "description" : "The UTC DateTime of the notifications's last send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	LastSendAttempt strfmt.DateTime `json:"lastSendAttempt,omitempty"`
+	LastSendAttempt *strfmt.DateTime `json:"lastSendAttempt,omitempty"`
 
 	/* { "description" : "The UTC DateTime of the notification's next send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	NextSendAttempt strfmt.DateTime `json:"nextSendAttempt,omitempty"`
+	NextSendAttempt *strfmt.DateTime `json:"nextSendAttempt,omitempty"`
 
 	/* { "description" : "Organization associated with the notification.", "verbs":["POST","PUT","GET"] }
 
@@ -105,11 +106,11 @@ type Notification struct {
 
 	/* { "description" : "The number of send attempts for this notification.", "verbs":["POST","PUT","GET"] }
 	 */
-	TotalSendAttempts int32 `json:"totalSendAttempts,omitempty"`
+	TotalSendAttempts *int32 `json:"totalSendAttempts,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "Webhook associated with the notification.", "verbs":["POST","PUT","GET"] }
 

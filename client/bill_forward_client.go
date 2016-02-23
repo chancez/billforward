@@ -6,7 +6,8 @@ package client
 import (
 	"github.com/go-swagger/go-swagger/client"
 	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
-	"github.com/go-swagger/go-swagger/strfmt"
+
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 
 	"github.com/authclub/billforward/client/accounts"
 	"github.com/authclub/billforward/client/addresses"

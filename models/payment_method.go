@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PaymentMethod PaymentMethod
@@ -41,7 +42,7 @@ type PaymentMethod struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the product-rate-plan.", "verbs":] }
 	 */
@@ -67,11 +68,11 @@ type PaymentMethod struct {
 
 	/* ExpiryMonth expiry month
 	 */
-	ExpiryMonth int32 `json:"expiryMonth,omitempty"`
+	ExpiryMonth *int32 `json:"expiryMonth,omitempty"`
 
 	/* ExpiryYear expiry year
 	 */
-	ExpiryYear int32 `json:"expiryYear,omitempty"`
+	ExpiryYear *int32 `json:"expiryYear,omitempty"`
 
 	/* FirstSix first six
 	 */
@@ -127,7 +128,7 @@ type PaymentMethod struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this payment method

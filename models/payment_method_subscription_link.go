@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PaymentMethodSubscriptionLink PaymentMethodSubscriptionLink
@@ -21,7 +22,7 @@ type PaymentMethodSubscriptionLink struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the product-rate-plan.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -57,7 +58,7 @@ type PaymentMethodSubscriptionLink struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this payment method subscription link

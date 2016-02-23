@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*FixedTerm FixedTerm
@@ -29,7 +30,7 @@ type FixedTerm struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Is the fixedTerm deleted.", "verbs":["POST","PUT","GET"] }
 
@@ -109,7 +110,7 @@ type FixedTerm struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this fixed term

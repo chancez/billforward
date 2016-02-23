@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*DunningLine A dunning-line specifies when the next execution attempt of an unpaid invoice should take place given the number of existing execution attempts.
@@ -29,7 +30,7 @@ type DunningLine struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Has the dunning-line been deleted?", "verbs":["POST","PUT","GET"] }
 
@@ -73,7 +74,7 @@ type DunningLine struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this dunning line

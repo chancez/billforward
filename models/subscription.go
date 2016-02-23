@@ -6,10 +6,11 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Subscription Subscription
@@ -34,11 +35,11 @@ type Subscription struct {
 
 	/* {"description":"start of the contracted period.  This will be after a trial, if one exists","verbs":["GET"]}
 	 */
-	ContractStart strfmt.DateTime `json:"contractStart,omitempty"`
+	ContractStart *strfmt.DateTime `json:"contractStart,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {  "default":"true", "description":"Can credit-notes be used to pay outstanding invoices for this subscription.","verbs":["GET", "PUT", "POST"]}
 	 */
@@ -50,15 +51,15 @@ type Subscription struct {
 
 	/* {"description":"End of the current period invoiced for. This can be manually updated to extend trials or delay invoice generation.","verbs":["PUT","GET"]}
 	 */
-	CurrentPeriodEnd strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
+	CurrentPeriodEnd *strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
 
 	/* {"description":"Override for the initial subscription period. Allows periods to align to a date or time regardless of purchase date/time.","verbs":["POST","PUT","GET"]}
 	 */
-	CurrentPeriodEndExplicit strfmt.DateTime `json:"currentPeriodEndExplicit,omitempty"`
+	CurrentPeriodEndExplicit *strfmt.DateTime `json:"currentPeriodEndExplicit,omitempty"`
 
 	/* {"description":"Start of the current invoice period. At the end of this period, a new new invoice will be generated","verbs":["POST","GET"]}
 	 */
-	CurrentPeriodStart strfmt.DateTime `json:"currentPeriodStart,omitempty"`
+	CurrentPeriodStart *strfmt.DateTime `json:"currentPeriodStart,omitempty"`
 
 	/* {"description":"The current time &mdash; from the point of view of the subscription.","verbs":["GET"]}
 
@@ -146,19 +147,19 @@ type Subscription struct {
 
 	/* {"description":"When a subscription will end. This may be in the future if the cancellation is at the end of the current period.","verbs":["GET"]}
 	 */
-	SubscriptionEnd strfmt.DateTime `json:"subscriptionEnd,omitempty"`
+	SubscriptionEnd *strfmt.DateTime `json:"subscriptionEnd,omitempty"`
 
 	/* {"description":"Number of paid-for periods billing, excluding trials, since the subscription started.","verbs":["GET"]}
 	 */
-	SuccessfulPeriods int32 `json:"successfulPeriods,omitempty"`
+	SuccessfulPeriods *int32 `json:"successfulPeriods,omitempty"`
 
 	/* {"description":"How far in the future is the entity (in seconds) compared to the BillForward server's time.","verbs":["GET"]}
 	 */
-	TimeOffset int64 `json:"timeOffset,omitempty"`
+	TimeOffset *int64 `json:"timeOffset,omitempty"`
 
 	/* {"description":"Total number of subscription periods.","verbs":["GET"]}
 	 */
-	TotalPeriods int32 `json:"totalPeriods,omitempty"`
+	TotalPeriods *int32 `json:"totalPeriods,omitempty"`
 
 	/* {"description":"The end time of the trial period, if one existed","verbs":["GET"]}
 
@@ -172,11 +173,11 @@ type Subscription struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* {"description":"When the current version of the subscription ended, null indicates current version.","verbs":["GET"]}
 	 */
-	VersionEnd strfmt.DateTime `json:"versionEnd,omitempty"`
+	VersionEnd *strfmt.DateTime `json:"versionEnd,omitempty"`
 
 	/* {"description":"","verbs":["GET"]}
 	 */

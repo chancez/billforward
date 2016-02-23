@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*CreateAggregatingComponentRequest Entity for requesting that an 'aggregating component' (i.e. a component which should be re-priced upon invoice aggregation) be created.
@@ -17,7 +18,7 @@ type CreateAggregatingComponentRequest struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"default":"(Auto-populated using your authentication credentials)","description":"ID of the BillForward Organization within which the requested pricing component should be created. If omitted: this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */

@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*StripeAuthCaptureRequest StripeAuthCaptureRequest stripe auth capture request
@@ -49,10 +50,10 @@ type StripeAuthCaptureRequest struct {
 	StripeToken string `json:"stripeToken,omitempty"`
 }
 
-func (m *StripeAuthCaptureRequest) Type() string {
+func (m *StripeAuthCaptureRequest) AtType() string {
 	return "StripeAuthCaptureRequest"
 }
-func (m *StripeAuthCaptureRequest) SetType(val string) {
+func (m *StripeAuthCaptureRequest) SetAtType(val string) {
 
 }
 
@@ -122,7 +123,7 @@ func (m *StripeAuthCaptureRequest) SetOrganizationID(val *string) {
 // UnmarshalJSON unmarshals this polymorphic type from a JSON structure
 func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		AccountID *string `json:"accountID,omitempty"`
 
@@ -180,7 +181,7 @@ func (m *StripeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 // MarshalJSON marshals this polymorphic type to a JSON structure
 func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		AccountID *string `json:"accountID,omitempty"`
 
@@ -227,7 +228,7 @@ func (m StripeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	data.CardID = m.CardID
 	data.CustomerID = m.CustomerID
 	data.StripeToken = m.StripeToken
-	data.Type = "StripeAuthCaptureRequest"
+	data.AtType = "StripeAuthCaptureRequest"
 	return json.Marshal(data)
 }
 

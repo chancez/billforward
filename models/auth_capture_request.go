@@ -20,12 +20,12 @@ swagger:discriminator AuthCaptureRequest @type
 type AuthCaptureRequest interface {
 	httpkit.Validatable
 
-	/* Type type
+	/* AtType at type
 
 	Required: true
 	*/
-	Type() string
-	SetType(string)
+	AtType() string
+	SetAtType(string)
 
 	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
 	 */
@@ -107,18 +107,18 @@ func unmarshalAuthCaptureRequest(data []byte, consumer httpkit.Consumer) (AuthCa
 
 	// the first time this is read is to fetch the value of the @type property.
 	var getType struct {
-		Type string `json:"@type"`
+		AtType string `json:"@type"`
 	}
 	if err := consumer.Consume(buf, &getType); err != nil {
 		return nil, err
 	}
 
-	if err := validate.RequiredString("@type", "body", getType.Type); err != nil {
+	if err := validate.RequiredString("@type", "body", getType.AtType); err != nil {
 		return nil, err
 	}
 
 	// The value of @type is used to determine which type to create and unmarshal the data into
-	switch getType.Type {
+	switch getType.AtType {
 	case "BraintreeAuthCaptureRequest":
 		var result BraintreeAuthCaptureRequest
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -134,6 +134,6 @@ func unmarshalAuthCaptureRequest(data []byte, consumer httpkit.Consumer) (AuthCa
 		return &result, nil
 
 	}
-	return nil, errors.New(422, "invalid @type value: %q", getType.Type)
+	return nil, errors.New(422, "invalid @type value: %q", getType.AtType)
 
 }

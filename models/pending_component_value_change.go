@@ -13,7 +13,7 @@ type PendingComponentValueChange struct {
 
 	/* At at
 	 */
-	At strfmt.DateTime `json:"at,omitempty"`
+	At *strfmt.DateTime `json:"at,omitempty"`
 
 	/* DiscardHTTPVerb discard http verb
 	 */
@@ -25,7 +25,7 @@ type PendingComponentValueChange struct {
 
 	/* Value value
 	 */
-	Value int32 `json:"value,omitempty"`
+	Value *int32 `json:"value,omitempty"`
 }
 
 // Validate validates this pending component value change

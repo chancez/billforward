@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*SubscriptionCharge Represents a monetary amount &mdash; or quantity consumed &mdash; attributed to some invoice or subscription.
@@ -45,7 +46,7 @@ type SubscriptionCharge struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"description":"Customer-relationship-management ID of the charge.","verbs":["GET","PUT","POST"]}
 	 */
@@ -79,11 +80,11 @@ type SubscriptionCharge struct {
 
 	/* {"default":"(End of current period)","description":"The time-ending of the interval to which the charge applies. This can be used to apply a charge across partial or multiple periods,to pro-rate its price.","verbs":["POST","GET"]}
 	 */
-	PeriodEnd strfmt.DateTime `json:"periodEnd,omitempty"`
+	PeriodEnd *strfmt.DateTime `json:"periodEnd,omitempty"`
 
 	/* {"default":"(Now)","description":"The time-beginning of the interval to which the charge applies. This can be used to apply a charge across partial or multiple periods,to pro-rate its price.","verbs":["POST","GET"]}
 	 */
-	PeriodStart strfmt.DateTime `json:"periodStart,omitempty"`
+	PeriodStart *strfmt.DateTime `json:"periodStart,omitempty"`
 
 	/* {"default":"<span class=\"label label-default\">Rollover</span>","description":"Defines the behaviour applied to any outstanding credit resulting from the application of the charge..<br><span class=\"label label-default\">Rollover</span> &mdash; Outstanding credit is returned to the accounts credit pool.<br><span class=\"label label-default\">Discard</span> &mdash; Outstanding credit is lost.","verbs":["POST","GET"]}
 
@@ -117,7 +118,7 @@ type SubscriptionCharge struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* {"description":"The version ID of the charge.","verbs":["GET"]}
 	 */

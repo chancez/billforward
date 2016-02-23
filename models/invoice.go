@@ -6,10 +6,11 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Invoice An invoice encapsulates the cumulative charges of a subscription's pricing-components and their respective pricing-component-values for a specific period of time.
@@ -44,7 +45,7 @@ type Invoice struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "The amount of credit to be returned to the pool.", "verbs":["GET"] }
 
@@ -86,7 +87,7 @@ type Invoice struct {
 
 	/* { "description" : "UTC DateTime of the invoice's final execution attempt. The final execution attempt. This may be less than the next execution attempt if the next execution attempt never occurred.", "verbs":["GET"] }
 	 */
-	FinalExecutionAttempt strfmt.DateTime `json:"finalExecutionAttempt,omitempty"`
+	FinalExecutionAttempt *strfmt.DateTime `json:"finalExecutionAttempt,omitempty"`
 
 	/* { "description" : "Unique identifier for the invoice.", "verbs":["GET"] }
 	 */
@@ -130,11 +131,11 @@ type Invoice struct {
 
 	/* { "description" : "The UTC DateTime when the invoice was first issued.", "verbs":["GET"] }
 	 */
-	Issued strfmt.DateTime `json:"issued,omitempty"`
+	Issued *strfmt.DateTime `json:"issued,omitempty"`
 
 	/* { "description" : "UTC DateTime of the invoice's last execution attempt. This was the last time an attempt was made to take payment for this invoice.", "verbs":["GET"] }
 	 */
-	LastExecutionAttempt strfmt.DateTime `json:"lastExecutionAttempt,omitempty"`
+	LastExecutionAttempt *strfmt.DateTime `json:"lastExecutionAttempt,omitempty"`
 
 	/* { "description" : "If the subscription is locked, it will not be processed by the system", "verbs":[] }
 	 */
@@ -150,7 +151,7 @@ type Invoice struct {
 
 	/* { "description" : "UTC DateTime of the invoice's next execution attempt. If the next execution attempt is greater than the period end for this invoice, the invoice will not receive another automatic execution attempt.", "verbs":["GET"] }
 	 */
-	NextExecutionAttempt strfmt.DateTime `json:"nextExecutionAttempt,omitempty"`
+	NextExecutionAttempt *strfmt.DateTime `json:"nextExecutionAttempt,omitempty"`
 
 	/* Cost of the invoice before discounts, inclusive of tax.
 
@@ -176,15 +177,15 @@ type Invoice struct {
 
 	/* { "description" : "UTC DateTime specifying when payment was received for the invoice.", "verbs":["GET"] }
 	 */
-	PaymentReceived strfmt.DateTime `json:"paymentReceived,omitempty"`
+	PaymentReceived *strfmt.DateTime `json:"paymentReceived,omitempty"`
 
 	/* { "description" : "End of the period being billed by this invoice, UTC DateTime.", "verbs":["GET"] }
 	 */
-	PeriodEnd strfmt.DateTime `json:"periodEnd,omitempty"`
+	PeriodEnd *strfmt.DateTime `json:"periodEnd,omitempty"`
 
 	/* { "description" : "Start of the period being billed by this invoice, UTC DateTime", "verbs":["GET"] }
 	 */
-	PeriodStart strfmt.DateTime `json:"periodStart,omitempty"`
+	PeriodStart *strfmt.DateTime `json:"periodStart,omitempty"`
 
 	/* { "description" : "Initially an invoice is set as unpaid. Once payment for the full value of the invoice has been received it is marked as paid. An invoice may be paid from various sources including cards, coupons or manual payments.", "verbs":["GET"] }
 
@@ -208,7 +209,7 @@ type Invoice struct {
 
 	/* { "description" : "Number of payment attempts for this invoice. This includes any manual execution attempts.", "verbs":["GET"] }
 	 */
-	TotalExecutionAttempts int32 `json:"totalExecutionAttempts,omitempty"`
+	TotalExecutionAttempts *int32 `json:"totalExecutionAttempts,omitempty"`
 
 	/* { "description" : "The type of the invoice. A subscription invoice is raised every time a subscription recurs. An amendment is created for intra-contract changes. An Adhoc invoice is created for payment that is taken out-of-band of a subscription. Finally the invoice generated for a trial period is marked as Trial.", "verbs":["GET"] }
 
@@ -218,7 +219,7 @@ type Invoice struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "Version identifier of the invoice.", "verbs":["GET"] }
 	 */

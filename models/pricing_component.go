@@ -8,10 +8,11 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit"
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
+	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PricingComponent PricingComponent pricing component
@@ -25,8 +26,8 @@ type PricingComponent interface {
 
 	Required: true
 	*/
-	Type() string
-	SetType(string)
+	AtType() string
+	SetAtType(string)
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
@@ -49,8 +50,8 @@ type PricingComponent interface {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created() strfmt.DateTime
-	SetCreated(strfmt.DateTime)
+	Created() *strfmt.DateTime
+	SetCreated(*strfmt.DateTime)
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
@@ -88,13 +89,13 @@ type PricingComponent interface {
 
 	/* { "description" : "The maximum quantity of the pricing-component.", "verbs":[] }
 	 */
-	MaxQuantity() int32
-	SetMaxQuantity(int32)
+	MaxQuantity() *int32
+	SetMaxQuantity(*int32)
 
 	/* { "default" : "0", "description" : "The minimum quantity of the pricing-component.", "verbs":[] }
 	 */
-	MinQuantity() int32
-	SetMinQuantity(int32)
+	MinQuantity() *int32
+	SetMinQuantity(*int32)
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
@@ -141,8 +142,8 @@ type PricingComponent interface {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated() strfmt.DateTime
-	SetUpdated(strfmt.DateTime)
+	Updated() *strfmt.DateTime
+	SetUpdated(*strfmt.DateTime)
 
 	/* {"default":"<span class=\"label label-default\">immediate</span>","description":"Default behaviour when a value is upgraded using this pricing component, this behaviour can be overridden when changing the value.<br><span class=\"label label-default\">immediate</span> &mdash; Upgrade will apply at the time the request is made.<br><span class=\"label label-default\">delayed</span> &mdash; Upgrade will apply at the end of the current billing cycle.","verbs":["POST","GET"]}
 	 */
@@ -158,8 +159,8 @@ type PricingComponent interface {
 
 	/* {  "default" : "null", "description" : "The UTC DateTime specifying when the pricing-component is valid till.", "verbs":["POST","PUT","GET"] }
 	 */
-	ValidTill() strfmt.DateTime
-	SetValidTill(strfmt.DateTime)
+	ValidTill() *strfmt.DateTime
+	SetValidTill(*strfmt.DateTime)
 
 	/* { "description" : "", "verbs":["GET"] }
 
@@ -203,18 +204,18 @@ func unmarshalPricingComponent(data []byte, consumer httpkit.Consumer) (PricingC
 
 	// the first time this is read is to fetch the value of the @type property.
 	var getType struct {
-		Type string `json:"@type"`
+		AtType string `json:"@type"`
 	}
 	if err := consumer.Consume(buf, &getType); err != nil {
 		return nil, err
 	}
 
-	if err := validate.RequiredString("@type", "body", getType.Type); err != nil {
+	if err := validate.RequiredString("@type", "body", getType.AtType); err != nil {
 		return nil, err
 	}
 
 	// The value of @type is used to determine which type to create and unmarshal the data into
-	switch getType.Type {
+	switch getType.AtType {
 	case "flatPricingComponent":
 		var result FlatPricingComponent
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -237,6 +238,6 @@ func unmarshalPricingComponent(data []byte, consumer httpkit.Consumer) (PricingC
 		return &result, nil
 
 	}
-	return nil, errors.New(422, "invalid @type value: %q", getType.Type)
+	return nil, errors.New(422, "invalid @type value: %q", getType.AtType)
 
 }

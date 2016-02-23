@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*InsertableBillingEntity Insertable entities are those entities that can be created.
@@ -19,7 +20,7 @@ type InsertableBillingEntity struct {
 
 	/* { "description" : "The UTC DateTime when the pricing-component-value-change was processed.", "verbs":["POST","PUT","GET"] }
 	 */
-	Applied strfmt.DateTime `json:"applied,omitempty"`
+	Applied *strfmt.DateTime `json:"applied,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the pricing-component-value-change was calculated.", "verbs":["POST","PUT","GET"] }
 
@@ -33,7 +34,7 @@ type InsertableBillingEntity struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "ID of the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 	 */

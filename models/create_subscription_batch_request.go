@@ -4,9 +4,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
+
+	"github.com/go-swagger/go-swagger/errors"
 )
 
 /*CreateSubscriptionBatchRequest Entity for requesting that a batch of subscriptions be created.
@@ -17,7 +18,7 @@ type CreateSubscriptionBatchRequest struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"default":"(Auto-populated using your authentication credentials)","description":"ID of the BillForward Organization within which the requested Subscriptions should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */

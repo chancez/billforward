@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*Payment Payment
@@ -29,7 +30,7 @@ type Payment struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the invoice.", "verbs":["POST","PUT","GET"] }
 
@@ -79,7 +80,7 @@ type Payment struct {
 
 	/* { "description" : "UTC DateTime specifying when payment was received for the invoice.", "verbs":["POST","PUT","GET"] }
 	 */
-	PaymentReceived strfmt.DateTime `json:"paymentReceived,omitempty"`
+	PaymentReceived *strfmt.DateTime `json:"paymentReceived,omitempty"`
 
 	/* { "description" : "ID of the refund associated with the payment.", "verbs":["POST","PUT","GET"] }
 
@@ -107,7 +108,7 @@ type Payment struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this payment

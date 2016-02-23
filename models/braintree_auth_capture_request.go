@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*BraintreeAuthCaptureRequest BraintreeAuthCaptureRequest braintree auth capture request
@@ -45,10 +46,10 @@ type BraintreeAuthCaptureRequest struct {
 	PaymentMethodNonce string `json:"paymentMethodNonce,omitempty"`
 }
 
-func (m *BraintreeAuthCaptureRequest) Type() string {
+func (m *BraintreeAuthCaptureRequest) AtType() string {
 	return "BraintreeAuthCaptureRequest"
 }
-func (m *BraintreeAuthCaptureRequest) SetType(val string) {
+func (m *BraintreeAuthCaptureRequest) SetAtType(val string) {
 
 }
 
@@ -118,7 +119,7 @@ func (m *BraintreeAuthCaptureRequest) SetOrganizationID(val *string) {
 // UnmarshalJSON unmarshals this polymorphic type from a JSON structure
 func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		AccountID *string `json:"accountID,omitempty"`
 
@@ -171,7 +172,7 @@ func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 // MarshalJSON marshals this polymorphic type to a JSON structure
 func (m BraintreeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	var data struct {
-		Type string `json:"@type,omitempty"`
+		AtType string `json:"@type,omitempty"`
 
 		AccountID *string `json:"accountID,omitempty"`
 
@@ -213,7 +214,7 @@ func (m BraintreeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	data.OrganizationID = m.organizationIdField
 	data.DeviceData = m.DeviceData
 	data.PaymentMethodNonce = m.PaymentMethodNonce
-	data.Type = "BraintreeAuthCaptureRequest"
+	data.AtType = "BraintreeAuthCaptureRequest"
 	return json.Marshal(data)
 }
 

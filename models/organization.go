@@ -4,10 +4,11 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*Organization Organization within which all your BillForward interactions are scoped.
@@ -34,7 +35,7 @@ type Organization struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "A shortcode for the organization. This is used as a short reference code for use when referring to the organization, by default this is set to the organizations name.", "verbs":["POST","PUT","GET"] }
 
@@ -72,7 +73,7 @@ type Organization struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "The WebHooks associated with the organization. These are the end-points where notifications are sent. WebHooks are added, updated and removed from the organization. Thus to add a WebHook, the webhook must be defined on this property of the organization and then the organization updated. To update a WebHook the same procedure must be followed, first retrieving the organization followed by updating the appropriate WebHook, finally the organization is updated.", "verbs":["POST","PUT","GET"] }
 

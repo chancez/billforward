@@ -6,10 +6,11 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	"github.com/go-swagger/go-swagger/swag"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
 )
 
 /*CreateAggregatingSubscriptionRequest Entity for requesting that an 'aggregating subscription' (i.e. a 'parent subscription' which collects the charges raised by many 'child subscriptions') be created.
@@ -34,7 +35,7 @@ type CreateAggregatingSubscriptionRequest struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"description":"[Required if and only if `productRatePlan` is omitted] The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).","verbs":["POST"]}
 
@@ -48,7 +49,7 @@ type CreateAggregatingSubscriptionRequest struct {
 
 	/* {"description":"[Required if and only if `productRatePlan` is omitted] Number of length-measures which constitute the rate plan's period.","verbs":["POST"]}
 	 */
-	Duration int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration,omitempty"`
 
 	/* {"description":"[Required if and only if `productRatePlan` is omitted] Measure describing the magnitude of the rate plan's period.","verbs":["POST"]}
 	 */
@@ -72,7 +73,7 @@ type CreateAggregatingSubscriptionRequest struct {
 
 	/* {"default":"(ServerNow upon receiving request)","description":"ISO 8601 UTC DateTime (e.g. 2015-06-16T11:58:41Z) describing the date at which the subscription should enter its first service period.","verbs":["POST"]}
 	 */
-	Start strfmt.DateTime `json:"start,omitempty"`
+	Start *strfmt.DateTime `json:"start,omitempty"`
 
 	/* {"default":"Provisioned","description":"The state in which the created subscription will begin.<br><span class=\"label label-default\">Provisioned</span> &mdash; The subscription will wait (without raising any invoices or beginning its service) until explicit action is taken to change its state.<br><span class=\"label label-default\">AwaitingPayment</span> &mdash; The subscription is activated. After `start` time is surpassed, it will begin service and raise its first invoice.","verbs":["POST"]}
 	 */

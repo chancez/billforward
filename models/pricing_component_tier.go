@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*PricingComponentTier PricingComponentTier
@@ -23,7 +24,7 @@ type PricingComponentTier struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
@@ -35,7 +36,7 @@ type PricingComponentTier struct {
 
 	/* { "description" : "The lower threshold of the tier.", "verbs":["POST","PUT","GET"] }
 	 */
-	LowerThreshold int32 `json:"lowerThreshold,omitempty"`
+	LowerThreshold *int32 `json:"lowerThreshold,omitempty"`
 
 	/* { "description" : "Organization associated with the pricing-component-tier.", "verbs":[] }
 	 */
@@ -69,7 +70,7 @@ type PricingComponentTier struct {
 
 	/* {  "default" : "&infin;",  "description" : "The upper threshold of the tier. If this is left null the tier will be infinite", "verbs":["POST","PUT","GET"] }
 	 */
-	UpperThreshold int32 `json:"upperThreshold,omitempty"`
+	UpperThreshold *int32 `json:"upperThreshold,omitempty"`
 }
 
 // Validate validates this pricing component tier

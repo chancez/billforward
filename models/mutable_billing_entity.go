@@ -6,9 +6,10 @@ package models
 import (
 	"encoding/json"
 
+	strfmt "github.com/go-swagger/go-swagger/strfmt"
+
 	"github.com/go-swagger/go-swagger/errors"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
-	"github.com/go-swagger/go-swagger/strfmt"
 )
 
 /*MutableBillingEntity Mutable entities are those entities that can be updated after their initial creation.
@@ -29,7 +30,7 @@ type MutableBillingEntity struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created *strfmt.DateTime `json:"created,omitempty"`
 
 	/* The account who created the synch job.
 	 */
@@ -37,11 +38,11 @@ type MutableBillingEntity struct {
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	DataFrom strfmt.DateTime `json:"dataFrom,omitempty"`
+	DataFrom *strfmt.DateTime `json:"dataFrom,omitempty"`
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	DataTill strfmt.DateTime `json:"dataTill,omitempty"`
+	DataTill *strfmt.DateTime `json:"dataTill,omitempty"`
 
 	/* Is the sync job deleted.
 
@@ -91,7 +92,7 @@ type MutableBillingEntity struct {
 
 	/* UTC DateTime of the end of the data to sync.
 	 */
-	Started strfmt.DateTime `json:"started,omitempty"`
+	Started *strfmt.DateTime `json:"started,omitempty"`
 
 	/* This is the state of job. Pending jobs have not run. Complete jobs have run without error. Failed jobs have one of more errors. Cancelled jobs did not run.
 
@@ -101,7 +102,7 @@ type MutableBillingEntity struct {
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	Stopped strfmt.DateTime `json:"stopped,omitempty"`
+	Stopped *strfmt.DateTime `json:"stopped,omitempty"`
 
 	/* This is the target of the job.
 
@@ -117,7 +118,7 @@ type MutableBillingEntity struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated strfmt.DateTime `json:"updated,omitempty"`
+	Updated *strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this mutable billing entity
