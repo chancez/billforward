@@ -57,6 +57,7 @@ swagger generate client -f swagger.json -A BillForward -c client -a client \
     -O createAggregatingSubscription \
     -O batchCreateSubscriptions  \
     -O reviveSubscription \
+    -M TimeRequest \
     -M BFError \
     -M AccountPagedMetadata \
     -M Account \
