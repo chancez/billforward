@@ -35389,6 +35389,14 @@
           "type": "integer",
           "format": "int64",
           "description": "{\"description\":\"How far in the future is the entity (in seconds) compared to the BillForward server's time.\",\"verbs\":[\"GET\"]}"
+        },
+        "failedPaymentBehaviour": {
+          "type": "string",
+          "description": "{\"default\":\"None\",\"description\":\"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\\\"label label-default\\\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\\\"label label-default\\\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\\\"label label-default\\\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\\\"label label-default\\\">CancelSubscription</span> is recommended.\",\"verbs\":[\"POST\",\"PUT\",\"GET\"]}",
+          "enum": [
+            "CancelSubscription",
+            "None"
+          ]
         }
       },
       "description": "Subscription",
