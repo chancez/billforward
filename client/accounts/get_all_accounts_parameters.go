@@ -33,11 +33,11 @@ for the get all accounts operation typically these are written to a http.Request
 */
 type GetAllAccountsParams struct {
 
-	/*Ids
+	/*ID
 	  A list of account IDs used to filter the output.
 
 	*/
-	Ids []string
+	ID []string
 	/*IncludeRetired
 	  Whether retired products should be returned.
 
@@ -77,9 +77,9 @@ type GetAllAccountsParams struct {
 	UsersOnly *bool
 }
 
-// WithIds adds the ids to the get all accounts params
-func (o *GetAllAccountsParams) WithIds(ids []string) *GetAllAccountsParams {
-	o.Ids = ids
+// WithID adds the id to the get all accounts params
+func (o *GetAllAccountsParams) WithID(id []string) *GetAllAccountsParams {
+	o.ID = id
 	return o
 }
 
@@ -136,11 +136,11 @@ func (o *GetAllAccountsParams) WriteToRequest(r client.Request, reg strfmt.Regis
 
 	var res []error
 
-	valuesIds := o.Ids
+	valuesID := o.ID
 
-	joinedIds := swag.JoinByFormat(valuesIds, "multi")
-	// query array param ids
-	if err := r.SetQueryParam("ids", joinedIds...); err != nil {
+	joinedID := swag.JoinByFormat(valuesID, "multi")
+	// query array param id
+	if err := r.SetQueryParam("id", joinedID...); err != nil {
 		return err
 	}
 
