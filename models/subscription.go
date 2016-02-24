@@ -75,6 +75,10 @@ type Subscription struct {
 	 */
 	Dunning *bool `json:"dunning,omitempty"`
 
+	/* {"default":"None","description":"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\"label label-default\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\"label label-default\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\"label label-default\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\"label label-default\">CancelSubscription</span> is recommended.","verbs":["POST","PUT","GET"]}
+	 */
+	FailedPaymentBehaviour *string `json:"failedPaymentBehaviour,omitempty"`
+
 	/* {"description":"List of fixed terms that have been or are applied to the subscription","verbs":["GET"]}
 	 */
 	FixedTerms []*FixedTerm `json:"fixedTerms,omitempty"`
@@ -210,6 +214,11 @@ func (m *Subscription) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFailedPaymentBehaviour(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateFixedTerms(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -303,6 +312,37 @@ func (m *Subscription) validateAccountID(formats strfmt.Registry) error {
 func (m *Subscription) validateCurrentTime(formats strfmt.Registry) error {
 
 	if err := validate.Required("currentTime", "body", strfmt.DateTime(m.CurrentTime)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var subscriptionFailedPaymentBehaviourEnum []interface{}
+
+func (m *Subscription) validateFailedPaymentBehaviourEnum(path, location string, value string) error {
+	if subscriptionFailedPaymentBehaviourEnum == nil {
+		var res []string
+		if err := json.Unmarshal([]byte(`["CancelSubscription","None"]`), &res); err != nil {
+			return err
+		}
+		for _, v := range res {
+			subscriptionFailedPaymentBehaviourEnum = append(subscriptionFailedPaymentBehaviourEnum, v)
+		}
+	}
+	if err := validate.Enum(path, location, value, subscriptionFailedPaymentBehaviourEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Subscription) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FailedPaymentBehaviour) { // not required
+		return nil
+	}
+
+	if err := m.validateFailedPaymentBehaviourEnum("failedPaymentBehaviour", "body", *m.FailedPaymentBehaviour); err != nil {
 		return err
 	}
 
