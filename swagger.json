@@ -215,7 +215,7 @@
         ],
         "parameters": [
           {
-            "name": "ids",
+            "name": "id",
             "in": "query",
             "description": "A list of account IDs used to filter the output.",
             "required": false,
