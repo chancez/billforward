@@ -40,6 +40,8 @@ type GetInvoiceAsPDFParams struct {
 
 	*/
 	ID string
+	/*GroupLineItemsBy*/
+	GroupLineItemsBy *string
 	/*IncludeFooter*/
 	IncludeFooter *bool
 	/*IncludeRetired
@@ -97,6 +99,12 @@ type GetInvoiceAsPDFParams struct {
 // WithID adds the id to the get invoice as p d f params
 func (o *GetInvoiceAsPDFParams) WithID(id string) *GetInvoiceAsPDFParams {
 	o.ID = id
+	return o
+}
+
+// WithGroupLineItemsBy adds the groupLineItemsBy to the get invoice as p d f params
+func (o *GetInvoiceAsPDFParams) WithGroupLineItemsBy(groupLineItemsBy *string) *GetInvoiceAsPDFParams {
+	o.GroupLineItemsBy = groupLineItemsBy
 	return o
 }
 
@@ -174,6 +182,22 @@ func (o *GetInvoiceAsPDFParams) WriteToRequest(r client.Request, reg strfmt.Regi
 	// path param ID
 	if err := r.SetPathParam("ID", o.ID); err != nil {
 		return err
+	}
+
+	if o.GroupLineItemsBy != nil {
+
+		// query param group_line_items_by
+		var qrGroupLineItemsBy string
+		if o.GroupLineItemsBy != nil {
+			qrGroupLineItemsBy = *o.GroupLineItemsBy
+		}
+		qGroupLineItemsBy := qrGroupLineItemsBy
+		if qGroupLineItemsBy != "" {
+			if err := r.SetQueryParam("group_line_items_by", qGroupLineItemsBy); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.IncludeFooter != nil {
