@@ -12268,6 +12268,17 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "group_line_items_by",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Product",
+              "RatePlan",
+              "ProductAndRatePlan"
+            ]
           }
         ],
         "responses": {
