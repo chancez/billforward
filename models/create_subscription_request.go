@@ -33,6 +33,10 @@ type CreateSubscriptionRequest struct {
 	 */
 	AlignPeriodWithAggregatingSubscription *bool `json:"alignPeriodWithAggregatingSubscription,omitempty"`
 
+	/* {"description":"start of the contracted period.  This will be after a trial, if one exists","verbs":["GET"]}
+	 */
+	ContractStart *strfmt.DateTime `json:"contractStart,omitempty"`
+
 	/* {"default":"(null)","description":"Description of the created subscription. This is primarily for your benefit &mdash; for example, you could write here the mechanism through which you obtained this customer. (e.g. 'Customer obtained through Lazy Wednesdays promotion').","verbs":["POST"]}
 	 */
 	Description *string `json:"description,omitempty"`
