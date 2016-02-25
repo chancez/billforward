@@ -101,6 +101,10 @@ type ProductRatePlan struct {
 	*/
 	Name string `json:"name,omitempty"`
 
+	/* PaymentTerms payment terms
+	 */
+	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 	PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
 
 	/* {"default":"WithCoupon","description":"The pro-rata mode for the rate plan. <br><span class=\"label label-default\">None</span> &mdash; The pro-rata cost for upgrades will be ignored.<br><span class=\"label label-default\">WithCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will be deducted from the pro-rated cost.<br><span class=\"label label-default\">WithoutCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will not be deducted from the pro-rated cost. ","verbs":[]}
@@ -689,6 +693,8 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 
 		Name string `json:"name,omitempty"`
 
+		PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 		ProRataMode string `json:"proRataMode,omitempty"`
 
 		Product *Product `json:"product,omitempty"`
@@ -756,6 +762,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 	result.Metadata = data.Metadata
 	result.MigrationBehaviour = data.MigrationBehaviour
 	result.Name = data.Name
+	result.PaymentTerms = data.PaymentTerms
 	result.PricingComponents = pricingComponents
 	result.ProRataMode = data.ProRataMode
 	result.Product = data.Product
@@ -813,6 +820,8 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 
 		Name string `json:"name,omitempty"`
 
+		PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 		ProRataMode string `json:"proRataMode,omitempty"`
 
 		Product *Product `json:"product,omitempty"`
@@ -856,6 +865,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		Metadata:                 m.Metadata,
 		MigrationBehaviour:       m.MigrationBehaviour,
 		Name:                     m.Name,
+		PaymentTerms:             m.PaymentTerms,
 		ProRataMode:              m.ProRataMode,
 		Product:                  m.Product,
 		ProductID:                m.ProductID,

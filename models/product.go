@@ -72,6 +72,10 @@ type Product struct {
 	*/
 	Name string `json:"name,omitempty"`
 
+	/* PaymentTerms payment terms
+	 */
+	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 	/* {"default":"recurring","description":"The frequency of the product &mdash; either recurring or non-recurring.","verbs":["POST","PUT","GET"]}
 
 	Required: true

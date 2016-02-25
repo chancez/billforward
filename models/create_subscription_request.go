@@ -61,6 +61,10 @@ type CreateSubscriptionRequest struct {
 	 */
 	ParentID *string `json:"parentID,omitempty"`
 
+	/* PaymentTerms payment terms
+	 */
+	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 	/* {"default":"(empty list)","description":"Quantities that this subscription possesses (upon beginning service), of pricing components upon the subscription's rate plan. For example: you can set the subscription to begin its service with '5 widgets' consumed. Otherwise the 'default quantity' will be observed instead, for each pricing component upon the rate plan.","verbs":["POST"]}
 	 */
 	PricingComponentQuantities []*PricingComponentQuantityRequest `json:"pricingComponentQuantities,omitempty"`

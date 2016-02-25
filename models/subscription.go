@@ -127,6 +127,10 @@ type Subscription struct {
 	 */
 	PaymentMethodSubscriptionLinks []*PaymentMethodSubscriptionLink `json:"paymentMethodSubscriptionLinks,omitempty"`
 
+	/* PaymentTerms payment terms
+	 */
+	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+
 	/* {"description":"The quantities for each pricing component of the rate-plan. Values should be set for all pricing components of the rate-plan apart from the usage components. Usage components should be added when the usage is known, this is often after the end of the current billing cycle.","verbs":["GET", "POST"]}
 	 */
 	PricingComponentValues []*PricingComponentValue `json:"pricingComponentValues,omitempty"`
