@@ -85,6 +85,10 @@ type Invoice struct {
 	 */
 	DiscountAmountExcludingTax *float64 `json:"discountAmountExcludingTax,omitempty"`
 
+	/* { "description" : "Date this invoice is due, UTC DateTime.", "verbs":["GET"] }
+	 */
+	Due *strfmt.DateTime `json:"due,omitempty"`
+
 	/* { "description" : "UTC DateTime of the invoice's final execution attempt. The final execution attempt. This may be less than the next execution attempt if the next execution attempt never occurred.", "verbs":["GET"] }
 	 */
 	FinalExecutionAttempt *strfmt.DateTime `json:"finalExecutionAttempt,omitempty"`

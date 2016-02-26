@@ -40885,6 +40885,11 @@
           "format": "date-time",
           "description": "{ \"description\" : \"End of the period being billed by this invoice, UTC DateTime.\", \"verbs\":[\"GET\"] }"
         },
+        "due": {
+          "type": "string",
+          "format": "date-time",
+          "description": "{ \"description\" : \"Date this invoice is due, UTC DateTime.\", \"verbs\":[\"GET\"] }"
+        },
         "deleted": {
           "type": "boolean",
           "description": "{ \"description\" : \"Indicates if an invoice has been retired. If an invoice has been retired it can still be retrieved using the appropriate flag on API requests. Generally invoices will not be retired.\", \"verbs\":[] }",
