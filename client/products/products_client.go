@@ -4,8 +4,6 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) DeleteMetadataForProduct(params *DeleteMetadataForProductParams
 		Method:             "DELETE",
 		PathPattern:        "/products/{product-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteMetadataForProductReader{formats: a.formats},
@@ -66,6 +65,7 @@ func (a *Client) GetAllProducts(params *GetAllProductsParams) (*GetAllProductsOK
 		Method:             "GET",
 		PathPattern:        "/products",
 		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllProductsReader{formats: a.formats},
@@ -92,6 +92,7 @@ func (a *Client) GetMetadataForProduct(params *GetMetadataForProductParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/products/{product-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMetadataForProductReader{formats: a.formats},
@@ -118,6 +119,7 @@ func (a *Client) GetProductByID(params *GetProductByIDParams) (*GetProductByIDOK
 		Method:             "GET",
 		PathPattern:        "/products/{product-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetProductByIDReader{formats: a.formats},
@@ -144,6 +146,7 @@ func (a *Client) SetMetadataForProduct(params *SetMetadataForProductParams) (*Se
 		Method:             "POST",
 		PathPattern:        "/products/{product-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetMetadataForProductReader{formats: a.formats},
@@ -170,6 +173,7 @@ func (a *Client) UpsertMetadataForProduct(params *UpsertMetadataForProductParams
 		Method:             "PUT",
 		PathPattern:        "/products/{product-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpsertMetadataForProductReader{formats: a.formats},
@@ -183,24 +187,4 @@ func (a *Client) UpsertMetadataForProduct(params *UpsertMetadataForProductParams
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

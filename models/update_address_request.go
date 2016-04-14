@@ -18,37 +18,37 @@ type UpdateAddressRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine1 *string `json:"addressLine1,omitempty"`
+	AddressLine1 string `json:"addressLine1,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 *string `json:"addressLine2,omitempty"`
+	AddressLine2 string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 *string `json:"addressLine3,omitempty"`
+	AddressLine3 string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	City *string `json:"city,omitempty"`
+	City string `json:"city,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	Country *string `json:"country,omitempty"`
+	Country string `json:"country,omitempty"`
 
-	/* ID id
+	/* id
 
 	Required: true
 	*/
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id"`
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline *string `json:"landline,omitempty"`
+	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 	 */
-	Postcode *string `json:"postcode,omitempty"`
+	Postcode string `json:"postcode,omitempty"`
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
@@ -58,11 +58,11 @@ type UpdateAddressRequest struct {
 
 	Required: true
 	*/
-	ProfileID string `json:"profileID,omitempty"`
+	ProfileID *string `json:"profileID"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	Province *string `json:"province,omitempty"`
+	Province string `json:"province,omitempty"`
 }
 
 // Validate validates this update address request
@@ -87,7 +87,7 @@ func (m *UpdateAddressRequest) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateAddressRequest) validateID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
+	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 
@@ -96,7 +96,7 @@ func (m *UpdateAddressRequest) validateID(formats strfmt.Registry) error {
 
 func (m *UpdateAddressRequest) validateProfileID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("profileID", "body", string(m.ProfileID)); err != nil {
+	if err := validate.Required("profileID", "body", m.ProfileID); err != nil {
 		return err
 	}
 

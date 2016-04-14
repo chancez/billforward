@@ -20,7 +20,7 @@ swagger:discriminator AuthCaptureRequest @type
 type AuthCaptureRequest interface {
 	httpkit.Validatable
 
-	/* AtType at type
+	/* at type
 
 	Required: true
 	*/
@@ -29,13 +29,13 @@ type AuthCaptureRequest interface {
 
 	/* {"description":"ID of the BillForward Account with which you would like to associate the created payment method.<br>If omitted, BillForward will associate the created PaymentMethod with a newly-created Account, whose Profile details will be populated using billing information from the funding instrument.","verbs":["POST"]}
 	 */
-	AccountID() *string
-	SetAccountID(*string)
+	AccountID() string
+	SetAccountID(string)
 
 	/* {"description":"The name of the company of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	CompanyName() *string
-	SetCompanyName(*string)
+	CompanyName() string
+	SetCompanyName(string)
 
 	/* {"default":false,"description":"Whether the PaymentMethod produced by this request should be elected as the 'default' payment method for the concerned BillForward Account. Whichever PaymentMethod is elected as an Account's default payment method, will be consulted whenever payment is demanded of that Account (i.e. upon the execution of any of the Account's invoices).","verbs":["POST"]}
 	 */
@@ -44,33 +44,33 @@ type AuthCaptureRequest interface {
 
 	/* {"description":"The email address of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	Email() *string
-	SetEmail(*string)
+	Email() string
+	SetEmail(string)
 
 	/* {"description":"The first name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	FirstName() *string
-	SetFirstName(*string)
+	FirstName() string
+	SetFirstName(string)
 
 	/* {"description":"The gateway with which your funding instrument has been vaulted.","verbs":["POST"]}
 	 */
-	Gateway() *string
-	SetGateway(*string)
+	Gateway() string
+	SetGateway(string)
 
 	/* {"description":"The last name of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	LastName() *string
-	SetLastName(*string)
+	LastName() string
+	SetLastName(string)
 
 	/* {"description":"The mobile phone number of the customer from whose card a PaymentMethod is being produced. If provided: this metadata will be used to populate a Profile &mdash; should a BillForward Account be created by this request.","verbs":["POST"]}
 	 */
-	Mobile() *string
-	SetMobile(*string)
+	Mobile() string
+	SetMobile(string)
 
 	/* {"description":"ID of the BillForward Organization within which the requested PaymentMethod should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */
-	OrganizationID() *string
-	SetOrganizationID(*string)
+	OrganizationID() string
+	SetOrganizationID(string)
 }
 
 // UnmarshalAuthCaptureRequestSlice unmarshals polymorphic slices of AuthCaptureRequest

@@ -15,13 +15,17 @@ import (
 // with the default values initialized.
 func NewGetPaymentMethodByAccountIDParams() *GetPaymentMethodByAccountIDParams {
 	var (
+		defaultOnlyDefault    bool   = bool(false)
 		includeRetiredDefault bool   = bool(true)
+		offsetDefault         int32  = int32(0)
 		orderDefault          string = string("DESC")
 		orderByDefault        string = string("id")
 		recordsDefault        int32  = int32(10)
 	)
 	return &GetPaymentMethodByAccountIDParams{
+		DefaultOnly:    &defaultOnlyDefault,
 		IncludeRetired: &includeRetiredDefault,
+		Offset:         &offsetDefault,
 		Order:          &orderDefault,
 		OrderBy:        &orderByDefault,
 		Records:        &recordsDefault,

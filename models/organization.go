@@ -17,7 +17,7 @@ swagger:model Organization
 */
 type Organization struct {
 
-	/* Alias alias
+	/* alias
 	 */
 	Alias []*Alias `json:"alias,omitempty"`
 
@@ -27,7 +27,7 @@ type Organization struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The OAuth2 clients associated with the organization. In most cases an organization would not have any clients associated with their account. In the case of an APP developer, a clients would exist per an application they have developed. To further understand clients please see the client, OAuth2 API and APP development documentation.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -35,19 +35,19 @@ type Organization struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "A shortcode for the organization. This is used as a short reference code for use when referring to the organization, by default this is set to the organizations name.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	CustomerCode string `json:"customerCode,omitempty"`
+	CustomerCode *string `json:"customerCode"`
 
 	/* { "description" : "Indicates if an organization has been retired. If an organization has been retired it can still be retrieved using the appropriate flag on API requests.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* { "description" : "The dunning-lines associated with the organization. Dunning lines are used as re-try logic for invoices to attempt to reconcile the payment.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -55,13 +55,13 @@ type Organization struct {
 
 	/* { "description" : "ID of the organization.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "The name of the organization.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* { "description" : "The card-vault gateways associated with the organization.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -73,13 +73,13 @@ type Organization struct {
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "The WebHooks associated with the organization. These are the end-points where notifications are sent. WebHooks are added, updated and removed from the organization. Thus to add a WebHook, the webhook must be defined on this property of the organization and then the organization updated. To update a WebHook the same procedure must be followed, first retrieving the organization followed by updating the appropriate WebHook, finally the organization is updated.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Webhooks []*MutableBillingEntity `json:"webhooks,omitempty"`
+	Webhooks []*MutableBillingEntity `json:"webhooks"`
 }
 
 // Validate validates this organization
@@ -148,17 +148,6 @@ func (m *Organization) validateAlias(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Alias); i++ {
-
-		if m.Alias[i] != nil {
-
-			if err := m.Alias[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -166,17 +155,6 @@ func (m *Organization) validateAPIConfigurations(formats strfmt.Registry) error 
 
 	if swag.IsZero(m.APIConfigurations) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.APIConfigurations); i++ {
-
-		if m.APIConfigurations[i] != nil {
-
-			if err := m.APIConfigurations[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil
@@ -188,23 +166,12 @@ func (m *Organization) validateClients(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Clients); i++ {
-
-		if m.Clients[i] != nil {
-
-			if err := m.Clients[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Organization) validateCustomerCode(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("customerCode", "body", string(m.CustomerCode)); err != nil {
+	if err := validate.Required("customerCode", "body", m.CustomerCode); err != nil {
 		return err
 	}
 
@@ -226,23 +193,12 @@ func (m *Organization) validateDunningLines(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.DunningLines); i++ {
-
-		if m.DunningLines[i] != nil {
-
-			if err := m.DunningLines[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Organization) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -255,17 +211,6 @@ func (m *Organization) validateOrganizationGateways(formats strfmt.Registry) err
 		return nil
 	}
 
-	for i := 0; i < len(m.OrganizationGateways); i++ {
-
-		if m.OrganizationGateways[i] != nil {
-
-			if err := m.OrganizationGateways[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -275,17 +220,6 @@ func (m *Organization) validateTaxationStrategies(formats strfmt.Registry) error
 		return nil
 	}
 
-	for i := 0; i < len(m.TaxationStrategies); i++ {
-
-		if m.TaxationStrategies[i] != nil {
-
-			if err := m.TaxationStrategies[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -293,17 +227,6 @@ func (m *Organization) validateWebhooks(formats strfmt.Registry) error {
 
 	if err := validate.Required("webhooks", "body", m.Webhooks); err != nil {
 		return err
-	}
-
-	for i := 0; i < len(m.Webhooks); i++ {
-
-		if m.Webhooks[i] != nil {
-
-			if err := m.Webhooks[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

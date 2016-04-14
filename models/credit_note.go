@@ -22,67 +22,67 @@ type CreditNote struct {
 
 	Required: true
 	*/
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	CreatedBy *string `json:"createdBy,omitempty"`
+	CreatedBy string `json:"createdBy,omitempty"`
 
 	/* { "description" : "Currency of the credit-note specified by a three character ISO 4217 currency code.", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
-	Currency string `json:"currency,omitempty"`
+	Currency *string `json:"currency"`
 
 	/* { "description" : "", "verbs":["POST","GET"] }
 	 */
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "References an invoice from this credit note. This has no side-effects, such as limited scope of credit note.", "verbs":["POST","GET"] }
 	 */
-	InvoiceID *string `json:"invoiceID,omitempty"`
+	InvoiceID string `json:"invoiceID,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
 	/* { "description" : "Remaining value of the payment not used. In the case when a credit-note is used across a range of invoices, each use reducing the available blance of the credit note.", "verbs":["GET"] }
 
 	Required: true
 	*/
-	RemainingValue float64 `json:"remainingValue,omitempty"`
+	RemainingValue *float64 `json:"remainingValue"`
 
 	/* { "description" : "Subscription to apply the credit note to. By default credit notes are owned by the account an can be used on any subscription. Providing this value limits the credit-note to only being used on the specified subscription.", "verbs":["POST","GET"] }
 	 */
-	SubscriptionID *string `json:"subscriptionID,omitempty"`
+	SubscriptionID string `json:"subscriptionID,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : " Monetary value of the credit-note", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
-	Value float64 `json:"value,omitempty"`
+	Value *float64 `json:"value"`
 }
 
 // Validate validates this credit note
@@ -122,7 +122,7 @@ func (m *CreditNote) Validate(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.Required("accountID", "body", m.AccountID); err != nil {
 		return err
 	}
 
@@ -131,7 +131,7 @@ func (m *CreditNote) validateAccountID(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.Required("currency", "body", m.Currency); err != nil {
 		return err
 	}
 
@@ -140,26 +140,27 @@ func (m *CreditNote) validateCurrency(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateRemainingValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("remainingValue", "body", float64(m.RemainingValue)); err != nil {
+	if err := validate.Required("remainingValue", "body", m.RemainingValue); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var creditNoteTypeEnum []interface{}
+var creditNoteTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *CreditNote) validateTypeEnum(path, location string, value string) error {
-	if creditNoteTypeEnum == nil {
+	if creditNoteTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["invoice","manual"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			creditNoteTypeEnum = append(creditNoteTypeEnum, v)
+			creditNoteTypeTypePropEnum = append(creditNoteTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, creditNoteTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, creditNoteTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -167,11 +168,12 @@ func (m *CreditNote) validateTypeEnum(path, location string, value string) error
 
 func (m *CreditNote) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 
@@ -180,7 +182,7 @@ func (m *CreditNote) validateType(formats strfmt.Registry) error {
 
 func (m *CreditNote) validateValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("value", "body", float64(m.Value)); err != nil {
+	if err := validate.Required("value", "body", m.Value); err != nil {
 		return err
 	}
 

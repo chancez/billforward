@@ -13,7 +13,7 @@ type BillingEntityBase struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 }
 
 // Validate validates this billing entity base

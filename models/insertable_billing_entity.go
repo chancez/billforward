@@ -20,77 +20,77 @@ type InsertableBillingEntity struct {
 
 	/* { "description" : "The UTC DateTime when the pricing-component-value-change was processed.", "verbs":["POST","PUT","GET"] }
 	 */
-	Applied *strfmt.DateTime `json:"applied,omitempty"`
+	Applied strfmt.DateTime `json:"applied,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the pricing-component-value-change was calculated.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	AsOf strfmt.DateTime `json:"asOf,omitempty"`
+	AsOf *strfmt.DateTime `json:"asOf"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "ID of the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "ID of the invoice associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	InvoiceID string `json:"invoiceID,omitempty"`
+	InvoiceID *string `json:"invoiceID"`
 
 	/* { "description" : "The value change mode.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Mode string `json:"mode,omitempty"`
+	Mode *string `json:"mode"`
 
 	/* { "description" : "The new value of the pricing-component.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	NewValue int32 `json:"newValue,omitempty"`
+	NewValue *int32 `json:"newValue"`
 
 	/* { "description" : "The new value of the pricing-component.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OldValue int32 `json:"oldValue,omitempty"`
+	OldValue *int32 `json:"oldValue"`
 
 	/* { "description" : "The organizationID.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "ID of the pricing-component associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	PricingComponentID string `json:"pricingComponentID,omitempty"`
+	PricingComponentID *string `json:"pricingComponentID"`
 
 	/* { "description" : "The value change state.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	State string `json:"state,omitempty"`
+	State *string `json:"state"`
 
 	/* { "description" : "ID of the subscription associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID"`
 
 	/* { "description" : "ID of the unit-of-measure associated with the pricing-component-value-change.", "verbs":["POST","PUT","GET"] }
 	 */
-	UnitOfMeasureID *string `json:"unitOfMeasureID,omitempty"`
+	UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 }
 
 // Validate validates this insertable billing entity
@@ -150,7 +150,7 @@ func (m *InsertableBillingEntity) Validate(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateAsOf(formats strfmt.Registry) error {
 
-	if err := validate.Required("asOf", "body", strfmt.DateTime(m.AsOf)); err != nil {
+	if err := validate.Required("asOf", "body", m.AsOf); err != nil {
 		return err
 	}
 
@@ -159,26 +159,27 @@ func (m *InsertableBillingEntity) validateAsOf(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.Required("invoiceID", "body", m.InvoiceID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var insertableBillingEntityModeEnum []interface{}
+var insertableBillingEntityTypeModePropEnum []interface{}
 
+// prop value enum
 func (m *InsertableBillingEntity) validateModeEnum(path, location string, value string) error {
-	if insertableBillingEntityModeEnum == nil {
+	if insertableBillingEntityTypeModePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["immediate","delayed"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			insertableBillingEntityModeEnum = append(insertableBillingEntityModeEnum, v)
+			insertableBillingEntityTypeModePropEnum = append(insertableBillingEntityTypeModePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, insertableBillingEntityModeEnum); err != nil {
+	if err := validate.Enum(path, location, value, insertableBillingEntityTypeModePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -186,11 +187,12 @@ func (m *InsertableBillingEntity) validateModeEnum(path, location string, value 
 
 func (m *InsertableBillingEntity) validateMode(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("mode", "body", string(m.Mode)); err != nil {
+	if err := validate.Required("mode", "body", m.Mode); err != nil {
 		return err
 	}
 
-	if err := m.validateModeEnum("mode", "body", m.Mode); err != nil {
+	// value enum
+	if err := m.validateModeEnum("mode", "body", *m.Mode); err != nil {
 		return err
 	}
 
@@ -199,7 +201,7 @@ func (m *InsertableBillingEntity) validateMode(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateNewValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("newValue", "body", int32(m.NewValue)); err != nil {
+	if err := validate.Required("newValue", "body", m.NewValue); err != nil {
 		return err
 	}
 
@@ -208,7 +210,7 @@ func (m *InsertableBillingEntity) validateNewValue(formats strfmt.Registry) erro
 
 func (m *InsertableBillingEntity) validateOldValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("oldValue", "body", int32(m.OldValue)); err != nil {
+	if err := validate.Required("oldValue", "body", m.OldValue); err != nil {
 		return err
 	}
 
@@ -217,7 +219,7 @@ func (m *InsertableBillingEntity) validateOldValue(formats strfmt.Registry) erro
 
 func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -226,26 +228,27 @@ func (m *InsertableBillingEntity) validateOrganizationID(formats strfmt.Registry
 
 func (m *InsertableBillingEntity) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.Required("pricingComponentID", "body", m.PricingComponentID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var insertableBillingEntityStateEnum []interface{}
+var insertableBillingEntityTypeStatePropEnum []interface{}
 
+// prop value enum
 func (m *InsertableBillingEntity) validateStateEnum(path, location string, value string) error {
-	if insertableBillingEntityStateEnum == nil {
+	if insertableBillingEntityTypeStatePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["New","Accepted","Rejected","ChargeCreated"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			insertableBillingEntityStateEnum = append(insertableBillingEntityStateEnum, v)
+			insertableBillingEntityTypeStatePropEnum = append(insertableBillingEntityTypeStatePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, insertableBillingEntityStateEnum); err != nil {
+	if err := validate.Enum(path, location, value, insertableBillingEntityTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -253,11 +256,12 @@ func (m *InsertableBillingEntity) validateStateEnum(path, location string, value
 
 func (m *InsertableBillingEntity) validateState(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
+	if err := validate.Required("state", "body", m.State); err != nil {
 		return err
 	}
 
-	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+	// value enum
+	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
 		return err
 	}
 
@@ -266,7 +270,7 @@ func (m *InsertableBillingEntity) validateState(formats strfmt.Registry) error {
 
 func (m *InsertableBillingEntity) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.Required("subscriptionID", "body", m.SubscriptionID); err != nil {
 		return err
 	}
 

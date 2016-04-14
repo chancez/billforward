@@ -25,7 +25,7 @@ type TimeResponse struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"default":false,"description":"Changes described in the response:<br><span class=\"label label-default\">true</span> &mdash; Are not actually performed; your subscription remains unchanged, no billing events run, and no invoices are executed.<br><span class=\"label label-default\">false</span> &mdash; Are actually performed and committed.","verbs":["POST","GET"]}
 	 */
@@ -33,7 +33,7 @@ type TimeResponse struct {
 
 	/* {"default":"<span class=\"label label-default\">SingleAttempt</span>","description":"What strategy to use when executing any invoices raised as time advances:<br><span class=\"label label-default\">SingleAttempt</span> &mdash; Execute any invoice just once.<br><span class=\"label label-default\">FollowDunning</span> &mdash; Apply the existing dunning strategy when executing invoices.<br><span class=\"label label-default\">None</span>: Do not execute invoices.","verbs":["POST","GET"]}
 	 */
-	ExecutionStrategy *string `json:"executionStrategy,omitempty"`
+	ExecutionStrategy string `json:"executionStrategy,omitempty"`
 
 	/* {"default":false,"description":"Once the subscription is advanced through time:<br><span class=\"label label-default\">true</span> &mdash; Freeze the subscription.<br><span class=\"label label-default\">false</span> &mdash; Do not freeze the subscription.","verbs":["POST","GET"]}
 	 */
@@ -43,7 +43,7 @@ type TimeResponse struct {
 	 */
 	HandleAmendments *bool `json:"handleAmendments,omitempty"`
 
-	/* Invoices invoices
+	/* invoices
 	 */
 	Invoices []*Invoice `json:"invoices,omitempty"`
 
@@ -51,19 +51,19 @@ type TimeResponse struct {
 	A 1-value advances the subscription to the end of its current service period.
 	Higher values advance the subscription to subsequent period boundaries."verbs":["POST","GET"]}
 	*/
-	Periods *int32 `json:"periods,omitempty"`
+	Periods int32 `json:"periods,omitempty"`
 
 	/* {"default":false,"description":"As time scrubs forward:<br><span class=\"label label-default\">true</span> &mdash; Raise no invoice upon advancing over a period boundary.<br><span class=\"label label-default\">false</span> &mdash; Raise invoices for any period that is entered.","verbs":["POST","GET"]}
 	 */
 	SkipIntermediatePeriods *bool `json:"skipIntermediatePeriods,omitempty"`
 
-	/* Subscriptions subscriptions
+	/* subscriptions
 	 */
 	Subscriptions []*Subscription `json:"subscriptions,omitempty"`
 
 	/* {"description":"(Required: one of [`periods`, `to`])<br>The time up until which the subscription should be fast-forwarded.","verbs":["POST","GET"]}
 	 */
-	To *strfmt.DateTime `json:"to,omitempty"`
+	To strfmt.DateTime `json:"to,omitempty"`
 }
 
 // Validate validates this time response
@@ -91,19 +91,20 @@ func (m *TimeResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var timeResponseExecutionStrategyEnum []interface{}
+var timeResponseTypeExecutionStrategyPropEnum []interface{}
 
+// prop value enum
 func (m *TimeResponse) validateExecutionStrategyEnum(path, location string, value string) error {
-	if timeResponseExecutionStrategyEnum == nil {
+	if timeResponseTypeExecutionStrategyPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["SingleAttempt","FollowDunning","None"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			timeResponseExecutionStrategyEnum = append(timeResponseExecutionStrategyEnum, v)
+			timeResponseTypeExecutionStrategyPropEnum = append(timeResponseTypeExecutionStrategyPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, timeResponseExecutionStrategyEnum); err != nil {
+	if err := validate.Enum(path, location, value, timeResponseTypeExecutionStrategyPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -115,7 +116,8 @@ func (m *TimeResponse) validateExecutionStrategy(formats strfmt.Registry) error 
 		return nil
 	}
 
-	if err := m.validateExecutionStrategyEnum("executionStrategy", "body", *m.ExecutionStrategy); err != nil {
+	// value enum
+	if err := m.validateExecutionStrategyEnum("executionStrategy", "body", m.ExecutionStrategy); err != nil {
 		return err
 	}
 
@@ -128,17 +130,6 @@ func (m *TimeResponse) validateInvoices(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Invoices); i++ {
-
-		if m.Invoices[i] != nil {
-
-			if err := m.Invoices[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -146,17 +137,6 @@ func (m *TimeResponse) validateSubscriptions(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Subscriptions) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.Subscriptions); i++ {
-
-		if m.Subscriptions[i] != nil {
-
-			if err := m.Subscriptions[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

@@ -13,27 +13,27 @@ type CreateAccountRequest struct {
 
 	/* { "description" : "If present, this will be the product rate plan to use when creating an aggregating subscription.  An account level aggregating subscription will be created when the first subscription is created against the account.", "verbs":[] }
 	 */
-	AggregatingProductRatePlanID *string `json:"aggregatingProductRatePlanID,omitempty"`
+	AggregatingProductRatePlanID string `json:"aggregatingProductRatePlanID,omitempty"`
 
 	/* { "description" : "The consistent ID of the account level aggregating subscription, if one exists.", "verbs":[] }
 	 */
-	AggregatingSubscriptionID *string `json:"aggregatingSubscriptionID,omitempty"`
+	AggregatingSubscriptionID string `json:"aggregatingSubscriptionID,omitempty"`
 
-	/* Metadata metadata
+	/* metadata
 	 */
 	Metadata DynamicMetadata `json:"metadata,omitempty"`
 
 	/* { "description" : "Organization associated with the account.", "verbs":[] }
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* Profile profile
+	/* profile
 	 */
 	Profile *CreateAccountProfileRequest `json:"profile,omitempty"`
 
 	/* { "description" : "User associated with the account. If this is null, no user is currently assocaited with the account. A user is only set when an account is associated with a user account.", "verbs":[] }
 	 */
-	UserID *string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this create account request

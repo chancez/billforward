@@ -22,149 +22,149 @@ type InvoiceLine struct {
 
 	Required: true
 	*/
-	Calculation string `json:"calculation,omitempty"`
+	Calculation *string `json:"calculation"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "charge-type.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	ChargeType string `json:"chargeType,omitempty"`
+	ChargeType *string `json:"chargeType"`
 
 	/* The ID of the invoice that is associated with the invoice-line.
 
 	Required: true
 	*/
-	ChildInvoiceID string `json:"childInvoiceID,omitempty"`
+	ChildInvoiceID *string `json:"childInvoiceID"`
 
 	/* { "description" : "The component value for the unit-of-measure that is associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	ComponentValue int32 `json:"componentValue,omitempty"`
+	ComponentValue *int32 `json:"componentValue"`
 
 	/* { "description" : "The cost of the invoice-line including tax.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Cost float64 `json:"cost,omitempty"`
+	Cost *float64 `json:"cost"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "The human readable description of the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	/* { "description" : "ID of the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "invoice associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	InvoiceID string `json:"invoiceID,omitempty"`
+	InvoiceID *string `json:"invoiceID"`
 
 	/* { "description" : "The human readable name of the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* { "description" : "ID of the organization associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* The period end of the charge.
 
 	Required: true
 	*/
-	PeriodEnd strfmt.DateTime `json:"periodEnd,omitempty"`
+	PeriodEnd *strfmt.DateTime `json:"periodEnd"`
 
 	/* The period start of the charge.
 
 	Required: true
 	*/
-	PeriodStart strfmt.DateTime `json:"periodStart,omitempty"`
+	PeriodStart *strfmt.DateTime `json:"periodStart"`
 
 	/* The ID of the pricing-component that is associated with the invoice-line.
 
 	Required: true
 	*/
-	PricingComponentID string `json:"pricingComponentID,omitempty"`
+	PricingComponentID *string `json:"pricingComponentID"`
 
 	/* The name of the pricing-component that is associated with the invoice-line.
 
 	Required: true
 	*/
-	PricingComponentName string `json:"pricingComponentName,omitempty"`
+	PricingComponentName *string `json:"pricingComponentName"`
 
 	/* { "description" : "The type of the pricing component associated with the invoice line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	PricingComponentType string `json:"pricingComponentType,omitempty"`
+	PricingComponentType *string `json:"pricingComponentType"`
 
 	/* { "description" : "the product ID associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ProductID *string `json:"productID,omitempty"`
+	ProductID string `json:"productID,omitempty"`
 
 	/* { "description" : "the product name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ProductName *string `json:"productName,omitempty"`
+	ProductName string `json:"productName,omitempty"`
 
 	/* { "description" : "the product rate plan ID associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ProductRatePlanID *string `json:"productRatePlanID,omitempty"`
+	ProductRatePlanID string `json:"productRatePlanID,omitempty"`
 
 	/* { "description" : "the product rate plan name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	ProductRatePlanName *string `json:"productRatePlanName,omitempty"`
+	ProductRatePlanName string `json:"productRatePlanName,omitempty"`
 
 	/* The public name of the pricing-component that is associated with the invoice-line.
 
 	Required: true
 	*/
-	PublicPricingComponentName string `json:"publicPricingComponentName,omitempty"`
+	PublicPricingComponentName *string `json:"publicPricingComponentName"`
 
 	/* { "description" : "the public product name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	PublicProductName *string `json:"publicProductName,omitempty"`
+	PublicProductName string `json:"publicProductName,omitempty"`
 
 	/* { "description" : "the public product rate plan name associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	PublicProductRatePlanName *string `json:"publicProductRatePlanName,omitempty"`
+	PublicProductRatePlanName string `json:"publicProductRatePlanName,omitempty"`
 
 	/* The ID of the subscription-charge that is associated with the invoice-line.
 
 	Required: true
 	*/
-	SubscriptionChargeID string `json:"subscriptionChargeID,omitempty"`
+	SubscriptionChargeID *string `json:"subscriptionChargeID"`
 
 	/* { "description" : "the subscription ID associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	SubscriptionID *string `json:"subscriptionID,omitempty"`
+	SubscriptionID string `json:"subscriptionID,omitempty"`
 
 	/* { "description" : "The cumulative tax of the invoice-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Tax float64 `json:"tax,omitempty"`
+	Tax *float64 `json:"tax"`
 
 	/* The type of the invoice-line.
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	/* { "description" : "The unit-of-measure associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
@@ -172,11 +172,11 @@ type InvoiceLine struct {
 
 	/* { "description" : "unit-of-measure associated with the invoice-line.", "verbs":["POST","PUT","GET"] }
 	 */
-	UnitOfMeasureID *string `json:"unitOfMeasureID,omitempty"`
+	UnitOfMeasureID string `json:"unitOfMeasureID,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this invoice line
@@ -281,26 +281,27 @@ func (m *InvoiceLine) Validate(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateCalculation(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("calculation", "body", string(m.Calculation)); err != nil {
+	if err := validate.Required("calculation", "body", m.Calculation); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var invoiceLineChargeTypeEnum []interface{}
+var invoiceLineTypeChargeTypePropEnum []interface{}
 
+// prop value enum
 func (m *InvoiceLine) validateChargeTypeEnum(path, location string, value string) error {
-	if invoiceLineChargeTypeEnum == nil {
+	if invoiceLineTypeChargeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Credit","Debit"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			invoiceLineChargeTypeEnum = append(invoiceLineChargeTypeEnum, v)
+			invoiceLineTypeChargeTypePropEnum = append(invoiceLineTypeChargeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, invoiceLineChargeTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, invoiceLineTypeChargeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -308,11 +309,12 @@ func (m *InvoiceLine) validateChargeTypeEnum(path, location string, value string
 
 func (m *InvoiceLine) validateChargeType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("chargeType", "body", string(m.ChargeType)); err != nil {
+	if err := validate.Required("chargeType", "body", m.ChargeType); err != nil {
 		return err
 	}
 
-	if err := m.validateChargeTypeEnum("chargeType", "body", m.ChargeType); err != nil {
+	// value enum
+	if err := m.validateChargeTypeEnum("chargeType", "body", *m.ChargeType); err != nil {
 		return err
 	}
 
@@ -321,7 +323,7 @@ func (m *InvoiceLine) validateChargeType(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateChildInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("childInvoiceID", "body", string(m.ChildInvoiceID)); err != nil {
+	if err := validate.Required("childInvoiceID", "body", m.ChildInvoiceID); err != nil {
 		return err
 	}
 
@@ -330,7 +332,7 @@ func (m *InvoiceLine) validateChildInvoiceID(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateComponentValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("componentValue", "body", int32(m.ComponentValue)); err != nil {
+	if err := validate.Required("componentValue", "body", m.ComponentValue); err != nil {
 		return err
 	}
 
@@ -339,7 +341,7 @@ func (m *InvoiceLine) validateComponentValue(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateCost(formats strfmt.Registry) error {
 
-	if err := validate.Required("cost", "body", float64(m.Cost)); err != nil {
+	if err := validate.Required("cost", "body", m.Cost); err != nil {
 		return err
 	}
 
@@ -348,7 +350,7 @@ func (m *InvoiceLine) validateCost(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -357,7 +359,7 @@ func (m *InvoiceLine) validateDescription(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.Required("invoiceID", "body", m.InvoiceID); err != nil {
 		return err
 	}
 
@@ -366,7 +368,7 @@ func (m *InvoiceLine) validateInvoiceID(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -375,7 +377,7 @@ func (m *InvoiceLine) validateName(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -384,7 +386,7 @@ func (m *InvoiceLine) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validatePeriodEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("periodEnd", "body", strfmt.DateTime(m.PeriodEnd)); err != nil {
+	if err := validate.Required("periodEnd", "body", m.PeriodEnd); err != nil {
 		return err
 	}
 
@@ -393,7 +395,7 @@ func (m *InvoiceLine) validatePeriodEnd(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validatePeriodStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("periodStart", "body", strfmt.DateTime(m.PeriodStart)); err != nil {
+	if err := validate.Required("periodStart", "body", m.PeriodStart); err != nil {
 		return err
 	}
 
@@ -402,7 +404,7 @@ func (m *InvoiceLine) validatePeriodStart(formats strfmt.Registry) error {
 
 func (m *InvoiceLine) validatePricingComponentID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("pricingComponentID", "body", string(m.PricingComponentID)); err != nil {
+	if err := validate.Required("pricingComponentID", "body", m.PricingComponentID); err != nil {
 		return err
 	}
 
@@ -411,26 +413,27 @@ func (m *InvoiceLine) validatePricingComponentID(formats strfmt.Registry) error 
 
 func (m *InvoiceLine) validatePricingComponentName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("pricingComponentName", "body", string(m.PricingComponentName)); err != nil {
+	if err := validate.Required("pricingComponentName", "body", m.PricingComponentName); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var invoiceLinePricingComponentTypeEnum []interface{}
+var invoiceLineTypePricingComponentTypePropEnum []interface{}
 
+// prop value enum
 func (m *InvoiceLine) validatePricingComponentTypeEnum(path, location string, value string) error {
-	if invoiceLinePricingComponentTypeEnum == nil {
+	if invoiceLineTypePricingComponentTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["setup","subscription","arrears","usage"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			invoiceLinePricingComponentTypeEnum = append(invoiceLinePricingComponentTypeEnum, v)
+			invoiceLineTypePricingComponentTypePropEnum = append(invoiceLineTypePricingComponentTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, invoiceLinePricingComponentTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, invoiceLineTypePricingComponentTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -438,11 +441,12 @@ func (m *InvoiceLine) validatePricingComponentTypeEnum(path, location string, va
 
 func (m *InvoiceLine) validatePricingComponentType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("pricingComponentType", "body", string(m.PricingComponentType)); err != nil {
+	if err := validate.Required("pricingComponentType", "body", m.PricingComponentType); err != nil {
 		return err
 	}
 
-	if err := m.validatePricingComponentTypeEnum("pricingComponentType", "body", m.PricingComponentType); err != nil {
+	// value enum
+	if err := m.validatePricingComponentTypeEnum("pricingComponentType", "body", *m.PricingComponentType); err != nil {
 		return err
 	}
 
@@ -451,7 +455,7 @@ func (m *InvoiceLine) validatePricingComponentType(formats strfmt.Registry) erro
 
 func (m *InvoiceLine) validatePublicPricingComponentName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("publicPricingComponentName", "body", string(m.PublicPricingComponentName)); err != nil {
+	if err := validate.Required("publicPricingComponentName", "body", m.PublicPricingComponentName); err != nil {
 		return err
 	}
 
@@ -460,7 +464,7 @@ func (m *InvoiceLine) validatePublicPricingComponentName(formats strfmt.Registry
 
 func (m *InvoiceLine) validateSubscriptionChargeID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("subscriptionChargeID", "body", string(m.SubscriptionChargeID)); err != nil {
+	if err := validate.Required("subscriptionChargeID", "body", m.SubscriptionChargeID); err != nil {
 		return err
 	}
 
@@ -469,26 +473,27 @@ func (m *InvoiceLine) validateSubscriptionChargeID(formats strfmt.Registry) erro
 
 func (m *InvoiceLine) validateTax(formats strfmt.Registry) error {
 
-	if err := validate.Required("tax", "body", float64(m.Tax)); err != nil {
+	if err := validate.Required("tax", "body", m.Tax); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var invoiceLineTypeEnum []interface{}
+var invoiceLineTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *InvoiceLine) validateTypeEnum(path, location string, value string) error {
-	if invoiceLineTypeEnum == nil {
+	if invoiceLineTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["PricingComponent","Coupon","Migration","AggregatedInvoice"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			invoiceLineTypeEnum = append(invoiceLineTypeEnum, v)
+			invoiceLineTypeTypePropEnum = append(invoiceLineTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, invoiceLineTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, invoiceLineTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -496,11 +501,12 @@ func (m *InvoiceLine) validateTypeEnum(path, location string, value string) erro
 
 func (m *InvoiceLine) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

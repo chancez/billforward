@@ -16,12 +16,16 @@ import (
 func NewGetSubscriptionByAccountIDParams() *GetSubscriptionByAccountIDParams {
 	var (
 		excludeChildrenDefault bool   = bool(true)
+		includeRetiredDefault  bool   = bool(false)
+		offsetDefault          int32  = int32(0)
 		orderDefault           string = string("DESC")
 		orderByDefault         string = string("id")
 		recordsDefault         int32  = int32(10)
 	)
 	return &GetSubscriptionByAccountIDParams{
 		ExcludeChildren: &excludeChildrenDefault,
+		IncludeRetired:  &includeRetiredDefault,
+		Offset:          &offsetDefault,
 		Order:           &orderDefault,
 		OrderBy:         &orderByDefault,
 		Records:         &recordsDefault,

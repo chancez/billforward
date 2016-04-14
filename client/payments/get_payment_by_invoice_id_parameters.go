@@ -16,12 +16,14 @@ import (
 func NewGetPaymentByInvoiceIDParams() *GetPaymentByInvoiceIDParams {
 	var (
 		includeRetiredDefault bool   = bool(true)
+		offsetDefault         int32  = int32(0)
 		orderDefault          string = string("DESC")
 		orderByDefault        string = string("id")
 		recordsDefault        int32  = int32(10)
 	)
 	return &GetPaymentByInvoiceIDParams{
 		IncludeRetired: &includeRetiredDefault,
+		Offset:         &offsetDefault,
 		Order:          &orderDefault,
 		OrderBy:        &orderByDefault,
 		Records:        &recordsDefault,

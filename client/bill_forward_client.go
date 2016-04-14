@@ -29,7 +29,7 @@ func NewHTTPClient(formats strfmt.Registry) *BillForward {
 	if formats == nil {
 		formats = strfmt.Default
 	}
-	transport := httptransport.New("localhost:8080", "/", []string{"https"})
+	transport := httptransport.New("localhost:8080", "/RestAPI", []string{"https"})
 	return New(transport, formats)
 }
 

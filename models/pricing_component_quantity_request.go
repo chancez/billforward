@@ -10,7 +10,7 @@ import (
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 )
 
-/*PricingComponentQuantityRequest PricingComponentQuantityRequest pricing component quantity request
+/*PricingComponentQuantityRequest pricing component quantity request
 
 swagger:model PricingComponentQuantityRequest
 */
@@ -18,19 +18,19 @@ type PricingComponentQuantityRequest struct {
 
 	/* { "description" : "Percentage to be discounted", "verbs":["POST","GET"] }
 	 */
-	PercentageDiscount *float64 `json:"percentageDiscount,omitempty"`
+	PercentageDiscount float64 `json:"percentageDiscount,omitempty"`
 
-	/* PricingComponent pricing component
-
-	Required: true
-	*/
-	PricingComponent string `json:"pricingComponent,omitempty"`
-
-	/* Quantity quantity
+	/* pricing component
 
 	Required: true
 	*/
-	Quantity int64 `json:"quantity,omitempty"`
+	PricingComponent *string `json:"pricingComponent"`
+
+	/* quantity
+
+	Required: true
+	*/
+	Quantity *int64 `json:"quantity"`
 }
 
 // Validate validates this pricing component quantity request
@@ -55,7 +55,7 @@ func (m *PricingComponentQuantityRequest) Validate(formats strfmt.Registry) erro
 
 func (m *PricingComponentQuantityRequest) validatePricingComponent(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("pricingComponent", "body", string(m.PricingComponent)); err != nil {
+	if err := validate.Required("pricingComponent", "body", m.PricingComponent); err != nil {
 		return err
 	}
 
@@ -64,7 +64,7 @@ func (m *PricingComponentQuantityRequest) validatePricingComponent(formats strfm
 
 func (m *PricingComponentQuantityRequest) validateQuantity(formats strfmt.Registry) error {
 
-	if err := validate.Required("quantity", "body", int64(m.Quantity)); err != nil {
+	if err := validate.Required("quantity", "body", m.Quantity); err != nil {
 		return err
 	}
 

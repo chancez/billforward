@@ -21,11 +21,11 @@ type Profile struct {
 
 	Required: true
 	*/
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID"`
 
 	/* { "description" : "Any additional information", "verbs":["POST","PUT","GET"] }
 	 */
-	AdditionalInformation *string `json:"additionalInformation,omitempty"`
+	AdditionalInformation string `json:"additionalInformation,omitempty"`
 
 	/* { "description" : "Address associated with the profile", "verbs":["POST","PUT","GET"] }
 	 */
@@ -33,73 +33,73 @@ type Profile struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	CompanyName *string `json:"companyName,omitempty"`
+	CompanyName string `json:"companyName,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Date of birth in YYYY-MM-DD format", "verbs":["POST","PUT","GET"] }
 	 */
-	Dob *strfmt.DateTime `json:"dob,omitempty"`
+	Dob strfmt.DateTime `json:"dob,omitempty"`
 
 	/* { "description" : "E-mail address", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Email string `json:"email,omitempty"`
+	Email *string `json:"email"`
 
 	/* { "description" : "Fax number", "verbs":["POST","PUT","GET"] }
 	 */
-	Fax *string `json:"fax,omitempty"`
+	Fax string `json:"fax,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	FirstName string `json:"firstName,omitempty"`
+	FirstName *string `json:"firstName"`
 
 	/* { "description" : "ID of the profile.", "verbs":["PUT","GET"] }
 
 	Required: true
 	*/
-	ID string `json:"id,omitempty"`
+	ID *string `json:"id"`
 
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline *string `json:"landline,omitempty"`
+	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	LastName string `json:"lastName,omitempty"`
+	LastName *string `json:"lastName"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	LogoURL *string `json:"logoURL,omitempty"`
+	LogoURL string `json:"logoURL,omitempty"`
 
 	/* { "description" : "Mobile telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Mobile *string `json:"mobile,omitempty"`
+	Mobile string `json:"mobile,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "VAT number", "verbs":["POST","PUT","GET"] }
 	 */
-	VatNumber *string `json:"vatNumber,omitempty"`
+	VatNumber string `json:"vatNumber,omitempty"`
 }
 
 // Validate validates this profile
@@ -149,7 +149,7 @@ func (m *Profile) Validate(formats strfmt.Registry) error {
 
 func (m *Profile) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.Required("accountID", "body", m.AccountID); err != nil {
 		return err
 	}
 
@@ -162,23 +162,12 @@ func (m *Profile) validateAddresses(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Addresses); i++ {
-
-		if m.Addresses[i] != nil {
-
-			if err := m.Addresses[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Profile) validateEmail(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("email", "body", string(m.Email)); err != nil {
+	if err := validate.Required("email", "body", m.Email); err != nil {
 		return err
 	}
 
@@ -187,7 +176,7 @@ func (m *Profile) validateEmail(formats strfmt.Registry) error {
 
 func (m *Profile) validateFirstName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("firstName", "body", string(m.FirstName)); err != nil {
+	if err := validate.Required("firstName", "body", m.FirstName); err != nil {
 		return err
 	}
 
@@ -196,7 +185,7 @@ func (m *Profile) validateFirstName(formats strfmt.Registry) error {
 
 func (m *Profile) validateID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("id", "body", string(m.ID)); err != nil {
+	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 
@@ -205,7 +194,7 @@ func (m *Profile) validateID(formats strfmt.Registry) error {
 
 func (m *Profile) validateLastName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("lastName", "body", string(m.LastName)); err != nil {
+	if err := validate.Required("lastName", "body", m.LastName); err != nil {
 		return err
 	}
 
@@ -214,7 +203,7 @@ func (m *Profile) validateLastName(formats strfmt.Registry) error {
 
 func (m *Profile) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 

@@ -20,37 +20,37 @@ type CreateAddressRequest struct {
 
 	Required: true
 	*/
-	AddressLine1 string `json:"addressLine1,omitempty"`
+	AddressLine1 *string `json:"addressLine1"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 *string `json:"addressLine2,omitempty"`
+	AddressLine2 string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 *string `json:"addressLine3,omitempty"`
+	AddressLine3 string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	City string `json:"city,omitempty"`
+	City *string `json:"city"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Country string `json:"country,omitempty"`
+	Country *string `json:"country"`
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline *string `json:"landline,omitempty"`
+	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Postcode string `json:"postcode,omitempty"`
+	Postcode *string `json:"postcode"`
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
@@ -60,13 +60,13 @@ type CreateAddressRequest struct {
 
 	Required: true
 	*/
-	ProfileID string `json:"profileID,omitempty"`
+	ProfileID *string `json:"profileID"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Province string `json:"province,omitempty"`
+	Province *string `json:"province"`
 }
 
 // Validate validates this create address request
@@ -111,7 +111,7 @@ func (m *CreateAddressRequest) Validate(formats strfmt.Registry) error {
 
 func (m *CreateAddressRequest) validateAddressLine1(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("addressLine1", "body", string(m.AddressLine1)); err != nil {
+	if err := validate.Required("addressLine1", "body", m.AddressLine1); err != nil {
 		return err
 	}
 
@@ -120,7 +120,7 @@ func (m *CreateAddressRequest) validateAddressLine1(formats strfmt.Registry) err
 
 func (m *CreateAddressRequest) validateCity(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("city", "body", string(m.City)); err != nil {
+	if err := validate.Required("city", "body", m.City); err != nil {
 		return err
 	}
 
@@ -129,7 +129,7 @@ func (m *CreateAddressRequest) validateCity(formats strfmt.Registry) error {
 
 func (m *CreateAddressRequest) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("country", "body", string(m.Country)); err != nil {
+	if err := validate.Required("country", "body", m.Country); err != nil {
 		return err
 	}
 
@@ -138,7 +138,7 @@ func (m *CreateAddressRequest) validateCountry(formats strfmt.Registry) error {
 
 func (m *CreateAddressRequest) validatePostcode(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("postcode", "body", string(m.Postcode)); err != nil {
+	if err := validate.Required("postcode", "body", m.Postcode); err != nil {
 		return err
 	}
 
@@ -147,7 +147,7 @@ func (m *CreateAddressRequest) validatePostcode(formats strfmt.Registry) error {
 
 func (m *CreateAddressRequest) validateProfileID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("profileID", "body", string(m.ProfileID)); err != nil {
+	if err := validate.Required("profileID", "body", m.ProfileID); err != nil {
 		return err
 	}
 
@@ -156,7 +156,7 @@ func (m *CreateAddressRequest) validateProfileID(formats strfmt.Registry) error 
 
 func (m *CreateAddressRequest) validateProvince(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("province", "body", string(m.Province)); err != nil {
+	if err := validate.Required("province", "body", m.Province); err != nil {
 		return err
 	}
 

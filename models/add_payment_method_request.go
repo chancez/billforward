@@ -13,7 +13,7 @@ type AddPaymentMethodRequest struct {
 
 	/* { "description" : "ID of the payment method to add", "verbs":["POST","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 }
 
 // Validate validates this add payment method request

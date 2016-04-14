@@ -18,11 +18,11 @@ type CreateSubscriptionBatchRequest struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"default":"(Auto-populated using your authentication credentials)","description":"ID of the BillForward Organization within which the requested Subscriptions should be created. If omitted, this will be auto-populated using your authentication credentials.","verbs":["POST"]}
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
 	/* {"default":"(Empty list)","description":"List of entities for requesting that subscriptions be created.","verbs":["POST"]}
 	 */
@@ -48,17 +48,6 @@ func (m *CreateSubscriptionBatchRequest) validateSubscriptions(formats strfmt.Re
 
 	if swag.IsZero(m.Subscriptions) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.Subscriptions); i++ {
-
-		if m.Subscriptions[i] != nil {
-
-			if err := m.Subscriptions[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

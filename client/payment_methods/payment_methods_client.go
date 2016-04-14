@@ -4,8 +4,6 @@ package payment_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) DeletePaymentMethod(params *DeletePaymentMethodParams) (*Delete
 		Method:             "DELETE",
 		PathPattern:        "/payment-methods/{payment-method-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePaymentMethodReader{formats: a.formats},
@@ -66,6 +65,7 @@ func (a *Client) GetAllPaymentMethods(params *GetAllPaymentMethodsParams) (*GetA
 		Method:             "GET",
 		PathPattern:        "/payment-methods",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllPaymentMethodsReader{formats: a.formats},
@@ -92,6 +92,7 @@ func (a *Client) GetPaymentMethodByAccountID(params *GetPaymentMethodByAccountID
 		Method:             "GET",
 		PathPattern:        "/payment-methods/account/{account-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentMethodByAccountIDReader{formats: a.formats},
@@ -118,6 +119,7 @@ func (a *Client) GetPaymentMethodByID(params *GetPaymentMethodByIDParams) (*GetP
 		Method:             "GET",
 		PathPattern:        "/payment-methods/{payment-method-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPaymentMethodByIDReader{formats: a.formats},
@@ -131,24 +133,4 @@ func (a *Client) GetPaymentMethodByID(params *GetPaymentMethodByIDParams) (*GetP
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

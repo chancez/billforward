@@ -22,59 +22,59 @@ type DunningLine struct {
 
 	Required: true
 	*/
-	AttemptIx int32 `json:"attemptIx,omitempty"`
+	AttemptIx *int32 `json:"attemptIx"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Has the dunning-line been deleted?", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* { "description" : "The payment gateway to use for this payment attempt.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Gateway string `json:"gateway,omitempty"`
+	Gateway *string `json:"gateway"`
 
 	/* { "description" : "ID of the dunning-line.", "verbs":["GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "The time before the next payment attempt in minutes.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	MinutesDelay int32 `json:"minutesDelay,omitempty"`
+	MinutesDelay *int32 `json:"minutesDelay"`
 
 	/* { "description" : "organization associated with the dunning-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Organization *Organization `json:"organization,omitempty"`
+	Organization *Organization `json:"organization"`
 
 	/* { "description" : "ID of the organization associated with the dunning-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "ID of the organization associated with the dunning-line.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this dunning line
@@ -124,7 +124,7 @@ func (m *DunningLine) Validate(formats strfmt.Registry) error {
 
 func (m *DunningLine) validateAttemptIx(formats strfmt.Registry) error {
 
-	if err := validate.Required("attemptIx", "body", int32(m.AttemptIx)); err != nil {
+	if err := validate.Required("attemptIx", "body", m.AttemptIx); err != nil {
 		return err
 	}
 
@@ -140,19 +140,20 @@ func (m *DunningLine) validateDeleted(formats strfmt.Registry) error {
 	return nil
 }
 
-var dunningLineGatewayEnum []interface{}
+var dunningLineTypeGatewayPropEnum []interface{}
 
+// prop value enum
 func (m *DunningLine) validateGatewayEnum(path, location string, value string) error {
-	if dunningLineGatewayEnum == nil {
+	if dunningLineTypeGatewayPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["cybersource_token","card_vault","paypal_simple","locustworld","free","coupon","credit_note","stripe","braintree","balanced","paypal","billforward_test","offline","trial","stripeACH","authorizeNet","spreedly","sagePay","trustCommerce","payvision","kash"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			dunningLineGatewayEnum = append(dunningLineGatewayEnum, v)
+			dunningLineTypeGatewayPropEnum = append(dunningLineTypeGatewayPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, dunningLineGatewayEnum); err != nil {
+	if err := validate.Enum(path, location, value, dunningLineTypeGatewayPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -160,11 +161,12 @@ func (m *DunningLine) validateGatewayEnum(path, location string, value string) e
 
 func (m *DunningLine) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.Required("gateway", "body", m.Gateway); err != nil {
 		return err
 	}
 
-	if err := m.validateGatewayEnum("gateway", "body", m.Gateway); err != nil {
+	// value enum
+	if err := m.validateGatewayEnum("gateway", "body", *m.Gateway); err != nil {
 		return err
 	}
 
@@ -173,7 +175,7 @@ func (m *DunningLine) validateGateway(formats strfmt.Registry) error {
 
 func (m *DunningLine) validateMinutesDelay(formats strfmt.Registry) error {
 
-	if err := validate.Required("minutesDelay", "body", int32(m.MinutesDelay)); err != nil {
+	if err := validate.Required("minutesDelay", "body", m.MinutesDelay); err != nil {
 		return err
 	}
 
@@ -194,26 +196,27 @@ func (m *DunningLine) validateOrganization(formats strfmt.Registry) error {
 
 func (m *DunningLine) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var dunningLineTypeEnum []interface{}
+var dunningLineTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *DunningLine) validateTypeEnum(path, location string, value string) error {
-	if dunningLineTypeEnum == nil {
+	if dunningLineTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Invoice","Notification"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			dunningLineTypeEnum = append(dunningLineTypeEnum, v)
+			dunningLineTypeTypePropEnum = append(dunningLineTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, dunningLineTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, dunningLineTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -221,11 +224,12 @@ func (m *DunningLine) validateTypeEnum(path, location string, value string) erro
 
 func (m *DunningLine) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

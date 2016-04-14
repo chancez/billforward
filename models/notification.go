@@ -5,7 +5,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
@@ -24,43 +23,43 @@ type Notification struct {
 
 	Required: true
 	*/
-	AckEnabled bool `json:"ackEnabled,omitempty"`
+	AckEnabled bool `json:"ackEnabled"`
 
 	/* { "description" : "The UTC DateTime when the notification was acked if it is ack enabled.", "verbs":["POST","PUT","GET"] }
 	 */
-	Acked *strfmt.DateTime `json:"acked,omitempty"`
+	Acked strfmt.DateTime `json:"acked,omitempty"`
 
 	/* { "description" : "The action associated with the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Action string `json:"action,omitempty"`
+	Action *string `json:"action"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
-	/* Changes changes
+	/* changes
 	 */
 	Changes []strfmt.Base64 `json:"changes,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "The URL the notification will be sent to.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	DestinationURL string `json:"destinationURL,omitempty"`
+	DestinationURL *string `json:"destinationURL"`
 
 	/* { "description" : "The domain of the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Domain string `json:"domain,omitempty"`
+	Domain *string `json:"domain"`
 
-	/* Entity entity
+	/* entity
 	 */
 	Entity []strfmt.Base64 `json:"entity,omitempty"`
 
@@ -68,55 +67,55 @@ type Notification struct {
 
 	Required: true
 	*/
-	EntityID string `json:"entityID,omitempty"`
+	EntityID *string `json:"entityID"`
 
 	/* { "description" : "The UTC DateTime of the notification's final send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	FinalSendAttempt *strfmt.DateTime `json:"finalSendAttempt,omitempty"`
+	FinalSendAttempt strfmt.DateTime `json:"finalSendAttempt,omitempty"`
 
 	/* { "description" : "Format of the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Format string `json:"format,omitempty"`
+	Format *string `json:"format"`
 
 	/* { "description" : "ID of the notification.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "The UTC DateTime of the notifications's last send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	LastSendAttempt *strfmt.DateTime `json:"lastSendAttempt,omitempty"`
+	LastSendAttempt strfmt.DateTime `json:"lastSendAttempt,omitempty"`
 
 	/* { "description" : "The UTC DateTime of the notification's next send attempt.", "verbs":["POST","PUT","GET"] }
 	 */
-	NextSendAttempt *strfmt.DateTime `json:"nextSendAttempt,omitempty"`
+	NextSendAttempt strfmt.DateTime `json:"nextSendAttempt,omitempty"`
 
 	/* { "description" : "Organization associated with the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "Whether the notification has been sent.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	State string `json:"state,omitempty"`
+	State *string `json:"state"`
 
 	/* { "description" : "The number of send attempts for this notification.", "verbs":["POST","PUT","GET"] }
 	 */
-	TotalSendAttempts *int32 `json:"totalSendAttempts,omitempty"`
+	TotalSendAttempts int32 `json:"totalSendAttempts,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 
 	/* { "description" : "Webhook associated with the notification.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	WebhookID string `json:"webhookID,omitempty"`
+	WebhookID *string `json:"webhookID"`
 }
 
 // Validate validates this notification
@@ -193,19 +192,20 @@ func (m *Notification) validateAckEnabled(formats strfmt.Registry) error {
 	return nil
 }
 
-var notificationActionEnum []interface{}
+var notificationTypeActionPropEnum []interface{}
 
+// prop value enum
 func (m *Notification) validateActionEnum(path, location string, value string) error {
-	if notificationActionEnum == nil {
+	if notificationTypeActionPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Accept","Active","AwaitingPayment","AwaitingRefund","Cancelled","Completed","Created","Error","Expiring","Expired","Failed","Migrated","NeedsAmendments","Paid","Pending","Provisioned","Refunded","Reject","Trial","Unknown","Unpaid","Updated","Voided","PaymentFailed"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			notificationActionEnum = append(notificationActionEnum, v)
+			notificationTypeActionPropEnum = append(notificationTypeActionPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, notificationActionEnum); err != nil {
+	if err := validate.Enum(path, location, value, notificationTypeActionPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -213,11 +213,12 @@ func (m *Notification) validateActionEnum(path, location string, value string) e
 
 func (m *Notification) validateAction(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("action", "body", string(m.Action)); err != nil {
+	if err := validate.Required("action", "body", m.Action); err != nil {
 		return err
 	}
 
-	if err := m.validateActionEnum("action", "body", m.Action); err != nil {
+	// value enum
+	if err := m.validateActionEnum("action", "body", *m.Action); err != nil {
 		return err
 	}
 
@@ -230,39 +231,32 @@ func (m *Notification) validateChanges(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Changes); i++ {
-
-		if err := validate.Required("changes"+"."+strconv.Itoa(i), "body", strfmt.Base64(m.Changes[i])); err != nil {
-			return err
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Notification) validateDestinationURL(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("destinationURL", "body", string(m.DestinationURL)); err != nil {
+	if err := validate.Required("destinationURL", "body", m.DestinationURL); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var notificationDomainEnum []interface{}
+var notificationTypeDomainPropEnum []interface{}
 
+// prop value enum
 func (m *Notification) validateDomainEnum(path, location string, value string) error {
-	if notificationDomainEnum == nil {
+	if notificationTypeDomainPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Notification","Organization","OrganizationGateway","Product","User","Subscription","Profile","ProductRatePlan","Client","Invoice","PricingComponentValue","Account","PricingComponentValueChange","PricingComponentTier","PricingComponent","PricingCalculation","Coupon","CouponDiscount","CouponDefinition","CouponInstance","CouponModifier","CouponRule","CouponBookDefinition","CouponBook","InvoiceLine","Webhook","WebhookSubscription","SubscriptionCancellation","NotificationSnapshot","InvoicePayment","Payment","PaymentMethod","PaymentMethodSubscriptionLink","DunningLine","CybersourceToken","Card","Alias","PaypalSimplePaymentReconciliation","FreePaymentReconciliation","LocustworldPaymentReconciliation","CouponInstanceExistingValue","TaxLine","TaxationStrategy","TaxationLink","Address","AmendmentPriceNTime","Authority","UnitOfMeasure","SearchResult","Amendment","AuditLog","Password","Username","FixedTermDefinition","FixedTerm","Refund","CreditNote","Receipt","AmendmentCompoundConstituent","APIConfiguration","StripeToken","BraintreeToken","BalancedToken","AuthorizeNetToken","PaypalToken","SpreedlyToken","SagePayToken","TrustCommerceToken","PayVisionToken","SagePayOutstandingTransaction","SagePayEnabledCardType","SagePayTransaction","GatewayRevenue","Migration","AdhocSubscription","SubscriptionCharge","ComponentChange","Verification","UsageRoundingStrategies","PricingComponentValueMigrationChargeAmendmentMapping","AmendmentDiscardAmendment","EntityTime","AggregatingComponent","PricingComponentMigrationValue","MetadataKeyValue","Metadata","AggregationLink","BFPermission","Role","PermissionLink","PayVisionTransaction","KashToken","DataSynchronizationJob","DataSynchronizationJobError","DataSynchronizationConfiguration","DataSynchronizationAppConfiguration","AggregationChildrenResponse","InvoiceLinePayment","EmailSubscription","EmailProvider","TimeResponse","Email","RevenueAttribution","Unknown"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			notificationDomainEnum = append(notificationDomainEnum, v)
+			notificationTypeDomainPropEnum = append(notificationTypeDomainPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, notificationDomainEnum); err != nil {
+	if err := validate.Enum(path, location, value, notificationTypeDomainPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -270,11 +264,12 @@ func (m *Notification) validateDomainEnum(path, location string, value string) e
 
 func (m *Notification) validateDomain(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("domain", "body", string(m.Domain)); err != nil {
+	if err := validate.Required("domain", "body", m.Domain); err != nil {
 		return err
 	}
 
-	if err := m.validateDomainEnum("domain", "body", m.Domain); err != nil {
+	// value enum
+	if err := m.validateDomainEnum("domain", "body", *m.Domain); err != nil {
 		return err
 	}
 
@@ -287,39 +282,32 @@ func (m *Notification) validateEntity(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Entity); i++ {
-
-		if err := validate.Required("entity"+"."+strconv.Itoa(i), "body", strfmt.Base64(m.Entity[i])); err != nil {
-			return err
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Notification) validateEntityID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("entityID", "body", string(m.EntityID)); err != nil {
+	if err := validate.Required("entityID", "body", m.EntityID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var notificationFormatEnum []interface{}
+var notificationTypeFormatPropEnum []interface{}
 
+// prop value enum
 func (m *Notification) validateFormatEnum(path, location string, value string) error {
-	if notificationFormatEnum == nil {
+	if notificationTypeFormatPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["JSON","XML"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			notificationFormatEnum = append(notificationFormatEnum, v)
+			notificationTypeFormatPropEnum = append(notificationTypeFormatPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, notificationFormatEnum); err != nil {
+	if err := validate.Enum(path, location, value, notificationTypeFormatPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -327,11 +315,12 @@ func (m *Notification) validateFormatEnum(path, location string, value string) e
 
 func (m *Notification) validateFormat(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("format", "body", string(m.Format)); err != nil {
+	if err := validate.Required("format", "body", m.Format); err != nil {
 		return err
 	}
 
-	if err := m.validateFormatEnum("format", "body", m.Format); err != nil {
+	// value enum
+	if err := m.validateFormatEnum("format", "body", *m.Format); err != nil {
 		return err
 	}
 
@@ -340,26 +329,27 @@ func (m *Notification) validateFormat(formats strfmt.Registry) error {
 
 func (m *Notification) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var notificationStateEnum []interface{}
+var notificationTypeStatePropEnum []interface{}
 
+// prop value enum
 func (m *Notification) validateStateEnum(path, location string, value string) error {
-	if notificationStateEnum == nil {
+	if notificationTypeStatePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Unsent","Sending","Sent"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			notificationStateEnum = append(notificationStateEnum, v)
+			notificationTypeStatePropEnum = append(notificationTypeStatePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, notificationStateEnum); err != nil {
+	if err := validate.Enum(path, location, value, notificationTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -367,11 +357,12 @@ func (m *Notification) validateStateEnum(path, location string, value string) er
 
 func (m *Notification) validateState(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
+	if err := validate.Required("state", "body", m.State); err != nil {
 		return err
 	}
 
-	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+	// value enum
+	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
 		return err
 	}
 
@@ -380,7 +371,7 @@ func (m *Notification) validateState(formats strfmt.Registry) error {
 
 func (m *Notification) validateWebhookID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("webhookID", "body", string(m.WebhookID)); err != nil {
+	if err := validate.Required("webhookID", "body", m.WebhookID); err != nil {
 		return err
 	}
 

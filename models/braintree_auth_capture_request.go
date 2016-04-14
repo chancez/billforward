@@ -4,6 +4,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"bytes"
 	"encoding/json"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -12,38 +13,38 @@ import (
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 )
 
-/*BraintreeAuthCaptureRequest BraintreeAuthCaptureRequest braintree auth capture request
+/*BraintreeAuthCaptureRequest braintree auth capture request
 
 swagger:model BraintreeAuthCaptureRequest
 */
 type BraintreeAuthCaptureRequest struct {
-	accountIdField *string
+	accountIdField string
 
-	companyNameField *string
+	companyNameField string
 
 	defaultPaymentMethodField *bool
 
-	emailField *string
+	emailField string
 
-	firstNameField *string
+	firstNameField string
 
-	gatewayField *string
+	gatewayField string
 
-	lastNameField *string
+	lastNameField string
 
-	mobileField *string
+	mobileField string
 
-	organizationIdField *string
+	organizationIdField string
 
 	/* {"description":"(Required when vaulting a PayPal payment method; otherwise optional)<br>A JSON string providing information about the device your customer used to fill out the card capture form. This information is inserted into your form by <a href=\"https://developers.braintreepayments.com/javascript+node/guides/advanced-fraud-tools/client-side\">braintree-data.js</a> &mdash; if and only if you use Braintree's drop-in form integrations. You should ideally provide it if you have one (it aids with fraud detection), but it is only mandatory in the case of PayPal payment method vaulting.","verbs":["POST"]}
 	 */
-	DeviceData *string `json:"deviceData,omitempty"`
+	DeviceData string `json:"deviceData,omitempty"`
 
 	/* {"description":"One-use cryptographic nonce <a href=\"https://developers.braintreepayments.com/javascript+node/start/overview\">provided by Braintree's client-side card capture SDK</a>, in response to your capturing a card into the Braintree vault. This nonce will be used by BillForward to find the tokenized card within the Braintree vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card","verbs":["POST"]}
 
 	Required: true
 	*/
-	PaymentMethodNonce string `json:"paymentMethodNonce,omitempty"`
+	PaymentMethodNonce *string `json:"paymentMethodNonce"`
 }
 
 func (m *BraintreeAuthCaptureRequest) AtType() string {
@@ -53,17 +54,17 @@ func (m *BraintreeAuthCaptureRequest) SetAtType(val string) {
 
 }
 
-func (m *BraintreeAuthCaptureRequest) AccountID() *string {
+func (m *BraintreeAuthCaptureRequest) AccountID() string {
 	return m.accountIdField
 }
-func (m *BraintreeAuthCaptureRequest) SetAccountID(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetAccountID(val string) {
 	m.accountIdField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) CompanyName() *string {
+func (m *BraintreeAuthCaptureRequest) CompanyName() string {
 	return m.companyNameField
 }
-func (m *BraintreeAuthCaptureRequest) SetCompanyName(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetCompanyName(val string) {
 	m.companyNameField = val
 }
 
@@ -74,83 +75,87 @@ func (m *BraintreeAuthCaptureRequest) SetDefaultPaymentMethod(val *bool) {
 	m.defaultPaymentMethodField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) Email() *string {
+func (m *BraintreeAuthCaptureRequest) Email() string {
 	return m.emailField
 }
-func (m *BraintreeAuthCaptureRequest) SetEmail(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetEmail(val string) {
 	m.emailField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) FirstName() *string {
+func (m *BraintreeAuthCaptureRequest) FirstName() string {
 	return m.firstNameField
 }
-func (m *BraintreeAuthCaptureRequest) SetFirstName(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetFirstName(val string) {
 	m.firstNameField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) Gateway() *string {
+func (m *BraintreeAuthCaptureRequest) Gateway() string {
 	return m.gatewayField
 }
-func (m *BraintreeAuthCaptureRequest) SetGateway(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetGateway(val string) {
 	m.gatewayField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) LastName() *string {
+func (m *BraintreeAuthCaptureRequest) LastName() string {
 	return m.lastNameField
 }
-func (m *BraintreeAuthCaptureRequest) SetLastName(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetLastName(val string) {
 	m.lastNameField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) Mobile() *string {
+func (m *BraintreeAuthCaptureRequest) Mobile() string {
 	return m.mobileField
 }
-func (m *BraintreeAuthCaptureRequest) SetMobile(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetMobile(val string) {
 	m.mobileField = val
 }
 
-func (m *BraintreeAuthCaptureRequest) OrganizationID() *string {
+func (m *BraintreeAuthCaptureRequest) OrganizationID() string {
 	return m.organizationIdField
 }
-func (m *BraintreeAuthCaptureRequest) SetOrganizationID(val *string) {
+func (m *BraintreeAuthCaptureRequest) SetOrganizationID(val string) {
 	m.organizationIdField = val
 }
 
 // UnmarshalJSON unmarshals this polymorphic type from a JSON structure
 func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		AtType string `json:"@type,omitempty"`
+		AtType string `json:"@type"`
 
-		AccountID *string `json:"accountID,omitempty"`
+		AccountID string `json:"accountID,omitempty"`
 
-		CompanyName *string `json:"companyName,omitempty"`
+		CompanyName string `json:"companyName,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
-		Email *string `json:"email,omitempty"`
+		Email string `json:"email,omitempty"`
 
-		FirstName *string `json:"firstName,omitempty"`
+		FirstName string `json:"firstName,omitempty"`
 
-		Gateway *string `json:"gateway,omitempty"`
+		Gateway string `json:"gateway,omitempty"`
 
-		LastName *string `json:"lastName,omitempty"`
+		LastName string `json:"lastName,omitempty"`
 
-		Mobile *string `json:"mobile,omitempty"`
+		Mobile string `json:"mobile,omitempty"`
 
-		OrganizationID *string `json:"organizationID,omitempty"`
+		OrganizationID string `json:"organizationID,omitempty"`
 
 		/* {"description":"(Required when vaulting a PayPal payment method; otherwise optional)<br>A JSON string providing information about the device your customer used to fill out the card capture form. This information is inserted into your form by <a href=\"https://developers.braintreepayments.com/javascript+node/guides/advanced-fraud-tools/client-side\">braintree-data.js</a> &mdash; if and only if you use Braintree's drop-in form integrations. You should ideally provide it if you have one (it aids with fraud detection), but it is only mandatory in the case of PayPal payment method vaulting.","verbs":["POST"]}
 		 */
-		DeviceData *string `json:"deviceData,omitempty"`
+		DeviceData string `json:"deviceData,omitempty"`
 
 		/* {"description":"One-use cryptographic nonce <a href=\"https://developers.braintreepayments.com/javascript+node/start/overview\">provided by Braintree's client-side card capture SDK</a>, in response to your capturing a card into the Braintree vault. This nonce will be used by BillForward to find the tokenized card within the Braintree vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card","verbs":["POST"]}
 
 		Required: true
 		*/
-		PaymentMethodNonce string `json:"paymentMethodNonce,omitempty"`
+		PaymentMethodNonce *string `json:"paymentMethodNonce"`
 	}
 
-	if err := json.Unmarshal(raw, &data); err != nil {
+	buf := bytes.NewBuffer(raw)
+	dec := json.NewDecoder(buf)
+	dec.UseNumber()
+
+	if err := dec.Decode(&data); err != nil {
 		return err
 	}
 
@@ -172,35 +177,35 @@ func (m *BraintreeAuthCaptureRequest) UnmarshalJSON(raw []byte) error {
 // MarshalJSON marshals this polymorphic type to a JSON structure
 func (m BraintreeAuthCaptureRequest) MarshalJSON() ([]byte, error) {
 	var data struct {
-		AtType string `json:"@type,omitempty"`
+		AtType string `json:"@type"`
 
-		AccountID *string `json:"accountID,omitempty"`
+		AccountID string `json:"accountID,omitempty"`
 
-		CompanyName *string `json:"companyName,omitempty"`
+		CompanyName string `json:"companyName,omitempty"`
 
 		DefaultPaymentMethod *bool `json:"defaultPaymentMethod,omitempty"`
 
-		Email *string `json:"email,omitempty"`
+		Email string `json:"email,omitempty"`
 
-		FirstName *string `json:"firstName,omitempty"`
+		FirstName string `json:"firstName,omitempty"`
 
-		Gateway *string `json:"gateway,omitempty"`
+		Gateway string `json:"gateway,omitempty"`
 
-		LastName *string `json:"lastName,omitempty"`
+		LastName string `json:"lastName,omitempty"`
 
-		Mobile *string `json:"mobile,omitempty"`
+		Mobile string `json:"mobile,omitempty"`
 
-		OrganizationID *string `json:"organizationID,omitempty"`
+		OrganizationID string `json:"organizationID,omitempty"`
 
 		/* {"description":"(Required when vaulting a PayPal payment method; otherwise optional)<br>A JSON string providing information about the device your customer used to fill out the card capture form. This information is inserted into your form by <a href=\"https://developers.braintreepayments.com/javascript+node/guides/advanced-fraud-tools/client-side\">braintree-data.js</a> &mdash; if and only if you use Braintree's drop-in form integrations. You should ideally provide it if you have one (it aids with fraud detection), but it is only mandatory in the case of PayPal payment method vaulting.","verbs":["POST"]}
 		 */
-		DeviceData *string `json:"deviceData,omitempty"`
+		DeviceData string `json:"deviceData,omitempty"`
 
 		/* {"description":"One-use cryptographic nonce <a href=\"https://developers.braintreepayments.com/javascript+node/start/overview\">provided by Braintree's client-side card capture SDK</a>, in response to your capturing a card into the Braintree vault. This nonce will be used by BillForward to find the tokenized card within the Braintree vault &mdash; precursory to linking a BillForward PaymentMethod to that tokenized card","verbs":["POST"]}
 
 		Required: true
 		*/
-		PaymentMethodNonce string `json:"paymentMethodNonce,omitempty"`
+		PaymentMethodNonce *string `json:"paymentMethodNonce"`
 	}
 
 	data.AccountID = m.accountIdField
@@ -236,19 +241,20 @@ func (m *BraintreeAuthCaptureRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var braintreeAuthCaptureRequestGatewayEnum []interface{}
+var braintreeAuthCaptureRequestTypeGatewayPropEnum []interface{}
 
+// property enum
 func (m *BraintreeAuthCaptureRequest) validateGatewayEnum(path, location string, value string) error {
-	if braintreeAuthCaptureRequestGatewayEnum == nil {
+	if braintreeAuthCaptureRequestTypeGatewayPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Balanced","Braintree","Cybersource","Paypal","Stripe","AuthorizeNet","Spreedly","SagePay","TrustCommerce","Payvision","Kash"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			braintreeAuthCaptureRequestGatewayEnum = append(braintreeAuthCaptureRequestGatewayEnum, v)
+			braintreeAuthCaptureRequestTypeGatewayPropEnum = append(braintreeAuthCaptureRequestTypeGatewayPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, braintreeAuthCaptureRequestGatewayEnum); err != nil {
+	if err := validate.Enum(path, location, value, braintreeAuthCaptureRequestTypeGatewayPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -256,7 +262,8 @@ func (m *BraintreeAuthCaptureRequest) validateGatewayEnum(path, location string,
 
 func (m *BraintreeAuthCaptureRequest) validateGateway(formats strfmt.Registry) error {
 
-	if err := m.validateGatewayEnum("gateway", "body", *m.Gateway()); err != nil {
+	// value enum
+	if err := m.validateGatewayEnum("gateway", "body", m.Gateway()); err != nil {
 		return err
 	}
 
@@ -265,7 +272,7 @@ func (m *BraintreeAuthCaptureRequest) validateGateway(formats strfmt.Registry) e
 
 func (m *BraintreeAuthCaptureRequest) validatePaymentMethodNonce(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("paymentMethodNonce", "body", string(m.PaymentMethodNonce)); err != nil {
+	if err := validate.Required("paymentMethodNonce", "body", m.PaymentMethodNonce); err != nil {
 		return err
 	}
 

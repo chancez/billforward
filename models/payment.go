@@ -22,93 +22,93 @@ type Payment struct {
 
 	Required: true
 	*/
-	ActualValue float64 `json:"actualValue,omitempty"`
+	ActualValue *float64 `json:"actualValue"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the invoice.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	CrmID string `json:"crmID,omitempty"`
+	CrmID *string `json:"crmID"`
 
 	/* { "description" : "The currency of the payment specified by a three character ISO 4217 currency code.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Currency string `json:"currency,omitempty"`
+	Currency *string `json:"currency"`
 
 	/* { "description" : "Payment gateway associated with the payment", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Gateway string `json:"gateway,omitempty"`
+	Gateway *string `json:"gateway"`
 
 	/* { "description" : "ID of the payment.", "verbs":["POST","PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "ID of the invoice associated with the payment. This may be null when a payment is not explicitly associated with an invoice. Payments may be used across multiple invoices.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	InvoiceID string `json:"invoiceID,omitempty"`
+	InvoiceID *string `json:"invoiceID"`
 
 	/* { "description" : "Nominal value of the payment. This is the theoretical value of the payment, thus the value this payment can pay off an invoice. For example a coupon has a nominal value of the discount, and the actual value is zero.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	NominalValue float64 `json:"nominalValue,omitempty"`
+	NominalValue *float64 `json:"nominalValue"`
 
 	/* { "description" : "ID of the organization associated with the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "ID of the payment method associated with the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	PaymentMethodID string `json:"paymentMethodID,omitempty"`
+	PaymentMethodID *string `json:"paymentMethodID"`
 
 	/* { "description" : "UTC DateTime specifying when payment was received for the invoice.", "verbs":["POST","PUT","GET"] }
 	 */
-	PaymentReceived *strfmt.DateTime `json:"paymentReceived,omitempty"`
+	PaymentReceived strfmt.DateTime `json:"paymentReceived,omitempty"`
 
 	/* { "description" : "ID of the refund associated with the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	RefundID string `json:"refundID,omitempty"`
+	RefundID *string `json:"refundID"`
 
 	/* { "description" : "Refunded nominal value of the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	RefundedValue float64 `json:"refundedValue,omitempty"`
+	RefundedValue *float64 `json:"refundedValue"`
 
 	/* { "description" : "Remaining nominal value of the payment not used. In the case when a payment is used across a range of invoices a payment may be used multiple times, each use reducing the available blance of the payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	RemainingNominalValue float64 `json:"remainingNominalValue,omitempty"`
+	RemainingNominalValue *float64 `json:"remainingNominalValue"`
 
 	/* { "description" : "Type of payment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this payment
@@ -183,7 +183,7 @@ func (m *Payment) Validate(formats strfmt.Registry) error {
 
 func (m *Payment) validateActualValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("actualValue", "body", float64(m.ActualValue)); err != nil {
+	if err := validate.Required("actualValue", "body", m.ActualValue); err != nil {
 		return err
 	}
 
@@ -192,7 +192,7 @@ func (m *Payment) validateActualValue(formats strfmt.Registry) error {
 
 func (m *Payment) validateCrmID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("crmID", "body", string(m.CrmID)); err != nil {
+	if err := validate.Required("crmID", "body", m.CrmID); err != nil {
 		return err
 	}
 
@@ -201,26 +201,27 @@ func (m *Payment) validateCrmID(formats strfmt.Registry) error {
 
 func (m *Payment) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.Required("currency", "body", m.Currency); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var paymentGatewayEnum []interface{}
+var paymentTypeGatewayPropEnum []interface{}
 
+// prop value enum
 func (m *Payment) validateGatewayEnum(path, location string, value string) error {
-	if paymentGatewayEnum == nil {
+	if paymentTypeGatewayPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["cybersource_token","card_vault","paypal_simple","locustworld","free","coupon","credit_note","stripe","braintree","balanced","paypal","billforward_test","offline","trial","stripeACH","authorizeNet","spreedly","sagePay","trustCommerce","payvision","kash"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			paymentGatewayEnum = append(paymentGatewayEnum, v)
+			paymentTypeGatewayPropEnum = append(paymentTypeGatewayPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentGatewayEnum); err != nil {
+	if err := validate.Enum(path, location, value, paymentTypeGatewayPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -228,11 +229,12 @@ func (m *Payment) validateGatewayEnum(path, location string, value string) error
 
 func (m *Payment) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.Required("gateway", "body", m.Gateway); err != nil {
 		return err
 	}
 
-	if err := m.validateGatewayEnum("gateway", "body", m.Gateway); err != nil {
+	// value enum
+	if err := m.validateGatewayEnum("gateway", "body", *m.Gateway); err != nil {
 		return err
 	}
 
@@ -241,7 +243,7 @@ func (m *Payment) validateGateway(formats strfmt.Registry) error {
 
 func (m *Payment) validateInvoiceID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("invoiceID", "body", string(m.InvoiceID)); err != nil {
+	if err := validate.Required("invoiceID", "body", m.InvoiceID); err != nil {
 		return err
 	}
 
@@ -250,7 +252,7 @@ func (m *Payment) validateInvoiceID(formats strfmt.Registry) error {
 
 func (m *Payment) validateNominalValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("nominalValue", "body", float64(m.NominalValue)); err != nil {
+	if err := validate.Required("nominalValue", "body", m.NominalValue); err != nil {
 		return err
 	}
 
@@ -259,7 +261,7 @@ func (m *Payment) validateNominalValue(formats strfmt.Registry) error {
 
 func (m *Payment) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -268,7 +270,7 @@ func (m *Payment) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *Payment) validatePaymentMethodID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("paymentMethodID", "body", string(m.PaymentMethodID)); err != nil {
+	if err := validate.Required("paymentMethodID", "body", m.PaymentMethodID); err != nil {
 		return err
 	}
 
@@ -277,7 +279,7 @@ func (m *Payment) validatePaymentMethodID(formats strfmt.Registry) error {
 
 func (m *Payment) validateRefundID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("refundID", "body", string(m.RefundID)); err != nil {
+	if err := validate.Required("refundID", "body", m.RefundID); err != nil {
 		return err
 	}
 
@@ -286,7 +288,7 @@ func (m *Payment) validateRefundID(formats strfmt.Registry) error {
 
 func (m *Payment) validateRefundedValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("refundedValue", "body", float64(m.RefundedValue)); err != nil {
+	if err := validate.Required("refundedValue", "body", m.RefundedValue); err != nil {
 		return err
 	}
 
@@ -295,26 +297,27 @@ func (m *Payment) validateRefundedValue(formats strfmt.Registry) error {
 
 func (m *Payment) validateRemainingNominalValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("remainingNominalValue", "body", float64(m.RemainingNominalValue)); err != nil {
+	if err := validate.Required("remainingNominalValue", "body", m.RemainingNominalValue); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var paymentTypeEnum []interface{}
+var paymentTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *Payment) validateTypeEnum(path, location string, value string) error {
-	if paymentTypeEnum == nil {
+	if paymentTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["credit","debit"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			paymentTypeEnum = append(paymentTypeEnum, v)
+			paymentTypeTypePropEnum = append(paymentTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, paymentTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -322,11 +325,12 @@ func (m *Payment) validateTypeEnum(path, location string, value string) error {
 
 func (m *Payment) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

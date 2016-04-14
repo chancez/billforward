@@ -20,97 +20,97 @@ type FixedTerm struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "compoundUplift", "verbs":["POST","PUT","GET"] }The proportional INCREASE in price applied every time the fixed terms recur. e.g. 0.03 is a 3% increase. -0.5 is a 50% decrease. 3 is a 300% increase
 
 	Required: true
 	*/
-	CompoundUplift float64 `json:"compoundUplift,omitempty"`
+	CompoundUplift *float64 `json:"compoundUplift"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Is the fixedTerm deleted.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* fixedTermExpiryBehaviour
 
 	Required: true
 	*/
-	ExpiryBehaviour string `json:"expiryBehaviour,omitempty"`
+	ExpiryBehaviour *string `json:"expiryBehaviour"`
 
 	/* expiry_time
 
 	Required: true
 	*/
-	ExpiryTime strfmt.DateTime `json:"expiryTime,omitempty"`
+	ExpiryTime *strfmt.DateTime `json:"expiryTime"`
 
-	/* FixedTermDefinition fixed term definition
+	/* fixed term definition
 
 	Required: true
 	*/
-	FixedTermDefinition *MutableBillingEntity `json:"fixedTermDefinition,omitempty"`
+	FixedTermDefinition *MutableBillingEntity `json:"fixedTermDefinition"`
 
 	/* { "description" : "fixedTermDefinitionID", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	FixedTermDefinitionID string `json:"fixedTermDefinitionID,omitempty"`
+	FixedTermDefinitionID *string `json:"fixedTermDefinitionID"`
 
 	/* { "description" : "The number of sequential fixed terms previous to this one for the subscription (i.e. zero indexed 'fixedTermCount').", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	FixedTermNumber int32 `json:"fixedTermNumber,omitempty"`
+	FixedTermNumber *int32 `json:"fixedTermNumber"`
 
 	/* id
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "The ID of the organization associated with the amendment.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "The number of billing periods that this fixed term lasts for.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Periods int32 `json:"periods,omitempty"`
+	Periods *int32 `json:"periods"`
 
 	/* productRatePlanAsOfTime
 
 	Required: true
 	*/
-	ProductRatePlanAsOfTime strfmt.DateTime `json:"productRatePlanAsOfTime,omitempty"`
+	ProductRatePlanAsOfTime *strfmt.DateTime `json:"productRatePlanAsOfTime"`
 
 	/* start_time
 
 	Required: true
 	*/
-	StartTime strfmt.DateTime `json:"startTime,omitempty"`
+	StartTime *strfmt.DateTime `json:"startTime"`
 
 	/* state
 
 	Required: true
 	*/
-	State string `json:"state,omitempty"`
+	State *string `json:"state"`
 
 	/* { "description" : "subscriptionID", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this fixed term
@@ -190,7 +190,7 @@ func (m *FixedTerm) Validate(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateCompoundUplift(formats strfmt.Registry) error {
 
-	if err := validate.Required("compoundUplift", "body", float64(m.CompoundUplift)); err != nil {
+	if err := validate.Required("compoundUplift", "body", m.CompoundUplift); err != nil {
 		return err
 	}
 
@@ -206,19 +206,20 @@ func (m *FixedTerm) validateDeleted(formats strfmt.Registry) error {
 	return nil
 }
 
-var fixedTermExpiryBehaviourEnum []interface{}
+var fixedTermTypeExpiryBehaviourPropEnum []interface{}
 
+// prop value enum
 func (m *FixedTerm) validateExpiryBehaviourEnum(path, location string, value string) error {
-	if fixedTermExpiryBehaviourEnum == nil {
+	if fixedTermTypeExpiryBehaviourPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["ExpireSubscription","EvergreenSubscription","RecurUplift","RecurLatestPricing"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			fixedTermExpiryBehaviourEnum = append(fixedTermExpiryBehaviourEnum, v)
+			fixedTermTypeExpiryBehaviourPropEnum = append(fixedTermTypeExpiryBehaviourPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, fixedTermExpiryBehaviourEnum); err != nil {
+	if err := validate.Enum(path, location, value, fixedTermTypeExpiryBehaviourPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -226,11 +227,12 @@ func (m *FixedTerm) validateExpiryBehaviourEnum(path, location string, value str
 
 func (m *FixedTerm) validateExpiryBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("expiryBehaviour", "body", string(m.ExpiryBehaviour)); err != nil {
+	if err := validate.Required("expiryBehaviour", "body", m.ExpiryBehaviour); err != nil {
 		return err
 	}
 
-	if err := m.validateExpiryBehaviourEnum("expiryBehaviour", "body", m.ExpiryBehaviour); err != nil {
+	// value enum
+	if err := m.validateExpiryBehaviourEnum("expiryBehaviour", "body", *m.ExpiryBehaviour); err != nil {
 		return err
 	}
 
@@ -239,7 +241,7 @@ func (m *FixedTerm) validateExpiryBehaviour(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateExpiryTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("expiryTime", "body", strfmt.DateTime(m.ExpiryTime)); err != nil {
+	if err := validate.Required("expiryTime", "body", m.ExpiryTime); err != nil {
 		return err
 	}
 
@@ -260,7 +262,7 @@ func (m *FixedTerm) validateFixedTermDefinition(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateFixedTermDefinitionID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("fixedTermDefinitionID", "body", string(m.FixedTermDefinitionID)); err != nil {
+	if err := validate.Required("fixedTermDefinitionID", "body", m.FixedTermDefinitionID); err != nil {
 		return err
 	}
 
@@ -269,7 +271,7 @@ func (m *FixedTerm) validateFixedTermDefinitionID(formats strfmt.Registry) error
 
 func (m *FixedTerm) validateFixedTermNumber(formats strfmt.Registry) error {
 
-	if err := validate.Required("fixedTermNumber", "body", int32(m.FixedTermNumber)); err != nil {
+	if err := validate.Required("fixedTermNumber", "body", m.FixedTermNumber); err != nil {
 		return err
 	}
 
@@ -278,7 +280,7 @@ func (m *FixedTerm) validateFixedTermNumber(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -287,7 +289,7 @@ func (m *FixedTerm) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validatePeriods(formats strfmt.Registry) error {
 
-	if err := validate.Required("periods", "body", int32(m.Periods)); err != nil {
+	if err := validate.Required("periods", "body", m.Periods); err != nil {
 		return err
 	}
 
@@ -296,7 +298,7 @@ func (m *FixedTerm) validatePeriods(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateProductRatePlanAsOfTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("productRatePlanAsOfTime", "body", strfmt.DateTime(m.ProductRatePlanAsOfTime)); err != nil {
+	if err := validate.Required("productRatePlanAsOfTime", "body", m.ProductRatePlanAsOfTime); err != nil {
 		return err
 	}
 
@@ -305,26 +307,27 @@ func (m *FixedTerm) validateProductRatePlanAsOfTime(formats strfmt.Registry) err
 
 func (m *FixedTerm) validateStartTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("startTime", "body", strfmt.DateTime(m.StartTime)); err != nil {
+	if err := validate.Required("startTime", "body", m.StartTime); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var fixedTermStateEnum []interface{}
+var fixedTermTypeStatePropEnum []interface{}
 
+// prop value enum
 func (m *FixedTerm) validateStateEnum(path, location string, value string) error {
-	if fixedTermStateEnum == nil {
+	if fixedTermTypeStatePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["NeedsAmendments","Active","Expired"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			fixedTermStateEnum = append(fixedTermStateEnum, v)
+			fixedTermTypeStatePropEnum = append(fixedTermTypeStatePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, fixedTermStateEnum); err != nil {
+	if err := validate.Enum(path, location, value, fixedTermTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -332,11 +335,12 @@ func (m *FixedTerm) validateStateEnum(path, location string, value string) error
 
 func (m *FixedTerm) validateState(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
+	if err := validate.Required("state", "body", m.State); err != nil {
 		return err
 	}
 
-	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+	// value enum
+	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
 		return err
 	}
 
@@ -345,7 +349,7 @@ func (m *FixedTerm) validateState(formats strfmt.Registry) error {
 
 func (m *FixedTerm) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.Required("subscriptionID", "body", m.SubscriptionID); err != nil {
 		return err
 	}
 

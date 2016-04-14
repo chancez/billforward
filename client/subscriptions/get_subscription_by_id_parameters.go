@@ -14,8 +14,12 @@ import (
 // NewGetSubscriptionByIDParams creates a new GetSubscriptionByIDParams object
 // with the default values initialized.
 func NewGetSubscriptionByIDParams() *GetSubscriptionByIDParams {
-	var ()
-	return &GetSubscriptionByIDParams{}
+	var (
+		includeRetiredDefault bool = bool(false)
+	)
+	return &GetSubscriptionByIDParams{
+		IncludeRetired: &includeRetiredDefault,
+	}
 }
 
 /*GetSubscriptionByIDParams contains all the parameters to send to the API endpoint

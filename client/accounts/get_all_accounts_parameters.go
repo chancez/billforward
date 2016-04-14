@@ -16,15 +16,19 @@ import (
 func NewGetAllAccountsParams() *GetAllAccountsParams {
 	var (
 		includeRetiredDefault bool   = bool(true)
+		offsetDefault         int32  = int32(0)
 		orderDefault          string = string("DESC")
 		orderByDefault        string = string("created")
 		recordsDefault        int32  = int32(10)
+		usersOnlyDefault      bool   = bool(false)
 	)
 	return &GetAllAccountsParams{
 		IncludeRetired: &includeRetiredDefault,
+		Offset:         &offsetDefault,
 		Order:          &orderDefault,
 		OrderBy:        &orderByDefault,
 		Records:        &recordsDefault,
+		UsersOnly:      &usersOnlyDefault,
 	}
 }
 

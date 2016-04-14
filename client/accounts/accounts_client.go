@@ -4,8 +4,6 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, e
 		Method:             "POST",
 		PathPattern:        "/accounts",
 		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateAccountReader{formats: a.formats},
@@ -66,6 +65,7 @@ func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, e
 		Method:             "DELETE",
 		PathPattern:        "/accounts/{account-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteAccountReader{formats: a.formats},
@@ -92,6 +92,7 @@ func (a *Client) DeleteMetadataForAccount(params *DeleteMetadataForAccountParams
 		Method:             "DELETE",
 		PathPattern:        "/accounts/{account-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteMetadataForAccountReader{formats: a.formats},
@@ -118,6 +119,7 @@ func (a *Client) GetAccountByID(params *GetAccountByIDParams) (*GetAccountByIDOK
 		Method:             "GET",
 		PathPattern:        "/accounts/{account-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAccountByIDReader{formats: a.formats},
@@ -144,6 +146,7 @@ func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK
 		Method:             "GET",
 		PathPattern:        "/accounts",
 		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllAccountsReader{formats: a.formats},
@@ -170,6 +173,7 @@ func (a *Client) GetMetadataForAccount(params *GetMetadataForAccountParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/accounts/{account-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMetadataForAccountReader{formats: a.formats},
@@ -196,6 +200,7 @@ func (a *Client) SetMetadataForAccount(params *SetMetadataForAccountParams) (*Se
 		Method:             "POST",
 		PathPattern:        "/accounts/{account-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetMetadataForAccountReader{formats: a.formats},
@@ -222,6 +227,7 @@ func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams
 		Method:             "PUT",
 		PathPattern:        "/accounts/{account-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpsertMetadataForAccountReader{formats: a.formats},
@@ -235,24 +241,4 @@ func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

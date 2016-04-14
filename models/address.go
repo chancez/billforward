@@ -20,35 +20,35 @@ type Address struct {
 
 	Required: true
 	*/
-	AddressLine1 string `json:"addressLine1,omitempty"`
+	AddressLine1 *string `json:"addressLine1"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine2 *string `json:"addressLine2,omitempty"`
+	AddressLine2 string `json:"addressLine2,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	AddressLine3 *string `json:"addressLine3,omitempty"`
+	AddressLine3 string `json:"addressLine3,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	City string `json:"city,omitempty"`
+	City *string `json:"city"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Country string `json:"country,omitempty"`
+	Country *string `json:"country"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
@@ -56,21 +56,21 @@ type Address struct {
 
 	/* { "description" : "", "verbs":["PUT","GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "Phone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline *string `json:"landline,omitempty"`
+	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "", "verbs":[] }
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
 	/* { "description" : "ZIP code or postcode.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Postcode string `json:"postcode,omitempty"`
+	Postcode *string `json:"postcode"`
 
 	/* { "description" : "Is this the primary, default, address for the associated profile?", "verbs":["POST","PUT","GET"] }
 	 */
@@ -78,17 +78,17 @@ type Address struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	ProfileID *string `json:"profileID,omitempty"`
+	ProfileID string `json:"profileID,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Province string `json:"province,omitempty"`
+	Province *string `json:"province"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this address
@@ -128,7 +128,7 @@ func (m *Address) Validate(formats strfmt.Registry) error {
 
 func (m *Address) validateAddressLine1(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("addressLine1", "body", string(m.AddressLine1)); err != nil {
+	if err := validate.Required("addressLine1", "body", m.AddressLine1); err != nil {
 		return err
 	}
 
@@ -137,7 +137,7 @@ func (m *Address) validateAddressLine1(formats strfmt.Registry) error {
 
 func (m *Address) validateCity(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("city", "body", string(m.City)); err != nil {
+	if err := validate.Required("city", "body", m.City); err != nil {
 		return err
 	}
 
@@ -146,7 +146,7 @@ func (m *Address) validateCity(formats strfmt.Registry) error {
 
 func (m *Address) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("country", "body", string(m.Country)); err != nil {
+	if err := validate.Required("country", "body", m.Country); err != nil {
 		return err
 	}
 
@@ -155,7 +155,7 @@ func (m *Address) validateCountry(formats strfmt.Registry) error {
 
 func (m *Address) validatePostcode(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("postcode", "body", string(m.Postcode)); err != nil {
+	if err := validate.Required("postcode", "body", m.Postcode); err != nil {
 		return err
 	}
 
@@ -164,7 +164,7 @@ func (m *Address) validatePostcode(formats strfmt.Registry) error {
 
 func (m *Address) validateProvince(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("province", "body", string(m.Province)); err != nil {
+	if err := validate.Required("province", "body", m.Province); err != nil {
 		return err
 	}
 

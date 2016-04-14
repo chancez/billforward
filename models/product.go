@@ -20,49 +20,49 @@ type Product struct {
 
 	/* {"description":"","verbs":[]}
 	 */
-	AccountID *string `json:"accountID,omitempty"`
+	AccountID string `json:"accountID,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"description":"Customer-relationship-management ID of the product.","verbs":["GET","PUT","POST"]}
 	 */
-	CrmID *string `json:"crmID,omitempty"`
+	CrmID string `json:"crmID,omitempty"`
 
 	/* {"description":"","verbs":["GET"]}
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* {"description":"A description &mdash; for your benefit &mdash; of the product. For example: you could explain what service this product entitles a customer to.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	/* {"description":"Number of length-measures which constitute the product's period.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	Duration int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration"`
 
 	/* {"description":"Measure describing the magnitude of the product's period.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	DurationPeriod string `json:"durationPeriod,omitempty"`
+	DurationPeriod *string `json:"durationPeriod"`
 
 	/* {"description":"ID uniquely identifying this product.","verbs":["GET"]}
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
-	/* Metadata metadata
+	/* metadata
 	 */
 	Metadata DynamicMetadata `json:"metadata,omitempty"`
 
@@ -70,41 +70,41 @@ type Product struct {
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
-	/* PaymentTerms payment terms
+	/* payment terms
 	 */
-	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+	PaymentTerms int64 `json:"paymentTerms,omitempty"`
 
 	/* {"default":"recurring","description":"The frequency of the product &mdash; either recurring or non-recurring.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	ProductType string `json:"productType,omitempty"`
+	ProductType *string `json:"productType"`
 
 	/* {"description":"A friendly non-unique name used to identify this product","verbs":["POST","PUT","GET"]}
 	 */
-	PublicName *string `json:"publicName,omitempty"`
+	PublicName string `json:"publicName,omitempty"`
 
 	/* {"description":"","verbs":[]}
 	 */
-	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate strfmt.DateTime `json:"startDate,omitempty"`
 
 	/* {"default":0,"description":"Number of trial-length-measures which constitute the product's trial period","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	Trial int32 `json:"trial,omitempty"`
+	Trial *int32 `json:"trial"`
 
 	/* {"default":"none","description":"Measure describing the magnitude of the product's trial period.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	TrialPeriod string `json:"trialPeriod,omitempty"`
+	TrialPeriod *string `json:"trialPeriod"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this product
@@ -168,7 +168,7 @@ func (m *Product) validateDeleted(formats strfmt.Registry) error {
 
 func (m *Product) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -177,26 +177,27 @@ func (m *Product) validateDescription(formats strfmt.Registry) error {
 
 func (m *Product) validateDuration(formats strfmt.Registry) error {
 
-	if err := validate.Required("duration", "body", int32(m.Duration)); err != nil {
+	if err := validate.Required("duration", "body", m.Duration); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productDurationPeriodEnum []interface{}
+var productTypeDurationPeriodPropEnum []interface{}
 
+// prop value enum
 func (m *Product) validateDurationPeriodEnum(path, location string, value string) error {
-	if productDurationPeriodEnum == nil {
+	if productTypeDurationPeriodPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["minutes","days","months","years"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productDurationPeriodEnum = append(productDurationPeriodEnum, v)
+			productTypeDurationPeriodPropEnum = append(productTypeDurationPeriodPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productDurationPeriodEnum); err != nil {
+	if err := validate.Enum(path, location, value, productTypeDurationPeriodPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -204,11 +205,12 @@ func (m *Product) validateDurationPeriodEnum(path, location string, value string
 
 func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
+	if err := validate.Required("durationPeriod", "body", m.DurationPeriod); err != nil {
 		return err
 	}
 
-	if err := m.validateDurationPeriodEnum("durationPeriod", "body", m.DurationPeriod); err != nil {
+	// value enum
+	if err := m.validateDurationPeriodEnum("durationPeriod", "body", *m.DurationPeriod); err != nil {
 		return err
 	}
 
@@ -217,26 +219,27 @@ func (m *Product) validateDurationPeriod(formats strfmt.Registry) error {
 
 func (m *Product) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productProductTypeEnum []interface{}
+var productTypeProductTypePropEnum []interface{}
 
+// prop value enum
 func (m *Product) validateProductTypeEnum(path, location string, value string) error {
-	if productProductTypeEnum == nil {
+	if productTypeProductTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["nonrecurring","recurring"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productProductTypeEnum = append(productProductTypeEnum, v)
+			productTypeProductTypePropEnum = append(productTypeProductTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productProductTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, productTypeProductTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -244,11 +247,12 @@ func (m *Product) validateProductTypeEnum(path, location string, value string) e
 
 func (m *Product) validateProductType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("productType", "body", string(m.ProductType)); err != nil {
+	if err := validate.Required("productType", "body", m.ProductType); err != nil {
 		return err
 	}
 
-	if err := m.validateProductTypeEnum("productType", "body", m.ProductType); err != nil {
+	// value enum
+	if err := m.validateProductTypeEnum("productType", "body", *m.ProductType); err != nil {
 		return err
 	}
 
@@ -257,26 +261,27 @@ func (m *Product) validateProductType(formats strfmt.Registry) error {
 
 func (m *Product) validateTrial(formats strfmt.Registry) error {
 
-	if err := validate.Required("trial", "body", int32(m.Trial)); err != nil {
+	if err := validate.Required("trial", "body", m.Trial); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productTrialPeriodEnum []interface{}
+var productTypeTrialPeriodPropEnum []interface{}
 
+// prop value enum
 func (m *Product) validateTrialPeriodEnum(path, location string, value string) error {
-	if productTrialPeriodEnum == nil {
+	if productTypeTrialPeriodPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["none","minutes","days","months"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productTrialPeriodEnum = append(productTrialPeriodEnum, v)
+			productTypeTrialPeriodPropEnum = append(productTypeTrialPeriodPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productTrialPeriodEnum); err != nil {
+	if err := validate.Enum(path, location, value, productTypeTrialPeriodPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -284,11 +289,12 @@ func (m *Product) validateTrialPeriodEnum(path, location string, value string) e
 
 func (m *Product) validateTrialPeriod(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("trialPeriod", "body", string(m.TrialPeriod)); err != nil {
+	if err := validate.Required("trialPeriod", "body", m.TrialPeriod); err != nil {
 		return err
 	}
 
-	if err := m.validateTrialPeriodEnum("trialPeriod", "body", m.TrialPeriod); err != nil {
+	// value enum
+	if err := m.validateTrialPeriodEnum("trialPeriod", "body", *m.TrialPeriod); err != nil {
 		return err
 	}
 

@@ -10,7 +10,7 @@ import (
 	"github.com/go-swagger/go-swagger/errors"
 )
 
-/*CreateAccountProfileRequest CreateAccountProfileRequest create account profile request
+/*CreateAccountProfileRequest create account profile request
 
 swagger:model CreateAccountProfileRequest
 */
@@ -18,11 +18,11 @@ type CreateAccountProfileRequest struct {
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	AccountID *string `json:"accountID,omitempty"`
+	AccountID string `json:"accountID,omitempty"`
 
 	/* { "description" : "Any additional information", "verbs":["POST","PUT","GET"] }
 	 */
-	AdditionalInformation *string `json:"additionalInformation,omitempty"`
+	AdditionalInformation string `json:"additionalInformation,omitempty"`
 
 	/* { "description" : "Address associated with the profile", "verbs":["POST","PUT","GET"] }
 	 */
@@ -30,7 +30,7 @@ type CreateAccountProfileRequest struct {
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	CompanyName *string `json:"companyName,omitempty"`
+	CompanyName string `json:"companyName,omitempty"`
 
 	/* { "description" : "Date of birth in YYYY-MM-DD format", "verbs":["POST","PUT","GET"] }
 	 */
@@ -38,35 +38,35 @@ type CreateAccountProfileRequest struct {
 
 	/* { "description" : "E-mail address", "verbs":["POST","PUT","GET"] }
 	 */
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email,omitempty"`
 
 	/* { "description" : "Fax number", "verbs":["POST","PUT","GET"] }
 	 */
-	Fax *string `json:"fax,omitempty"`
+	Fax string `json:"fax,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	FirstName *string `json:"firstName,omitempty"`
+	FirstName string `json:"firstName,omitempty"`
 
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Landline *string `json:"landline,omitempty"`
+	Landline string `json:"landline,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	LastName *string `json:"lastName,omitempty"`
+	LastName string `json:"lastName,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	LogoURL *string `json:"logoURL,omitempty"`
+	LogoURL string `json:"logoURL,omitempty"`
 
 	/* { "description" : "Mobile telephone number", "verbs":["POST","PUT","GET"] }
 	 */
-	Mobile *string `json:"mobile,omitempty"`
+	Mobile string `json:"mobile,omitempty"`
 
 	/* { "description" : "VAT number", "verbs":["POST","PUT","GET"] }
 	 */
-	VatNumber *string `json:"vatNumber,omitempty"`
+	VatNumber string `json:"vatNumber,omitempty"`
 }
 
 // Validate validates this create account profile request
@@ -88,17 +88,6 @@ func (m *CreateAccountProfileRequest) validateAddresses(formats strfmt.Registry)
 
 	if swag.IsZero(m.Addresses) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.Addresses); i++ {
-
-		if m.Addresses[i] != nil {
-
-			if err := m.Addresses[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

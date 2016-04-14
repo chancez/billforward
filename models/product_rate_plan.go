@@ -7,11 +7,11 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/go-swagger/go-swagger/httpkit"
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
 
 	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-swagger/go-swagger/httpkit"
 	"github.com/go-swagger/go-swagger/httpkit/validate"
 )
 
@@ -27,43 +27,43 @@ type ProductRatePlan struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* {"default":"true","description":"Whether invoices are created if they have a zero valued cost before any discounts are applied.","verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
+	CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"description":"Customer-relationship-management ID of the rate plan.","verbs":["GET","PUT","POST"]}
 	 */
-	CrmID *string `json:"crmID,omitempty"`
+	CrmID string `json:"crmID,omitempty"`
 
 	/* {"description":"The currency of the product-rate-plan &mdash; as specified by a three-character ISO 4217 currency code (i.e. USD).","verbs":["POST","GET"]}
 
 	Required: true
 	*/
-	Currency string `json:"currency,omitempty"`
+	Currency *string `json:"currency"`
 
 	/* {"description":"Number of length-measures which constitute the rate plan's period. If left unspecified: the rate plan will use the same `duration` number as the Product to which it belongs.","verbs":["POST","GET"]}
 	 */
-	Duration *int32 `json:"duration,omitempty"`
+	Duration int32 `json:"duration,omitempty"`
 
 	/* {"description":"Measure describing the magnitude of the rate plan's period. If left unspecified: the rate plan will use the same `durationPeriod` magnitude as the Product to which it belongs.","verbs":["POST","GET"]}
 
 	Required: true
 	*/
-	DurationPeriod string `json:"durationPeriod,omitempty"`
+	DurationPeriod *string `json:"durationPeriod"`
 
 	/* {"default":"None","description":"The action that should be taken, should an invoice for some subscription to this rate plan remain unpaid despite the dunning period's being exceeded.<br><span class=\"label label-default\">CancelSubscription</span> &mdash; Demotes the subscription to the `Failed` state as soon as the dunning period is exceeded.<br><span class=\"label label-default\">None</span> &mdash; The subscription is allowed to continue in the `AwaitingPayment` state indefinitely even if the dunning period is exceeded.For slow payment cycles &mdash; or when manual invoice remediation is common &mdash; <span class=\"label label-default\">None</span> is recommended.<br>In a heavily-automated SaaS environment, automatic cancellation via <span class=\"label label-default\">CancelSubscription</span> is recommended.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	FailedPaymentBehaviour string `json:"failedPaymentBehaviour,omitempty"`
+	FailedPaymentBehaviour *string `json:"failedPaymentBehaviour"`
 
 	/* {"description":"A list linking \"Fixed-Term Definitions\" to the rate plan.","verbs":["POST","PUT","GET"]}
 	 */
@@ -71,19 +71,19 @@ type ProductRatePlan struct {
 
 	/* {"description":"ID uniquely identifying this rate plan.","verbs":["GET"]}
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* {"default":"<span class=\"label label-default\">Immediate</span>","description":"The strategy for how invoices for this plan will be issued.<br><span class=\"label label-default\">Immediate</span> &mdash; All generated invoices move immediately to the 'Unpaid' state &mdash; beginning the payment pursuit process.<br><span class=\"label label-default\">Delayed</span> &mdash; All generated invoices begin in the 'Pending' state. An 'Issue Invoice' amendment is scheduled (based on the rate plan's `issueDuration` and `issuePeriod`) that will move the invoice to the 'Unpaid' state (beginning the payment pursuit process) in accordance with the rate plan's issuance schedule.<br><span class=\"label label-default\">Manual</span> &mdash; All generated invoices sit in the 'Pending' state &mdash; they will not be issued to the customer unless explicit action is taken. This gives you an opportunity to review or recalculate the invoice."verbs":["POST","GET"]}
 	 */
-	InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
+	InvoiceIssueType string `json:"invoiceIssueType,omitempty"`
 
 	/* {"description":"Number of issue-length-measures between issuance of invoices for this rate plan.""verbs":["POST","GET"]}
 	 */
-	IssueDuration *int32 `json:"issueDuration,omitempty"`
+	IssueDuration int32 `json:"issueDuration,omitempty"`
 
 	/* {"description":"Measure describing the magnitude of the invoice issuance period.","verbs":["POST","GET"]}
 	 */
-	IssuePeriod *string `json:"issuePeriod,omitempty"`
+	IssuePeriod string `json:"issuePeriod,omitempty"`
 
 	/* { "description" : "Add metadata.", "verbs":["POST"] }
 	 */
@@ -93,25 +93,25 @@ type ProductRatePlan struct {
 
 	Required: true
 	*/
-	MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
+	MigrationBehaviour *string `json:"migrationBehaviour"`
 
 	/* {"description":"A friendly name &mdash; for your benefit &mdash; used to identify this rate plan within some product in BillForward. The name should reflect the fact that this rate plan provides to the customer a price tiering system within which a subscription to its Product can be made. <br>The rate plan's name could describe the nature of its price tiering (e.g. \"Default pricing\", \"Student pricing\").<br>Remember also that rate plans can override the timing prescribed by their product. If your rate plan is defined by its overriding the default timing of its product, then that can be reflected in that rate plan's name. (e.g. \"Student pricing - Annual\").","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
-	/* PaymentTerms payment terms
+	/* payment terms
 	 */
-	PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+	PaymentTerms int64 `json:"paymentTerms,omitempty"`
 
-	PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
+	PricingComponents []PricingComponent `json:"pricingComponents"`
 
 	/* {"default":"WithCoupon","description":"The pro-rata mode for the rate plan. <br><span class=\"label label-default\">None</span> &mdash; The pro-rata cost for upgrades will be ignored.<br><span class=\"label label-default\">WithCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will be deducted from the pro-rated cost.<br><span class=\"label label-default\">WithoutCoupon</span> &mdash; The pro-rata cost for upgrades will be calculated based on the time remaining for the subscription. Discounts from any attached coupons will not be deducted from the pro-rated cost. ","verbs":[]}
 
 	Required: true
 	*/
-	ProRataMode string `json:"proRataMode,omitempty"`
+	ProRataMode *string `json:"proRataMode"`
 
 	/* {"description":"The product to which this rate plan belongs. A product is essentially a collection of rate plans, and describes the service conferred to a customer upon subscription to any of said product's rate plans. The product serves also as a template from which its rate plans can infer default attributes.","verbs":["POST","GET"]}
 	 */
@@ -121,25 +121,25 @@ type ProductRatePlan struct {
 
 	Required: true
 	*/
-	ProductID string `json:"productID,omitempty"`
+	ProductID *string `json:"productID"`
 
 	/* {"default":"recurring","description":"The frequency of the rate plan &mdash; either recurring or non-recurring. If left unspecified: the rate plan will use the same `productType` frequency as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	ProductType *string `json:"productType,omitempty"`
+	ProductType string `json:"productType,omitempty"`
 
 	/* {"description":"A friendly non-unique name used to identify this product-rate-plan","verbs":["POST","PUT","GET"]}
 	 */
-	PublicName *string `json:"publicName,omitempty"`
+	PublicName string `json:"publicName,omitempty"`
 
 	/* {"description":"The current status of the rate plan.","verbs":[]}
 	 */
-	Status *string `json:"status,omitempty"`
+	Status string `json:"status,omitempty"`
 
 	/* {"default":"inclusive","description":"The tax status of the product-rate-plan &mdash; either inclusive or exclusive.<br><span class=\"label label-default\">exclusive</span>pricing indicates that the cost of the Pricing Components do not include tax; when BillForward generates an Invoice, the tax will be calculated with this price as a base. <br>Tax-<span class=\"label label-default\">inclusive</span>pricing indicates that the Pricing components include Tax. BillForward will still calculate tax on each invoice. Tax will be calculated from the sales price.","verbs":["POST","PUT","GET"]}
 
 	Required: true
 	*/
-	TaxStatus string `json:"taxStatus,omitempty"`
+	TaxStatus *string `json:"taxStatus"`
 
 	/* {"description":"A list linking taxation strategies to the rate plan.","verbs":["POST","GET","PUT"]}
 	 */
@@ -147,23 +147,23 @@ type ProductRatePlan struct {
 
 	/* {"default":0,"description":"Number of trial-length-measures which constitute the rate plan's trial period. If left unspecified: the rate plan will use the same `trial` number as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	Trial *int32 `json:"trial,omitempty"`
+	Trial int32 `json:"trial,omitempty"`
 
 	/* {"default":"none","description":"Measure describing the magnitude of the rate plan's trial period. If left unspecified: the rate plan will use the same `trialPeriod` magnitude as the Product to which it belongs.","verbs":["POST","PUT","GET"]}
 	 */
-	TrialPeriod *string `json:"trialPeriod,omitempty"`
+	TrialPeriod string `json:"trialPeriod,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 
 	/* {"description":"The UTC DateTime specifying when the rate plan is valid from.","verbs":["GET"]}
 	 */
-	ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
+	ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
 	/* {"description":"The UTC DateTime specifying when the product-rate-plan is valid till.","verbs":["GET"]}
 	 */
-	ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
+	ValidTill strfmt.DateTime `json:"validTill,omitempty"`
 }
 
 // Validate validates this product rate plan
@@ -267,17 +267,6 @@ func (m *ProductRatePlan) validateAggregatingComponents(formats strfmt.Registry)
 		return nil
 	}
 
-	for i := 0; i < len(m.AggregatingComponents); i++ {
-
-		if m.AggregatingComponents[i] != nil {
-
-			if err := m.AggregatingComponents[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -292,26 +281,27 @@ func (m *ProductRatePlan) validateCreateZeroValuedInvoices(formats strfmt.Regist
 
 func (m *ProductRatePlan) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.Required("currency", "body", m.Currency); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanDurationPeriodEnum []interface{}
+var productRatePlanTypeDurationPeriodPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateDurationPeriodEnum(path, location string, value string) error {
-	if productRatePlanDurationPeriodEnum == nil {
+	if productRatePlanTypeDurationPeriodPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["minutes","days","months","years"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanDurationPeriodEnum = append(productRatePlanDurationPeriodEnum, v)
+			productRatePlanTypeDurationPeriodPropEnum = append(productRatePlanTypeDurationPeriodPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanDurationPeriodEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeDurationPeriodPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -319,30 +309,32 @@ func (m *ProductRatePlan) validateDurationPeriodEnum(path, location string, valu
 
 func (m *ProductRatePlan) validateDurationPeriod(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("durationPeriod", "body", string(m.DurationPeriod)); err != nil {
+	if err := validate.Required("durationPeriod", "body", m.DurationPeriod); err != nil {
 		return err
 	}
 
-	if err := m.validateDurationPeriodEnum("durationPeriod", "body", m.DurationPeriod); err != nil {
+	// value enum
+	if err := m.validateDurationPeriodEnum("durationPeriod", "body", *m.DurationPeriod); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanFailedPaymentBehaviourEnum []interface{}
+var productRatePlanTypeFailedPaymentBehaviourPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateFailedPaymentBehaviourEnum(path, location string, value string) error {
-	if productRatePlanFailedPaymentBehaviourEnum == nil {
+	if productRatePlanTypeFailedPaymentBehaviourPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["CancelSubscription","None"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanFailedPaymentBehaviourEnum = append(productRatePlanFailedPaymentBehaviourEnum, v)
+			productRatePlanTypeFailedPaymentBehaviourPropEnum = append(productRatePlanTypeFailedPaymentBehaviourPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanFailedPaymentBehaviourEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeFailedPaymentBehaviourPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -350,11 +342,12 @@ func (m *ProductRatePlan) validateFailedPaymentBehaviourEnum(path, location stri
 
 func (m *ProductRatePlan) validateFailedPaymentBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("failedPaymentBehaviour", "body", string(m.FailedPaymentBehaviour)); err != nil {
+	if err := validate.Required("failedPaymentBehaviour", "body", m.FailedPaymentBehaviour); err != nil {
 		return err
 	}
 
-	if err := m.validateFailedPaymentBehaviourEnum("failedPaymentBehaviour", "body", m.FailedPaymentBehaviour); err != nil {
+	// value enum
+	if err := m.validateFailedPaymentBehaviourEnum("failedPaymentBehaviour", "body", *m.FailedPaymentBehaviour); err != nil {
 		return err
 	}
 
@@ -367,33 +360,23 @@ func (m *ProductRatePlan) validateFixedTermDefinitions(formats strfmt.Registry) 
 		return nil
 	}
 
-	for i := 0; i < len(m.FixedTermDefinitions); i++ {
-
-		if m.FixedTermDefinitions[i] != nil {
-
-			if err := m.FixedTermDefinitions[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
-var productRatePlanInvoiceIssueTypeEnum []interface{}
+var productRatePlanTypeInvoiceIssueTypePropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateInvoiceIssueTypeEnum(path, location string, value string) error {
-	if productRatePlanInvoiceIssueTypeEnum == nil {
+	if productRatePlanTypeInvoiceIssueTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Immediate","Delayed","Manual"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanInvoiceIssueTypeEnum = append(productRatePlanInvoiceIssueTypeEnum, v)
+			productRatePlanTypeInvoiceIssueTypePropEnum = append(productRatePlanTypeInvoiceIssueTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanInvoiceIssueTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeInvoiceIssueTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -405,26 +388,28 @@ func (m *ProductRatePlan) validateInvoiceIssueType(formats strfmt.Registry) erro
 		return nil
 	}
 
-	if err := m.validateInvoiceIssueTypeEnum("invoiceIssueType", "body", *m.InvoiceIssueType); err != nil {
+	// value enum
+	if err := m.validateInvoiceIssueTypeEnum("invoiceIssueType", "body", m.InvoiceIssueType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanIssuePeriodEnum []interface{}
+var productRatePlanTypeIssuePeriodPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateIssuePeriodEnum(path, location string, value string) error {
-	if productRatePlanIssuePeriodEnum == nil {
+	if productRatePlanTypeIssuePeriodPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["minutes","days","months","years"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanIssuePeriodEnum = append(productRatePlanIssuePeriodEnum, v)
+			productRatePlanTypeIssuePeriodPropEnum = append(productRatePlanTypeIssuePeriodPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanIssuePeriodEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeIssuePeriodPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -436,26 +421,28 @@ func (m *ProductRatePlan) validateIssuePeriod(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateIssuePeriodEnum("issuePeriod", "body", *m.IssuePeriod); err != nil {
+	// value enum
+	if err := m.validateIssuePeriodEnum("issuePeriod", "body", m.IssuePeriod); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanMigrationBehaviourEnum []interface{}
+var productRatePlanTypeMigrationBehaviourPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, value string) error {
-	if productRatePlanMigrationBehaviourEnum == nil {
+	if productRatePlanTypeMigrationBehaviourPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["NoCharge","CreditAccount"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanMigrationBehaviourEnum = append(productRatePlanMigrationBehaviourEnum, v)
+			productRatePlanTypeMigrationBehaviourPropEnum = append(productRatePlanTypeMigrationBehaviourPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanMigrationBehaviourEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeMigrationBehaviourPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -463,11 +450,12 @@ func (m *ProductRatePlan) validateMigrationBehaviourEnum(path, location string, 
 
 func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("migrationBehaviour", "body", string(m.MigrationBehaviour)); err != nil {
+	if err := validate.Required("migrationBehaviour", "body", m.MigrationBehaviour); err != nil {
 		return err
 	}
 
-	if err := m.validateMigrationBehaviourEnum("migrationBehaviour", "body", m.MigrationBehaviour); err != nil {
+	// value enum
+	if err := m.validateMigrationBehaviourEnum("migrationBehaviour", "body", *m.MigrationBehaviour); err != nil {
 		return err
 	}
 
@@ -476,7 +464,7 @@ func (m *ProductRatePlan) validateMigrationBehaviour(formats strfmt.Registry) er
 
 func (m *ProductRatePlan) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -491,11 +479,8 @@ func (m *ProductRatePlan) validatePricingComponents(formats strfmt.Registry) err
 
 	for i := 0; i < len(m.PricingComponents); i++ {
 
-		if m.PricingComponents[i] != nil {
-
-			if err := m.PricingComponents[i].Validate(formats); err != nil {
-				return err
-			}
+		if err := m.PricingComponents[i].Validate(formats); err != nil {
+			return err
 		}
 
 	}
@@ -503,19 +488,20 @@ func (m *ProductRatePlan) validatePricingComponents(formats strfmt.Registry) err
 	return nil
 }
 
-var productRatePlanProRataModeEnum []interface{}
+var productRatePlanTypeProRataModePropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateProRataModeEnum(path, location string, value string) error {
-	if productRatePlanProRataModeEnum == nil {
+	if productRatePlanTypeProRataModePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["None","WithCoupon","WithoutCoupon","Full"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanProRataModeEnum = append(productRatePlanProRataModeEnum, v)
+			productRatePlanTypeProRataModePropEnum = append(productRatePlanTypeProRataModePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanProRataModeEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeProRataModePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -523,11 +509,12 @@ func (m *ProductRatePlan) validateProRataModeEnum(path, location string, value s
 
 func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("proRataMode", "body", string(m.ProRataMode)); err != nil {
+	if err := validate.Required("proRataMode", "body", m.ProRataMode); err != nil {
 		return err
 	}
 
-	if err := m.validateProRataModeEnum("proRataMode", "body", m.ProRataMode); err != nil {
+	// value enum
+	if err := m.validateProRataModeEnum("proRataMode", "body", *m.ProRataMode); err != nil {
 		return err
 	}
 
@@ -536,26 +523,27 @@ func (m *ProductRatePlan) validateProRataMode(formats strfmt.Registry) error {
 
 func (m *ProductRatePlan) validateProductID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("productID", "body", string(m.ProductID)); err != nil {
+	if err := validate.Required("productID", "body", m.ProductID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanProductTypeEnum []interface{}
+var productRatePlanTypeProductTypePropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateProductTypeEnum(path, location string, value string) error {
-	if productRatePlanProductTypeEnum == nil {
+	if productRatePlanTypeProductTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["nonrecurring","recurring"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanProductTypeEnum = append(productRatePlanProductTypeEnum, v)
+			productRatePlanTypeProductTypePropEnum = append(productRatePlanTypeProductTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanProductTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeProductTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -567,26 +555,28 @@ func (m *ProductRatePlan) validateProductType(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateProductTypeEnum("productType", "body", *m.ProductType); err != nil {
+	// value enum
+	if err := m.validateProductTypeEnum("productType", "body", m.ProductType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var productRatePlanTaxStatusEnum []interface{}
+var productRatePlanTypeTaxStatusPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value string) error {
-	if productRatePlanTaxStatusEnum == nil {
+	if productRatePlanTypeTaxStatusPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["inclusive","exclusive"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanTaxStatusEnum = append(productRatePlanTaxStatusEnum, v)
+			productRatePlanTypeTaxStatusPropEnum = append(productRatePlanTypeTaxStatusPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanTaxStatusEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeTaxStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -594,11 +584,12 @@ func (m *ProductRatePlan) validateTaxStatusEnum(path, location string, value str
 
 func (m *ProductRatePlan) validateTaxStatus(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("taxStatus", "body", string(m.TaxStatus)); err != nil {
+	if err := validate.Required("taxStatus", "body", m.TaxStatus); err != nil {
 		return err
 	}
 
-	if err := m.validateTaxStatusEnum("taxStatus", "body", m.TaxStatus); err != nil {
+	// value enum
+	if err := m.validateTaxStatusEnum("taxStatus", "body", *m.TaxStatus); err != nil {
 		return err
 	}
 
@@ -611,33 +602,23 @@ func (m *ProductRatePlan) validateTaxation(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.Taxation); i++ {
-
-		if m.Taxation[i] != nil {
-
-			if err := m.Taxation[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
-var productRatePlanTrialPeriodEnum []interface{}
+var productRatePlanTypeTrialPeriodPropEnum []interface{}
 
+// prop value enum
 func (m *ProductRatePlan) validateTrialPeriodEnum(path, location string, value string) error {
-	if productRatePlanTrialPeriodEnum == nil {
+	if productRatePlanTypeTrialPeriodPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["none","minutes","days","months"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			productRatePlanTrialPeriodEnum = append(productRatePlanTrialPeriodEnum, v)
+			productRatePlanTypeTrialPeriodPropEnum = append(productRatePlanTypeTrialPeriodPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, productRatePlanTrialPeriodEnum); err != nil {
+	if err := validate.Enum(path, location, value, productRatePlanTypeTrialPeriodPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -649,7 +630,8 @@ func (m *ProductRatePlan) validateTrialPeriod(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateTrialPeriodEnum("trialPeriod", "body", *m.TrialPeriod); err != nil {
+	// value enum
+	if err := m.validateTrialPeriodEnum("trialPeriod", "body", m.TrialPeriod); err != nil {
 		return err
 	}
 
@@ -661,74 +643,85 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
+		ChangedBy string `json:"changedBy,omitempty"`
 
-		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
+		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices"`
 
-		Created *strfmt.DateTime `json:"created,omitempty"`
+		Created strfmt.DateTime `json:"created,omitempty"`
 
-		CrmID *string `json:"crmID,omitempty"`
+		CrmID string `json:"crmID,omitempty"`
 
-		Currency string `json:"currency,omitempty"`
+		Currency *string `json:"currency"`
 
-		Duration *int32 `json:"duration,omitempty"`
+		Duration int32 `json:"duration,omitempty"`
 
-		DurationPeriod string `json:"durationPeriod,omitempty"`
+		DurationPeriod *string `json:"durationPeriod"`
 
-		FailedPaymentBehaviour string `json:"failedPaymentBehaviour,omitempty"`
+		FailedPaymentBehaviour *string `json:"failedPaymentBehaviour"`
 
 		FixedTermDefinitions []*MutableBillingEntity `json:"fixedTermDefinitions,omitempty"`
 
-		ID *string `json:"id,omitempty"`
+		ID string `json:"id,omitempty"`
 
-		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
+		InvoiceIssueType string `json:"invoiceIssueType,omitempty"`
 
-		IssueDuration *int32 `json:"issueDuration,omitempty"`
+		IssueDuration int32 `json:"issueDuration,omitempty"`
 
-		IssuePeriod *string `json:"issuePeriod,omitempty"`
+		IssuePeriod string `json:"issuePeriod,omitempty"`
 
 		Metadata DynamicMetadata `json:"metadata,omitempty"`
 
-		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
+		MigrationBehaviour *string `json:"migrationBehaviour"`
 
-		Name string `json:"name,omitempty"`
+		Name *string `json:"name"`
 
-		PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+		PaymentTerms int64 `json:"paymentTerms,omitempty"`
 
-		ProRataMode string `json:"proRataMode,omitempty"`
+		PricingComponents json.RawMessage `json:"pricingComponents"`
+
+		ProRataMode *string `json:"proRataMode"`
 
 		Product *Product `json:"product,omitempty"`
 
-		ProductID string `json:"productID,omitempty"`
+		ProductID *string `json:"productID"`
 
-		ProductType *string `json:"productType,omitempty"`
+		ProductType string `json:"productType,omitempty"`
 
-		PublicName *string `json:"publicName,omitempty"`
+		PublicName string `json:"publicName,omitempty"`
 
-		Status *string `json:"status,omitempty"`
+		Status string `json:"status,omitempty"`
 
-		TaxStatus string `json:"taxStatus,omitempty"`
+		TaxStatus *string `json:"taxStatus"`
 
 		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
 
-		Trial *int32 `json:"trial,omitempty"`
+		Trial int32 `json:"trial,omitempty"`
 
-		TrialPeriod *string `json:"trialPeriod,omitempty"`
+		TrialPeriod string `json:"trialPeriod,omitempty"`
 
-		Updated *strfmt.DateTime `json:"updated,omitempty"`
+		Updated strfmt.DateTime `json:"updated,omitempty"`
 
-		ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
+		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
 	}
 
-	if err := json.Unmarshal(raw, &data); err != nil {
+	buf := bytes.NewBuffer(raw)
+	dec := json.NewDecoder(buf)
+	dec.UseNumber()
+
+	if err := dec.Decode(&data); err != nil {
 		return err
 	}
 
 	var pricingComponents []PricingComponent
+
+	buf = bytes.NewBuffer(raw)
+	dec = json.NewDecoder(buf)
+	dec.UseNumber()
+
 	untypedObj := make(map[string]interface{})
-	if err := json.Unmarshal(raw, &untypedObj); err != nil {
+	if err := dec.Decode(&untypedObj); err != nil {
 		return err
 	}
 	if untypedPricingComponents, ok := untypedObj["pricingComponents"]; ok {
@@ -788,65 +781,65 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 		AggregatingComponents []*AggregatingComponent `json:"aggregatingComponents,omitempty"`
 
-		ChangedBy *string `json:"changedBy,omitempty"`
+		ChangedBy string `json:"changedBy,omitempty"`
 
-		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices,omitempty"`
+		CreateZeroValuedInvoices bool `json:"createZeroValuedInvoices"`
 
-		Created *strfmt.DateTime `json:"created,omitempty"`
+		Created strfmt.DateTime `json:"created,omitempty"`
 
-		CrmID *string `json:"crmID,omitempty"`
+		CrmID string `json:"crmID,omitempty"`
 
-		Currency string `json:"currency,omitempty"`
+		Currency *string `json:"currency"`
 
-		Duration *int32 `json:"duration,omitempty"`
+		Duration int32 `json:"duration,omitempty"`
 
-		DurationPeriod string `json:"durationPeriod,omitempty"`
+		DurationPeriod *string `json:"durationPeriod"`
 
-		FailedPaymentBehaviour string `json:"failedPaymentBehaviour,omitempty"`
+		FailedPaymentBehaviour *string `json:"failedPaymentBehaviour"`
 
 		FixedTermDefinitions []*MutableBillingEntity `json:"fixedTermDefinitions,omitempty"`
 
-		ID *string `json:"id,omitempty"`
+		ID string `json:"id,omitempty"`
 
-		InvoiceIssueType *string `json:"invoiceIssueType,omitempty"`
+		InvoiceIssueType string `json:"invoiceIssueType,omitempty"`
 
-		IssueDuration *int32 `json:"issueDuration,omitempty"`
+		IssueDuration int32 `json:"issueDuration,omitempty"`
 
-		IssuePeriod *string `json:"issuePeriod,omitempty"`
+		IssuePeriod string `json:"issuePeriod,omitempty"`
 
 		Metadata DynamicMetadata `json:"metadata,omitempty"`
 
-		MigrationBehaviour string `json:"migrationBehaviour,omitempty"`
+		MigrationBehaviour *string `json:"migrationBehaviour"`
 
-		Name string `json:"name,omitempty"`
+		Name *string `json:"name"`
 
-		PaymentTerms *int64 `json:"paymentTerms,omitempty"`
+		PaymentTerms int64 `json:"paymentTerms,omitempty"`
 
-		ProRataMode string `json:"proRataMode,omitempty"`
+		ProRataMode *string `json:"proRataMode"`
 
 		Product *Product `json:"product,omitempty"`
 
-		ProductID string `json:"productID,omitempty"`
+		ProductID *string `json:"productID"`
 
-		ProductType *string `json:"productType,omitempty"`
+		ProductType string `json:"productType,omitempty"`
 
-		PublicName *string `json:"publicName,omitempty"`
+		PublicName string `json:"publicName,omitempty"`
 
-		Status *string `json:"status,omitempty"`
+		Status string `json:"status,omitempty"`
 
-		TaxStatus string `json:"taxStatus,omitempty"`
+		TaxStatus *string `json:"taxStatus"`
 
 		Taxation []*MutableBillingEntity `json:"taxation,omitempty"`
 
-		Trial *int32 `json:"trial,omitempty"`
+		Trial int32 `json:"trial,omitempty"`
 
-		TrialPeriod *string `json:"trialPeriod,omitempty"`
+		TrialPeriod string `json:"trialPeriod,omitempty"`
 
-		Updated *strfmt.DateTime `json:"updated,omitempty"`
+		Updated strfmt.DateTime `json:"updated,omitempty"`
 
-		ValidFrom *strfmt.DateTime `json:"validFrom,omitempty"`
+		ValidFrom strfmt.DateTime `json:"validFrom,omitempty"`
 
-		ValidTill *strfmt.DateTime `json:"validTill,omitempty"`
+		ValidTill strfmt.DateTime `json:"validTill,omitempty"`
 	}{
 		AggregatingComponents:    m.AggregatingComponents,
 		ChangedBy:                m.ChangedBy,
@@ -884,7 +877,7 @@ func (m ProductRatePlan) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		PricingComponents []PricingComponent `json:"pricingComponents,omitempty"`
+		PricingComponents []PricingComponent `json:"pricingComponents"`
 	}{
 		PricingComponents: m.PricingComponents,
 	})

@@ -25,7 +25,7 @@ type TimeRequest struct {
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* {"default":false,"description":"Changes described in the response:<br><span class=\"label label-default\">true</span> &mdash; Are not actually performed; your subscription remains unchanged, no billing events run, and no invoices are executed.<br><span class=\"label label-default\">false</span> &mdash; Are actually performed and committed.","verbs":["POST","GET"]}
 	 */
@@ -33,7 +33,7 @@ type TimeRequest struct {
 
 	/* {"default":"<span class=\"label label-default\">SingleAttempt</span>","description":"What strategy to use when executing any invoices raised as time advances:<br><span class=\"label label-default\">SingleAttempt</span> &mdash; Execute any invoice just once.<br><span class=\"label label-default\">FollowDunning</span> &mdash; Apply the existing dunning strategy when executing invoices.<br><span class=\"label label-default\">None</span>: Do not execute invoices.","verbs":["POST","GET"]}
 	 */
-	ExecutionStrategy *string `json:"executionStrategy,omitempty"`
+	ExecutionStrategy string `json:"executionStrategy,omitempty"`
 
 	/* {"default":false,"description":"Once the subscription is advanced through time:<br><span class=\"label label-default\">true</span> &mdash; Freeze the subscription.<br><span class=\"label label-default\">false</span> &mdash; Do not freeze the subscription.","verbs":["POST","GET"]}
 	 */
@@ -47,7 +47,7 @@ type TimeRequest struct {
 	A 1-value advances the subscription to the end of its current service period.
 	Higher values advance the subscription to subsequent period boundaries."verbs":["POST","GET"]}
 	*/
-	Periods *int32 `json:"periods,omitempty"`
+	Periods int32 `json:"periods,omitempty"`
 
 	/* {"default":false,"description":"As time scrubs forward:<br><span class=\"label label-default\">true</span> &mdash; Raise no invoice upon advancing over a period boundary.<br><span class=\"label label-default\">false</span> &mdash; Raise invoices for any period that is entered.","verbs":["POST","GET"]}
 	 */
@@ -55,7 +55,7 @@ type TimeRequest struct {
 
 	/* {"description":"(Required: one of [`periods`, `to`])<br>The time up until which the subscription should be fast-forwarded.","verbs":["POST","GET"]}
 	 */
-	To *strfmt.DateTime `json:"to,omitempty"`
+	To strfmt.DateTime `json:"to,omitempty"`
 }
 
 // Validate validates this time request
@@ -73,19 +73,20 @@ func (m *TimeRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var timeRequestExecutionStrategyEnum []interface{}
+var timeRequestTypeExecutionStrategyPropEnum []interface{}
 
+// prop value enum
 func (m *TimeRequest) validateExecutionStrategyEnum(path, location string, value string) error {
-	if timeRequestExecutionStrategyEnum == nil {
+	if timeRequestTypeExecutionStrategyPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["SingleAttempt","FollowDunning","None"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			timeRequestExecutionStrategyEnum = append(timeRequestExecutionStrategyEnum, v)
+			timeRequestTypeExecutionStrategyPropEnum = append(timeRequestTypeExecutionStrategyPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, timeRequestExecutionStrategyEnum); err != nil {
+	if err := validate.Enum(path, location, value, timeRequestTypeExecutionStrategyPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -97,7 +98,8 @@ func (m *TimeRequest) validateExecutionStrategy(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateExecutionStrategyEnum("executionStrategy", "body", *m.ExecutionStrategy); err != nil {
+	// value enum
+	if err := m.validateExecutionStrategyEnum("executionStrategy", "body", m.ExecutionStrategy); err != nil {
 		return err
 	}
 

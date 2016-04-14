@@ -20,105 +20,105 @@ type MutableBillingEntity struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* This is config id which links to this sync job.
 
 	Required: true
 	*/
-	ConfigID string `json:"configID,omitempty"`
+	ConfigID *string `json:"configID"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* The account who created the synch job.
 	 */
-	CreatedBy *string `json:"createdBy,omitempty"`
+	CreatedBy string `json:"createdBy,omitempty"`
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	DataFrom *strfmt.DateTime `json:"dataFrom,omitempty"`
+	DataFrom strfmt.DateTime `json:"dataFrom,omitempty"`
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	DataTill *strfmt.DateTime `json:"dataTill,omitempty"`
+	DataTill strfmt.DateTime `json:"dataTill,omitempty"`
 
 	/* Is the sync job deleted.
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* Description of the Job.
 
 	Required: true
 	*/
-	Description string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	/* ID of the Synchronization Job.
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* The max number of times the records will try to resync.
 
 	Required: true
 	*/
-	MaxRetryTimes int32 `json:"maxRetryTimes,omitempty"`
+	MaxRetryTimes *int32 `json:"maxRetryTimes"`
 
 	/* Name of the Job.
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* Organization associated with the refund.
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* The number of times the records tried to resync.
 
 	Required: true
 	*/
-	RetryAttempted int32 `json:"retryAttempted,omitempty"`
+	RetryAttempted *int32 `json:"retryAttempted"`
 
 	/* The scope of the data synch'd.
 
 	Required: true
 	*/
-	Scope string `json:"scope,omitempty"`
+	Scope *string `json:"scope"`
 
 	/* UTC DateTime of the end of the data to sync.
 	 */
-	Started *strfmt.DateTime `json:"started,omitempty"`
+	Started strfmt.DateTime `json:"started,omitempty"`
 
 	/* This is the state of job. Pending jobs have not run. Complete jobs have run without error. Failed jobs have one of more errors. Cancelled jobs did not run.
 
 	Required: true
 	*/
-	State string `json:"state,omitempty"`
+	State *string `json:"state"`
 
 	/* UTC DateTime of the start of the data to sync.
 	 */
-	Stopped *strfmt.DateTime `json:"stopped,omitempty"`
+	Stopped strfmt.DateTime `json:"stopped,omitempty"`
 
 	/* This is the target of the job.
 
 	Required: true
 	*/
-	Target string `json:"target,omitempty"`
+	Target *string `json:"target"`
 
 	/* This is the type of job. Incremental jobs just sync changes, fully jobs sync all data.
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this mutable billing entity
@@ -188,7 +188,7 @@ func (m *MutableBillingEntity) Validate(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateConfigID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("configID", "body", string(m.ConfigID)); err != nil {
+	if err := validate.Required("configID", "body", m.ConfigID); err != nil {
 		return err
 	}
 
@@ -206,7 +206,7 @@ func (m *MutableBillingEntity) validateDeleted(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("description", "body", string(m.Description)); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
@@ -215,7 +215,7 @@ func (m *MutableBillingEntity) validateDescription(formats strfmt.Registry) erro
 
 func (m *MutableBillingEntity) validateMaxRetryTimes(formats strfmt.Registry) error {
 
-	if err := validate.Required("maxRetryTimes", "body", int32(m.MaxRetryTimes)); err != nil {
+	if err := validate.Required("maxRetryTimes", "body", m.MaxRetryTimes); err != nil {
 		return err
 	}
 
@@ -224,7 +224,7 @@ func (m *MutableBillingEntity) validateMaxRetryTimes(formats strfmt.Registry) er
 
 func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -233,7 +233,7 @@ func (m *MutableBillingEntity) validateName(formats strfmt.Registry) error {
 
 func (m *MutableBillingEntity) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -242,26 +242,27 @@ func (m *MutableBillingEntity) validateOrganizationID(formats strfmt.Registry) e
 
 func (m *MutableBillingEntity) validateRetryAttempted(formats strfmt.Registry) error {
 
-	if err := validate.Required("retryAttempted", "body", int32(m.RetryAttempted)); err != nil {
+	if err := validate.Required("retryAttempted", "body", m.RetryAttempted); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var mutableBillingEntityScopeEnum []interface{}
+var mutableBillingEntityTypeScopePropEnum []interface{}
 
+// prop value enum
 func (m *MutableBillingEntity) validateScopeEnum(path, location string, value string) error {
-	if mutableBillingEntityScopeEnum == nil {
+	if mutableBillingEntityTypeScopePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Manual","Scheduled"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityScopeEnum = append(mutableBillingEntityScopeEnum, v)
+			mutableBillingEntityTypeScopePropEnum = append(mutableBillingEntityTypeScopePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityScopeEnum); err != nil {
+	if err := validate.Enum(path, location, value, mutableBillingEntityTypeScopePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -269,30 +270,32 @@ func (m *MutableBillingEntity) validateScopeEnum(path, location string, value st
 
 func (m *MutableBillingEntity) validateScope(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("scope", "body", string(m.Scope)); err != nil {
+	if err := validate.Required("scope", "body", m.Scope); err != nil {
 		return err
 	}
 
-	if err := m.validateScopeEnum("scope", "body", m.Scope); err != nil {
+	// value enum
+	if err := m.validateScopeEnum("scope", "body", *m.Scope); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var mutableBillingEntityStateEnum []interface{}
+var mutableBillingEntityTypeStatePropEnum []interface{}
 
+// prop value enum
 func (m *MutableBillingEntity) validateStateEnum(path, location string, value string) error {
-	if mutableBillingEntityStateEnum == nil {
+	if mutableBillingEntityTypeStatePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Pending","Complete","Failed","Cancelled","Processing"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityStateEnum = append(mutableBillingEntityStateEnum, v)
+			mutableBillingEntityTypeStatePropEnum = append(mutableBillingEntityTypeStatePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityStateEnum); err != nil {
+	if err := validate.Enum(path, location, value, mutableBillingEntityTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -300,30 +303,32 @@ func (m *MutableBillingEntity) validateStateEnum(path, location string, value st
 
 func (m *MutableBillingEntity) validateState(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
+	if err := validate.Required("state", "body", m.State); err != nil {
 		return err
 	}
 
-	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+	// value enum
+	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var mutableBillingEntityTargetEnum []interface{}
+var mutableBillingEntityTypeTargetPropEnum []interface{}
 
+// prop value enum
 func (m *MutableBillingEntity) validateTargetEnum(path, location string, value string) error {
-	if mutableBillingEntityTargetEnum == nil {
+	if mutableBillingEntityTypeTargetPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Salesforce"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityTargetEnum = append(mutableBillingEntityTargetEnum, v)
+			mutableBillingEntityTypeTargetPropEnum = append(mutableBillingEntityTypeTargetPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityTargetEnum); err != nil {
+	if err := validate.Enum(path, location, value, mutableBillingEntityTypeTargetPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -331,30 +336,32 @@ func (m *MutableBillingEntity) validateTargetEnum(path, location string, value s
 
 func (m *MutableBillingEntity) validateTarget(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("target", "body", string(m.Target)); err != nil {
+	if err := validate.Required("target", "body", m.Target); err != nil {
 		return err
 	}
 
-	if err := m.validateTargetEnum("target", "body", m.Target); err != nil {
+	// value enum
+	if err := m.validateTargetEnum("target", "body", *m.Target); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var mutableBillingEntityTypeEnum []interface{}
+var mutableBillingEntityTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *MutableBillingEntity) validateTypeEnum(path, location string, value string) error {
-	if mutableBillingEntityTypeEnum == nil {
+	if mutableBillingEntityTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Incremental","Full"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			mutableBillingEntityTypeEnum = append(mutableBillingEntityTypeEnum, v)
+			mutableBillingEntityTypeTypePropEnum = append(mutableBillingEntityTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, mutableBillingEntityTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, mutableBillingEntityTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -362,11 +369,12 @@ func (m *MutableBillingEntity) validateTypeEnum(path, location string, value str
 
 func (m *MutableBillingEntity) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

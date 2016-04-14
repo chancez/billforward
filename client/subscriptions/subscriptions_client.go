@@ -4,8 +4,6 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) AddPaymentMethodToSubscription(params *AddPaymentMethodToSubscr
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AddPaymentMethodToSubscriptionReader{formats: a.formats},
@@ -66,6 +65,7 @@ func (a *Client) AdvanceSubscription(params *AdvanceSubscriptionParams) (*Advanc
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/advance",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AdvanceSubscriptionReader{formats: a.formats},
@@ -92,6 +92,7 @@ func (a *Client) AvailablePaymentMethodsForSubscription(params *AvailablePayment
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AvailablePaymentMethodsForSubscriptionReader{formats: a.formats},
@@ -118,6 +119,7 @@ func (a *Client) BatchCreateSubscriptions(params *BatchCreateSubscriptionsParams
 		Method:             "POST",
 		PathPattern:        "/subscriptions/batch",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &BatchCreateSubscriptionsReader{formats: a.formats},
@@ -144,6 +146,7 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams) (*CancelSu
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CancelSubscriptionReader{formats: a.formats},
@@ -170,6 +173,7 @@ func (a *Client) CreateAggregatingSubscription(params *CreateAggregatingSubscrip
 		Method:             "POST",
 		PathPattern:        "/subscriptions/aggregating",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateAggregatingSubscriptionReader{formats: a.formats},
@@ -196,6 +200,7 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 		Method:             "POST",
 		PathPattern:        "/subscriptions",
 		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSubscriptionReader{formats: a.formats},
@@ -222,6 +227,7 @@ func (a *Client) CreateSubscriptionV2(params *CreateSubscriptionV2Params) (*Crea
 		Method:             "POST",
 		PathPattern:        "/subscriptions/create",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSubscriptionV2Reader{formats: a.formats},
@@ -248,6 +254,7 @@ func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscrip
 		Method:             "DELETE",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteMetadataForSubscriptionReader{formats: a.formats},
@@ -274,6 +281,7 @@ func (a *Client) GetAllSubscriptions(params *GetAllSubscriptionsParams) (*GetAll
 		Method:             "GET",
 		PathPattern:        "/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllSubscriptionsReader{formats: a.formats},
@@ -300,6 +308,7 @@ func (a *Client) GetMetadataForSubscription(params *GetMetadataForSubscriptionPa
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMetadataForSubscriptionReader{formats: a.formats},
@@ -326,6 +335,7 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 		Method:             "GET",
 		PathPattern:        "/subscriptions/account/{account-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSubscriptionByAccountIDReader{formats: a.formats},
@@ -352,6 +362,7 @@ func (a *Client) GetSubscriptionByID(params *GetSubscriptionByIDParams) (*GetSub
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSubscriptionByIDReader{formats: a.formats},
@@ -378,6 +389,7 @@ func (a *Client) RemovePaymentMethodFromSubscription(params *RemovePaymentMethod
 		Method:             "DELETE",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods/{payment-method-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RemovePaymentMethodFromSubscriptionReader{formats: a.formats},
@@ -404,6 +416,7 @@ func (a *Client) ReviveSubscription(params *ReviveSubscriptionParams) (*ReviveSu
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/revive",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ReviveSubscriptionReader{formats: a.formats},
@@ -430,6 +443,7 @@ func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionPa
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetMetadataForSubscriptionReader{formats: a.formats},
@@ -456,6 +470,7 @@ func (a *Client) UpdateSubscriptionV2(params *UpdateSubscriptionV2Params) (*Upda
 		Method:             "PUT",
 		PathPattern:        "/subscriptions/update",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSubscriptionV2Reader{formats: a.formats},
@@ -482,6 +497,7 @@ func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscrip
 		Method:             "PUT",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpsertMetadataForSubscriptionReader{formats: a.formats},
@@ -495,24 +511,4 @@ func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscrip
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

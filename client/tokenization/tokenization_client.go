@@ -4,8 +4,6 @@ package tokenization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) AuthCapture(params *AuthCaptureParams) (*AuthCaptureOK, error) 
 		Method:             "POST",
 		PathPattern:        "/tokenization/auth-capture",
 		ProducesMediaTypes: []string{"application/json", "application/xml", "text/xml"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthCaptureReader{formats: a.formats},
@@ -53,24 +52,4 @@ func (a *Client) AuthCapture(params *AuthCaptureParams) (*AuthCaptureOK, error) 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

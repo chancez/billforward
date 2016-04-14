@@ -18,47 +18,47 @@ type UnitOfMeasure struct {
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 	 */
-	CrmID *string `json:"crmID,omitempty"`
+	CrmID string `json:"crmID,omitempty"`
 
 	/* { "description" : "", "verbs":["GET"] }
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* { "description" : "Unit of measurement, such as users, pounds, minutes.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	DisplayedAs string `json:"displayedAs,omitempty"`
+	DisplayedAs *string `json:"displayedAs"`
 
 	/* { "description" : "", "verbs":["GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
 	/* { "description" : "", "verbs":[] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this unit of measure
@@ -102,7 +102,7 @@ func (m *UnitOfMeasure) validateDeleted(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateDisplayedAs(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("displayedAs", "body", string(m.DisplayedAs)); err != nil {
+	if err := validate.Required("displayedAs", "body", m.DisplayedAs); err != nil {
 		return err
 	}
 
@@ -111,7 +111,7 @@ func (m *UnitOfMeasure) validateDisplayedAs(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
@@ -120,7 +120,7 @@ func (m *UnitOfMeasure) validateName(formats strfmt.Registry) error {
 
 func (m *UnitOfMeasure) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 

@@ -16,12 +16,14 @@ import (
 func NewGetAllPaymentMethodsParams() *GetAllPaymentMethodsParams {
 	var (
 		includeRetiredDefault bool   = bool(true)
+		offsetDefault         int32  = int32(0)
 		orderDefault          string = string("DESC")
 		orderByDefault        string = string("created")
 		recordsDefault        int32  = int32(10)
 	)
 	return &GetAllPaymentMethodsParams{
 		IncludeRetired: &includeRetiredDefault,
+		Offset:         &offsetDefault,
 		Order:          &orderDefault,
 		OrderBy:        &orderByDefault,
 		Records:        &recordsDefault,

@@ -21,7 +21,7 @@ type UpdateProfileRequest struct {
 
 	Required: true
 	*/
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID"`
 
 	/* { "description" : "Any additional information", "verbs":["POST","PUT","GET"] }
 	 */
@@ -51,9 +51,9 @@ type UpdateProfileRequest struct {
 	 */
 	FirstName *string `json:"firstName,omitempty"`
 
-	/* ID id
+	/* id
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* { "description" : "Home telephone number", "verbs":["POST","PUT","GET"] }
 	 */
@@ -102,7 +102,7 @@ func (m *UpdateProfileRequest) Validate(formats strfmt.Registry) error {
 
 func (m *UpdateProfileRequest) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.Required("accountID", "body", m.AccountID); err != nil {
 		return err
 	}
 
@@ -113,17 +113,6 @@ func (m *UpdateProfileRequest) validateAddresses(formats strfmt.Registry) error 
 
 	if swag.IsZero(m.Addresses) { // not required
 		return nil
-	}
-
-	for i := 0; i < len(m.Addresses); i++ {
-
-		if m.Addresses[i] != nil {
-
-			if err := m.Addresses[i].Validate(formats); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	return nil

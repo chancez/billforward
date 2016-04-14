@@ -15,18 +15,26 @@ import (
 // with the default values initialized.
 func NewGetInvoiceAsPDFParams() *GetInvoiceAsPDFParams {
 	var (
+		includeRetiredDefault            bool   = bool(false)
+		inclusiveEndDefault              bool   = bool(false)
+		offsetDefault                    int32  = int32(0)
 		orderDefault                     string = string("DESC")
 		orderByDefault                   string = string("created")
 		recordsDefault                   int32  = int32(10)
 		showPlanOnlyWhenAmbiguousDefault bool   = bool(true)
 		showZeroCostDefault              bool   = bool(true)
+		tierBreakdownDefault             bool   = bool(false)
 	)
 	return &GetInvoiceAsPDFParams{
+		IncludeRetired:            &includeRetiredDefault,
+		InclusiveEnd:              &inclusiveEndDefault,
+		Offset:                    &offsetDefault,
 		Order:                     &orderDefault,
 		OrderBy:                   &orderByDefault,
 		Records:                   &recordsDefault,
 		ShowPlanOnlyWhenAmbiguous: &showPlanOnlyWhenAmbiguousDefault,
 		ShowZeroCost:              &showZeroCostDefault,
+		TierBreakdown:             &tierBreakdownDefault,
 	}
 }
 

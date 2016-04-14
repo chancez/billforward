@@ -22,31 +22,31 @@ type PaymentMethod struct {
 
 	Required: true
 	*/
-	AccountID string `json:"accountID,omitempty"`
+	AccountID *string `json:"accountID"`
 
 	/* { "description" : "Name of the card holder", "verbs":["POST","PUT","GET"] }
 	 */
-	CardHolderName *string `json:"cardHolderName,omitempty"`
+	CardHolderName string `json:"cardHolderName,omitempty"`
 
 	/* { "description" : "Type of the card. In the case of card payment methods this is the payment type, for example VISA, MasterCard.", "verbs":["POST","GET"] }
 	 */
-	CardType *string `json:"cardType,omitempty"`
+	CardType string `json:"cardType,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
-	/* Country country
+	/* country
 	 */
-	Country *string `json:"country,omitempty"`
+	Country string `json:"country,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the product-rate-plan.", "verbs":] }
 	 */
-	CrmID *string `json:"crmID,omitempty"`
+	CrmID string `json:"crmID,omitempty"`
 
 	/* {"default" : "false", "description" : "Indicates if this is the default payment method for the account.", "verbs":["GET","POST","PUT"]  }
 	 */
@@ -58,77 +58,77 @@ type PaymentMethod struct {
 
 	/* { "description" : "Description of the payment-method.", "verbs":["POST","PUT","GET"] }
 	 */
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description,omitempty"`
 
 	/* { "description" : "In the case of card payment methods this is the expiry date of the card, format should be MMYY including leading 0's. For example 0115 for January 2015.", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
-	ExpiryDate string `json:"expiryDate,omitempty"`
+	ExpiryDate *string `json:"expiryDate"`
 
-	/* ExpiryMonth expiry month
+	/* expiry month
 	 */
-	ExpiryMonth *int32 `json:"expiryMonth,omitempty"`
+	ExpiryMonth int32 `json:"expiryMonth,omitempty"`
 
-	/* ExpiryYear expiry year
+	/* expiry year
 	 */
-	ExpiryYear *int32 `json:"expiryYear,omitempty"`
+	ExpiryYear int32 `json:"expiryYear,omitempty"`
 
-	/* FirstSix first six
+	/* first six
 	 */
-	FirstSix *string `json:"firstSix,omitempty"`
+	FirstSix string `json:"firstSix,omitempty"`
 
 	/* { "description" : "Gateway type for payment-method.", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
-	Gateway string `json:"gateway,omitempty"`
+	Gateway *string `json:"gateway"`
 
 	/* { "description" : "ID of the payment-method.", "verbs":["GET"] }
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	/* {"description":"IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddress *string `json:"ipAddress,omitempty"`
+	IPAddress string `json:"ipAddress,omitempty"`
 
 	/* {"description":"Country of the IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddressCountry *string `json:"ipAddressCountry,omitempty"`
+	IPAddressCountry string `json:"ipAddressCountry,omitempty"`
 
-	/* LastFour last four
+	/* last four
 	 */
-	LastFour *string `json:"lastFour,omitempty"`
+	LastFour string `json:"lastFour,omitempty"`
 
-	/* LinkID link ID
+	/* link ID
 
 	Required: true
 	*/
-	LinkID string `json:"linkID,omitempty"`
+	LinkID *string `json:"linkID"`
 
 	/* { "description" : "Name of the payment-method.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name"`
 
-	/* OrganizationID organization ID
+	/* organization ID
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* Province province
+	/* province
 	 */
-	Province *string `json:"province,omitempty"`
+	Province string `json:"province,omitempty"`
 
 	/* { "description" : "State of the payment-method.", "verbs":["POST","GET"] }
 
 	Required: true
 	*/
-	State string `json:"state,omitempty"`
+	State *string `json:"state"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this payment method
@@ -173,7 +173,7 @@ func (m *PaymentMethod) Validate(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateAccountID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("accountID", "body", string(m.AccountID)); err != nil {
+	if err := validate.Required("accountID", "body", m.AccountID); err != nil {
 		return err
 	}
 
@@ -182,26 +182,27 @@ func (m *PaymentMethod) validateAccountID(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateExpiryDate(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("expiryDate", "body", string(m.ExpiryDate)); err != nil {
+	if err := validate.Required("expiryDate", "body", m.ExpiryDate); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var paymentMethodGatewayEnum []interface{}
+var paymentMethodTypeGatewayPropEnum []interface{}
 
+// prop value enum
 func (m *PaymentMethod) validateGatewayEnum(path, location string, value string) error {
-	if paymentMethodGatewayEnum == nil {
+	if paymentMethodTypeGatewayPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["cybersource_token","card_vault","paypal_simple","locustworld","free","coupon","credit_note","stripe","braintree","balanced","paypal","billforward_test","offline","trial","stripeACH","authorizeNet","spreedly","sagePay","trustCommerce","payvision","kash"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			paymentMethodGatewayEnum = append(paymentMethodGatewayEnum, v)
+			paymentMethodTypeGatewayPropEnum = append(paymentMethodTypeGatewayPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodGatewayEnum); err != nil {
+	if err := validate.Enum(path, location, value, paymentMethodTypeGatewayPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -209,11 +210,12 @@ func (m *PaymentMethod) validateGatewayEnum(path, location string, value string)
 
 func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("gateway", "body", string(m.Gateway)); err != nil {
+	if err := validate.Required("gateway", "body", m.Gateway); err != nil {
 		return err
 	}
 
-	if err := m.validateGatewayEnum("gateway", "body", m.Gateway); err != nil {
+	// value enum
+	if err := m.validateGatewayEnum("gateway", "body", *m.Gateway); err != nil {
 		return err
 	}
 
@@ -222,7 +224,7 @@ func (m *PaymentMethod) validateGateway(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateLinkID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("linkID", "body", string(m.LinkID)); err != nil {
+	if err := validate.Required("linkID", "body", m.LinkID); err != nil {
 		return err
 	}
 
@@ -231,26 +233,27 @@ func (m *PaymentMethod) validateLinkID(formats strfmt.Registry) error {
 
 func (m *PaymentMethod) validateName(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("name", "body", string(m.Name)); err != nil {
+	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var paymentMethodStateEnum []interface{}
+var paymentMethodTypeStatePropEnum []interface{}
 
+// prop value enum
 func (m *PaymentMethod) validateStateEnum(path, location string, value string) error {
-	if paymentMethodStateEnum == nil {
+	if paymentMethodTypeStatePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Pending","Active","Expiring","Expired"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			paymentMethodStateEnum = append(paymentMethodStateEnum, v)
+			paymentMethodTypeStatePropEnum = append(paymentMethodTypeStatePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, paymentMethodStateEnum); err != nil {
+	if err := validate.Enum(path, location, value, paymentMethodTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -258,11 +261,12 @@ func (m *PaymentMethod) validateStateEnum(path, location string, value string) e
 
 func (m *PaymentMethod) validateState(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("state", "body", string(m.State)); err != nil {
+	if err := validate.Required("state", "body", m.State); err != nil {
 		return err
 	}
 
-	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+	// value enum
+	if err := m.validateStateEnum("state", "body", *m.State); err != nil {
 		return err
 	}
 

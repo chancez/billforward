@@ -16,11 +16,11 @@ swagger:model ReviveSubscriptionRequest
 */
 type ReviveSubscriptionRequest struct {
 
-	/* SubscriptionID subscription ID
+	/* subscription ID
 
 	Required: true
 	*/
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID"`
 }
 
 // Validate validates this revive subscription request
@@ -40,7 +40,7 @@ func (m *ReviveSubscriptionRequest) Validate(formats strfmt.Registry) error {
 
 func (m *ReviveSubscriptionRequest) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.Required("subscriptionID", "body", m.SubscriptionID); err != nil {
 		return err
 	}
 

@@ -19,37 +19,37 @@ swagger:model CancelSubscriptionRequest
 */
 type CancelSubscriptionRequest struct {
 
-	/* CancelChildren cancel children
+	/* cancel children
 	 */
-	CancelChildren *bool `json:"cancelChildren,omitempty"`
+	CancelChildren bool `json:"cancelChildren,omitempty"`
 
-	/* CancelEmptyParent cancel empty parent
+	/* cancel empty parent
 	 */
-	CancelEmptyParent *bool `json:"cancelEmptyParent,omitempty"`
+	CancelEmptyParent bool `json:"cancelEmptyParent,omitempty"`
 
 	/* Specifies whether the service will end immediately on cancellation or if it will continue until the end of the current period. Default: AtPeriodEnd
 	 */
-	CancellationCredit *string `json:"cancellationCredit,omitempty"`
+	CancellationCredit string `json:"cancellationCredit,omitempty"`
 
-	/* ServiceEnd service end
+	/* service end
 	 */
-	ServiceEnd *string `json:"serviceEnd,omitempty"`
+	ServiceEnd string `json:"serviceEnd,omitempty"`
 
-	/* Source source
+	/* source
 
 	Required: true
 	*/
-	Source string `json:"source,omitempty"`
+	Source *string `json:"source"`
 
-	/* State state
+	/* state
 	 */
-	State *string `json:"state,omitempty"`
+	State string `json:"state,omitempty"`
 
-	/* SubscriptionID subscription ID
+	/* subscription ID
 
 	Required: true
 	*/
-	SubscriptionID string `json:"subscriptionID,omitempty"`
+	SubscriptionID *string `json:"subscriptionID"`
 }
 
 // Validate validates this cancel subscription request
@@ -82,19 +82,20 @@ func (m *CancelSubscriptionRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-var cancelSubscriptionRequestCancellationCreditEnum []interface{}
+var cancelSubscriptionRequestTypeCancellationCreditPropEnum []interface{}
 
+// prop value enum
 func (m *CancelSubscriptionRequest) validateCancellationCreditEnum(path, location string, value string) error {
-	if cancelSubscriptionRequestCancellationCreditEnum == nil {
+	if cancelSubscriptionRequestTypeCancellationCreditPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Credit","None"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			cancelSubscriptionRequestCancellationCreditEnum = append(cancelSubscriptionRequestCancellationCreditEnum, v)
+			cancelSubscriptionRequestTypeCancellationCreditPropEnum = append(cancelSubscriptionRequestTypeCancellationCreditPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, cancelSubscriptionRequestCancellationCreditEnum); err != nil {
+	if err := validate.Enum(path, location, value, cancelSubscriptionRequestTypeCancellationCreditPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -106,26 +107,28 @@ func (m *CancelSubscriptionRequest) validateCancellationCredit(formats strfmt.Re
 		return nil
 	}
 
-	if err := m.validateCancellationCreditEnum("cancellationCredit", "body", *m.CancellationCredit); err != nil {
+	// value enum
+	if err := m.validateCancellationCreditEnum("cancellationCredit", "body", m.CancellationCredit); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var cancelSubscriptionRequestServiceEndEnum []interface{}
+var cancelSubscriptionRequestTypeServiceEndPropEnum []interface{}
 
+// prop value enum
 func (m *CancelSubscriptionRequest) validateServiceEndEnum(path, location string, value string) error {
-	if cancelSubscriptionRequestServiceEndEnum == nil {
+	if cancelSubscriptionRequestTypeServiceEndPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Immediate","AtPeriodEnd"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			cancelSubscriptionRequestServiceEndEnum = append(cancelSubscriptionRequestServiceEndEnum, v)
+			cancelSubscriptionRequestTypeServiceEndPropEnum = append(cancelSubscriptionRequestTypeServiceEndPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, cancelSubscriptionRequestServiceEndEnum); err != nil {
+	if err := validate.Enum(path, location, value, cancelSubscriptionRequestTypeServiceEndPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -137,7 +140,8 @@ func (m *CancelSubscriptionRequest) validateServiceEnd(formats strfmt.Registry) 
 		return nil
 	}
 
-	if err := m.validateServiceEndEnum("serviceEnd", "body", *m.ServiceEnd); err != nil {
+	// value enum
+	if err := m.validateServiceEndEnum("serviceEnd", "body", m.ServiceEnd); err != nil {
 		return err
 	}
 
@@ -146,7 +150,7 @@ func (m *CancelSubscriptionRequest) validateServiceEnd(formats strfmt.Registry) 
 
 func (m *CancelSubscriptionRequest) validateSource(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("source", "body", string(m.Source)); err != nil {
+	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
 	}
 
@@ -155,7 +159,7 @@ func (m *CancelSubscriptionRequest) validateSource(formats strfmt.Registry) erro
 
 func (m *CancelSubscriptionRequest) validateSubscriptionID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("subscriptionID", "body", string(m.SubscriptionID)); err != nil {
+	if err := validate.Required("subscriptionID", "body", m.SubscriptionID); err != nil {
 		return err
 	}
 

@@ -15,14 +15,18 @@ import (
 // with the default values initialized.
 func NewGetRatePlanByProductAndRatePlanParams() *GetRatePlanByProductAndRatePlanParams {
 	var (
-		orderDefault   string = string("DESC")
-		orderByDefault string = string("created")
-		recordsDefault int32  = int32(10)
+		includeRetiredDefault bool   = bool(false)
+		offsetDefault         int32  = int32(0)
+		orderDefault          string = string("DESC")
+		orderByDefault        string = string("created")
+		recordsDefault        int32  = int32(10)
 	)
 	return &GetRatePlanByProductAndRatePlanParams{
-		Order:   &orderDefault,
-		OrderBy: &orderByDefault,
-		Records: &recordsDefault,
+		IncludeRetired: &includeRetiredDefault,
+		Offset:         &offsetDefault,
+		Order:          &orderDefault,
+		OrderBy:        &orderByDefault,
+		Records:        &recordsDefault,
 	}
 }
 

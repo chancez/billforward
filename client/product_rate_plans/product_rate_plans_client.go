@@ -4,8 +4,6 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-swagger/go-swagger/client"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
@@ -40,6 +38,7 @@ func (a *Client) DeleteMetadataForRatePlan(params *DeleteMetadataForRatePlanPara
 		Method:             "DELETE",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteMetadataForRatePlanReader{formats: a.formats},
@@ -66,6 +65,7 @@ func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlan
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans",
 		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllRatePlansReader{formats: a.formats},
@@ -92,6 +92,7 @@ func (a *Client) GetMetadataForRatePlan(params *GetMetadataForRatePlanParams) (*
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMetadataForRatePlanReader{formats: a.formats},
@@ -118,6 +119,7 @@ func (a *Client) GetProductRatePlanByID(params *GetProductRatePlanByIDParams) (*
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetProductRatePlanByIDReader{formats: a.formats},
@@ -144,6 +146,7 @@ func (a *Client) GetRatePlanByProduct(params *GetRatePlanByProductParams) (*GetR
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/product/{product-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRatePlanByProductReader{formats: a.formats},
@@ -170,6 +173,7 @@ func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAnd
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "text/plain"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRatePlanByProductAndRatePlanReader{formats: a.formats},
@@ -196,6 +200,7 @@ func (a *Client) SetMetadataForRatePlan(params *SetMetadataForRatePlanParams) (*
 		Method:             "POST",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &SetMetadataForRatePlanReader{formats: a.formats},
@@ -222,6 +227,7 @@ func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanPara
 		Method:             "PUT",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpsertMetadataForRatePlanReader{formats: a.formats},
@@ -235,24 +241,4 @@ func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanPara
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport client.Transport) {
 	a.transport = transport
-}
-
-// NewAPIError creates a new API error
-func NewAPIError(opName string, response interface{}, code int) APIError {
-	return APIError{
-		OperationName: opName,
-		Response:      response,
-		Code:          code,
-	}
-}
-
-// APIError wraps an error model and captures the status code
-type APIError struct {
-	OperationName string
-	Response      interface{}
-	Code          int
-}
-
-func (a APIError) Error() string {
-	return fmt.Sprintf("%s (status %d): %+v ", a.OperationName, a.Code, a.Response)
 }

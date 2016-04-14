@@ -20,77 +20,77 @@ type Client struct {
 
 	Required: true
 	*/
-	AccessTokenValiditySeconds int32 `json:"accessTokenValiditySeconds,omitempty"`
+	AccessTokenValiditySeconds *int32 `json:"accessTokenValiditySeconds"`
 
 	/* { "description" : "Authorities associated with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Authorities string `json:"authorities,omitempty"`
+	Authorities *string `json:"authorities"`
 
 	/* { "description" : "Oauth2 Grant Types which may be used when authenticating with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	AuthorizedGrantTypes string `json:"authorizedGrantTypes,omitempty"`
+	AuthorizedGrantTypes *string `json:"authorizedGrantTypes"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "ID of the OAuth2 client.", "verbs":["POST","PUT","GET"] }
 	 */
-	ClientID *string `json:"clientId,omitempty"`
+	ClientID string `json:"clientId,omitempty"`
 
 	/* { "description" : "Unique Client Secret of the client. This is used as the OAuth2 Client secret", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	ClientSecret string `json:"clientSecret,omitempty"`
+	ClientSecret *string `json:"clientSecret"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "Indicates if a client has been retired. If a client has been retired it can still be retrieved using the appropriate flag on API requests.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted"`
 
 	/* { "description" : "Organization associated with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	OrganizationID string `json:"organizationID,omitempty"`
+	OrganizationID *string `json:"organizationID"`
 
 	/* { "description" : "The amount of time in seconds that a refresh token for the client is valid.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	RefreshTokenValiditySeconds int32 `json:"refreshTokenValiditySeconds,omitempty"`
+	RefreshTokenValiditySeconds *int32 `json:"refreshTokenValiditySeconds"`
 
 	/* { "description" : "Registered Redirect URIs associated with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	RegisteredRedirectUris string `json:"registeredRedirectUris,omitempty"`
+	RegisteredRedirectUris *string `json:"registeredRedirectUris"`
 
 	/* { "description" : "Resources associated with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	ResourceIds string `json:"resourceIds,omitempty"`
+	ResourceIds *string `json:"resourceIds"`
 
 	/* { "description" : "Scopes associated with the client.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Scope string `json:"scope,omitempty"`
+	Scope *string `json:"scope"`
 
 	/* { "description" : "The UTC DateTime when the object was last updated.", "verbs":[] }
 	 */
-	Updated *strfmt.DateTime `json:"updated,omitempty"`
+	Updated strfmt.DateTime `json:"updated,omitempty"`
 }
 
 // Validate validates this client
@@ -155,7 +155,7 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 
 func (m *Client) validateAccessTokenValiditySeconds(formats strfmt.Registry) error {
 
-	if err := validate.Required("accessTokenValiditySeconds", "body", int32(m.AccessTokenValiditySeconds)); err != nil {
+	if err := validate.Required("accessTokenValiditySeconds", "body", m.AccessTokenValiditySeconds); err != nil {
 		return err
 	}
 
@@ -164,7 +164,7 @@ func (m *Client) validateAccessTokenValiditySeconds(formats strfmt.Registry) err
 
 func (m *Client) validateAuthorities(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("authorities", "body", string(m.Authorities)); err != nil {
+	if err := validate.Required("authorities", "body", m.Authorities); err != nil {
 		return err
 	}
 
@@ -173,7 +173,7 @@ func (m *Client) validateAuthorities(formats strfmt.Registry) error {
 
 func (m *Client) validateAuthorizedGrantTypes(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("authorizedGrantTypes", "body", string(m.AuthorizedGrantTypes)); err != nil {
+	if err := validate.Required("authorizedGrantTypes", "body", m.AuthorizedGrantTypes); err != nil {
 		return err
 	}
 
@@ -182,7 +182,7 @@ func (m *Client) validateAuthorizedGrantTypes(formats strfmt.Registry) error {
 
 func (m *Client) validateClientSecret(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("clientSecret", "body", string(m.ClientSecret)); err != nil {
+	if err := validate.Required("clientSecret", "body", m.ClientSecret); err != nil {
 		return err
 	}
 
@@ -200,7 +200,7 @@ func (m *Client) validateDeleted(formats strfmt.Registry) error {
 
 func (m *Client) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("organizationID", "body", string(m.OrganizationID)); err != nil {
+	if err := validate.Required("organizationID", "body", m.OrganizationID); err != nil {
 		return err
 	}
 
@@ -209,7 +209,7 @@ func (m *Client) validateOrganizationID(formats strfmt.Registry) error {
 
 func (m *Client) validateRefreshTokenValiditySeconds(formats strfmt.Registry) error {
 
-	if err := validate.Required("refreshTokenValiditySeconds", "body", int32(m.RefreshTokenValiditySeconds)); err != nil {
+	if err := validate.Required("refreshTokenValiditySeconds", "body", m.RefreshTokenValiditySeconds); err != nil {
 		return err
 	}
 
@@ -218,7 +218,7 @@ func (m *Client) validateRefreshTokenValiditySeconds(formats strfmt.Registry) er
 
 func (m *Client) validateRegisteredRedirectUris(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("registeredRedirectUris", "body", string(m.RegisteredRedirectUris)); err != nil {
+	if err := validate.Required("registeredRedirectUris", "body", m.RegisteredRedirectUris); err != nil {
 		return err
 	}
 
@@ -227,7 +227,7 @@ func (m *Client) validateRegisteredRedirectUris(formats strfmt.Registry) error {
 
 func (m *Client) validateResourceIds(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("resourceIds", "body", string(m.ResourceIds)); err != nil {
+	if err := validate.Required("resourceIds", "body", m.ResourceIds); err != nil {
 		return err
 	}
 
@@ -236,7 +236,7 @@ func (m *Client) validateResourceIds(formats strfmt.Registry) error {
 
 func (m *Client) validateScope(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("scope", "body", string(m.Scope)); err != nil {
+	if err := validate.Required("scope", "body", m.Scope); err != nil {
 		return err
 	}
 

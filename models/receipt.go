@@ -5,7 +5,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
@@ -20,131 +19,131 @@ swagger:model Receipt
 */
 type Receipt struct {
 
-	/* AccountID account ID
+	/* account ID
 	 */
-	AccountID *string `json:"accountID,omitempty"`
+	AccountID string `json:"accountID,omitempty"`
 
-	/* CardCountry card country
+	/* card country
 	 */
-	CardCountry *string `json:"cardCountry,omitempty"`
+	CardCountry string `json:"cardCountry,omitempty"`
 
-	/* CardDescription card description
+	/* card description
 	 */
-	CardDescription *string `json:"cardDescription,omitempty"`
+	CardDescription string `json:"cardDescription,omitempty"`
 
-	/* CardLastFour card last four
+	/* card last four
 	 */
-	CardLastFour *string `json:"cardLastFour,omitempty"`
+	CardLastFour string `json:"cardLastFour,omitempty"`
 
-	/* CardProvince card province
+	/* card province
 	 */
-	CardProvince *string `json:"cardProvince,omitempty"`
+	CardProvince string `json:"cardProvince,omitempty"`
 
-	/* CardType card type
+	/* card type
 	 */
-	CardType *string `json:"cardType,omitempty"`
+	CardType string `json:"cardType,omitempty"`
 
-	/* CardholderName cardholder name
+	/* cardholder name
 	 */
-	CardholderName *string `json:"cardholderName,omitempty"`
+	CardholderName string `json:"cardholderName,omitempty"`
 
 	/* { "description" : "ID of the user who last updated the entity.", "verbs":[] }
 	 */
-	ChangedBy *string `json:"changedBy,omitempty"`
+	ChangedBy string `json:"changedBy,omitempty"`
 
 	/* { "description" : "The UTC DateTime when the object was created.", "verbs":[] }
 	 */
-	Created *strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.DateTime `json:"created,omitempty"`
 
 	/* { "description" : "CRM ID of the subscription.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	CrmID string `json:"crmID,omitempty"`
+	CrmID *string `json:"crmID"`
 
 	/* { "description" : "Currency of the invoice specified by a three character ISO 4217 currency code.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Currency string `json:"currency,omitempty"`
+	Currency *string `json:"currency"`
 
-	/* Decision decision
+	/* decision
 	 */
-	Decision *string `json:"decision,omitempty"`
+	Decision string `json:"decision,omitempty"`
 
-	/* ExecutionAttempt execution attempt
+	/* execution attempt
 	 */
-	ExecutionAttempt *int32 `json:"executionAttempt,omitempty"`
+	ExecutionAttempt int32 `json:"executionAttempt,omitempty"`
 
-	/* GatewayReferenceID gateway reference ID
+	/* gateway reference ID
 	 */
-	GatewayReferenceID *string `json:"gatewayReferenceID,omitempty"`
+	GatewayReferenceID string `json:"gatewayReferenceID,omitempty"`
 
-	/* ID id
+	/* id
 	 */
-	ID *string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
-	/* InvoiceID invoice ID
+	/* invoice ID
 	 */
-	InvoiceID *string `json:"invoiceID,omitempty"`
+	InvoiceID string `json:"invoiceID,omitempty"`
 
 	/* { "description" : "The type of the invoice. A subscription invoice is raised every time a subscription recurs. An amendment is created for intra-contract changes. An Adhoc invoice is created for payment that is taken out-of-band of a subscription. Finally the invoice generated for a trial period is marked as Trial.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	InvoiceType string `json:"invoiceType,omitempty"`
+	InvoiceType *string `json:"invoiceType"`
 
 	/* {"description":"IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddress *string `json:"ipAddress,omitempty"`
+	IPAddress string `json:"ipAddress,omitempty"`
 
 	/* {"description":"Country of the IP address associated with this payment method.","verbs":["POST","PUT","GET"]}
 	 */
-	IPAddressCountry *string `json:"ipAddressCountry,omitempty"`
+	IPAddressCountry string `json:"ipAddressCountry,omitempty"`
 
-	/* OrganizationID organization ID
+	/* organization ID
 	 */
-	OrganizationID *string `json:"organizationID,omitempty"`
+	OrganizationID string `json:"organizationID,omitempty"`
 
-	/* PaymentGateway payment gateway
+	/* payment gateway
 	 */
-	PaymentGateway *string `json:"paymentGateway,omitempty"`
+	PaymentGateway string `json:"paymentGateway,omitempty"`
 
-	/* PaymentID payment ID
+	/* payment ID
 	 */
-	PaymentID *string `json:"paymentID,omitempty"`
+	PaymentID string `json:"paymentID,omitempty"`
 
-	/* PaymentMethodID payment method ID
+	/* payment method ID
 	 */
-	PaymentMethodID *string `json:"paymentMethodID,omitempty"`
+	PaymentMethodID string `json:"paymentMethodID,omitempty"`
 
-	/* RawData raw data
+	/* raw data
 	 */
 	RawData []strfmt.Base64 `json:"rawData,omitempty"`
 
-	/* RawReasonCode raw reason code
+	/* raw reason code
 	 */
-	RawReasonCode *string `json:"rawReasonCode,omitempty"`
+	RawReasonCode string `json:"rawReasonCode,omitempty"`
 
-	/* ReasonCode reason code
+	/* reason code
 	 */
-	ReasonCode *int32 `json:"reasonCode,omitempty"`
+	ReasonCode int32 `json:"reasonCode,omitempty"`
 
-	/* RefundID refund ID
+	/* refund ID
 
 	Required: true
 	*/
-	RefundID string `json:"refundID,omitempty"`
+	RefundID *string `json:"refundID"`
 
 	/* { "description" : "Type of transaction.", "verbs":["POST","PUT","GET"] }
 
 	Required: true
 	*/
-	Type string `json:"type,omitempty"`
+	Type *string `json:"type"`
 
-	/* Value value
+	/* value
 	 */
-	Value *float64 `json:"value,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 // Validate validates this receipt
@@ -199,7 +198,7 @@ func (m *Receipt) Validate(formats strfmt.Registry) error {
 
 func (m *Receipt) validateCrmID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("crmID", "body", string(m.CrmID)); err != nil {
+	if err := validate.Required("crmID", "body", m.CrmID); err != nil {
 		return err
 	}
 
@@ -208,26 +207,27 @@ func (m *Receipt) validateCrmID(formats strfmt.Registry) error {
 
 func (m *Receipt) validateCurrency(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("currency", "body", string(m.Currency)); err != nil {
+	if err := validate.Required("currency", "body", m.Currency); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var receiptDecisionEnum []interface{}
+var receiptTypeDecisionPropEnum []interface{}
 
+// prop value enum
 func (m *Receipt) validateDecisionEnum(path, location string, value string) error {
-	if receiptDecisionEnum == nil {
+	if receiptTypeDecisionPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Accept","Reject","Error"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			receiptDecisionEnum = append(receiptDecisionEnum, v)
+			receiptTypeDecisionPropEnum = append(receiptTypeDecisionPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, receiptDecisionEnum); err != nil {
+	if err := validate.Enum(path, location, value, receiptTypeDecisionPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -239,26 +239,28 @@ func (m *Receipt) validateDecision(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateDecisionEnum("decision", "body", *m.Decision); err != nil {
+	// value enum
+	if err := m.validateDecisionEnum("decision", "body", m.Decision); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var receiptInvoiceTypeEnum []interface{}
+var receiptTypeInvoiceTypePropEnum []interface{}
 
+// prop value enum
 func (m *Receipt) validateInvoiceTypeEnum(path, location string, value string) error {
-	if receiptInvoiceTypeEnum == nil {
+	if receiptTypeInvoiceTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["Subscription","Trial","Charge","FinalArrears","Amendment","Aggregated"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			receiptInvoiceTypeEnum = append(receiptInvoiceTypeEnum, v)
+			receiptTypeInvoiceTypePropEnum = append(receiptTypeInvoiceTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, receiptInvoiceTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, receiptTypeInvoiceTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -266,30 +268,32 @@ func (m *Receipt) validateInvoiceTypeEnum(path, location string, value string) e
 
 func (m *Receipt) validateInvoiceType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("invoiceType", "body", string(m.InvoiceType)); err != nil {
+	if err := validate.Required("invoiceType", "body", m.InvoiceType); err != nil {
 		return err
 	}
 
-	if err := m.validateInvoiceTypeEnum("invoiceType", "body", m.InvoiceType); err != nil {
+	// value enum
+	if err := m.validateInvoiceTypeEnum("invoiceType", "body", *m.InvoiceType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var receiptPaymentGatewayEnum []interface{}
+var receiptTypePaymentGatewayPropEnum []interface{}
 
+// prop value enum
 func (m *Receipt) validatePaymentGatewayEnum(path, location string, value string) error {
-	if receiptPaymentGatewayEnum == nil {
+	if receiptTypePaymentGatewayPropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["cybersource_token","card_vault","paypal_simple","locustworld","free","coupon","credit_note","stripe","braintree","balanced","paypal","billforward_test","offline","trial","stripeACH","authorizeNet","spreedly","sagePay","trustCommerce","payvision","kash"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			receiptPaymentGatewayEnum = append(receiptPaymentGatewayEnum, v)
+			receiptTypePaymentGatewayPropEnum = append(receiptTypePaymentGatewayPropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, receiptPaymentGatewayEnum); err != nil {
+	if err := validate.Enum(path, location, value, receiptTypePaymentGatewayPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -301,7 +305,8 @@ func (m *Receipt) validatePaymentGateway(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validatePaymentGatewayEnum("paymentGateway", "body", *m.PaymentGateway); err != nil {
+	// value enum
+	if err := m.validatePaymentGatewayEnum("paymentGateway", "body", m.PaymentGateway); err != nil {
 		return err
 	}
 
@@ -314,39 +319,32 @@ func (m *Receipt) validateRawData(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.RawData); i++ {
-
-		if err := validate.Required("rawData"+"."+strconv.Itoa(i), "body", strfmt.Base64(m.RawData[i])); err != nil {
-			return err
-		}
-
-	}
-
 	return nil
 }
 
 func (m *Receipt) validateRefundID(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("refundID", "body", string(m.RefundID)); err != nil {
+	if err := validate.Required("refundID", "body", m.RefundID); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-var receiptTypeEnum []interface{}
+var receiptTypeTypePropEnum []interface{}
 
+// prop value enum
 func (m *Receipt) validateTypeEnum(path, location string, value string) error {
-	if receiptTypeEnum == nil {
+	if receiptTypeTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["credit","debit"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			receiptTypeEnum = append(receiptTypeEnum, v)
+			receiptTypeTypePropEnum = append(receiptTypeTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, receiptTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, receiptTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -354,11 +352,12 @@ func (m *Receipt) validateTypeEnum(path, location string, value string) error {
 
 func (m *Receipt) validateType(formats strfmt.Registry) error {
 
-	if err := validate.RequiredString("type", "body", string(m.Type)); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

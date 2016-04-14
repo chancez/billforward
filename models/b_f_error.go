@@ -5,7 +5,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	strfmt "github.com/go-swagger/go-swagger/strfmt"
 	"github.com/go-swagger/go-swagger/swag"
@@ -22,11 +21,11 @@ type BFError struct {
 
 	/* {"description":"Code describing the nature of the error. Currently unused; prefer `errorType`.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorCode *int32 `json:"errorCode,omitempty"`
+	ErrorCode int32 `json:"errorCode,omitempty"`
 
 	/* {"description":"Human-readable description of the reason for the error.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	ErrorMessage string `json:"errorMessage,omitempty"`
 
 	/* {"description":"List of erroneous parameters found in your input (if applicable).","verbs":["GET","PUT","POST"]}
 	 */
@@ -34,7 +33,7 @@ type BFError struct {
 
 	/* {"description":"Enum categorizing the nature of the error.","verbs":["GET","PUT","POST"]}
 	 */
-	ErrorType *string `json:"errorType,omitempty"`
+	ErrorType string `json:"errorType,omitempty"`
 }
 
 // Validate validates this b f error
@@ -63,30 +62,23 @@ func (m *BFError) validateErrorParameters(formats strfmt.Registry) error {
 		return nil
 	}
 
-	for i := 0; i < len(m.ErrorParameters); i++ {
-
-		if err := validate.RequiredString("errorParameters"+"."+strconv.Itoa(i), "body", string(m.ErrorParameters[i])); err != nil {
-			return err
-		}
-
-	}
-
 	return nil
 }
 
-var bFErrorErrorTypeEnum []interface{}
+var bFErrorTypeErrorTypePropEnum []interface{}
 
+// prop value enum
 func (m *BFError) validateErrorTypeEnum(path, location string, value string) error {
-	if bFErrorErrorTypeEnum == nil {
+	if bFErrorTypeErrorTypePropEnum == nil {
 		var res []string
 		if err := json.Unmarshal([]byte(`["BFError","ServerError","ValidationError","UnserializationException","Oauth","PermissionsError","PreconditionFailed","NotImplemented","InvocationError","NoSuchEntity","InconsistentState","StripeOperationFailure","BraintreeOperationFailure","BraintreeValidationError","SagePayOperationFailure","TokenizationAuthCaptureFailure","TokenizationPreAuthFailure","CouponException","CouponUniqueCodesRequestException","CouponUniqueCodesResponseException","RemoveCouponException","AddCouponCodeToSubscriptionRequestException","GatewayAuthenticationError","GatewayAuthorizationError","GatewayResourceNotFoundError","GatewayProtocolVersionError","GatewayInternalError","GatewayDownTemporarilyError","GatewayUnexpectedError","GatewayUnhandledError","GatewaySDKUnhandledError"]`), &res); err != nil {
 			return err
 		}
 		for _, v := range res {
-			bFErrorErrorTypeEnum = append(bFErrorErrorTypeEnum, v)
+			bFErrorTypeErrorTypePropEnum = append(bFErrorTypeErrorTypePropEnum, v)
 		}
 	}
-	if err := validate.Enum(path, location, value, bFErrorErrorTypeEnum); err != nil {
+	if err := validate.Enum(path, location, value, bFErrorTypeErrorTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -98,7 +90,8 @@ func (m *BFError) validateErrorType(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.validateErrorTypeEnum("errorType", "body", *m.ErrorType); err != nil {
+	// value enum
+	if err := m.validateErrorTypeEnum("errorType", "body", m.ErrorType); err != nil {
 		return err
 	}
 
