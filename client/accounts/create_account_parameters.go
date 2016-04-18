@@ -4,10 +4,10 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -32,13 +32,13 @@ type CreateAccountParams struct {
 }
 
 // WithRequest adds the request to the create account params
-func (o *CreateAccountParams) WithRequest(request *models.CreateAccountRequest) *CreateAccountParams {
-	o.Request = request
+func (o *CreateAccountParams) WithRequest(Request *models.CreateAccountRequest) *CreateAccountParams {
+	o.Request = Request
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateAccountParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

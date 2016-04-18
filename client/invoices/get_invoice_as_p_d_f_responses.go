@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetInvoiceAsPDFReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetInvoiceAsPDFReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetInvoiceAsPDFReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -50,14 +49,14 @@ func NewGetInvoiceAsPDFOK() *GetInvoiceAsPDFOK {
 success
 */
 type GetInvoiceAsPDFOK struct {
-	Payload httpkit.File
+	Payload runtime.File
 }
 
 func (o *GetInvoiceAsPDFOK) Error() string {
 	return fmt.Sprintf("[GET /invoices/{ID}.pdf][%d] getInvoiceAsPDFOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInvoiceAsPDFOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetInvoiceAsPDFOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -93,7 +92,7 @@ func (o *GetInvoiceAsPDFDefault) Error() string {
 	return fmt.Sprintf("[GET /invoices/{ID}.pdf][%d] getInvoiceAsPDF default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetInvoiceAsPDFDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetInvoiceAsPDFDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

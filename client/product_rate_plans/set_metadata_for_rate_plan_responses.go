@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type SetMetadataForRatePlanReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *SetMetadataForRatePlanReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *SetMetadataForRatePlanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *SetMetadataForRatePlanOK) Error() string {
 	return fmt.Sprintf("[POST /product-rate-plans/{product-rate-plan-ID}/metadata][%d] setMetadataForRatePlanOK  %+v", 200, o.Payload)
 }
 
-func (o *SetMetadataForRatePlanOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *SetMetadataForRatePlanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -93,7 +92,7 @@ func (o *SetMetadataForRatePlanDefault) Error() string {
 	return fmt.Sprintf("[POST /product-rate-plans/{product-rate-plan-ID}/metadata][%d] setMetadataForRatePlan default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *SetMetadataForRatePlanDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *SetMetadataForRatePlanDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

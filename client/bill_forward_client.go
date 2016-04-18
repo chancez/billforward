@@ -4,10 +4,10 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	httptransport "github.com/go-swagger/go-swagger/httpkit/client"
+	"github.com/go-openapi/runtime"
+	httptransport "github.com/go-openapi/runtime/client"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/client/accounts"
 	"github.com/authclub/billforward/client/addresses"
@@ -34,7 +34,7 @@ func NewHTTPClient(formats strfmt.Registry) *BillForward {
 }
 
 // New creates a new bill forward client
-func New(transport client.Transport, formats strfmt.Registry) *BillForward {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *BillForward {
 	cli := new(BillForward)
 	cli.Transport = transport
 
@@ -83,11 +83,11 @@ type BillForward struct {
 
 	Tokenization *tokenization.Client
 
-	Transport client.Transport
+	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *BillForward) SetTransport(transport client.Transport) {
+func (c *BillForward) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 
 	c.Accounts.SetTransport(transport)

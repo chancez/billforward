@@ -4,11 +4,11 @@ package invoices
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetInvoiceByIDParams creates a new GetInvoiceByIDParams object
@@ -80,55 +80,55 @@ type GetInvoiceByIDParams struct {
 }
 
 // WithExcludeChildren adds the excludeChildren to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithExcludeChildren(excludeChildren *bool) *GetInvoiceByIDParams {
-	o.ExcludeChildren = excludeChildren
+func (o *GetInvoiceByIDParams) WithExcludeChildren(ExcludeChildren *bool) *GetInvoiceByIDParams {
+	o.ExcludeChildren = ExcludeChildren
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithIncludeRetired(includeRetired *bool) *GetInvoiceByIDParams {
-	o.IncludeRetired = includeRetired
+func (o *GetInvoiceByIDParams) WithIncludeRetired(IncludeRetired *bool) *GetInvoiceByIDParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithInvoiceID adds the invoiceId to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithInvoiceID(invoiceId string) *GetInvoiceByIDParams {
-	o.InvoiceID = invoiceId
+func (o *GetInvoiceByIDParams) WithInvoiceID(InvoiceID string) *GetInvoiceByIDParams {
+	o.InvoiceID = InvoiceID
 	return o
 }
 
 // WithOffset adds the offset to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithOffset(offset *int32) *GetInvoiceByIDParams {
-	o.Offset = offset
+func (o *GetInvoiceByIDParams) WithOffset(Offset *int32) *GetInvoiceByIDParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithOrder(order *string) *GetInvoiceByIDParams {
-	o.Order = order
+func (o *GetInvoiceByIDParams) WithOrder(Order *string) *GetInvoiceByIDParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithOrderBy(orderBy *string) *GetInvoiceByIDParams {
-	o.OrderBy = orderBy
+func (o *GetInvoiceByIDParams) WithOrderBy(OrderBy *string) *GetInvoiceByIDParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithOrganizations(organizations []string) *GetInvoiceByIDParams {
-	o.Organizations = organizations
+func (o *GetInvoiceByIDParams) WithOrganizations(Organizations []string) *GetInvoiceByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get invoice by ID params
-func (o *GetInvoiceByIDParams) WithRecords(records *int32) *GetInvoiceByIDParams {
-	o.Records = records
+func (o *GetInvoiceByIDParams) WithRecords(Records *int32) *GetInvoiceByIDParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetInvoiceByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetInvoiceByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

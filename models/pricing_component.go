@@ -8,11 +8,11 @@ import (
 	"io"
 	"io/ioutil"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/httpkit/validate"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/validate"
 )
 
 /*PricingComponent pricing component
@@ -20,7 +20,7 @@ import (
 swagger:discriminator PricingComponent @type
 */
 type PricingComponent interface {
-	httpkit.Validatable
+	runtime.Validatable
 
 	/* { "description" : "", "default" : "", "verbs":["POST","GET"] }
 
@@ -171,7 +171,7 @@ type PricingComponent interface {
 }
 
 // UnmarshalPricingComponentSlice unmarshals polymorphic slices of PricingComponent
-func UnmarshalPricingComponentSlice(reader io.Reader, consumer httpkit.Consumer) ([]PricingComponent, error) {
+func UnmarshalPricingComponentSlice(reader io.Reader, consumer runtime.Consumer) ([]PricingComponent, error) {
 	var elements [][]byte
 	if err := consumer.Consume(reader, &elements); err != nil {
 		return nil, err
@@ -189,7 +189,7 @@ func UnmarshalPricingComponentSlice(reader io.Reader, consumer httpkit.Consumer)
 }
 
 // UnmarshalPricingComponent unmarshals polymorphic PricingComponent
-func UnmarshalPricingComponent(reader io.Reader, consumer httpkit.Consumer) (PricingComponent, error) {
+func UnmarshalPricingComponent(reader io.Reader, consumer runtime.Consumer) (PricingComponent, error) {
 	// we need to read this twice, so first into a buffer
 	data, err := ioutil.ReadAll(reader)
 	if err != nil {
@@ -198,7 +198,7 @@ func UnmarshalPricingComponent(reader io.Reader, consumer httpkit.Consumer) (Pri
 	return unmarshalPricingComponent(data, consumer)
 }
 
-func unmarshalPricingComponent(data []byte, consumer httpkit.Consumer) (PricingComponent, error) {
+func unmarshalPricingComponent(data []byte, consumer runtime.Consumer) (PricingComponent, error) {
 	buf := bytes.NewBuffer(data)
 	buf2 := bytes.NewBuffer(data)
 

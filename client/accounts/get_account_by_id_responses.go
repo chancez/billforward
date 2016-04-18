@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetAccountByIDReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetAccountByIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetAccountByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetAccountByIDOK) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account-ID}][%d] getAccountByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAccountByIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAccountByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.AccountPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetAccountByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /accounts/{account-ID}][%d] getAccountByID default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetAccountByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAccountByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

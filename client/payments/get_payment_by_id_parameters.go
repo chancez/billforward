@@ -4,11 +4,11 @@ package payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetPaymentByIDParams creates a new GetPaymentByIDParams object
@@ -36,19 +36,19 @@ type GetPaymentByIDParams struct {
 }
 
 // WithOrganizations adds the organizations to the get payment by ID params
-func (o *GetPaymentByIDParams) WithOrganizations(organizations []string) *GetPaymentByIDParams {
-	o.Organizations = organizations
+func (o *GetPaymentByIDParams) WithOrganizations(Organizations []string) *GetPaymentByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithPaymentID adds the paymentId to the get payment by ID params
-func (o *GetPaymentByIDParams) WithPaymentID(paymentId string) *GetPaymentByIDParams {
-	o.PaymentID = paymentId
+func (o *GetPaymentByIDParams) WithPaymentID(PaymentID string) *GetPaymentByIDParams {
+	o.PaymentID = PaymentID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetPaymentByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetPaymentByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

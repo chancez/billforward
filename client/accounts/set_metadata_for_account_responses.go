@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type SetMetadataForAccountReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *SetMetadataForAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *SetMetadataForAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *SetMetadataForAccountOK) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account-ID}/metadata][%d] setMetadataForAccountOK  %+v", 200, o.Payload)
 }
 
-func (o *SetMetadataForAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *SetMetadataForAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -93,7 +92,7 @@ func (o *SetMetadataForAccountDefault) Error() string {
 	return fmt.Sprintf("[POST /accounts/{account-ID}/metadata][%d] setMetadataForAccount default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *SetMetadataForAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *SetMetadataForAccountDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

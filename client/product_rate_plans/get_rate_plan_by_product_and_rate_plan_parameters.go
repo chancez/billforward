@@ -4,11 +4,11 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRatePlanByProductAndRatePlanParams creates a new GetRatePlanByProductAndRatePlanParams object
@@ -72,55 +72,55 @@ type GetRatePlanByProductAndRatePlanParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithIncludeRetired(includeRetired *bool) *GetRatePlanByProductAndRatePlanParams {
-	o.IncludeRetired = includeRetired
+func (o *GetRatePlanByProductAndRatePlanParams) WithIncludeRetired(IncludeRetired *bool) *GetRatePlanByProductAndRatePlanParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithOffset(offset *int32) *GetRatePlanByProductAndRatePlanParams {
-	o.Offset = offset
+func (o *GetRatePlanByProductAndRatePlanParams) WithOffset(Offset *int32) *GetRatePlanByProductAndRatePlanParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithOrder(order *string) *GetRatePlanByProductAndRatePlanParams {
-	o.Order = order
+func (o *GetRatePlanByProductAndRatePlanParams) WithOrder(Order *string) *GetRatePlanByProductAndRatePlanParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithOrderBy(orderBy *string) *GetRatePlanByProductAndRatePlanParams {
-	o.OrderBy = orderBy
+func (o *GetRatePlanByProductAndRatePlanParams) WithOrderBy(OrderBy *string) *GetRatePlanByProductAndRatePlanParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithOrganizations(organizations []string) *GetRatePlanByProductAndRatePlanParams {
-	o.Organizations = organizations
+func (o *GetRatePlanByProductAndRatePlanParams) WithOrganizations(Organizations []string) *GetRatePlanByProductAndRatePlanParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProductID adds the productId to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithProductID(productId string) *GetRatePlanByProductAndRatePlanParams {
-	o.ProductID = productId
+func (o *GetRatePlanByProductAndRatePlanParams) WithProductID(ProductID string) *GetRatePlanByProductAndRatePlanParams {
+	o.ProductID = ProductID
 	return o
 }
 
 // WithRatePlanID adds the ratePlanId to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithRatePlanID(ratePlanId string) *GetRatePlanByProductAndRatePlanParams {
-	o.RatePlanID = ratePlanId
+func (o *GetRatePlanByProductAndRatePlanParams) WithRatePlanID(RatePlanID string) *GetRatePlanByProductAndRatePlanParams {
+	o.RatePlanID = RatePlanID
 	return o
 }
 
 // WithRecords adds the records to the get rate plan by product and rate plan params
-func (o *GetRatePlanByProductAndRatePlanParams) WithRecords(records *int32) *GetRatePlanByProductAndRatePlanParams {
-	o.Records = records
+func (o *GetRatePlanByProductAndRatePlanParams) WithRecords(Records *int32) *GetRatePlanByProductAndRatePlanParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRatePlanByProductAndRatePlanParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRatePlanByProductAndRatePlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

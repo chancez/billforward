@@ -4,11 +4,11 @@ package payment_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAllPaymentMethodsParams creates a new GetAllPaymentMethodsParams object
@@ -68,43 +68,43 @@ type GetAllPaymentMethodsParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithIncludeRetired(includeRetired *bool) *GetAllPaymentMethodsParams {
-	o.IncludeRetired = includeRetired
+func (o *GetAllPaymentMethodsParams) WithIncludeRetired(IncludeRetired *bool) *GetAllPaymentMethodsParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithOffset(offset *int32) *GetAllPaymentMethodsParams {
-	o.Offset = offset
+func (o *GetAllPaymentMethodsParams) WithOffset(Offset *int32) *GetAllPaymentMethodsParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithOrder(order *string) *GetAllPaymentMethodsParams {
-	o.Order = order
+func (o *GetAllPaymentMethodsParams) WithOrder(Order *string) *GetAllPaymentMethodsParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithOrderBy(orderBy *string) *GetAllPaymentMethodsParams {
-	o.OrderBy = orderBy
+func (o *GetAllPaymentMethodsParams) WithOrderBy(OrderBy *string) *GetAllPaymentMethodsParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithOrganizations(organizations []string) *GetAllPaymentMethodsParams {
-	o.Organizations = organizations
+func (o *GetAllPaymentMethodsParams) WithOrganizations(Organizations []string) *GetAllPaymentMethodsParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get all payment methods params
-func (o *GetAllPaymentMethodsParams) WithRecords(records *int32) *GetAllPaymentMethodsParams {
-	o.Records = records
+func (o *GetAllPaymentMethodsParams) WithRecords(Records *int32) *GetAllPaymentMethodsParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAllPaymentMethodsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAllPaymentMethodsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

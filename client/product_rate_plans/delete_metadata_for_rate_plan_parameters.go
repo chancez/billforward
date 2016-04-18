@@ -4,11 +4,11 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteMetadataForRatePlanParams creates a new DeleteMetadataForRatePlanParams object
@@ -33,19 +33,19 @@ type DeleteMetadataForRatePlanParams struct {
 }
 
 // WithOrganizations adds the organizations to the delete metadata for rate plan params
-func (o *DeleteMetadataForRatePlanParams) WithOrganizations(organizations []string) *DeleteMetadataForRatePlanParams {
-	o.Organizations = organizations
+func (o *DeleteMetadataForRatePlanParams) WithOrganizations(Organizations []string) *DeleteMetadataForRatePlanParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProductRatePlanID adds the productRatePlanId to the delete metadata for rate plan params
-func (o *DeleteMetadataForRatePlanParams) WithProductRatePlanID(productRatePlanId string) *DeleteMetadataForRatePlanParams {
-	o.ProductRatePlanID = productRatePlanId
+func (o *DeleteMetadataForRatePlanParams) WithProductRatePlanID(ProductRatePlanID string) *DeleteMetadataForRatePlanParams {
+	o.ProductRatePlanID = ProductRatePlanID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteMetadataForRatePlanParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteMetadataForRatePlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

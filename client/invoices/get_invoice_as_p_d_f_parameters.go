@@ -4,11 +4,11 @@ package invoices
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetInvoiceAsPDFParams creates a new GetInvoiceAsPDFParams object
@@ -105,85 +105,85 @@ type GetInvoiceAsPDFParams struct {
 }
 
 // WithID adds the id to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithID(id string) *GetInvoiceAsPDFParams {
-	o.ID = id
+func (o *GetInvoiceAsPDFParams) WithID(ID string) *GetInvoiceAsPDFParams {
+	o.ID = ID
 	return o
 }
 
 // WithGroupLineItemsBy adds the groupLineItemsBy to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithGroupLineItemsBy(groupLineItemsBy *string) *GetInvoiceAsPDFParams {
-	o.GroupLineItemsBy = groupLineItemsBy
+func (o *GetInvoiceAsPDFParams) WithGroupLineItemsBy(GroupLineItemsBy *string) *GetInvoiceAsPDFParams {
+	o.GroupLineItemsBy = GroupLineItemsBy
 	return o
 }
 
 // WithIncludeFooter adds the includeFooter to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithIncludeFooter(includeFooter *bool) *GetInvoiceAsPDFParams {
-	o.IncludeFooter = includeFooter
+func (o *GetInvoiceAsPDFParams) WithIncludeFooter(IncludeFooter *bool) *GetInvoiceAsPDFParams {
+	o.IncludeFooter = IncludeFooter
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithIncludeRetired(includeRetired *bool) *GetInvoiceAsPDFParams {
-	o.IncludeRetired = includeRetired
+func (o *GetInvoiceAsPDFParams) WithIncludeRetired(IncludeRetired *bool) *GetInvoiceAsPDFParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithInclusiveEnd adds the inclusiveEnd to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithInclusiveEnd(inclusiveEnd *bool) *GetInvoiceAsPDFParams {
-	o.InclusiveEnd = inclusiveEnd
+func (o *GetInvoiceAsPDFParams) WithInclusiveEnd(InclusiveEnd *bool) *GetInvoiceAsPDFParams {
+	o.InclusiveEnd = InclusiveEnd
 	return o
 }
 
 // WithOffset adds the offset to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithOffset(offset *int32) *GetInvoiceAsPDFParams {
-	o.Offset = offset
+func (o *GetInvoiceAsPDFParams) WithOffset(Offset *int32) *GetInvoiceAsPDFParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithOrder(order *string) *GetInvoiceAsPDFParams {
-	o.Order = order
+func (o *GetInvoiceAsPDFParams) WithOrder(Order *string) *GetInvoiceAsPDFParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithOrderBy(orderBy *string) *GetInvoiceAsPDFParams {
-	o.OrderBy = orderBy
+func (o *GetInvoiceAsPDFParams) WithOrderBy(OrderBy *string) *GetInvoiceAsPDFParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithOrganizations(organizations []string) *GetInvoiceAsPDFParams {
-	o.Organizations = organizations
+func (o *GetInvoiceAsPDFParams) WithOrganizations(Organizations []string) *GetInvoiceAsPDFParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithRecords(records *int32) *GetInvoiceAsPDFParams {
-	o.Records = records
+func (o *GetInvoiceAsPDFParams) WithRecords(Records *int32) *GetInvoiceAsPDFParams {
+	o.Records = Records
 	return o
 }
 
 // WithShowPlanOnlyWhenAmbiguous adds the showPlanOnlyWhenAmbiguous to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithShowPlanOnlyWhenAmbiguous(showPlanOnlyWhenAmbiguous *bool) *GetInvoiceAsPDFParams {
-	o.ShowPlanOnlyWhenAmbiguous = showPlanOnlyWhenAmbiguous
+func (o *GetInvoiceAsPDFParams) WithShowPlanOnlyWhenAmbiguous(ShowPlanOnlyWhenAmbiguous *bool) *GetInvoiceAsPDFParams {
+	o.ShowPlanOnlyWhenAmbiguous = ShowPlanOnlyWhenAmbiguous
 	return o
 }
 
 // WithShowZeroCost adds the showZeroCost to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithShowZeroCost(showZeroCost *bool) *GetInvoiceAsPDFParams {
-	o.ShowZeroCost = showZeroCost
+func (o *GetInvoiceAsPDFParams) WithShowZeroCost(ShowZeroCost *bool) *GetInvoiceAsPDFParams {
+	o.ShowZeroCost = ShowZeroCost
 	return o
 }
 
 // WithTierBreakdown adds the tierBreakdown to the get invoice as p d f params
-func (o *GetInvoiceAsPDFParams) WithTierBreakdown(tierBreakdown *bool) *GetInvoiceAsPDFParams {
-	o.TierBreakdown = tierBreakdown
+func (o *GetInvoiceAsPDFParams) WithTierBreakdown(TierBreakdown *bool) *GetInvoiceAsPDFParams {
+	o.TierBreakdown = TierBreakdown
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetInvoiceAsPDFParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetInvoiceAsPDFParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,11 +4,11 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -37,25 +37,25 @@ type SetMetadataForSubscriptionParams struct {
 }
 
 // WithMetadata adds the metadata to the set metadata for subscription params
-func (o *SetMetadataForSubscriptionParams) WithMetadata(metadata models.DynamicMetadata) *SetMetadataForSubscriptionParams {
-	o.Metadata = metadata
+func (o *SetMetadataForSubscriptionParams) WithMetadata(Metadata models.DynamicMetadata) *SetMetadataForSubscriptionParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOrganizations adds the organizations to the set metadata for subscription params
-func (o *SetMetadataForSubscriptionParams) WithOrganizations(organizations []string) *SetMetadataForSubscriptionParams {
-	o.Organizations = organizations
+func (o *SetMetadataForSubscriptionParams) WithOrganizations(Organizations []string) *SetMetadataForSubscriptionParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the set metadata for subscription params
-func (o *SetMetadataForSubscriptionParams) WithSubscriptionID(subscriptionId string) *SetMetadataForSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *SetMetadataForSubscriptionParams) WithSubscriptionID(SubscriptionID string) *SetMetadataForSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *SetMetadataForSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *SetMetadataForSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

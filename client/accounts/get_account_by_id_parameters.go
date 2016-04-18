@@ -4,11 +4,11 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAccountByIDParams creates a new GetAccountByIDParams object
@@ -30,19 +30,19 @@ type GetAccountByIDParams struct {
 }
 
 // WithAccountID adds the accountId to the get account by ID params
-func (o *GetAccountByIDParams) WithAccountID(accountId string) *GetAccountByIDParams {
-	o.AccountID = accountId
+func (o *GetAccountByIDParams) WithAccountID(AccountID string) *GetAccountByIDParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithOrganizations adds the organizations to the get account by ID params
-func (o *GetAccountByIDParams) WithOrganizations(organizations []string) *GetAccountByIDParams {
-	o.Organizations = organizations
+func (o *GetAccountByIDParams) WithOrganizations(Organizations []string) *GetAccountByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAccountByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAccountByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

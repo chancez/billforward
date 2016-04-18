@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type DeleteAccountReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *DeleteAccountOK) Error() string {
 	return fmt.Sprintf("[DELETE /accounts/{account-ID}][%d] deleteAccountOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.AccountPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *DeleteAccountDefault) Error() string {
 	return fmt.Sprintf("[DELETE /accounts/{account-ID}][%d] deleteAccount default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *DeleteAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteAccountDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

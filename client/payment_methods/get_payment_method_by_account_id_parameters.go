@@ -4,11 +4,11 @@ package payment_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetPaymentMethodByAccountIDParams creates a new GetPaymentMethodByAccountIDParams object
@@ -77,55 +77,55 @@ type GetPaymentMethodByAccountIDParams struct {
 }
 
 // WithAccountID adds the accountId to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithAccountID(accountId string) *GetPaymentMethodByAccountIDParams {
-	o.AccountID = accountId
+func (o *GetPaymentMethodByAccountIDParams) WithAccountID(AccountID string) *GetPaymentMethodByAccountIDParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithDefaultOnly adds the defaultOnly to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithDefaultOnly(defaultOnly *bool) *GetPaymentMethodByAccountIDParams {
-	o.DefaultOnly = defaultOnly
+func (o *GetPaymentMethodByAccountIDParams) WithDefaultOnly(DefaultOnly *bool) *GetPaymentMethodByAccountIDParams {
+	o.DefaultOnly = DefaultOnly
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithIncludeRetired(includeRetired *bool) *GetPaymentMethodByAccountIDParams {
-	o.IncludeRetired = includeRetired
+func (o *GetPaymentMethodByAccountIDParams) WithIncludeRetired(IncludeRetired *bool) *GetPaymentMethodByAccountIDParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithOffset(offset *int32) *GetPaymentMethodByAccountIDParams {
-	o.Offset = offset
+func (o *GetPaymentMethodByAccountIDParams) WithOffset(Offset *int32) *GetPaymentMethodByAccountIDParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithOrder(order *string) *GetPaymentMethodByAccountIDParams {
-	o.Order = order
+func (o *GetPaymentMethodByAccountIDParams) WithOrder(Order *string) *GetPaymentMethodByAccountIDParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithOrderBy(orderBy *string) *GetPaymentMethodByAccountIDParams {
-	o.OrderBy = orderBy
+func (o *GetPaymentMethodByAccountIDParams) WithOrderBy(OrderBy *string) *GetPaymentMethodByAccountIDParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithOrganizations(organizations []string) *GetPaymentMethodByAccountIDParams {
-	o.Organizations = organizations
+func (o *GetPaymentMethodByAccountIDParams) WithOrganizations(Organizations []string) *GetPaymentMethodByAccountIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get payment method by account ID params
-func (o *GetPaymentMethodByAccountIDParams) WithRecords(records *int32) *GetPaymentMethodByAccountIDParams {
-	o.Records = records
+func (o *GetPaymentMethodByAccountIDParams) WithRecords(Records *int32) *GetPaymentMethodByAccountIDParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetPaymentMethodByAccountIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetPaymentMethodByAccountIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

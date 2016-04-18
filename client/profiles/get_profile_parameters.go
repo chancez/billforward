@@ -4,11 +4,11 @@ package profiles
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetProfileParams creates a new GetProfileParams object
@@ -36,19 +36,19 @@ type GetProfileParams struct {
 }
 
 // WithOrganizations adds the organizations to the get profile params
-func (o *GetProfileParams) WithOrganizations(organizations []string) *GetProfileParams {
-	o.Organizations = organizations
+func (o *GetProfileParams) WithOrganizations(Organizations []string) *GetProfileParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProfileID adds the profileId to the get profile params
-func (o *GetProfileParams) WithProfileID(profileId string) *GetProfileParams {
-	o.ProfileID = profileId
+func (o *GetProfileParams) WithProfileID(ProfileID string) *GetProfileParams {
+	o.ProfileID = ProfileID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetProfileParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetProfileParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

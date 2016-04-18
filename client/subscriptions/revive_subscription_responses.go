@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type ReviveSubscriptionReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *ReviveSubscriptionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *ReviveSubscriptionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *ReviveSubscriptionOK) Error() string {
 	return fmt.Sprintf("[POST /subscriptions/{subscription-ID}/revive][%d] reviveSubscriptionOK  %+v", 200, o.Payload)
 }
 
-func (o *ReviveSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ReviveSubscriptionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *ReviveSubscriptionDefault) Error() string {
 	return fmt.Sprintf("[POST /subscriptions/{subscription-ID}/revive][%d] reviveSubscription default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *ReviveSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *ReviveSubscriptionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

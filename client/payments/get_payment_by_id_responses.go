@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetPaymentByIDReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetPaymentByIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetPaymentByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetPaymentByIDOK) Error() string {
 	return fmt.Sprintf("[GET /payments/{payment-ID}][%d] getPaymentByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetPaymentByIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetPaymentByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.PaymentPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetPaymentByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /payments/{payment-ID}][%d] getPaymentByID default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetPaymentByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetPaymentByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

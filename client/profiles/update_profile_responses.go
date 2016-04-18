@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type UpdateProfileReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *UpdateProfileReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *UpdateProfileReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *UpdateProfileOK) Error() string {
 	return fmt.Sprintf("[PUT /profiles][%d] updateProfileOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdateProfileOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateProfileOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ProfilePagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *UpdateProfileDefault) Error() string {
 	return fmt.Sprintf("[PUT /profiles][%d] updateProfile default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *UpdateProfileDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *UpdateProfileDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

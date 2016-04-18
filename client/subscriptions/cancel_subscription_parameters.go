@@ -4,10 +4,10 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -34,19 +34,19 @@ type CancelSubscriptionParams struct {
 }
 
 // WithSubscriptionID adds the subscriptionId to the cancel subscription params
-func (o *CancelSubscriptionParams) WithSubscriptionID(subscriptionId string) *CancelSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *CancelSubscriptionParams) WithSubscriptionID(SubscriptionID string) *CancelSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WithSubscriptionCancellation adds the subscriptionCancellation to the cancel subscription params
-func (o *CancelSubscriptionParams) WithSubscriptionCancellation(subscriptionCancellation *models.CancelSubscriptionRequest) *CancelSubscriptionParams {
-	o.SubscriptionCancellation = subscriptionCancellation
+func (o *CancelSubscriptionParams) WithSubscriptionCancellation(SubscriptionCancellation *models.CancelSubscriptionRequest) *CancelSubscriptionParams {
+	o.SubscriptionCancellation = SubscriptionCancellation
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CancelSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CancelSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

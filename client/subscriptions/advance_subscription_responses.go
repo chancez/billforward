@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type AdvanceSubscriptionReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *AdvanceSubscriptionReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *AdvanceSubscriptionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *AdvanceSubscriptionOK) Error() string {
 	return fmt.Sprintf("[POST /subscriptions/{subscription-ID}/advance][%d] advanceSubscriptionOK  %+v", 200, o.Payload)
 }
 
-func (o *AdvanceSubscriptionOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *AdvanceSubscriptionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.TimeResponsePagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *AdvanceSubscriptionDefault) Error() string {
 	return fmt.Sprintf("[POST /subscriptions/{subscription-ID}/advance][%d] advanceSubscription default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *AdvanceSubscriptionDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *AdvanceSubscriptionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

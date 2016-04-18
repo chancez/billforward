@@ -4,11 +4,11 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -37,25 +37,25 @@ type UpsertMetadataForRatePlanParams struct {
 }
 
 // WithMetadata adds the metadata to the upsert metadata for rate plan params
-func (o *UpsertMetadataForRatePlanParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForRatePlanParams {
-	o.Metadata = metadata
+func (o *UpsertMetadataForRatePlanParams) WithMetadata(Metadata models.DynamicMetadata) *UpsertMetadataForRatePlanParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOrganizations adds the organizations to the upsert metadata for rate plan params
-func (o *UpsertMetadataForRatePlanParams) WithOrganizations(organizations []string) *UpsertMetadataForRatePlanParams {
-	o.Organizations = organizations
+func (o *UpsertMetadataForRatePlanParams) WithOrganizations(Organizations []string) *UpsertMetadataForRatePlanParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProductRatePlanID adds the productRatePlanId to the upsert metadata for rate plan params
-func (o *UpsertMetadataForRatePlanParams) WithProductRatePlanID(productRatePlanId string) *UpsertMetadataForRatePlanParams {
-	o.ProductRatePlanID = productRatePlanId
+func (o *UpsertMetadataForRatePlanParams) WithProductRatePlanID(ProductRatePlanID string) *UpsertMetadataForRatePlanParams {
+	o.ProductRatePlanID = ProductRatePlanID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpsertMetadataForRatePlanParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpsertMetadataForRatePlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

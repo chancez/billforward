@@ -8,9 +8,9 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/httpkit/validate"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/validate"
 )
 
 /*AuthCaptureRequest [Note: this request can be built automatically by our client-side card capture library, <a href="https://github.com/billforward/billforward-js">BillForward.js</a>; you should not need to interact with this API manually unless you have particularly bespoke requirements] This entity is used for requesting that BillForward produce a PaymentMethod, linked to a funding instrument you have vaulted in some payment gateway. The BillForward PaymentMethod will be associated with a BillForward Account of your choosing (or a newly-created Account, if preferred).
@@ -18,7 +18,7 @@ import (
 swagger:discriminator AuthCaptureRequest @type
 */
 type AuthCaptureRequest interface {
-	httpkit.Validatable
+	runtime.Validatable
 
 	/* at type
 
@@ -74,7 +74,7 @@ type AuthCaptureRequest interface {
 }
 
 // UnmarshalAuthCaptureRequestSlice unmarshals polymorphic slices of AuthCaptureRequest
-func UnmarshalAuthCaptureRequestSlice(reader io.Reader, consumer httpkit.Consumer) ([]AuthCaptureRequest, error) {
+func UnmarshalAuthCaptureRequestSlice(reader io.Reader, consumer runtime.Consumer) ([]AuthCaptureRequest, error) {
 	var elements [][]byte
 	if err := consumer.Consume(reader, &elements); err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ func UnmarshalAuthCaptureRequestSlice(reader io.Reader, consumer httpkit.Consume
 }
 
 // UnmarshalAuthCaptureRequest unmarshals polymorphic AuthCaptureRequest
-func UnmarshalAuthCaptureRequest(reader io.Reader, consumer httpkit.Consumer) (AuthCaptureRequest, error) {
+func UnmarshalAuthCaptureRequest(reader io.Reader, consumer runtime.Consumer) (AuthCaptureRequest, error) {
 	// we need to read this twice, so first into a buffer
 	data, err := ioutil.ReadAll(reader)
 	if err != nil {
@@ -101,7 +101,7 @@ func UnmarshalAuthCaptureRequest(reader io.Reader, consumer httpkit.Consumer) (A
 	return unmarshalAuthCaptureRequest(data, consumer)
 }
 
-func unmarshalAuthCaptureRequest(data []byte, consumer httpkit.Consumer) (AuthCaptureRequest, error) {
+func unmarshalAuthCaptureRequest(data []byte, consumer runtime.Consumer) (AuthCaptureRequest, error) {
 	buf := bytes.NewBuffer(data)
 	buf2 := bytes.NewBuffer(data)
 

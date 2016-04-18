@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetProductByIDReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetProductByIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetProductByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetProductByIDOK) Error() string {
 	return fmt.Sprintf("[GET /products/{product-ID}][%d] getProductByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetProductByIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetProductByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ProductPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetProductByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /products/{product-ID}][%d] getProductByID default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetProductByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetProductByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

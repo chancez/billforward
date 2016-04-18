@@ -4,11 +4,11 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAllSubscriptionsParams creates a new GetAllSubscriptionsParams object
@@ -84,67 +84,67 @@ type GetAllSubscriptionsParams struct {
 }
 
 // WithAccountID adds the accountId to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithAccountID(accountId []string) *GetAllSubscriptionsParams {
-	o.AccountID = accountId
+func (o *GetAllSubscriptionsParams) WithAccountID(AccountID []string) *GetAllSubscriptionsParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithExcludeChildren adds the excludeChildren to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithExcludeChildren(excludeChildren *bool) *GetAllSubscriptionsParams {
-	o.ExcludeChildren = excludeChildren
+func (o *GetAllSubscriptionsParams) WithExcludeChildren(ExcludeChildren *bool) *GetAllSubscriptionsParams {
+	o.ExcludeChildren = ExcludeChildren
 	return o
 }
 
 // WithExcludeServiceEnded adds the excludeServiceEnded to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithExcludeServiceEnded(excludeServiceEnded *bool) *GetAllSubscriptionsParams {
-	o.ExcludeServiceEnded = excludeServiceEnded
+func (o *GetAllSubscriptionsParams) WithExcludeServiceEnded(ExcludeServiceEnded *bool) *GetAllSubscriptionsParams {
+	o.ExcludeServiceEnded = ExcludeServiceEnded
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithIncludeRetired(includeRetired *bool) *GetAllSubscriptionsParams {
-	o.IncludeRetired = includeRetired
+func (o *GetAllSubscriptionsParams) WithIncludeRetired(IncludeRetired *bool) *GetAllSubscriptionsParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithMetadata adds the metadata to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithMetadata(metadata *string) *GetAllSubscriptionsParams {
-	o.Metadata = metadata
+func (o *GetAllSubscriptionsParams) WithMetadata(Metadata *string) *GetAllSubscriptionsParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOffset adds the offset to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithOffset(offset *int32) *GetAllSubscriptionsParams {
-	o.Offset = offset
+func (o *GetAllSubscriptionsParams) WithOffset(Offset *int32) *GetAllSubscriptionsParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithOrder(order *string) *GetAllSubscriptionsParams {
-	o.Order = order
+func (o *GetAllSubscriptionsParams) WithOrder(Order *string) *GetAllSubscriptionsParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithOrderBy(orderBy *string) *GetAllSubscriptionsParams {
-	o.OrderBy = orderBy
+func (o *GetAllSubscriptionsParams) WithOrderBy(OrderBy *string) *GetAllSubscriptionsParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithOrganizations(organizations []string) *GetAllSubscriptionsParams {
-	o.Organizations = organizations
+func (o *GetAllSubscriptionsParams) WithOrganizations(Organizations []string) *GetAllSubscriptionsParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get all subscriptions params
-func (o *GetAllSubscriptionsParams) WithRecords(records *int32) *GetAllSubscriptionsParams {
-	o.Records = records
+func (o *GetAllSubscriptionsParams) WithRecords(Records *int32) *GetAllSubscriptionsParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAllSubscriptionsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAllSubscriptionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

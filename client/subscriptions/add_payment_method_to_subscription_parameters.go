@@ -4,10 +4,10 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -31,19 +31,19 @@ type AddPaymentMethodToSubscriptionParams struct {
 }
 
 // WithPaymentMethod adds the paymentMethod to the add payment method to subscription params
-func (o *AddPaymentMethodToSubscriptionParams) WithPaymentMethod(paymentMethod *models.AddPaymentMethodRequest) *AddPaymentMethodToSubscriptionParams {
-	o.PaymentMethod = paymentMethod
+func (o *AddPaymentMethodToSubscriptionParams) WithPaymentMethod(PaymentMethod *models.AddPaymentMethodRequest) *AddPaymentMethodToSubscriptionParams {
+	o.PaymentMethod = PaymentMethod
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the add payment method to subscription params
-func (o *AddPaymentMethodToSubscriptionParams) WithSubscriptionID(subscriptionId string) *AddPaymentMethodToSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *AddPaymentMethodToSubscriptionParams) WithSubscriptionID(SubscriptionID string) *AddPaymentMethodToSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *AddPaymentMethodToSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *AddPaymentMethodToSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

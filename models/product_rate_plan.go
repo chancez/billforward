@@ -7,12 +7,11 @@ import (
 	"bytes"
 	"encoding/json"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
-	"github.com/go-swagger/go-swagger/swag"
+	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/httpkit"
-	"github.com/go-swagger/go-swagger/httpkit/validate"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/validate"
 )
 
 /*ProductRatePlan A rate plan describes a pricing system under which a subscription can be made to a product.
@@ -728,7 +727,7 @@ func (m *ProductRatePlan) UnmarshalJSON(raw []byte) error {
 		if slcPricingComponents, ok := untypedPricingComponents.([]interface{}); ok {
 			for _, slcEl := range slcPricingComponents {
 				slcJSON, _ := json.Marshal(slcEl)
-				slcObj, err := UnmarshalPricingComponent(bytes.NewBuffer(slcJSON), httpkit.JSONConsumer())
+				slcObj, err := UnmarshalPricingComponent(bytes.NewBuffer(slcJSON), runtime.JSONConsumer())
 				if err != nil {
 					return err
 				}

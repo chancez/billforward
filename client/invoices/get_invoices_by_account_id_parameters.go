@@ -4,11 +4,11 @@ package invoices
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetInvoicesByAccountIDParams creates a new GetInvoicesByAccountIDParams object
@@ -80,55 +80,55 @@ type GetInvoicesByAccountIDParams struct {
 }
 
 // WithAccountID adds the accountId to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithAccountID(accountId string) *GetInvoicesByAccountIDParams {
-	o.AccountID = accountId
+func (o *GetInvoicesByAccountIDParams) WithAccountID(AccountID string) *GetInvoicesByAccountIDParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithExcludeChildren adds the excludeChildren to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithExcludeChildren(excludeChildren *bool) *GetInvoicesByAccountIDParams {
-	o.ExcludeChildren = excludeChildren
+func (o *GetInvoicesByAccountIDParams) WithExcludeChildren(ExcludeChildren *bool) *GetInvoicesByAccountIDParams {
+	o.ExcludeChildren = ExcludeChildren
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithIncludeRetired(includeRetired *bool) *GetInvoicesByAccountIDParams {
-	o.IncludeRetired = includeRetired
+func (o *GetInvoicesByAccountIDParams) WithIncludeRetired(IncludeRetired *bool) *GetInvoicesByAccountIDParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithOffset(offset *int32) *GetInvoicesByAccountIDParams {
-	o.Offset = offset
+func (o *GetInvoicesByAccountIDParams) WithOffset(Offset *int32) *GetInvoicesByAccountIDParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithOrder(order *string) *GetInvoicesByAccountIDParams {
-	o.Order = order
+func (o *GetInvoicesByAccountIDParams) WithOrder(Order *string) *GetInvoicesByAccountIDParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithOrderBy(orderBy *string) *GetInvoicesByAccountIDParams {
-	o.OrderBy = orderBy
+func (o *GetInvoicesByAccountIDParams) WithOrderBy(OrderBy *string) *GetInvoicesByAccountIDParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithOrganizations(organizations []string) *GetInvoicesByAccountIDParams {
-	o.Organizations = organizations
+func (o *GetInvoicesByAccountIDParams) WithOrganizations(Organizations []string) *GetInvoicesByAccountIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get invoices by account ID params
-func (o *GetInvoicesByAccountIDParams) WithRecords(records *int32) *GetInvoicesByAccountIDParams {
-	o.Records = records
+func (o *GetInvoicesByAccountIDParams) WithRecords(Records *int32) *GetInvoicesByAccountIDParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetInvoicesByAccountIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetInvoicesByAccountIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

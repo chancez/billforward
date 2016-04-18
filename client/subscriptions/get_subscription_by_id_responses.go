@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetSubscriptionByIDReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetSubscriptionByIDReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetSubscriptionByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetSubscriptionByIDOK) Error() string {
 	return fmt.Sprintf("[GET /subscriptions/{subscription-ID}][%d] getSubscriptionByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetSubscriptionByIDOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetSubscriptionByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.SubscriptionPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetSubscriptionByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /subscriptions/{subscription-ID}][%d] getSubscriptionByID default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetSubscriptionByIDDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetSubscriptionByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

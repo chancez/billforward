@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetAllRatePlansReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetAllRatePlansReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetAllRatePlansReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetAllRatePlansOK) Error() string {
 	return fmt.Sprintf("[GET /product-rate-plans][%d] getAllRatePlansOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAllRatePlansOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllRatePlansOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ProductRatePlanPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetAllRatePlansDefault) Error() string {
 	return fmt.Sprintf("[GET /product-rate-plans][%d] getAllRatePlans default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetAllRatePlansDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllRatePlansDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

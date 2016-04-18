@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type DeleteMetadataForAccountReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *DeleteMetadataForAccountReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *DeleteMetadataForAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *DeleteMetadataForAccountOK) Error() string {
 	return fmt.Sprintf("[DELETE /accounts/{account-ID}/metadata][%d] deleteMetadataForAccountOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteMetadataForAccountOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteMetadataForAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -93,7 +92,7 @@ func (o *DeleteMetadataForAccountDefault) Error() string {
 	return fmt.Sprintf("[DELETE /accounts/{account-ID}/metadata][%d] deleteMetadataForAccount default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *DeleteMetadataForAccountDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *DeleteMetadataForAccountDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

@@ -4,11 +4,11 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetRatePlanByProductParams creates a new GetRatePlanByProductParams object
@@ -70,49 +70,49 @@ type GetRatePlanByProductParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithIncludeRetired(includeRetired *bool) *GetRatePlanByProductParams {
-	o.IncludeRetired = includeRetired
+func (o *GetRatePlanByProductParams) WithIncludeRetired(IncludeRetired *bool) *GetRatePlanByProductParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithOffset(offset *int32) *GetRatePlanByProductParams {
-	o.Offset = offset
+func (o *GetRatePlanByProductParams) WithOffset(Offset *int32) *GetRatePlanByProductParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithOrder(order *string) *GetRatePlanByProductParams {
-	o.Order = order
+func (o *GetRatePlanByProductParams) WithOrder(Order *string) *GetRatePlanByProductParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithOrderBy(orderBy *string) *GetRatePlanByProductParams {
-	o.OrderBy = orderBy
+func (o *GetRatePlanByProductParams) WithOrderBy(OrderBy *string) *GetRatePlanByProductParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithOrganizations(organizations []string) *GetRatePlanByProductParams {
-	o.Organizations = organizations
+func (o *GetRatePlanByProductParams) WithOrganizations(Organizations []string) *GetRatePlanByProductParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProductID adds the productId to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithProductID(productId string) *GetRatePlanByProductParams {
-	o.ProductID = productId
+func (o *GetRatePlanByProductParams) WithProductID(ProductID string) *GetRatePlanByProductParams {
+	o.ProductID = ProductID
 	return o
 }
 
 // WithRecords adds the records to the get rate plan by product params
-func (o *GetRatePlanByProductParams) WithRecords(records *int32) *GetRatePlanByProductParams {
-	o.Records = records
+func (o *GetRatePlanByProductParams) WithRecords(Records *int32) *GetRatePlanByProductParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetRatePlanByProductParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetRatePlanByProductParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

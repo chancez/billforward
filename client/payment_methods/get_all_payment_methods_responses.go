@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/httpkit"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -21,7 +20,7 @@ type GetAllPaymentMethodsReader struct {
 }
 
 // ReadResponse reads a server response into the recieved o.
-func (o *GetAllPaymentMethodsReader) ReadResponse(response client.Response, consumer httpkit.Consumer) (interface{}, error) {
+func (o *GetAllPaymentMethodsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
 	case 200:
@@ -57,7 +56,7 @@ func (o *GetAllPaymentMethodsOK) Error() string {
 	return fmt.Sprintf("[GET /payment-methods][%d] getAllPaymentMethodsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAllPaymentMethodsOK) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllPaymentMethodsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.PaymentMethodPagedMetadata)
 
@@ -95,7 +94,7 @@ func (o *GetAllPaymentMethodsDefault) Error() string {
 	return fmt.Sprintf("[GET /payment-methods][%d] getAllPaymentMethods default  %+v", o._statusCode, o.Payload)
 }
 
-func (o *GetAllPaymentMethodsDefault) readResponse(response client.Response, consumer httpkit.Consumer, formats strfmt.Registry) error {
+func (o *GetAllPaymentMethodsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BFError)
 

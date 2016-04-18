@@ -4,11 +4,11 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAllProductsParams creates a new GetAllProductsParams object
@@ -70,49 +70,49 @@ type GetAllProductsParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get all products params
-func (o *GetAllProductsParams) WithIncludeRetired(includeRetired *bool) *GetAllProductsParams {
-	o.IncludeRetired = includeRetired
+func (o *GetAllProductsParams) WithIncludeRetired(IncludeRetired *bool) *GetAllProductsParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithMetadata adds the metadata to the get all products params
-func (o *GetAllProductsParams) WithMetadata(metadata *string) *GetAllProductsParams {
-	o.Metadata = metadata
+func (o *GetAllProductsParams) WithMetadata(Metadata *string) *GetAllProductsParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOffset adds the offset to the get all products params
-func (o *GetAllProductsParams) WithOffset(offset *int32) *GetAllProductsParams {
-	o.Offset = offset
+func (o *GetAllProductsParams) WithOffset(Offset *int32) *GetAllProductsParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get all products params
-func (o *GetAllProductsParams) WithOrder(order *string) *GetAllProductsParams {
-	o.Order = order
+func (o *GetAllProductsParams) WithOrder(Order *string) *GetAllProductsParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get all products params
-func (o *GetAllProductsParams) WithOrderBy(orderBy *string) *GetAllProductsParams {
-	o.OrderBy = orderBy
+func (o *GetAllProductsParams) WithOrderBy(OrderBy *string) *GetAllProductsParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get all products params
-func (o *GetAllProductsParams) WithOrganizations(organizations []string) *GetAllProductsParams {
-	o.Organizations = organizations
+func (o *GetAllProductsParams) WithOrganizations(Organizations []string) *GetAllProductsParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get all products params
-func (o *GetAllProductsParams) WithRecords(records *int32) *GetAllProductsParams {
-	o.Records = records
+func (o *GetAllProductsParams) WithRecords(Records *int32) *GetAllProductsParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAllProductsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAllProductsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

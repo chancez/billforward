@@ -4,11 +4,11 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewRemovePaymentMethodFromSubscriptionParams creates a new RemovePaymentMethodFromSubscriptionParams object
@@ -35,25 +35,25 @@ type RemovePaymentMethodFromSubscriptionParams struct {
 }
 
 // WithOrganizations adds the organizations to the remove payment method from subscription params
-func (o *RemovePaymentMethodFromSubscriptionParams) WithOrganizations(organizations []string) *RemovePaymentMethodFromSubscriptionParams {
-	o.Organizations = organizations
+func (o *RemovePaymentMethodFromSubscriptionParams) WithOrganizations(Organizations []string) *RemovePaymentMethodFromSubscriptionParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithPaymentMethodID adds the paymentMethodId to the remove payment method from subscription params
-func (o *RemovePaymentMethodFromSubscriptionParams) WithPaymentMethodID(paymentMethodId string) *RemovePaymentMethodFromSubscriptionParams {
-	o.PaymentMethodID = paymentMethodId
+func (o *RemovePaymentMethodFromSubscriptionParams) WithPaymentMethodID(PaymentMethodID string) *RemovePaymentMethodFromSubscriptionParams {
+	o.PaymentMethodID = PaymentMethodID
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the remove payment method from subscription params
-func (o *RemovePaymentMethodFromSubscriptionParams) WithSubscriptionID(subscriptionId string) *RemovePaymentMethodFromSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *RemovePaymentMethodFromSubscriptionParams) WithSubscriptionID(SubscriptionID string) *RemovePaymentMethodFromSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *RemovePaymentMethodFromSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *RemovePaymentMethodFromSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

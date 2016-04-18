@@ -4,10 +4,10 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -29,13 +29,13 @@ type CreateAggregatingSubscriptionParams struct {
 }
 
 // WithRequest adds the request to the create aggregating subscription params
-func (o *CreateAggregatingSubscriptionParams) WithRequest(request *models.CreateAggregatingSubscriptionRequest) *CreateAggregatingSubscriptionParams {
-	o.Request = request
+func (o *CreateAggregatingSubscriptionParams) WithRequest(Request *models.CreateAggregatingSubscriptionRequest) *CreateAggregatingSubscriptionParams {
+	o.Request = Request
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateAggregatingSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *CreateAggregatingSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

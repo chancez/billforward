@@ -4,11 +4,11 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewAvailablePaymentMethodsForSubscriptionParams creates a new AvailablePaymentMethodsForSubscriptionParams object
@@ -63,43 +63,43 @@ type AvailablePaymentMethodsForSubscriptionParams struct {
 }
 
 // WithOffset adds the offset to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithOffset(offset *int32) *AvailablePaymentMethodsForSubscriptionParams {
-	o.Offset = offset
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithOffset(Offset *int32) *AvailablePaymentMethodsForSubscriptionParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrder(order *string) *AvailablePaymentMethodsForSubscriptionParams {
-	o.Order = order
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrder(Order *string) *AvailablePaymentMethodsForSubscriptionParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrderBy(orderBy *string) *AvailablePaymentMethodsForSubscriptionParams {
-	o.OrderBy = orderBy
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrderBy(OrderBy *string) *AvailablePaymentMethodsForSubscriptionParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrganizations(organizations []string) *AvailablePaymentMethodsForSubscriptionParams {
-	o.Organizations = organizations
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithOrganizations(Organizations []string) *AvailablePaymentMethodsForSubscriptionParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithRecords(records *int32) *AvailablePaymentMethodsForSubscriptionParams {
-	o.Records = records
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithRecords(Records *int32) *AvailablePaymentMethodsForSubscriptionParams {
+	o.Records = Records
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the available payment methods for subscription params
-func (o *AvailablePaymentMethodsForSubscriptionParams) WithSubscriptionID(subscriptionId string) *AvailablePaymentMethodsForSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *AvailablePaymentMethodsForSubscriptionParams) WithSubscriptionID(SubscriptionID string) *AvailablePaymentMethodsForSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *AvailablePaymentMethodsForSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *AvailablePaymentMethodsForSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,13 +4,13 @@ package payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new payments API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for payments API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -33,7 +33,7 @@ func (a *Client) GetAllPayments(params *GetAllPaymentsParams) (*GetAllPaymentsOK
 		params = NewGetAllPaymentsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllPayments",
 		Method:             "GET",
 		PathPattern:        "/payments",
@@ -60,7 +60,7 @@ func (a *Client) GetPaymentByID(params *GetPaymentByIDParams) (*GetPaymentByIDOK
 		params = NewGetPaymentByIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentByID",
 		Method:             "GET",
 		PathPattern:        "/payments/{payment-ID}",
@@ -87,7 +87,7 @@ func (a *Client) GetPaymentByInvoiceID(params *GetPaymentByInvoiceIDParams) (*Ge
 		params = NewGetPaymentByInvoiceIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentByInvoiceID",
 		Method:             "GET",
 		PathPattern:        "/payments/invoice/{invoice-ID}",
@@ -104,6 +104,6 @@ func (a *Client) GetPaymentByInvoiceID(params *GetPaymentByInvoiceIDParams) (*Ge
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

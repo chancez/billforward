@@ -4,11 +4,11 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetMetadataForAccountParams creates a new GetMetadataForAccountParams object
@@ -33,19 +33,19 @@ type GetMetadataForAccountParams struct {
 }
 
 // WithAccountID adds the accountId to the get metadata for account params
-func (o *GetMetadataForAccountParams) WithAccountID(accountId string) *GetMetadataForAccountParams {
-	o.AccountID = accountId
+func (o *GetMetadataForAccountParams) WithAccountID(AccountID string) *GetMetadataForAccountParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithOrganizations adds the organizations to the get metadata for account params
-func (o *GetMetadataForAccountParams) WithOrganizations(organizations []string) *GetMetadataForAccountParams {
-	o.Organizations = organizations
+func (o *GetMetadataForAccountParams) WithOrganizations(Organizations []string) *GetMetadataForAccountParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetMetadataForAccountParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetMetadataForAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

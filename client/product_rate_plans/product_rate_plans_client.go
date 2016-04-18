@@ -4,13 +4,13 @@ package product_rate_plans
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new product rate plans API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for product rate plans API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -33,7 +33,7 @@ func (a *Client) DeleteMetadataForRatePlan(params *DeleteMetadataForRatePlanPara
 		params = NewDeleteMetadataForRatePlanParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteMetadataForRatePlan",
 		Method:             "DELETE",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
@@ -60,7 +60,7 @@ func (a *Client) GetAllRatePlans(params *GetAllRatePlansParams) (*GetAllRatePlan
 		params = NewGetAllRatePlansParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllRatePlans",
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans",
@@ -87,7 +87,7 @@ func (a *Client) GetMetadataForRatePlan(params *GetMetadataForRatePlanParams) (*
 		params = NewGetMetadataForRatePlanParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMetadataForRatePlan",
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
@@ -114,7 +114,7 @@ func (a *Client) GetProductRatePlanByID(params *GetProductRatePlanByIDParams) (*
 		params = NewGetProductRatePlanByIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getProductRatePlanByID",
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}",
@@ -141,7 +141,7 @@ func (a *Client) GetRatePlanByProduct(params *GetRatePlanByProductParams) (*GetR
 		params = NewGetRatePlanByProductParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRatePlanByProduct",
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/product/{product-ID}",
@@ -168,7 +168,7 @@ func (a *Client) GetRatePlanByProductAndRatePlan(params *GetRatePlanByProductAnd
 		params = NewGetRatePlanByProductAndRatePlanParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRatePlanByProductAndRatePlan",
 		Method:             "GET",
 		PathPattern:        "/product-rate-plans/product/{product-ID}/rate-plan/{rate-plan-ID}",
@@ -195,7 +195,7 @@ func (a *Client) SetMetadataForRatePlan(params *SetMetadataForRatePlanParams) (*
 		params = NewSetMetadataForRatePlanParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setMetadataForRatePlan",
 		Method:             "POST",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
@@ -222,7 +222,7 @@ func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanPara
 		params = NewUpsertMetadataForRatePlanParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "upsertMetadataForRatePlan",
 		Method:             "PUT",
 		PathPattern:        "/product-rate-plans/{product-rate-plan-ID}/metadata",
@@ -239,6 +239,6 @@ func (a *Client) UpsertMetadataForRatePlan(params *UpsertMetadataForRatePlanPara
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

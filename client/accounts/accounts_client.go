@@ -4,13 +4,13 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new accounts API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for accounts API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -33,7 +33,7 @@ func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, e
 		params = NewCreateAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createAccount",
 		Method:             "POST",
 		PathPattern:        "/accounts",
@@ -60,7 +60,7 @@ func (a *Client) DeleteAccount(params *DeleteAccountParams) (*DeleteAccountOK, e
 		params = NewDeleteAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAccount",
 		Method:             "DELETE",
 		PathPattern:        "/accounts/{account-ID}",
@@ -87,7 +87,7 @@ func (a *Client) DeleteMetadataForAccount(params *DeleteMetadataForAccountParams
 		params = NewDeleteMetadataForAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteMetadataForAccount",
 		Method:             "DELETE",
 		PathPattern:        "/accounts/{account-ID}/metadata",
@@ -114,7 +114,7 @@ func (a *Client) GetAccountByID(params *GetAccountByIDParams) (*GetAccountByIDOK
 		params = NewGetAccountByIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAccountByID",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account-ID}",
@@ -141,7 +141,7 @@ func (a *Client) GetAllAccounts(params *GetAllAccountsParams) (*GetAllAccountsOK
 		params = NewGetAllAccountsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllAccounts",
 		Method:             "GET",
 		PathPattern:        "/accounts",
@@ -168,7 +168,7 @@ func (a *Client) GetMetadataForAccount(params *GetMetadataForAccountParams) (*Ge
 		params = NewGetMetadataForAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMetadataForAccount",
 		Method:             "GET",
 		PathPattern:        "/accounts/{account-ID}/metadata",
@@ -195,7 +195,7 @@ func (a *Client) SetMetadataForAccount(params *SetMetadataForAccountParams) (*Se
 		params = NewSetMetadataForAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setMetadataForAccount",
 		Method:             "POST",
 		PathPattern:        "/accounts/{account-ID}/metadata",
@@ -222,7 +222,7 @@ func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams
 		params = NewUpsertMetadataForAccountParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "upsertMetadataForAccount",
 		Method:             "PUT",
 		PathPattern:        "/accounts/{account-ID}/metadata",
@@ -239,6 +239,6 @@ func (a *Client) UpsertMetadataForAccount(params *UpsertMetadataForAccountParams
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

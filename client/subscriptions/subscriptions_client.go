@@ -4,13 +4,13 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new subscriptions API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for subscriptions API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -33,7 +33,7 @@ func (a *Client) AddPaymentMethodToSubscription(params *AddPaymentMethodToSubscr
 		params = NewAddPaymentMethodToSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addPaymentMethodToSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
@@ -60,7 +60,7 @@ func (a *Client) AdvanceSubscription(params *AdvanceSubscriptionParams) (*Advanc
 		params = NewAdvanceSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "advanceSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/advance",
@@ -87,7 +87,7 @@ func (a *Client) AvailablePaymentMethodsForSubscription(params *AvailablePayment
 		params = NewAvailablePaymentMethodsForSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "availablePaymentMethodsForSubscription",
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods",
@@ -114,7 +114,7 @@ func (a *Client) BatchCreateSubscriptions(params *BatchCreateSubscriptionsParams
 		params = NewBatchCreateSubscriptionsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "batchCreateSubscriptions",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/batch",
@@ -141,7 +141,7 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams) (*CancelSu
 		params = NewCancelSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cancelSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/cancel",
@@ -168,7 +168,7 @@ func (a *Client) CreateAggregatingSubscription(params *CreateAggregatingSubscrip
 		params = NewCreateAggregatingSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createAggregatingSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/aggregating",
@@ -195,7 +195,7 @@ func (a *Client) CreateSubscription(params *CreateSubscriptionParams) (*CreateSu
 		params = NewCreateSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions",
@@ -222,7 +222,7 @@ func (a *Client) CreateSubscriptionV2(params *CreateSubscriptionV2Params) (*Crea
 		params = NewCreateSubscriptionV2Params()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createSubscriptionV2",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/create",
@@ -249,7 +249,7 @@ func (a *Client) DeleteMetadataForSubscription(params *DeleteMetadataForSubscrip
 		params = NewDeleteMetadataForSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteMetadataForSubscription",
 		Method:             "DELETE",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
@@ -276,7 +276,7 @@ func (a *Client) GetAllSubscriptions(params *GetAllSubscriptionsParams) (*GetAll
 		params = NewGetAllSubscriptionsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllSubscriptions",
 		Method:             "GET",
 		PathPattern:        "/subscriptions",
@@ -303,7 +303,7 @@ func (a *Client) GetMetadataForSubscription(params *GetMetadataForSubscriptionPa
 		params = NewGetMetadataForSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMetadataForSubscription",
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
@@ -330,7 +330,7 @@ func (a *Client) GetSubscriptionByAccountID(params *GetSubscriptionByAccountIDPa
 		params = NewGetSubscriptionByAccountIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSubscriptionByAccountID",
 		Method:             "GET",
 		PathPattern:        "/subscriptions/account/{account-ID}",
@@ -357,7 +357,7 @@ func (a *Client) GetSubscriptionByID(params *GetSubscriptionByIDParams) (*GetSub
 		params = NewGetSubscriptionByIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSubscriptionByID",
 		Method:             "GET",
 		PathPattern:        "/subscriptions/{subscription-ID}",
@@ -384,7 +384,7 @@ func (a *Client) RemovePaymentMethodFromSubscription(params *RemovePaymentMethod
 		params = NewRemovePaymentMethodFromSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "removePaymentMethodFromSubscription",
 		Method:             "DELETE",
 		PathPattern:        "/subscriptions/{subscription-ID}/payment-methods/{payment-method-ID}",
@@ -411,7 +411,7 @@ func (a *Client) ReviveSubscription(params *ReviveSubscriptionParams) (*ReviveSu
 		params = NewReviveSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reviveSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/revive",
@@ -438,7 +438,7 @@ func (a *Client) SetMetadataForSubscription(params *SetMetadataForSubscriptionPa
 		params = NewSetMetadataForSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setMetadataForSubscription",
 		Method:             "POST",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
@@ -465,7 +465,7 @@ func (a *Client) UpdateSubscriptionV2(params *UpdateSubscriptionV2Params) (*Upda
 		params = NewUpdateSubscriptionV2Params()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSubscriptionV2",
 		Method:             "PUT",
 		PathPattern:        "/subscriptions/update",
@@ -492,7 +492,7 @@ func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscrip
 		params = NewUpsertMetadataForSubscriptionParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "upsertMetadataForSubscription",
 		Method:             "PUT",
 		PathPattern:        "/subscriptions/{subscription-ID}/metadata",
@@ -509,6 +509,6 @@ func (a *Client) UpsertMetadataForSubscription(params *UpsertMetadataForSubscrip
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

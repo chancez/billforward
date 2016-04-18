@@ -4,10 +4,10 @@ package tokenization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -32,13 +32,13 @@ type AuthCaptureParams struct {
 }
 
 // WithAuthCaptureRequest adds the authCaptureRequest to the auth capture params
-func (o *AuthCaptureParams) WithAuthCaptureRequest(authCaptureRequest models.AuthCaptureRequest) *AuthCaptureParams {
-	o.AuthCaptureRequest = authCaptureRequest
+func (o *AuthCaptureParams) WithAuthCaptureRequest(AuthCaptureRequest models.AuthCaptureRequest) *AuthCaptureParams {
+	o.AuthCaptureRequest = AuthCaptureRequest
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *AuthCaptureParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *AuthCaptureParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

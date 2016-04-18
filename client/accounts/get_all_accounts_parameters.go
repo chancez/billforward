@@ -4,11 +4,11 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAllAccountsParams creates a new GetAllAccountsParams object
@@ -82,61 +82,61 @@ type GetAllAccountsParams struct {
 }
 
 // WithID adds the id to the get all accounts params
-func (o *GetAllAccountsParams) WithID(id []string) *GetAllAccountsParams {
-	o.ID = id
+func (o *GetAllAccountsParams) WithID(ID []string) *GetAllAccountsParams {
+	o.ID = ID
 	return o
 }
 
 // WithIncludeRetired adds the includeRetired to the get all accounts params
-func (o *GetAllAccountsParams) WithIncludeRetired(includeRetired *bool) *GetAllAccountsParams {
-	o.IncludeRetired = includeRetired
+func (o *GetAllAccountsParams) WithIncludeRetired(IncludeRetired *bool) *GetAllAccountsParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithMetadata adds the metadata to the get all accounts params
-func (o *GetAllAccountsParams) WithMetadata(metadata *string) *GetAllAccountsParams {
-	o.Metadata = metadata
+func (o *GetAllAccountsParams) WithMetadata(Metadata *string) *GetAllAccountsParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOffset adds the offset to the get all accounts params
-func (o *GetAllAccountsParams) WithOffset(offset *int32) *GetAllAccountsParams {
-	o.Offset = offset
+func (o *GetAllAccountsParams) WithOffset(Offset *int32) *GetAllAccountsParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get all accounts params
-func (o *GetAllAccountsParams) WithOrder(order *string) *GetAllAccountsParams {
-	o.Order = order
+func (o *GetAllAccountsParams) WithOrder(Order *string) *GetAllAccountsParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get all accounts params
-func (o *GetAllAccountsParams) WithOrderBy(orderBy *string) *GetAllAccountsParams {
-	o.OrderBy = orderBy
+func (o *GetAllAccountsParams) WithOrderBy(OrderBy *string) *GetAllAccountsParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get all accounts params
-func (o *GetAllAccountsParams) WithOrganizations(organizations []string) *GetAllAccountsParams {
-	o.Organizations = organizations
+func (o *GetAllAccountsParams) WithOrganizations(Organizations []string) *GetAllAccountsParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get all accounts params
-func (o *GetAllAccountsParams) WithRecords(records *int32) *GetAllAccountsParams {
-	o.Records = records
+func (o *GetAllAccountsParams) WithRecords(Records *int32) *GetAllAccountsParams {
+	o.Records = Records
 	return o
 }
 
 // WithUsersOnly adds the usersOnly to the get all accounts params
-func (o *GetAllAccountsParams) WithUsersOnly(usersOnly *bool) *GetAllAccountsParams {
-	o.UsersOnly = usersOnly
+func (o *GetAllAccountsParams) WithUsersOnly(UsersOnly *bool) *GetAllAccountsParams {
+	o.UsersOnly = UsersOnly
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAllAccountsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAllAccountsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

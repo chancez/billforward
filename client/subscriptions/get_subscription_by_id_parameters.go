@@ -4,11 +4,11 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetSubscriptionByIDParams creates a new GetSubscriptionByIDParams object
@@ -42,25 +42,25 @@ type GetSubscriptionByIDParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get subscription by ID params
-func (o *GetSubscriptionByIDParams) WithIncludeRetired(includeRetired *bool) *GetSubscriptionByIDParams {
-	o.IncludeRetired = includeRetired
+func (o *GetSubscriptionByIDParams) WithIncludeRetired(IncludeRetired *bool) *GetSubscriptionByIDParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOrganizations adds the organizations to the get subscription by ID params
-func (o *GetSubscriptionByIDParams) WithOrganizations(organizations []string) *GetSubscriptionByIDParams {
-	o.Organizations = organizations
+func (o *GetSubscriptionByIDParams) WithOrganizations(Organizations []string) *GetSubscriptionByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the get subscription by ID params
-func (o *GetSubscriptionByIDParams) WithSubscriptionID(subscriptionId string) *GetSubscriptionByIDParams {
-	o.SubscriptionID = subscriptionId
+func (o *GetSubscriptionByIDParams) WithSubscriptionID(SubscriptionID string) *GetSubscriptionByIDParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetSubscriptionByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetSubscriptionByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

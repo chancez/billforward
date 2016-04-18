@@ -4,11 +4,11 @@ package payment_methods
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetPaymentMethodByIDParams creates a new GetPaymentMethodByIDParams object
@@ -33,19 +33,19 @@ type GetPaymentMethodByIDParams struct {
 }
 
 // WithOrganizations adds the organizations to the get payment method by ID params
-func (o *GetPaymentMethodByIDParams) WithOrganizations(organizations []string) *GetPaymentMethodByIDParams {
-	o.Organizations = organizations
+func (o *GetPaymentMethodByIDParams) WithOrganizations(Organizations []string) *GetPaymentMethodByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithPaymentMethodID adds the paymentMethodId to the get payment method by ID params
-func (o *GetPaymentMethodByIDParams) WithPaymentMethodID(paymentMethodId string) *GetPaymentMethodByIDParams {
-	o.PaymentMethodID = paymentMethodId
+func (o *GetPaymentMethodByIDParams) WithPaymentMethodID(PaymentMethodID string) *GetPaymentMethodByIDParams {
+	o.PaymentMethodID = PaymentMethodID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetPaymentMethodByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetPaymentMethodByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

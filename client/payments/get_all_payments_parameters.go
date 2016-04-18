@@ -4,11 +4,11 @@ package payments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetAllPaymentsParams creates a new GetAllPaymentsParams object
@@ -68,43 +68,43 @@ type GetAllPaymentsParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get all payments params
-func (o *GetAllPaymentsParams) WithIncludeRetired(includeRetired *bool) *GetAllPaymentsParams {
-	o.IncludeRetired = includeRetired
+func (o *GetAllPaymentsParams) WithIncludeRetired(IncludeRetired *bool) *GetAllPaymentsParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get all payments params
-func (o *GetAllPaymentsParams) WithOffset(offset *int32) *GetAllPaymentsParams {
-	o.Offset = offset
+func (o *GetAllPaymentsParams) WithOffset(Offset *int32) *GetAllPaymentsParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get all payments params
-func (o *GetAllPaymentsParams) WithOrder(order *string) *GetAllPaymentsParams {
-	o.Order = order
+func (o *GetAllPaymentsParams) WithOrder(Order *string) *GetAllPaymentsParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get all payments params
-func (o *GetAllPaymentsParams) WithOrderBy(orderBy *string) *GetAllPaymentsParams {
-	o.OrderBy = orderBy
+func (o *GetAllPaymentsParams) WithOrderBy(OrderBy *string) *GetAllPaymentsParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get all payments params
-func (o *GetAllPaymentsParams) WithOrganizations(organizations []string) *GetAllPaymentsParams {
-	o.Organizations = organizations
+func (o *GetAllPaymentsParams) WithOrganizations(Organizations []string) *GetAllPaymentsParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithRecords adds the records to the get all payments params
-func (o *GetAllPaymentsParams) WithRecords(records *int32) *GetAllPaymentsParams {
-	o.Records = records
+func (o *GetAllPaymentsParams) WithRecords(Records *int32) *GetAllPaymentsParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetAllPaymentsParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetAllPaymentsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

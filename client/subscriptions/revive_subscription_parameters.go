@@ -4,10 +4,10 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -34,19 +34,19 @@ type ReviveSubscriptionParams struct {
 }
 
 // WithRequest adds the request to the revive subscription params
-func (o *ReviveSubscriptionParams) WithRequest(request *models.ReviveSubscriptionRequest) *ReviveSubscriptionParams {
-	o.Request = request
+func (o *ReviveSubscriptionParams) WithRequest(Request *models.ReviveSubscriptionRequest) *ReviveSubscriptionParams {
+	o.Request = Request
 	return o
 }
 
 // WithSubscriptionID adds the subscriptionId to the revive subscription params
-func (o *ReviveSubscriptionParams) WithSubscriptionID(subscriptionId string) *ReviveSubscriptionParams {
-	o.SubscriptionID = subscriptionId
+func (o *ReviveSubscriptionParams) WithSubscriptionID(SubscriptionID string) *ReviveSubscriptionParams {
+	o.SubscriptionID = SubscriptionID
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *ReviveSubscriptionParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *ReviveSubscriptionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

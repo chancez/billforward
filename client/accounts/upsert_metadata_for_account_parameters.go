@@ -4,11 +4,11 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -37,25 +37,25 @@ type UpsertMetadataForAccountParams struct {
 }
 
 // WithAccountID adds the accountId to the upsert metadata for account params
-func (o *UpsertMetadataForAccountParams) WithAccountID(accountId string) *UpsertMetadataForAccountParams {
-	o.AccountID = accountId
+func (o *UpsertMetadataForAccountParams) WithAccountID(AccountID string) *UpsertMetadataForAccountParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithMetadata adds the metadata to the upsert metadata for account params
-func (o *UpsertMetadataForAccountParams) WithMetadata(metadata models.DynamicMetadata) *UpsertMetadataForAccountParams {
-	o.Metadata = metadata
+func (o *UpsertMetadataForAccountParams) WithMetadata(Metadata models.DynamicMetadata) *UpsertMetadataForAccountParams {
+	o.Metadata = Metadata
 	return o
 }
 
 // WithOrganizations adds the organizations to the upsert metadata for account params
-func (o *UpsertMetadataForAccountParams) WithOrganizations(organizations []string) *UpsertMetadataForAccountParams {
-	o.Organizations = organizations
+func (o *UpsertMetadataForAccountParams) WithOrganizations(Organizations []string) *UpsertMetadataForAccountParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpsertMetadataForAccountParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpsertMetadataForAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

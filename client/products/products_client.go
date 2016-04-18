@@ -4,13 +4,13 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // New creates a new products API client.
-func New(transport client.Transport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -18,7 +18,7 @@ func New(transport client.Transport, formats strfmt.Registry) *Client {
 Client for products API
 */
 type Client struct {
-	transport client.Transport
+	transport runtime.ClientTransport
 	formats   strfmt.Registry
 }
 
@@ -33,7 +33,7 @@ func (a *Client) DeleteMetadataForProduct(params *DeleteMetadataForProductParams
 		params = NewDeleteMetadataForProductParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteMetadataForProduct",
 		Method:             "DELETE",
 		PathPattern:        "/products/{product-ID}/metadata",
@@ -60,7 +60,7 @@ func (a *Client) GetAllProducts(params *GetAllProductsParams) (*GetAllProductsOK
 		params = NewGetAllProductsParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllProducts",
 		Method:             "GET",
 		PathPattern:        "/products",
@@ -87,7 +87,7 @@ func (a *Client) GetMetadataForProduct(params *GetMetadataForProductParams) (*Ge
 		params = NewGetMetadataForProductParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMetadataForProduct",
 		Method:             "GET",
 		PathPattern:        "/products/{product-ID}/metadata",
@@ -114,7 +114,7 @@ func (a *Client) GetProductByID(params *GetProductByIDParams) (*GetProductByIDOK
 		params = NewGetProductByIDParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getProductByID",
 		Method:             "GET",
 		PathPattern:        "/products/{product-ID}",
@@ -141,7 +141,7 @@ func (a *Client) SetMetadataForProduct(params *SetMetadataForProductParams) (*Se
 		params = NewSetMetadataForProductParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setMetadataForProduct",
 		Method:             "POST",
 		PathPattern:        "/products/{product-ID}/metadata",
@@ -168,7 +168,7 @@ func (a *Client) UpsertMetadataForProduct(params *UpsertMetadataForProductParams
 		params = NewUpsertMetadataForProductParams()
 	}
 
-	result, err := a.transport.Submit(&client.Operation{
+	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "upsertMetadataForProduct",
 		Method:             "PUT",
 		PathPattern:        "/products/{product-ID}/metadata",
@@ -185,6 +185,6 @@ func (a *Client) UpsertMetadataForProduct(params *UpsertMetadataForProductParams
 }
 
 // SetTransport changes the transport on the client
-func (a *Client) SetTransport(transport client.Transport) {
+func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
 }

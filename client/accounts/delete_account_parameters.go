@@ -4,11 +4,11 @@ package accounts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewDeleteAccountParams creates a new DeleteAccountParams object
@@ -35,25 +35,25 @@ type DeleteAccountParams struct {
 }
 
 // WithAccountID adds the accountId to the delete account params
-func (o *DeleteAccountParams) WithAccountID(accountId string) *DeleteAccountParams {
-	o.AccountID = accountId
+func (o *DeleteAccountParams) WithAccountID(AccountID string) *DeleteAccountParams {
+	o.AccountID = AccountID
 	return o
 }
 
 // WithDeleteGatewayData adds the deleteGatewayData to the delete account params
-func (o *DeleteAccountParams) WithDeleteGatewayData(deleteGatewayData bool) *DeleteAccountParams {
-	o.DeleteGatewayData = deleteGatewayData
+func (o *DeleteAccountParams) WithDeleteGatewayData(DeleteGatewayData bool) *DeleteAccountParams {
+	o.DeleteGatewayData = DeleteGatewayData
 	return o
 }
 
 // WithOrganizations adds the organizations to the delete account params
-func (o *DeleteAccountParams) WithOrganizations(organizations []string) *DeleteAccountParams {
-	o.Organizations = organizations
+func (o *DeleteAccountParams) WithOrganizations(Organizations []string) *DeleteAccountParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteAccountParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *DeleteAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

@@ -4,11 +4,11 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
-	"github.com/go-swagger/go-swagger/swag"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 )
 
 // NewGetProductByIDParams creates a new GetProductByIDParams object
@@ -73,49 +73,49 @@ type GetProductByIDParams struct {
 }
 
 // WithIncludeRetired adds the includeRetired to the get product by ID params
-func (o *GetProductByIDParams) WithIncludeRetired(includeRetired *bool) *GetProductByIDParams {
-	o.IncludeRetired = includeRetired
+func (o *GetProductByIDParams) WithIncludeRetired(IncludeRetired *bool) *GetProductByIDParams {
+	o.IncludeRetired = IncludeRetired
 	return o
 }
 
 // WithOffset adds the offset to the get product by ID params
-func (o *GetProductByIDParams) WithOffset(offset *int32) *GetProductByIDParams {
-	o.Offset = offset
+func (o *GetProductByIDParams) WithOffset(Offset *int32) *GetProductByIDParams {
+	o.Offset = Offset
 	return o
 }
 
 // WithOrder adds the order to the get product by ID params
-func (o *GetProductByIDParams) WithOrder(order *string) *GetProductByIDParams {
-	o.Order = order
+func (o *GetProductByIDParams) WithOrder(Order *string) *GetProductByIDParams {
+	o.Order = Order
 	return o
 }
 
 // WithOrderBy adds the orderBy to the get product by ID params
-func (o *GetProductByIDParams) WithOrderBy(orderBy *string) *GetProductByIDParams {
-	o.OrderBy = orderBy
+func (o *GetProductByIDParams) WithOrderBy(OrderBy *string) *GetProductByIDParams {
+	o.OrderBy = OrderBy
 	return o
 }
 
 // WithOrganizations adds the organizations to the get product by ID params
-func (o *GetProductByIDParams) WithOrganizations(organizations []string) *GetProductByIDParams {
-	o.Organizations = organizations
+func (o *GetProductByIDParams) WithOrganizations(Organizations []string) *GetProductByIDParams {
+	o.Organizations = Organizations
 	return o
 }
 
 // WithProductID adds the productId to the get product by ID params
-func (o *GetProductByIDParams) WithProductID(productId string) *GetProductByIDParams {
-	o.ProductID = productId
+func (o *GetProductByIDParams) WithProductID(ProductID string) *GetProductByIDParams {
+	o.ProductID = ProductID
 	return o
 }
 
 // WithRecords adds the records to the get product by ID params
-func (o *GetProductByIDParams) WithRecords(records *int32) *GetProductByIDParams {
-	o.Records = records
+func (o *GetProductByIDParams) WithRecords(Records *int32) *GetProductByIDParams {
+	o.Records = Records
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetProductByIDParams) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *GetProductByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 

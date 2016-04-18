@@ -4,10 +4,10 @@ package subscriptions
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-swagger/go-swagger/client"
-	"github.com/go-swagger/go-swagger/errors"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 
-	strfmt "github.com/go-swagger/go-swagger/strfmt"
+	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/authclub/billforward/models"
 )
@@ -29,13 +29,13 @@ type UpdateSubscriptionV2Params struct {
 }
 
 // WithRequest adds the request to the update subscription v2 params
-func (o *UpdateSubscriptionV2Params) WithRequest(request *models.UpdateSubscriptionRequest) *UpdateSubscriptionV2Params {
-	o.Request = request
+func (o *UpdateSubscriptionV2Params) WithRequest(Request *models.UpdateSubscriptionRequest) *UpdateSubscriptionV2Params {
+	o.Request = Request
 	return o
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *UpdateSubscriptionV2Params) WriteToRequest(r client.Request, reg strfmt.Registry) error {
+func (o *UpdateSubscriptionV2Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	var res []error
 
